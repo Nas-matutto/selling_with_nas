@@ -18,7 +18,7 @@ metadata:
 
 If you’re driving traffic to your <a href="https://www.shopify.com/" target="_blank" rel="noopener noreferrer">Shopify</a>  store but not seeing many conversions, your landing page could be the bottleneck holding you back. A landing page is often your customer's first impression of your brand, and if it's not optimized for conversions, you're leaving money on the table.
 
-In this post, we’ll walk through everything you need to build a **high-converting Shopify landing page** that turns visitors into buyers.
+In this post, we’ll walk through everything you need to build a **high-converting Shopify landing page** that turns visitors into buyers. And if you already have a landing page and want to review its score out of 100, and get optimizations recommendations, give <a href="https://talktomedata.com/" target="_blank" rel="noopener noreferrer">Talk to Me Data</a> a try.
 
 
 ## 1. Start With a Clear Value Proposition
