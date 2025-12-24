@@ -94,7 +94,7 @@ While you can’t legally use celebrity images in paid ads without rights, AI al
             box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
         ">
             <h3 style="margin: 0 0 12px 0; font-size: 20px; color: white; font-weight: 600;">
-                Need help swith AI Image creation?
+                Need help with AI Image creation?
             </h3>
             <a href="/contact" style="
                 display: inline-block; 
