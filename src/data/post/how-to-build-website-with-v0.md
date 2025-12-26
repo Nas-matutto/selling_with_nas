@@ -23,7 +23,7 @@ Building a website used to mean either spending thousands on developers or spend
 
 That's why <a href="https://v0.dev" target="_blank" rel="noopener noreferrer">v0 by Vercel</a> is a complete game-changer. This **AI-powered design tool** lets you create professional, responsive landing pages in minutes just by describing what you want in plain English.
 
-In this guide, I'll walk you through the **exact step-by-step process** to go from zero to a published landing page in under an hour—completely free.
+In this guide, I'll walk you through the **exact step-by-step process** to go from zero to a published landing page in under an hour, completely free.
 
 
 ## Step 1: Sign Up for v0 (It's Free!)
@@ -158,7 +158,7 @@ The good news? v0 automatically creates responsive designs. But you MUST check t
 ## Step 5: Optimize for Conversions (Make Every Visitor Count!)
 **A Beautiful Page That Doesn't Convert is Worthless**
 
-Your landing page has ONE job: get visitors to take action. Whether that's signing up, buying, or booking a call - everything should guide them toward that goal. Once you have a landing page, use <a href="https://www.sellingwithnas.com/" target="_blank" rel="noopener noreferrer">Talk to me Data</a> to know where your website excels, and how it can be improved from a conversion perspective. 
+Your landing page has ONE job: get visitors to take action. Whether that's signing up, buying, or booking a call - everything should guide them toward that goal. Once you have a landing page, use <a href="https://talktomedata.com/" target="_blank" rel="noopener noreferrer">Talk to me Data</a> to know where your website excels, and how it can be improved from a conversion perspective. 
 
 ### Critical Conversion Elements to Include:
 
@@ -293,7 +293,7 @@ Common mistakes to catch:
 ## Step 10: Track Performance and Iterate
 **Launch is Just the Beginning**
 
-Your landing page is live—now make it better:
+Your landing page is live, now make it better:
 
 1. **Add Google Analytics** to track visitors (v0 can add the code)
 2. **Monitor conversion rate** (visitors ÷ sign-ups)
