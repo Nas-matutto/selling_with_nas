@@ -3,8 +3,16 @@ import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
 export const headerData = {
   links: [
     {
-      text: 'Tools',
+      text: 'Tools I built',
       links: [
+        {
+          text: 'Talk to Me Data',
+          href: getPermalink('/tools/talk-to-me-data'),
+        },
+        {
+          text: 'Quizzings',
+          href: getPermalink('/tools/quizzings'),
+        },
         {
           text: 'E-commerce Profit Calculator',
           href: getPermalink('/tools/E-commerce_calculator'),
