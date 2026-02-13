@@ -25,64 +25,61 @@ const metadata = {
         <p class="hero-subtitle">Build interactive quizzes that capture leads, engage your audience, and drive conversions — no coding required.</p>
       </div>
 
-      <!-- Two Column Layout -->
-      <div class="product-grid">
-        <!-- Video / Demo Section -->
-        <div class="video-section">
-          <h2 class="section-title">See It in Action</h2>
-          <div class="video-placeholder">
-            <div class="play-button">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="white" stroke="none">
-                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-              </svg>
-            </div>
-            <p class="video-caption">Product demo coming soon</p>
+      <!-- Video Section (Full Width) -->
+      <div class="video-section">
+        <h2 class="section-title">See It in Action</h2>
+        <div class="video-placeholder">
+          <div class="play-button">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="white" stroke="none">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
           </div>
+          <p class="video-caption">Product demo coming soon</p>
         </div>
+      </div>
 
-        <!-- Product Info Section -->
-        <div class="info-section">
+      <!-- Product Info Section -->
+      <div class="info-section">
           <h2 class="section-title">What It Does</h2>
 
           <div class="feature-item">
-            <div class="feature-icon">🎯</div>
+            <div class="feature-icon">📄</div>
             <div>
-              <h3>Lead Generation Quizzes</h3>
-              <p>Turn visitors into leads with interactive quizzes that feel fun, not salesy. Capture emails and data while providing real value.</p>
+              <h3>Upload Any PDF</h3>
+              <p>Drop in any PDF document and our AI instantly creates interactive quizzes from your content. Study notes, textbooks, reports — anything works.</p>
             </div>
           </div>
 
           <div class="feature-item">
-            <div class="feature-icon">🎨</div>
+            <div class="feature-icon">🧠</div>
             <div>
-              <h3>Drag & Drop Builder</h3>
-              <p>Create professional quizzes in minutes with an intuitive builder. Choose from templates or start from scratch — no design skills needed.</p>
+              <h3>Smart Question Generation</h3>
+              <p>AI analyzes your content and creates questions that target key concepts, not trivia. Get meaningful questions that actually help you learn.</p>
             </div>
           </div>
 
           <div class="feature-item">
-            <div class="feature-icon">📈</div>
+            <div class="feature-icon">📊</div>
             <div>
-              <h3>Analytics Dashboard</h3>
-              <p>Track completion rates, drop-off points, and lead quality. Know exactly which questions engage and which ones lose people.</p>
+              <h3>Instant Score & Feedback</h3>
+              <p>See your percentage score immediately. Know exactly what you got right and wrong so you can focus on what matters.</p>
             </div>
           </div>
 
           <div class="feature-item">
-            <div class="feature-icon">🔗</div>
+            <div class="feature-icon">✅</div>
             <div>
-              <h3>Embed Anywhere</h3>
-              <p>Drop your quiz into any website, landing page, or email. Works with Shopify, WordPress, Webflow, and any HTML page.</p>
+              <h3>Learn From Mistakes</h3>
+              <p>Every wrong answer shows the correct answer with an explanation to help you learn faster. Turn mistakes into knowledge.</p>
             </div>
           </div>
-        </div>
       </div>
 
       <!-- CTA Section -->
       <div class="cta-section">
-        <h2>Want Early Access?</h2>
-        <p>Quizzings is currently in development. Be the first to try it when it launches.</p>
-        <a href="/contact" class="btn btn-primary">Get Notified →</a>
+        <h2>Try It Out</h2>
+        <p>Try it out and share your feedback with me.</p>
+        <a href="/contact" class="btn btn-primary">Check It Out →</a>
       </div>
 
       <!-- Back button -->
@@ -183,20 +180,7 @@ const metadata = {
     50% { background-position: 100% 50%; }
   }
 
-  /* Grid */
-  .product-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    margin-bottom: 40px;
-  }
-
   @media (max-width: 768px) {
-    .product-grid {
-      grid-template-columns: 1fr;
-      gap: 30px;
-    }
-
     .hero-section h1 {
       font-size: 2.2rem;
     }
@@ -211,6 +195,10 @@ const metadata = {
   }
 
   /* Sections */
+  .video-section, .info-section {
+    margin-bottom: 40px;
+  }
+
   .video-section, .info-section {
     background: rgba(255, 255, 255, 0.9);
     border-radius: 20px;
