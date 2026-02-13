@@ -115,26 +115,26 @@ You're never fully blocked. Claude offers **extra usage** at standard API rates 
 
 Before we get into setup, let's talk about the three ways you can use Claude Code so you know your options.
 
-### 1. VS Code Extension — The Best Way for Non-Technical Founders
+### 1. VS Code Extension - The Best Way for Non-Technical Founders
 
-<a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer">VS Code</a> is the most popular free code editor in the world, and Claude Code plugs right into it. You get a chat panel inside your editor where you type what you want in plain English, and Claude does the work — right in front of you.
+<a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer">VS Code</a> is the most popular free code editor in the world, and Claude Code plugs right into it. You get a chat panel inside your editor where you type what you want in plain English, and Claude does the work right in front of you.
 
 **Why this is the one I recommend:**
-- **Visual interface** — No scary black terminal screen. You see your files on the left, Claude's chat on the right. It feels like texting a developer.
-- **Checkpoints** — Claude automatically saves snapshots of your project before making changes. If something breaks, you click "rewind" and it's like nothing happened. This is a massive safety net.
-- **@-mention files** — Type `@filename` to point Claude to specific files. It's like saying "hey, look at this."
-- **Visual diffs** — Before Claude changes anything, you see exactly what's being added or removed. Green means new, red means deleted. You approve or reject each change.
-- **Multi-tab conversations** — Work on different features in separate conversations, just like having multiple chat windows open.
+- **Visual interface** - No scary black terminal screen. You see your files on the left, Claude's chat on the right. It feels like texting a developer.
+- **Checkpoints** - Claude automatically saves snapshots of your project before making changes. If something breaks, you click "rewind" and it's like nothing happened. This is a massive safety net.
+- **@-mention files** - Type `@filename` to point Claude to specific files. It's like saying "hey, look at this."
+- **Visual diffs** - Before Claude changes anything, you see exactly what's being added or removed. Green means new, red means deleted. You approve or reject each change.
+- **Multi-tab conversations** - Work on different features in separate conversations, just like having multiple chat windows open.
 
 **This is the method we'll focus on in this guide.**
 
 ### 2. Terminal (CLI)
 
-If you're comfortable with the command line, you can run Claude Code directly in your terminal. You type `claude` in any project folder and start chatting. It's fast, lightweight, and works on any machine — including remote servers. More technical founders often prefer this method because it's quick and stays out of the way.
+If you're comfortable with the command line, you can run Claude Code directly in your terminal. You type `claude` in any project folder and start chatting. It's fast, lightweight, and works on any machine - including remote servers. More technical founders often prefer this method because it's quick and stays out of the way.
 
 ### 3. Claude.ai (Web)
 
-You can also use Claude through the web at <a href="https://claude.ai" target="_blank" rel="noopener noreferrer">claude.ai</a>. This is the simplest option — no installation needed. Just open your browser, sign in, and start chatting. It's great for brainstorming ideas, writing copy, or asking coding questions. However, it **can't directly read or edit your project files** the way VS Code or the terminal can. Think of it as your AI thinking partner, while VS Code is your AI building partner.
+You can also use Claude through the web at <a href="https://claude.ai" target="_blank" rel="noopener noreferrer">claude.ai</a>. This is the simplest option - no installation needed. Just open your browser, sign in, and start chatting. It's great for brainstorming ideas, writing copy, or asking coding questions. However, it **can't directly read or edit your project files** the way VS Code or the terminal can. Think of it as your AI thinking partner, while VS Code is your AI building partner.
 
 **Bottom line:** Use **VS Code** when you want Claude to actually build and change things in your project. Use **claude.ai** when you want to brainstorm, plan, or ask questions. Use the **terminal** if you're more technical and want a faster, minimal interface.
 
@@ -147,7 +147,7 @@ This is easier than you think. You'll be up and running in under 10 minutes.
 
 If you don't already have it, download <a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer">VS Code</a> from the official website. It's completely free and works on Mac, Windows, and Linux. Just click the big download button, run the installer, and open it.
 
-VS Code is where you'll see and manage all your project files. Think of it as a smarter version of Notepad or TextEdit — but designed for building things.
+VS Code is where you'll see and manage all your project files. Think of it as a smarter version of Notepad or TextEdit - but designed for building things.
 
 ### Step 2: Install the Claude Code Extension
 
@@ -161,7 +161,7 @@ That's it. You'll see a Claude icon appear in your sidebar.
 
 ### Step 3: Open Your Project
 
-In VS Code, go to **File → Open Folder** and select the folder where your project lives. This is important — Claude needs to see your project files to help you.
+In VS Code, go to **File → Open Folder** and select the folder where your project lives (and if you don't have a folder yet, just create one). This is important because Claude needs to see your project files to help you, or at least have a place where to intially add the files it creates.
 
 If you don't have a project yet, create a new empty folder on your Desktop (call it something like "my-project") and open that.
 
@@ -200,7 +200,7 @@ Made a change you don't like? Something broke?
 3. Click **rewind**
 4. Everything is restored. No damage done.
 
-Think of it like an unlimited "undo" button for your entire project. Experiment freely — you can always go back.
+Think of it like an unlimited "undo" button for your entire project. Experiment freely - you can always go back.
 
 
 ## Best Practices for Non-Technical Founders
@@ -214,7 +214,7 @@ One of the first things you should do is type this in the Claude Code chat:
 /init
 ```
 
-Claude will analyze your project and create a **CLAUDE.md** file — a document that tells Claude about your project every time you start a new conversation. Think of it as a briefing packet for your AI developer.
+Claude will analyze your project and create a **CLAUDE.md** file - a document that tells Claude about your project every time you start a new conversation. Think of it as a briefing packet for your AI developer.
 
 The better your CLAUDE.md, the better Claude's output. You can also ask Claude to update it: *"Add to the CLAUDE.md that we always use Tailwind CSS for styling."*
 
@@ -233,7 +233,7 @@ The #1 mistake founders make is being too vague. Claude Code is powerful, but it
 **Even better prompt:**
 > "Add a success message that appears after the contact form is submitted. It should say 'Thanks! I'll get back to you within 24 hours.' Use a green background, show it for 5 seconds, then fade out."
 
-The more context you give — what page, what's wrong, what you want it to look like — the better the result. Talk to Claude the way you'd brief a freelancer.
+The more context you give - what page, what's wrong, what you want it to look like - the better the result. Talk to Claude the way you'd brief a freelancer.
 
 ### Use /compact When Things Feel Slow
 
@@ -252,7 +252,7 @@ Claude will always show you what it wants to change before it does anything. In 
 - **Green highlighted lines** = new code being added
 - **Red highlighted lines** = old code being removed
 
-Take a moment to read through the changes. You don't need to understand every line of code — just check that it's doing what you asked. If something looks off, tell Claude: *"That's not quite right — I wanted the button to be blue, not red."*
+Take a moment to read through the changes. You don't need to understand every line of code - just check that it's doing what you asked. If something looks off, tell Claude: *"That's not quite right - I wanted the button to be blue, not red."*
 
 ### Start Small, Build Up
 
@@ -269,7 +269,7 @@ As you get comfortable, work your way up to bigger tasks:
 - "Connect the contact form to my email"
 - "Create a pricing page with three tiers"
 
-Whether you're [launching an e-commerce product](/blog/10-steps-to-launch-an-ecommerce-product) or building a SaaS tool, Claude Code can handle it — but you'll get better results when you build up to complex tasks gradually.
+Whether you're [launching an e-commerce product](/blog/10-steps-to-launch-an-ecommerce-product) or building a SaaS tool, Claude Code can handle it - but you'll get better results when you build up to complex tasks gradually.
 
 
 <div style="
