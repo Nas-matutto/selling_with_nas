@@ -3,7 +3,7 @@ publishDate: 2026-02-08T00:00:00Z
 author: Nas
 title: How to Use Claude Code for Beginners - A Non-Technical Founder's Guide
 excerpt: Everything non-technical founders need to know about Claude Code — from installation to daily use. Learn the plans, setup, and best practices to start building with AI.
-image: https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+image: ~/assets/images/Claude_Code_Banner.jpg
 category: Technology
 tags:
   - AI

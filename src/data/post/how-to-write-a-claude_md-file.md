@@ -3,7 +3,7 @@ publishDate: 2026-02-08T00:00:00Z
 author: Nas
 title: The Complete Guide to Writing the Perfect CLAUDE.md File for Claude Code
 excerpt: Learn how to create a CLAUDE.md file that makes Claude Code work better for your projects — no technical expertise required. Includes real examples you can copy.
-image: https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+image: ~/assets/images/Claude_md_banner.jpg
 category: Technology
 tags:
   - AI
