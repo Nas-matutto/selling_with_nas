@@ -1,5 +1,7 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+import { Image } from 'astro:assets';
+import quizzingsImage from '~/assets/images/Quizzings_HP.png';
 
 const metadata = {
   title: 'Quizzings - Interactive Quiz Builder for Lead Generation | Selling with Nas',
@@ -25,16 +27,11 @@ const metadata = {
         <p class="hero-subtitle">Build interactive quizzes that capture leads, engage your audience, and drive conversions — no coding required.</p>
       </div>
 
-      <!-- Video Section (Full Width) -->
+      <!-- Screenshot Section (Full Width) -->
       <div class="video-section">
         <h2 class="section-title">See It in Action</h2>
-        <div class="video-placeholder">
-          <div class="play-button">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="white" stroke="none">
-              <polygon points="5 3 19 12 5 21 5 3"></polygon>
-            </svg>
-          </div>
-          <p class="video-caption">Product demo coming soon</p>
+        <div class="screenshot-wrapper">
+          <Image src={quizzingsImage} alt="Quizzings - Interactive quiz builder from PDFs" class="product-screenshot" width={1200} />
         </div>
       </div>
 
@@ -79,7 +76,7 @@ const metadata = {
       <div class="cta-section">
         <h2>Try It Out</h2>
         <p>Try it out and share your feedback with me.</p>
-        <a href="/contact" class="btn btn-primary">Check It Out →</a>
+        <a href="https://quizzings.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Check It Out →</a>
       </div>
 
       <!-- Back button -->
@@ -234,50 +231,24 @@ const metadata = {
     border-radius: 2px;
   }
 
-  /* Video Placeholder */
-  .video-placeholder {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-    border-radius: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border: 2px solid rgba(139, 92, 246, 0.3);
+  /* Screenshot */
+  .screenshot-wrapper {
     margin-top: 15px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 2px solid rgba(139, 92, 246, 0.3);
+    transition: all 0.3s ease;
   }
 
-  .video-placeholder:hover {
+  .screenshot-wrapper:hover {
     border-color: rgba(139, 92, 246, 0.6);
     box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
   }
 
-  .play-button {
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(135deg, #8b5cf6, #ec4899);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-left: 6px;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
-  }
-
-  .video-placeholder:hover .play-button {
-    transform: scale(1.1);
-    box-shadow: 0 12px 35px rgba(139, 92, 246, 0.5);
-  }
-
-  .video-caption {
-    color: #94a3b8;
-    margin-top: 16px;
-    font-size: 0.95rem;
-    font-weight: 500;
+  .product-screenshot {
+    width: 100%;
+    height: auto;
+    display: block;
   }
 
   /* Features */
@@ -465,17 +436,12 @@ const metadata = {
     background: linear-gradient(90deg, #a78bfa, #f472b6);
   }
 
-  :global(.dark) .video-placeholder {
-    background: linear-gradient(135deg, #0a0a1a 0%, #111128 100%);
+  :global(.dark) .screenshot-wrapper {
     border-color: rgba(167, 139, 250, 0.3);
   }
 
-  :global(.dark) .video-placeholder:hover {
+  :global(.dark) .screenshot-wrapper:hover {
     border-color: rgba(167, 139, 250, 0.6);
-  }
-
-  :global(.dark) .play-button {
-    background: linear-gradient(135deg, #a78bfa, #f472b6);
   }
 
   :global(.dark) .feature-item {
