@@ -1,8 +1,8 @@
 ---
-publishDate: 2026-02-08T00:00:00Z
+publishDate: 2026-02-13T00:00:00Z
 author: Nas
 title: The Complete Guide to Writing the Perfect CLAUDE.md File for Claude Code
-excerpt: Learn how to create a CLAUDE.md file that makes Claude Code work better for your projects — no technical expertise required. Includes real examples you can copy.
+excerpt: Learn how to create a CLAUDE.md file that makes Claude Code work better for your projects - no technical expertise required. Includes real examples you can copy.
 image: ~/assets/images/Claude_md_banner.jpg
 category: Technology
 tags:
@@ -25,7 +25,7 @@ metadata:
 
 ## What is a CLAUDE.md File and Why Do You Need One?
 
-If you've started using [Claude Code](/blog/how-to-use-claude-code-for-beginners), you might have noticed something frustrating: Claude doesn't remember anything from your previous conversations. Every time you start a new session, you have to explain your project all over again - which tools you use, how to run tests, what your coding style is.
+If you've started using [Claude Code](/blog/how-to-use-claude-code-for-beginners), you might have noticed something frustrating: Claude doesn't remember anything from your previous conversations. Every time you start a new session, you have to explain your project all over again which tools you use, how to run tests, what your coding style is.
 
 **That's where CLAUDE.md comes in.**
 
@@ -90,7 +90,7 @@ Be specific about how you like your code written:
 - Format with Prettier before committing
 ```
 
-**Pro tip**: Don't just say "write clean code" - that's too vague. Say exactly what "clean" means to you.
+**Pro tip**: Don't just say "write clean code" - that's way too vague. Say exactly what "clean" means to you.
 
 ### 4. Important Project Quirks
 
@@ -98,7 +98,7 @@ Every project has its weird parts. Document them:
 
 ```markdown
 ## Important Notes
-- Never edit files in the `src/legacy` folder - we're phasing those out
+- Never edit files in the `src/legacy` folder - Anthropic is phasing those out
 - The authentication system has a known quirk with token refresh - see docs/auth-fix.md
 - Always run the full test suite before pushing to main
 ```
@@ -158,48 +158,72 @@ Just as important as what to include is what to leave out:
 
 **Don't just say "never" without alternatives** - Instead of "Never use the old API," say "Never use the old API - use the v2 API instead"
 
-## A Real Example You Can Copy
+## Putting It All Together: The Perfect CLAUDE.md
 
-Here's what a good CLAUDE.md looks like for a typical web project:
+Now that you know what belongs in a CLAUDE.md file, here's what a complete one looks like when you follow every recommendation from this guide. This is for a fictional project, but it covers all five sections we discussed - project description, commands, code style, project quirks, and structure - plus a few extras that make Claude even more effective.
+
+You can copy this and adapt it to your own project:
 
 ```markdown
-# TaskMaster Pro
-A task management app built with Next.js 14 and Supabase
+# FreshCart - Online Grocery Delivery App
+A Next.js 14 e-commerce app with Stripe payments and Supabase backend
 
 ## Tech Stack
-- Framework: Next.js 14
-- Language: TypeScript 5.2
+- Framework: Next.js 14 (App Router)
+- Language: TypeScript 5.3
 - Database: Supabase (PostgreSQL)
+- Payments: Stripe
 - Styling: Tailwind CSS
+- Hosting: Vercel
 
 ## Commands
 - `npm run dev` - Start development server at localhost:3000
 - `npm test` - Run all tests with Jest
+- `npm run test:watch` - Run tests in watch mode during development
 - `npm run build` - Build for production
-- `npm run lint` - Check code style
+- `npm run lint` - Check code style with ESLint
+- `npm run db:migrate` - Run Supabase database migrations
+- `npm run deploy` - Deploy to Vercel (runs build + tests first)
 
 ## Code Style
-- Use TypeScript strict mode
+- Use TypeScript strict mode - no `any` types
 - Use named exports (not default exports)
 - Arrow functions for all React components
 - Async/await instead of .then() for promises
+- Use `const` by default, `let` only when reassignment is needed
+- Format with Prettier before committing (runs automatically via pre-commit hook)
 
 ## Project Structure
-- `app/` - Next.js app router pages
+- `app/` - Next.js app router pages and layouts
 - `components/` - Reusable React components
-- `lib/` - Database queries and business logic
+- `components/ui/` - Base UI elements (buttons, inputs, modals)
+- `lib/` - Database queries, API helpers, and business logic
+- `lib/stripe/` - All Stripe payment logic
 - `hooks/` - Custom React hooks
+- `types/` - Shared TypeScript type definitions
+- `public/` - Static assets (images, fonts)
 
 ## Important Rules
-- Never commit directly to the main branch - always use feature branches
-- Run tests before committing (pre-commit hook will enforce this)
-- For Supabase authentication issues, check docs/supabase-auth.md
+- Never edit files in `lib/legacy/` - we're migrating away from those. Use `lib/` instead
+- Never commit directly to the main branch - always create a feature branch first
+- Always run `npm test` before pushing any changes
+- The Stripe webhook handler in `app/api/webhooks/stripe/route.ts` is sensitive - test thoroughly before changing
+- For Supabase auth issues, check `docs/supabase-auth-notes.md` before debugging
+- Environment variables are in `.env.local` (never commit this file)
 
 ## Testing
-- Write tests for all new features
-- Aim for 80% code coverage
+- Write tests for all new features and bug fixes
 - Use React Testing Library for component tests
+- Use MSW (Mock Service Worker) for mocking API calls
+- Aim for 80% code coverage on new code
+
+## Git Workflow
+- Branch naming: `feature/short-description` or `fix/short-description`
+- Write clear commit messages that explain *why*, not just *what*
+- Squash merge feature branches into main
 ```
+
+Notice how every section is specific and actionable. There's no fluff, no "write clean code" - just clear instructions that Claude can follow immediately. This file is about 50 lines, which is the sweet spot for most projects.
 
 ## How to Make Your CLAUDE.md Better Over Time
 
@@ -292,9 +316,9 @@ A: Yes! The same concepts apply to other tools - just save it as `AGENTS.md` ins
 
 ## Nas' Note: Your AI Assistant is Only as Good as Your Instructions
 
-The founders who get the most out of Claude Code aren't the most technical ones — they're the ones who take 10 minutes to write a solid CLAUDE.md file. It's the highest-ROI thing you can do for your AI workflow.
+The founders who get the most out of Claude Code aren't the most technical ones - they're the ones who take 10 minutes to write a solid CLAUDE.md file. It's the highest-ROI thing you can do for your AI workflow.
 
-Whether you're [building a landing page with v0](/blog/how-to-build-website-with-v0) or [launching an e-commerce product](/blog/10-steps-to-launch-an-ecommerce-product), a good CLAUDE.md means Claude works the way *you* work — from day one.
+Whether you're [building a landing page with v0](/blog/how-to-build-website-with-v0) or [launching an e-commerce product](/blog/10-steps-to-launch-an-ecommerce-product), a good CLAUDE.md means Claude works the way *you* work from day one.
 
 Start with `/init`. Add three things Claude keeps getting wrong. Save. That's it.
 
