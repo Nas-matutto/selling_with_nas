@@ -3,14 +3,14 @@ publishDate: 2026-02-20T00:00:00Z
 author: Nas
 title: How to Use Claude + Remotion to Create AI Videos - A Beginner's Guide
 excerpt: Learn how to create product demos, social media content, and animated videos using Claude and Remotion - no coding required. Step-by-step tutorial for beginners.
-image: ~/assets/images/Remotion_banner.jpg
+image: ~/assets/images/Claude_Remotion.jpg
 category: Technology
 tags:
   - AI
   - video
   - productivity
 metadata:
-  canonical: https://www.sellingwithnas.com/blog/how-to-use-claude-remotion-to-create-ai-videos
+  canonical: https://www.sellingwithnas.com/how-to-use-claude-remotion-to-create-ai-videos
   title: "How to Use Claude + Remotion to Create AI Videos - Step-by-Step Guide"
   description: "Create AI-powered videos with Claude and Remotion. Step-by-step beginner guide to making product demos, social media videos, and animations - no code needed."
   keywords: "Claude Remotion, AI video maker, Claude skills, Remotion tutorial, create videos with AI, Claude Desktop Remotion, AI product demo, social media video AI"
@@ -41,7 +41,7 @@ What can you make with it?
 - **Presentation decks** - Build animated slides that are far more engaging than PowerPoint
 - **Explainer videos** - Break down complex ideas with simple animations and text
 
-If you've already been using [Claude Code to build software](/blog/how-to-use-claude-code-for-beginners), think of Remotion as the next level - now you can create video content with the same AI assistant.
+If you've already been using [Claude Code to build software](/how-to-use-claude-code-for-beginners), think of Remotion as the next level - now you can create video content with the same AI assistant.
 
 
 ## Step 1: Install Claude for Desktop
@@ -82,7 +82,7 @@ Once you add a skill to Claude, it's there permanently. You don't need to reinst
 
 As you get more advanced, you can actually combine multiple skills to create more complex workflows. For now, we'll stick with Remotion on its own - but know that the possibilities grow as you add more skills to your toolkit.
 
-If you want to learn more about customizing Claude for your projects, check out our guide on [how to write the perfect CLAUDE.md file](/blog/how-to-write-a-claude_md-file) - it's another way to make Claude work exactly the way you want.
+If you want to learn more about customizing Claude for your projects, check out our guide on [how to write the perfect CLAUDE.md file](/how-to-write-a-claude_md-file) - it's another way to make Claude work exactly the way you want.
 
 
 ## Step 3: Install Remotion
@@ -156,7 +156,7 @@ Now that Remotion is installed, let's create something real. We're going to buil
 
 The key to getting a great video from Claude is being specific. Don't just say "make a video about my product." Instead, describe exactly what you want to see.
 
-Here's an example. I have a tool called [Quizzings](/tools/quizzings) that turns study materials into interactive quizzes. Here's how I might prompt Claude:
+Here's an example. I have a tool called <a href="https://quizzings.com/" target="_blank" rel="noopener noreferrer">Quizzings</a> that turns study materials into interactive quizzes. Here's how I might prompt Claude:
 
 > "Create a 30-second product demo video for Quizzings - a tool that turns PDFs into interactive quizzes. Show the following sequence: first, a title screen with the Quizzings logo and tagline 'Turn any PDF into a quiz in seconds.' Then show someone uploading a PDF, followed by an animation of quiz questions being generated. End with the score results screen and a call to action: 'Try it free at quizzings.com'. Use a clean, modern design with a purple and white color scheme."
 
@@ -211,7 +211,7 @@ Here's a tip from my own experience: the first render might come out in landscap
 
 Claude will rebuild the video in the correct dimensions. When you transfer it to your phone, it will display perfectly.
 
-Whether you're [building a landing page with v0](/blog/how-to-build-website-with-v0) or creating video content with Remotion, the pattern is the same: describe what you want in plain English, let AI build it, and iterate until it's right.
+Whether you're [building a landing page with v0](/how-to-build-website-with-v0) or creating video content with Remotion, the pattern is the same: describe what you want in plain English, let AI build it, and iterate until it's right.
 
 
 ## Tips for Getting Better Results
@@ -228,7 +228,7 @@ After creating a few videos, here's what I've learned works best:
 
 **Save prompts that work** - When you create a video you love, save that prompt somewhere. You can reuse and modify it for future videos. This is especially useful for social media content where you want a consistent style.
 
-Creating video content for your brand is one of the most effective ways to drive engagement. If you're also working on your [landing page conversion rates](/blog/optimize-shopify-landing-page), having great video content to embed or share on social can make a big difference.
+Creating video content for your brand is one of the most effective ways to drive engagement. If you're also working on your [landing page conversion rates](/optimize-shopify-landing-page), having great video content to embed or share on social can make a big difference.
 
 
 <div style="
@@ -267,7 +267,7 @@ Here's what excites me about this: **creating professional video content is no l
 
 Think about what this means for founders. Instead of spending $500 on a freelance video editor for a 30-second product demo, you can create it yourself in an afternoon. Instead of waiting days for revisions, you iterate in real time. Instead of one video a month, you can publish one a week.
 
-If you're [running Meta ads for your Shopify store](/blog/meta-ads-for-shopify-founders) or trying to [get your first 100 customers](/blog/how-to-get-first-100-customers-on-shopify), having the ability to quickly create video content gives you a massive advantage. Video consistently outperforms static images on every platform.
+If you're [running Meta ads for your Shopify store](/meta-ads-for-shopify-founders) or trying to [get your first 100 customers](/how-to-get-first-100-customers-on-shopify), having the ability to quickly create video content gives you a massive advantage. Video consistently outperforms static images on every platform.
 
 The tools are here. They're free to start with. And they're only getting better. Download Claude Desktop, install the Remotion skill, and create your first video today. You'll be surprised how good it looks.
 
