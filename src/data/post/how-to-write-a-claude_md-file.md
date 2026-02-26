@@ -10,7 +10,7 @@ tags:
   - web development
   - productivity
 metadata:
-  canonical: https://www.sellingwithnas.com/blog/how-to-write-a-claude_md-file
+  canonical: https://www.sellingwithnas.com/how-to-write-a-claude_md-file
   title: "How to Write the Perfect CLAUDE.md File - Complete Guide for Claude Code"
   description: "Learn how to create a CLAUDE.md file that makes Claude Code smarter. Step-by-step guide with real examples, best practices, and common mistakes to avoid."
   keywords: "CLAUDE.md, Claude Code, CLAUDE.md file, Claude Code configuration, AI coding assistant, Claude Code best practices, Claude Code setup"
@@ -25,7 +25,7 @@ metadata:
 
 ## What is a CLAUDE.md File and Why Do You Need One?
 
-If you've started using [Claude Code](/blog/how-to-use-claude-code-for-beginners), you might have noticed something frustrating: Claude doesn't remember anything from your previous conversations. Every time you start a new session, you have to explain your project all over again which tools you use, how to run tests, what your coding style is.
+If you've started using [Claude Code](/how-to-use-claude-code-for-beginners), you might have noticed something frustrating: Claude doesn't remember anything from your previous conversations. Every time you start a new session, you have to explain your project all over again which tools you use, how to run tests, what your coding style is.
 
 **That's where CLAUDE.md comes in.**
 
@@ -318,7 +318,7 @@ A: Yes! The same concepts apply to other tools - just save it as `AGENTS.md` ins
 
 The founders who get the most out of Claude Code aren't the most technical ones - they're the ones who take 10 minutes to write a solid CLAUDE.md file. It's the highest-ROI thing you can do for your AI workflow.
 
-Whether you're [building a landing page with v0](/blog/how-to-build-website-with-v0) or [launching an e-commerce product](/blog/10-steps-to-launch-an-ecommerce-product), a good CLAUDE.md means Claude works the way *you* work from day one.
+Whether you're [building a landing page with v0](/how-to-build-website-with-v0) or [launching an e-commerce product](/10-steps-to-launch-an-ecommerce-product), a good CLAUDE.md means Claude works the way *you* work from day one.
 
 Start with `/init`. Add three things Claude keeps getting wrong. Save. That's it.
 

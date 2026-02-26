@@ -10,7 +10,7 @@ tags:
   - web development
   - productivity
 metadata:
-  canonical: https://www.sellingwithnas.com/blog/how-to-use-claude-code-for-beginners
+  canonical: https://www.sellingwithnas.com/how-to-use-claude-code-for-beginners
   title: "How to Use Claude Code for Beginners - Complete Guide for Non-Technical Founders"
   description: "Learn how to use Claude Code as a non-technical founder. Step-by-step installation, pricing plans, best practices, and key commands."
   keywords: "Claude Code for beginners, how to use Claude Code, Claude Code tutorial, Claude Code installation, AI coding assistant, Anthropic Claude Code, Claude Code VS Code"
@@ -38,7 +38,7 @@ Claude Code is Anthropic's official AI coding tool. Unlike ChatGPT or regular Cl
 
 The key difference from regular AI chat? **Context.** Claude Code sees your entire codebase at once. It doesn't just answer coding questions, it actually builds things inside your project, in real time.
 
-If you've used tools like <a href="https://v0.dev" target="_blank" rel="noopener noreferrer">v0</a> to [build a landing page](/blog/how-to-build-website-with-v0), Claude Code is what you use to maintain, improve, and expand what you've built.
+If you've used tools like <a href="https://v0.dev" target="_blank" rel="noopener noreferrer">v0</a> to [build a landing page](/how-to-build-website-with-v0), Claude Code is what you use to maintain, improve, and expand what you've built.
 
 
 ## Claude Code Plans and Pricing
@@ -218,7 +218,7 @@ Claude will analyze your project and create a **CLAUDE.md** file - a document th
 
 The better your CLAUDE.md, the better Claude's output. You can also ask Claude to update it: *"Add to the CLAUDE.md that we always use Tailwind CSS for styling."*
 
-Want to learn more? Check out our full guide on [how to write the perfect CLAUDE.md file](/blog/how-to-write-a-claude_md-file).
+Want to learn more? Check out our full guide on [how to write the perfect CLAUDE.md file](/how-to-write-a-claude_md-file).
 
 ### Be Specific with Your Prompts
 
@@ -269,7 +269,7 @@ As you get comfortable, work your way up to bigger tasks:
 - "Connect the contact form to my email"
 - "Create a pricing page with three tiers"
 
-Whether you're [launching an e-commerce product](/blog/10-steps-to-launch-an-ecommerce-product) or building a SaaS tool, Claude Code can handle it - but you'll get better results when you build up to complex tasks gradually.
+Whether you're [launching an e-commerce product](/10-steps-to-launch-an-ecommerce-product) or building a SaaS tool, Claude Code can handle it - but you'll get better results when you build up to complex tasks gradually.
 
 
 <div style="
@@ -316,7 +316,7 @@ Here are the most useful commands you can type in the Claude Code chat panel:
 
 ## Nas' Note: AI is the Great Equalizer
 
-Here's what I believe: **the gap between technical and non-technical founders is disappearing.** Tools like Claude Code, [v0](/blog/how-to-build-website-with-v0), and [Zapier](/blog/how-to-automate-shopify-orders-with-zapier) are making it possible for anyone with a clear vision to ship real products.
+Here's what I believe: **the gap between technical and non-technical founders is disappearing.** Tools like Claude Code, [v0](/how-to-build-website-with-v0), and [Zapier](/how-to-automate-shopify-orders-with-zapier) are making it possible for anyone with a clear vision to ship real products.
 
 You don't need to hire a full dev team to build your MVP. You don't need a computer science degree to fix a bug on your website. You don't need to wait weeks for a developer to make a simple change.
 

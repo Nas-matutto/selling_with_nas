@@ -4,84 +4,145 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
-
+<!-- Core pages -->
 <url>
   <loc>https://www.sellingwithnas.com/</loc>
-  <lastmod>2025-06-26T13:31:57+00:00</lastmod>
+  <lastmod>2026-02-24T00:00:00+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>https://www.sellingwithnas.com/tools/E-commerce_calculator</loc>
-  <lastmod>2025-06-26T13:31:57+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.sellingwithnas.com/tools/launch-cost-estimator</loc>
-  <lastmod>2025-07-04T13:31:57+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
   <loc>https://www.sellingwithnas.com/contact</loc>
-  <lastmod>2025-06-26T13:31:57+00:00</lastmod>
+  <lastmod>2026-02-24T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.sellingwithnas.com/blog</loc>
-  <lastmod>2025-06-26T13:31:57+00:00</lastmod>
+  <lastmod>2026-02-24T00:00:00+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+
+<!-- Tools pages -->
+<url>
+  <loc>https://www.sellingwithnas.com/tools/E-commerce_calculator</loc>
+  <lastmod>2026-02-24T00:00:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.sellingwithnas.com/tools/launch-cost-estimator</loc>
+  <lastmod>2026-02-24T00:00:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.sellingwithnas.com/tools/talk-to-me-data</loc>
+  <lastmod>2026-02-24T00:00:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.sellingwithnas.com/tools/quizzings</loc>
+  <lastmod>2026-02-24T00:00:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
+<!-- Blog posts - Technology / AI -->
+<url>
+  <loc>https://www.sellingwithnas.com/how-to-use-claude-remotion-to-create-ai-videos</loc>
+  <lastmod>2026-02-20T00:00:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.sellingwithnas.com/how-to-write-a-claude_md-file</loc>
+  <lastmod>2026-02-13T00:00:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.sellingwithnas.com/how-to-use-claude-code-for-beginners</loc>
+  <lastmod>2026-02-08T00:00:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.sellingwithnas.com/how-to-build-website-with-v0</loc>
+  <lastmod>2026-01-01T00:00:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.sellingwithnas.com/how-to-use-nano-banana</loc>
+  <lastmod>2026-01-01T00:00:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.sellingwithnas.com/how-to-automate-shopify-orders-with-zapier</loc>
+  <lastmod>2026-01-01T00:00:00+00:00</lastmod>
+  <priority>0.50</priority>
+</url>
+
+<!-- Blog posts - E-commerce & Shopify -->
+<url>
+  <loc>https://www.sellingwithnas.com/meta-ads-for-shopify-founders</loc>
+  <lastmod>2026-01-01T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.sellingwithnas.com/optimize-shopify-landing-page</loc>
-  <lastmod>2025-06-26T13:31:58+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.sellingwithnas.com/10-steps-to-launch-an-ecommerce-product</loc>
-  <lastmod>2025-06-26T13:31:58+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.sellingwithnas.com/how-much-to-charge-for-your-ecommerce-products</loc>
-  <lastmod>2025-06-26T13:31:58+00:00</lastmod>
+  <lastmod>2026-01-01T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.sellingwithnas.com/how-to-get-first-100-customers-on-shopify</loc>
-  <lastmod>2025-07-04T13:31:58+00:00</lastmod>
+  <lastmod>2026-01-01T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
+  <loc>https://www.sellingwithnas.com/10-steps-to-launch-an-ecommerce-product</loc>
+  <lastmod>2026-01-01T00:00:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.sellingwithnas.com/how-much-to-charge-for-your-ecommerce-products</loc>
+  <lastmod>2026-01-01T00:00:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
+<!-- Category & Tag pages -->
+<url>
+  <loc>https://www.sellingwithnas.com/category/technology</loc>
+  <lastmod>2026-02-24T00:00:00+00:00</lastmod>
+  <priority>0.60</priority>
+</url>
+<url>
   <loc>https://www.sellingwithnas.com/category/e-commerce</loc>
-  <lastmod>2025-06-26T13:31:58+00:00</lastmod>
-  <priority>0.64</priority>
+  <lastmod>2026-02-24T00:00:00+00:00</lastmod>
+  <priority>0.60</priority>
+</url>
+<url>
+  <loc>https://www.sellingwithnas.com/tag/ai</loc>
+  <lastmod>2026-02-24T00:00:00+00:00</lastmod>
+  <priority>0.50</priority>
 </url>
 <url>
   <loc>https://www.sellingwithnas.com/tag/e-commerce</loc>
-  <lastmod>2025-06-26T13:31:58+00:00</lastmod>
-  <priority>0.64</priority>
+  <lastmod>2026-02-24T00:00:00+00:00</lastmod>
+  <priority>0.50</priority>
+</url>
+<url>
+  <loc>https://www.sellingwithnas.com/tag/productivity</loc>
+  <lastmod>2026-02-24T00:00:00+00:00</lastmod>
+  <priority>0.50</priority>
 </url>
 <url>
   <loc>https://www.sellingwithnas.com/tag/sales-and-gtm</loc>
-  <lastmod>2025-06-26T13:31:59+00:00</lastmod>
-  <priority>0.64</priority>
+  <lastmod>2026-02-24T00:00:00+00:00</lastmod>
+  <priority>0.50</priority>
 </url>
 <url>
   <loc>https://www.sellingwithnas.com/tag/dtc</loc>
-  <lastmod>2025-06-26T13:31:59+00:00</lastmod>
-  <priority>0.64</priority>
+  <lastmod>2026-02-24T00:00:00+00:00</lastmod>
+  <priority>0.50</priority>
 </url>
 <url>
   <loc>https://www.sellingwithnas.com/tag/pricing</loc>
-  <lastmod>2025-06-26T13:31:59+00:00</lastmod>
-  <priority>0.64</priority>
+  <lastmod>2026-02-24T00:00:00+00:00</lastmod>
+  <priority>0.50</priority>
 </url>
-<url>
-  <loc>https://www.sellingwithnas.com/tag/profitability</loc>
-  <lastmod>2025-06-26T13:31:59+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-
 
 </urlset>

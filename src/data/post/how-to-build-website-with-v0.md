@@ -10,7 +10,7 @@ tags:
   - AI
   - landing pages
 metadata:
-  canonical: https://www.sellingwithnas.com/blog/how-to-build-website-with-v0
+  canonical: https://www.sellingwithnas.com/how-to-build-website-with-v0
   title: "How to Build a Website/Landing Page for Free with v0 (Step-by-Step Guide)"
   description: "Complete tutorial on using v0 by Vercel to create professional, mobile-optimized, conversion-focused landing pages for free. No coding required."
   keywords: "v0 tutorial, free website builder, AI website creation, landing page builder, Vercel v0, no-code tools, website design AI, conversion optimization"

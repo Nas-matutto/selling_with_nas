@@ -10,7 +10,7 @@ tags:
   - automations
   - DTC
 metadata:
-  canonical: https://www.sellingwithnas.com/blog/how-to-automate-shopify-orders-with-zapier
+  canonical: https://www.sellingwithnas.com/how-to-automate-shopify-orders-with-zapier
   title: "How to Automate your Shopify's orders with Zapier"
   description: "Learn step-by-step how to automate your Shopify orders directly into Google Sheets using Zapier. Save hours of manual work, streamline your operations, and unlock powerful profitability insights with this automation guide."
   keywords: "shopify automation, zapier shopify integration, sautomate shopify orders, shopify google sheets, shopify operations workflow, shopify proditability tracker Zapier, e-commerce automation"

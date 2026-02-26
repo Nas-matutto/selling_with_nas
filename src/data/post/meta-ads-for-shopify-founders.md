@@ -11,7 +11,7 @@ tags:
   - sales & GTM
   - DTC
 metadata:
-  canonical: https://www.sellingwithnas.com/blog/meta-ads-for-shopify-founders
+  canonical: https://www.sellingwithnas.com/meta-ads-for-shopify-founders
   title: "How to Run Meta Ads for the First Time on your Shopify store"
   description: "Learn how to successfully run Meta Ads for your Shopify store as a first-time founder. This guide covers everything from campaign setup and budget allocation to testing creatives and optimizing for conversions."
   keywords: "meta ads for beginners, shopify meta ads, ecommerce marketing, first campaign meta ads, facebook ads shopify, how to run facebook ads, meta ads ecommerce, performance marketing for founders"

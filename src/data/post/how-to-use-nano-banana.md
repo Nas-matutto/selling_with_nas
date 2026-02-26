@@ -10,7 +10,7 @@ tags:
   - AI
   - DTC
 metadata:
-  canonical: https://www.sellingwithnas.com/blog/how-to-use-nano-banana
+  canonical: https://www.sellingwithnas.com/how-to-use-nano-banana
   title: "How to use Nano Banana for your E-commerce brand (10 Use cases)"
   description: "Discover 10 powerful use cases for using Nano Banana + AI image creation to supercharge your Shopify e-commerce brand. From prototyping products to building marketing campaigns, here’s how to cut costs and boost creativity."
   keywords: "AI image creation, Nano Banana, Google AI images, AI images for e-commerce, Free AI images, e-commerce brand"

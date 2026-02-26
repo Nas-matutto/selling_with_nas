@@ -10,7 +10,7 @@ tags:
   - sales & GTM
   - DTC
 metadata:
-  canonical: https://www.sellingwithnas.com/blog/how-to-get-first-100-customers-on-shopify
+  canonical: https://www.sellingwithnas.com/how-to-get-first-100-customers-on-shopify
   title: "How to Get Your First 100 Customers on Shopify Without Adss"
   description: "Learn proven organic strategies to get your first 100 customers on Shopify without spending a single dollar on ads. From influencer outreach to community marketing—this guide has it all."
   keywords: "shopify landing page optimization, conversion rate optimization, shopify conversion tips, landing page design, e-commerce conversion, shopify store optimization, CRO strategies, landing page best practices, shopify sales funnel"
