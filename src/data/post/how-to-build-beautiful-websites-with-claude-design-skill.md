@@ -1,9 +1,9 @@
 ---
-publishDate: 2026-03-06T00:00:00Z
+publishDate: 2026-02-27T00:00:00Z
 author: Nas
 title: How to Build Beautiful Websites with Claude - Design Skill Tutorial for Beginners
 excerpt: Learn how to build fully responsive, professional-looking websites with Claude's Frontend Design Skill - no coding required. Includes how to copy designs you love and level up with 21st.dev components.
-image: ~/assets/images/Claude_Design_Skill_banner.jpg
+image: ~/assets/images/Claude_Skill.jpg
 category: Technology
 tags:
   - AI
