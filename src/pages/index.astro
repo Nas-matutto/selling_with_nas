@@ -1021,24 +1021,30 @@ const metadata = {
 </Layout>
 
 <script>
-  // ── Scroll reveal ──
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.hp-reveal').forEach(el => revealObserver.observe(el));
+  let _hpRevealObserver: IntersectionObserver | null = null;
 
-  // ── Bento card mouse spotlight ──
-  document.querySelectorAll('.hp-bento-card').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const me = e as MouseEvent;
-      const rect = (card as HTMLElement).getBoundingClientRect();
-      (card as HTMLElement).style.setProperty('--mouse-x', ((me.clientX - rect.left) / rect.width * 100) + '%');
-      (card as HTMLElement).style.setProperty('--mouse-y', ((me.clientY - rect.top) / rect.height * 100) + '%');
+  function initHomepage() {
+    // ── Scroll reveal ──
+    if (_hpRevealObserver) {
+      _hpRevealObserver.disconnect();
+    }
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    _hpRevealObserver = revealObserver;
+    document.querySelectorAll('.hp-reveal').forEach(el => revealObserver.observe(el));
+
+    // ── Bento card mouse spotlight ──
+    document.querySelectorAll('.hp-bento-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const me = e as MouseEvent;
+        const rect = (card as HTMLElement).getBoundingClientRect();
+        (card as HTMLElement).style.setProperty('--mouse-x', ((me.clientX - rect.left) / rect.width * 100) + '%');
+        (card as HTMLElement).style.setProperty('--mouse-y', ((me.clientY - rect.top) / rect.height * 100) + '%');
+      });
     });
-  });
 
-  // ── Posts carousel ──
-  (function() {
+    // ── Posts carousel ──
     const track = document.getElementById('hpPostsTrack') as HTMLElement;
     const dotsEl = document.getElementById('hpPostsDots') as HTMLElement;
     const prevBtn = document.getElementById('hpArrowPrev') as HTMLButtonElement;
@@ -1086,8 +1092,11 @@ const metadata = {
       if (Math.abs(dx) > 50) goTo(dx < 0 ? idx + 1 : idx - 1);
     });
 
-    function init() { idx = 0; buildDots(); goTo(0); }
-    init();
-    window.addEventListener('resize', init);
-  })();
+    function initCarousel() { idx = 0; buildDots(); goTo(0); }
+    initCarousel();
+    window.addEventListener('resize', initCarousel);
+  }
+
+  initHomepage();
+  document.addEventListener('astro:after-swap', initHomepage);
 </script>
