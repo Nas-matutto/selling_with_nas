@@ -26,7 +26,7 @@ const metadata = {
       <p class="cta-hint">No forms. Just a real conversation.</p>
       <a href="mailto:nas@talktomedata.com" class="email-btn">
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        Email me at nas@talktomedata.com
+        Email me
       </a>
       <p class="cta-response">I typically reply within a few hours.</p>
     </div>
@@ -115,7 +115,7 @@ const metadata = {
           <div class="step-connector" aria-hidden="true"></div>
           <div class="step-icon">✉️</div>
           <h3 class="step-title">Send me an email</h3>
-          <p class="step-desc">Tell me what you're building, what's not working, or what you want to achieve. No briefs required — just send a message to <strong>nas@talktomedata.com</strong>.</p>
+          <p class="step-desc">Tell me what you're building, what's not working, or what you want to achieve. No briefs required — just <a href="mailto:nas@talktomedata.com" class="step-link">message me here</a>.</p>
         </div>
 
         <div class="process-step">
@@ -462,9 +462,14 @@ const metadata = {
     line-height: 1.7;
     margin: 0;
   }
-  .step-desc strong {
+  .step-link {
     color: #f97316;
     font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .step-link:hover {
+    color: #ea6a00;
   }
 
   @keyframes contactFadeUp {
