@@ -24,16 +24,84 @@ const metadata = {
 <div class="cta-section">
   <div class="cta-inner">
     <p class="cta-hint">No forms. Just a real conversation.</p>
-    <button type="button" class="email-btn" onclick="window.location.href='mailto:nas@talktomedata.com'">
-      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <rect width="20" height="16" x="2" y="4" rx="2"/>
-        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+    <button type="button" class="email-btn" id="copyEmailBtn">
+      <!-- copy icon -->
+      <svg id="emailIconCopy" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
       </svg>
-      Email me
+      <!-- check icon (hidden by default) -->
+      <svg id="emailIconCheck" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:none">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+      <span id="emailBtnLabel">Email me</span>
     </button>
-    <p class="cta-response">I typically reply within a day.</p>
+    <p class="cta-response" id="emailConfirm" style="min-height:1.4em;">I typically reply within a day.</p>
   </div>
 </div>
+
+<script>
+  const EMAIL = 'nas@talktomedata.com';
+
+  async function copyToClipboard() {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+    } catch {
+      const ta = document.createElement('textarea');
+      ta.value = EMAIL;
+      ta.style.cssText = 'position:fixed;opacity:0;pointer-events:none';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    }
+  }
+
+  function showCopied() {
+    const label   = document.getElementById('emailBtnLabel');
+    const iconCopy  = document.getElementById('emailIconCopy');
+    const iconCheck = document.getElementById('emailIconCheck');
+    const confirm   = document.getElementById('emailConfirm');
+    if (label)     label.textContent = 'Copied!';
+    if (iconCopy)  iconCopy.style.display  = 'none';
+    if (iconCheck) iconCheck.style.display = '';
+    if (confirm)   confirm.textContent = '✓ Email copied — paste it into Gmail, Outlook, or any app.';
+    setTimeout(() => {
+      if (label)     label.textContent = 'Email me';
+      if (iconCopy)  iconCopy.style.display  = '';
+      if (iconCheck) iconCheck.style.display = 'none';
+      if (confirm)   confirm.textContent = 'I typically reply within a day.';
+    }, 3500);
+  }
+
+  function initCopyEmail() {
+    const btn = document.getElementById('copyEmailBtn');
+    if (!btn || btn.dataset.bound) return;
+    btn.dataset.bound = '1';
+
+    btn.addEventListener('click', () => {
+      let emailClientOpened = false;
+
+      // If the OS opens an email app, the browser window loses focus
+      const onBlur = () => { emailClientOpened = true; };
+      window.addEventListener('blur', onBlur, { once: true });
+
+      // Try to open the email client
+      window.location.href = 'mailto:' + EMAIL;
+
+      // After 600ms, if the window never lost focus → no email client → copy instead
+      setTimeout(async () => {
+        window.removeEventListener('blur', onBlur);
+        if (!emailClientOpened) {
+          await copyToClipboard();
+          showCopied();
+        }
+      }, 600);
+    });
+  }
+
+  initCopyEmail();
+  document.addEventListener('astro:after-swap', initCopyEmail);
+</script>
 
   <!-- ── Services ── -->
   <div class="services-section">
@@ -120,7 +188,7 @@ const metadata = {
   <h3 class="step-title">Send me an email</h3>
   <p class="step-desc">
     Tell me what you're building, what's not working, or what you want to achieve. No briefs required — just 
-    <a href="mailto:nas@talktomedata.com" class="step-link" data-astro-reload>message me here</a>.
+    <button type="button" class="step-link-btn" onclick="document.getElementById('copyEmailBtn').click()">message me here</button>.
   </p>
 </div>
 
@@ -468,13 +536,18 @@ const metadata = {
     line-height: 1.7;
     margin: 0;
   }
-  .step-link {
+  .step-link-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
     color: #f97316;
     font-weight: 600;
+    font-size: inherit;
     text-decoration: underline;
     text-underline-offset: 3px;
   }
-  .step-link:hover {
+  .step-link-btn:hover {
     color: #ea6a00;
   }
 
