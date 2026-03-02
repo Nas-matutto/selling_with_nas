@@ -3,7 +3,6 @@ import type { InferGetStaticPropsType, GetStaticPaths } from 'astro';
 
 import Layout from '~/layouts/PageLayout.astro';
 import BlogList from '~/components/blog/List.astro';
-import Headline from '~/components/blog/Headline.astro';
 import Pagination from '~/components/blog/Pagination.astro';
 // import PostTags from "~/components/blog/Tags.astro";
 
@@ -51,17 +50,82 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <section class="px-6 sm:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
-    <Headline
-      subtitle="Read all Posts related to E-commerce, Sales, GTM and Automations below."
-    >
-      All Posts
-    </Headline>
+  <section class="blog-listing-section px-6 sm:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
+    <div class="blog-listing-header">
+      <span class="blog-listing-label">From the blog</span>
+      <h1 class="blog-listing-title">All Posts</h1>
+      <p class="blog-listing-sub">Read all Posts related to E-commerce, Sales, GTM and Automations below.</p>
+    </div>
     <BlogList posts={page.data} />
     <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
-    <!--
-      <PostTags tags={allCategories} class="mb-2" title="Search by Categories:" isCategory />
-      <PostTags tags={allTags}  title="Search by Tags:" />
-    -->
   </section>
 </Layout>
+
+<style>
+  .blog-listing-section {
+    background: radial-gradient(ellipse at 50% -10%, rgba(249,115,22,0.06) 0%, transparent 60%);
+  }
+  :global(.dark) .blog-listing-section {
+    background: radial-gradient(ellipse at 50% -10%, rgba(249,115,22,0.04) 0%, transparent 60%);
+  }
+
+  .blog-listing-header {
+    text-align: center;
+    margin-bottom: 56px;
+    animation: fadeSlideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+
+  .blog-listing-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #f97316;
+    margin-bottom: 12px;
+  }
+  .blog-listing-label::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: linear-gradient(90deg, #f97316, #f59e0b);
+    border-radius: 2px;
+  }
+  .blog-listing-label::after {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: linear-gradient(90deg, #f59e0b, #f97316);
+    border-radius: 2px;
+  }
+
+  .blog-listing-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    background: linear-gradient(135deg, #f97316 0%, #ef4444 50%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+  }
+
+  .blog-listing-sub {
+    font-size: 1.05rem;
+    color: #64748b;
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.65;
+  }
+  :global(.dark) .blog-listing-sub { color: #94a3b8; }
+
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>

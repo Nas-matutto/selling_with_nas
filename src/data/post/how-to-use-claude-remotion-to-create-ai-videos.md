@@ -119,13 +119,13 @@ This keeps all your video files organized in one place instead of scattered acro
 
 
 <div style="
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            background: linear-gradient(135deg, #f97316, #ef4444);
             color: white;
             padding: 24px;
             border-radius: 18px;
             text-align: center;
             margin: 32px 0;
-            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 8px 25px rgba(249, 115, 22, 0.3);
         ">
             <h3 style="margin: 0 0 12px 0; font-size: 20px; color: white; font-weight: 600;">
                 Need help setting up Claude for your project?
@@ -232,13 +232,13 @@ Creating video content for your brand is one of the most effective ways to drive
 
 
 <div style="
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            background: linear-gradient(135deg, #f97316, #ef4444);
             color: white;
             padding: 24px;
             border-radius: 18px;
             text-align: center;
             margin: 32px 0;
-            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 8px 25px rgba(249, 115, 22, 0.3);
         ">
             <h3 style="margin: 0 0 12px 0; font-size: 20px; color: white; font-weight: 600;">
                 Want someone to handle the technical setup for you?

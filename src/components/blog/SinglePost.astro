@@ -20,8 +20,8 @@ const { post, url } = Astro.props;
 const image = await findImage(post.image);
 ---
 
-<section class="py-8 sm:py-16 lg:py-20 mx-auto">
-  <article>
+<section class="py-8 sm:py-16 lg:py-20 mx-auto post-section">
+  <article class="post-article">
     <header
       class={image
         ? 'intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade'
@@ -93,7 +93,7 @@ const image = await findImage(post.image);
       }
     </header>
     <div
-      class="mx-auto px-6 sm:px-6 max-w-3xl prose prose-md lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300 prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-a:text-primary dark:prose-a:text-blue-400 prose-img:rounded-md prose-img:shadow-lg mt-8 prose-headings:scroll-mt-[80px] prose-li:my-0"
+      class="mx-auto px-6 sm:px-6 max-w-3xl prose prose-md lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300 prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-a:text-primary dark:prose-a:text-blue-400 prose-img:rounded-md prose-img:shadow-lg mt-8 prose-headings:scroll-mt-[80px] prose-li:my-0 post-prose"
     >
       <slot />
     </div>
@@ -103,3 +103,75 @@ const image = await findImage(post.image);
     </div>
   </article>
 </section>
+
+<style>
+  /* ── Top gradient strip ── */
+  .post-article {
+    position: relative;
+  }
+  .post-article::before {
+    content: '';
+    display: block;
+    height: 5px;
+    background: linear-gradient(90deg, #f97316 0%, #ef4444 50%, #a855f7 100%);
+    border-radius: 0 0 4px 4px;
+    margin-bottom: 2rem;
+  }
+
+  /* ── Header warm tint ── */
+  .post-section header {
+    background: radial-gradient(ellipse at 50% 0%, rgba(249,115,22,0.07) 0%, transparent 70%);
+    border-radius: 16px;
+    padding-top: 8px;
+    margin-bottom: 4px;
+  }
+  :global(.dark) .post-section header {
+    background: radial-gradient(ellipse at 50% 0%, rgba(249,115,22,0.05) 0%, transparent 70%);
+  }
+
+  /* ── Fade-up animation on article header ── */
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .post-section header {
+    animation: fadeSlideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+
+  /* ── Metadata: date / author / category ── */
+  .post-section header p {
+    color: #64748b;
+    font-size: 0.875rem;
+  }
+  .post-section header p a {
+    color: #f97316 !important;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .post-section header p a:hover {
+    text-decoration: underline;
+  }
+  :global(.dark) .post-section header p {
+    color: #94a3b8;
+  }
+
+  /* ── Post title ── */
+  .post-section header h1 {
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+  }
+
+  /* ── Override prose link color to orange ── */
+  .post-prose {
+    --tw-prose-links: #f97316;
+  }
+  .post-prose :global(a) {
+    color: #f97316 !important;
+  }
+  .post-prose :global(a:hover) {
+    color: #ea6a00 !important;
+  }
+  :global(.dark) .post-prose :global(a) {
+    color: #fb923c !important;
+  }
+</style>

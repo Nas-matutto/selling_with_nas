@@ -21,18 +21,17 @@ const image = (await findImage(post.image)) as ImageMetadata | undefined;
 const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : '';
 ---
 
-<article
-  class={`max-w-md mx-auto md:max-w-none grid gap-6 md:gap-8 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade ${image ? 'md:grid-cols-2' : ''}`}
->
+<article class="post-list-card intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
+  <div class={`post-list-card-inner grid gap-6 md:gap-8 ${image ? 'md:grid-cols-2' : ''}`}>
   {
     image &&
       (link ? (
         <a class="relative block group" href={link ?? 'javascript:void(0)'}>
-          <div class="relative h-0 pb-[56.25%] md:pb-[75%] md:h-72 lg:pb-[56.25%] overflow-hidden bg-gray-400 dark:bg-slate-700 rounded shadow-lg">
+          <div class="relative h-0 pb-[56.25%] md:pb-[75%] md:h-72 lg:pb-[56.25%] overflow-hidden bg-gray-400 dark:bg-slate-700 rounded-xl shadow-lg">
             {image && (
               <Image
                 src={image}
-                class="absolute inset-0 object-cover w-full h-full mb-6 rounded shadow-lg bg-gray-400 dark:bg-slate-700"
+                class="absolute inset-0 object-cover w-full h-full mb-6 rounded-xl shadow-lg bg-gray-400 dark:bg-slate-700"
                 widths={[400, 900]}
                 width={900}
                 sizes="(max-width: 900px) 400px, 900px"
@@ -45,11 +44,11 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
           </div>
         </a>
       ) : (
-        <div class="relative h-0 pb-[56.25%] md:pb-[75%] md:h-72 lg:pb-[56.25%] overflow-hidden bg-gray-400 dark:bg-slate-700 rounded shadow-lg">
+        <div class="relative h-0 pb-[56.25%] md:pb-[75%] md:h-72 lg:pb-[56.25%] overflow-hidden bg-gray-400 dark:bg-slate-700 rounded-xl shadow-lg">
           {image && (
             <Image
               src={image}
-              class="absolute inset-0 object-cover w-full h-full mb-6 rounded shadow-lg bg-gray-400 dark:bg-slate-700"
+              class="absolute inset-0 object-cover w-full h-full mb-6 rounded-xl shadow-lg bg-gray-400 dark:bg-slate-700"
               widths={[400, 900]}
               width={900}
               sizes="(max-width: 900px) 400px, 900px"
@@ -117,4 +116,47 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
       )
     }
   </div>
+  </div>
 </article>
+
+<style>
+  .post-list-card {
+    position: relative;
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.07);
+    overflow: hidden;
+    background: white;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    max-width: none;
+  }
+  .post-list-card::before {
+    content: '';
+    display: block;
+    height: 5px;
+    background: linear-gradient(90deg, #f97316 0%, #ef4444 55%, #a855f7 100%);
+  }
+  .post-list-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+    border-color: rgba(249,115,22,0.2);
+  }
+  :global(.dark) .post-list-card {
+    background: rgba(255,255,255,0.04);
+    border-color: rgba(255,255,255,0.07);
+  }
+  :global(.dark) .post-list-card:hover {
+    box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+    border-color: rgba(249,115,22,0.25);
+  }
+  .post-list-card-inner {
+    padding: 24px;
+  }
+  /* Orange hover on post titles */
+  .post-list-card :global(h2 a:hover) {
+    color: #f97316 !important;
+  }
+  /* Category links orange */
+  .post-list-card :global(.hover\:underline) {
+    color: #f97316;
+  }
+</style>

@@ -1,8 +1,6 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import HeroText from '~/components/widgets/HeroText.astro';
 import ContactUs from '~/components/widgets/Contact.astro';
-import Features2 from '~/components/widgets/Features2.astro';
 
 const metadata = {
   title: 'Contact Nas - E-commerce & Sales Strategy Consultation | Selling with Nas',
@@ -13,9 +11,15 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <!-- HeroText Widget ******************* -->
 
-  <!-- <HeroText tagline="Get in touch with me today" title="Contact" /> -->
+  <!-- ── Contact Hero ── -->
+  <div class="contact-hero">
+    <div class="contact-hero-inner">
+      <span class="contact-label">Work With Me</span>
+      <h1 class="contact-title">Let's build something<br><span class="contact-title-grad">together</span></h1>
+      <p class="contact-sub">Founder, product, or growth — tell me what you're working on and I'll get back to you within 24 hours.</p>
+    </div>
+  </div>
 
   <ContactUs
     id="form"
@@ -80,3 +84,85 @@ const metadata = {
     ]}
   /> -->
 </Layout>
+
+<style>
+  /* ── Hero ── */
+  .contact-hero {
+    background: radial-gradient(ellipse at 50% -20%, rgba(249,115,22,0.1) 0%, transparent 65%);
+    padding: 64px 24px 0;
+    text-align: center;
+    animation: contactFadeUp 0.65s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+  :global(.dark) .contact-hero {
+    background: radial-gradient(ellipse at 50% -20%, rgba(249,115,22,0.07) 0%, transparent 65%);
+  }
+  .contact-hero-inner {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .contact-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #f97316;
+    margin-bottom: 16px;
+  }
+  .contact-label::before,
+  .contact-label::after {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: linear-gradient(90deg, #f97316, #f59e0b);
+    border-radius: 2px;
+  }
+
+  .contact-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: var(--aw-color-text-heading);
+    margin-bottom: 16px;
+  }
+  .contact-title-grad {
+    background: linear-gradient(135deg, #f97316 0%, #ef4444 50%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .contact-sub {
+    font-size: 1.05rem;
+    color: var(--aw-color-text-muted);
+    line-height: 1.65;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* ── Form focus ring: override blue to orange ── */
+  :global(#form input:focus),
+  :global(#form textarea:focus) {
+    border-color: #f97316 !important;
+    box-shadow: 0 0 0 3px rgba(249,115,22,0.15) !important;
+    outline: none;
+  }
+  :global(#form button[type="submit"]) {
+    background: linear-gradient(135deg, #f97316, #ef4444) !important;
+    border-color: transparent !important;
+  }
+  :global(#form button[type="submit"]:hover) {
+    box-shadow: 0 6px 24px rgba(249,115,22,0.35) !important;
+    transform: translateY(-1px);
+  }
+
+  @keyframes contactFadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>

@@ -126,13 +126,13 @@ The good news? v0 automatically creates responsive designs. But you MUST check t
 
 
 <div style="
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6); 
+            background: linear-gradient(135deg, #f97316, #ef4444); 
             color: white; 
             padding: 24px; 
             border-radius: 18px; 
             text-align: center; 
             margin: 32px 0; 
-            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 8px 25px rgba(249, 115, 22, 0.3);
         ">
             <h3 style="margin: 0 0 12px 0; font-size: 20px; color: white; font-weight: 600;">
                 Need help building your landing page?

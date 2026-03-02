@@ -111,7 +111,7 @@ const metadata = {
 
 <style>
   .product-page {
-    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%);
+    background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 40%, #fed7aa 100%);
     min-height: 100vh;
     color: #0f172a;
     overflow-x: hidden;
@@ -141,7 +141,7 @@ const metadata = {
 
   .badge {
     display: inline-block;
-    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    background: linear-gradient(135deg, #f97316, #ef4444);
     color: white;
     padding: 6px 20px;
     border-radius: 50px;
@@ -155,7 +155,7 @@ const metadata = {
   .hero-section h1 {
     font-size: 3rem;
     font-weight: 700;
-    background: linear-gradient(45deg, #8b5cf6, #ec4899, #f59e0b);
+    background: linear-gradient(45deg, #f97316, #ef4444, #a855f7);
     background-size: 200% 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -201,20 +201,20 @@ const metadata = {
     border-radius: 20px;
     padding: 30px;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(139, 92, 246, 0.2);
-    box-shadow: 0 20px 40px rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(249, 115, 22, 0.2);
+    box-shadow: 0 20px 40px rgba(249, 115, 22, 0.1);
     transition: all 0.3s ease;
   }
 
   .video-section:hover, .info-section:hover {
     transform: translateY(-5px);
-    box-shadow: 0 25px 50px rgba(139, 92, 246, 0.15);
+    box-shadow: 0 25px 50px rgba(249, 115, 22, 0.15);
   }
 
   .section-title {
     font-size: 1.8rem;
     margin-bottom: 25px;
-    color: #8b5cf6;
+    color: #f97316;
     text-align: center;
     position: relative;
   }
@@ -227,7 +227,7 @@ const metadata = {
     transform: translateX(-50%);
     width: 60px;
     height: 3px;
-    background: linear-gradient(90deg, #8b5cf6, #ec4899);
+    background: linear-gradient(90deg, #f97316, #ef4444);
     border-radius: 2px;
   }
 
@@ -236,13 +236,13 @@ const metadata = {
     margin-top: 15px;
     border-radius: 16px;
     overflow: hidden;
-    border: 2px solid rgba(139, 92, 246, 0.3);
+    border: 2px solid rgba(249, 115, 22, 0.3);
     transition: all 0.3s ease;
   }
 
   .screenshot-wrapper:hover {
-    border-color: rgba(139, 92, 246, 0.6);
-    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+    border-color: rgba(249, 115, 22, 0.6);
+    box-shadow: 0 10px 30px rgba(249, 115, 22, 0.2);
   }
 
   .product-screenshot {
@@ -259,7 +259,7 @@ const metadata = {
     margin-bottom: 16px;
     background: rgba(255, 255, 255, 0.6);
     border-radius: 14px;
-    border: 1px solid rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(249, 115, 22, 0.1);
     transition: all 0.3s ease;
   }
 
@@ -299,8 +299,8 @@ const metadata = {
     background: rgba(255, 255, 255, 0.9);
     border-radius: 20px;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(139, 92, 246, 0.2);
-    box-shadow: 0 20px 40px rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(249, 115, 22, 0.2);
+    box-shadow: 0 20px 40px rgba(249, 115, 22, 0.1);
     margin-bottom: 20px;
   }
 
@@ -330,30 +330,30 @@ const metadata = {
   }
 
   .btn-primary {
-    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    background: linear-gradient(135deg, #f97316, #ef4444);
     color: white;
     padding: 14px 32px;
     font-size: 1.05rem;
     border: none;
-    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+    box-shadow: 0 8px 25px rgba(249, 115, 22, 0.3);
   }
 
   .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 35px rgba(139, 92, 246, 0.4);
+    box-shadow: 0 12px 35px rgba(249, 115, 22, 0.4);
   }
 
   .btn-secondary {
     background: transparent;
-    color: #8b5cf6;
-    border: 2px solid #8b5cf6;
+    color: #f97316;
+    border: 2px solid #f97316;
   }
 
   .btn-secondary:hover {
-    background: #8b5cf6;
+    background: #f97316;
     color: white;
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+    box-shadow: 0 8px 25px rgba(249, 115, 22, 0.4);
   }
 
   /* Floating Elements */
@@ -370,7 +370,7 @@ const metadata = {
   .floating-circle {
     position: absolute;
     border-radius: 50%;
-    background: linear-gradient(45deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+    background: linear-gradient(45deg, rgba(249, 115, 22, 0.1), rgba(239, 68, 68, 0.1));
     animation: float 6s ease-in-out infinite;
   }
 
@@ -414,10 +414,10 @@ const metadata = {
   }
 
   :global(.dark) .hero-section h1 {
-    background: linear-gradient(45deg, #a78bfa, #f472b6, #fbbf24);
+    background: linear-gradient(45deg, #fb923c, #ef4444, #a855f7);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 30px rgba(167, 139, 250, 0.3);
+    text-shadow: 0 0 30px rgba(249, 115, 22, 0.3);
   }
 
   :global(.dark) .video-section,
@@ -429,19 +429,19 @@ const metadata = {
   }
 
   :global(.dark) .section-title {
-    color: #a78bfa;
+    color: #fb923c;
   }
 
   :global(.dark) .section-title::after {
-    background: linear-gradient(90deg, #a78bfa, #f472b6);
+    background: linear-gradient(90deg, #fb923c, #ef4444);
   }
 
   :global(.dark) .screenshot-wrapper {
-    border-color: rgba(167, 139, 250, 0.3);
+    border-color: rgba(249, 115, 22, 0.3);
   }
 
   :global(.dark) .screenshot-wrapper:hover {
-    border-color: rgba(167, 139, 250, 0.6);
+    border-color: rgba(249, 115, 22, 0.6);
   }
 
   :global(.dark) .feature-item {
@@ -470,20 +470,20 @@ const metadata = {
   }
 
   :global(.dark) .floating-circle {
-    background: linear-gradient(45deg, rgba(167, 139, 250, 0.1), rgba(244, 114, 182, 0.1));
+    background: linear-gradient(45deg, rgba(249, 115, 22, 0.1), rgba(239, 68, 68, 0.1));
   }
 
   :global(.dark) .btn-secondary {
-    color: #a78bfa;
-    border-color: #a78bfa;
+    color: #fb923c;
+    border-color: #fb923c;
   }
 
   :global(.dark) .btn-secondary:hover {
-    background: #a78bfa;
+    background: #fb923c;
     color: #0f0f23;
   }
 
   :global(.dark) .btn-primary {
-    background: linear-gradient(135deg, #a78bfa, #f472b6);
+    background: linear-gradient(135deg, #fb923c, #ef4444);
   }
 </style>
