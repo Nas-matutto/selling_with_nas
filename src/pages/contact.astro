@@ -73,34 +73,35 @@ const metadata = {
     }, 3500);
   }
 
-  function initCopyEmail() {
-    const btn = document.getElementById('copyEmailBtn');
-    if (!btn || btn.dataset.bound) return;
-    btn.dataset.bound = '1';
-
-    btn.addEventListener('click', () => {
-      let emailClientOpened = false;
-
-      // If the OS opens an email app, the browser window loses focus
-      const onBlur = () => { emailClientOpened = true; };
-      window.addEventListener('blur', onBlur, { once: true });
-
-      // Try to open the email client
-      window.location.href = 'mailto:' + EMAIL;
-
-      // After 600ms, if the window never lost focus → no email client → copy instead
-      setTimeout(async () => {
-        window.removeEventListener('blur', onBlur);
-        if (!emailClientOpened) {
-          await copyToClipboard();
-          showCopied();
-        }
-      }, 600);
-    });
+  function handleEmailClick() {
+    let emailClientOpened = false;
+    const onBlur = () => { emailClientOpened = true; };
+    window.addEventListener('blur', onBlur, { once: true });
+    window.location.href = 'mailto:' + EMAIL;
+    setTimeout(async () => {
+      window.removeEventListener('blur', onBlur);
+      if (!emailClientOpened) {
+        await copyToClipboard();
+        showCopied();
+      }
+    }, 600);
   }
 
-  initCopyEmail();
-  document.addEventListener('astro:after-swap', initCopyEmail);
+  function initEmailButtons() {
+    const mainBtn = document.getElementById('copyEmailBtn');
+    if (mainBtn && !mainBtn.dataset.bound) {
+      mainBtn.dataset.bound = '1';
+      mainBtn.addEventListener('click', handleEmailClick);
+    }
+    const inlineBtn = document.getElementById('messageHereBtn');
+    if (inlineBtn && !inlineBtn.dataset.bound) {
+      inlineBtn.dataset.bound = '1';
+      inlineBtn.addEventListener('click', handleEmailClick);
+    }
+  }
+
+  initEmailButtons();
+  document.addEventListener('astro:after-swap', initEmailButtons);
 </script>
 
   <!-- ── Services ── -->
@@ -188,7 +189,7 @@ const metadata = {
   <h3 class="step-title">Send me an email</h3>
   <p class="step-desc">
     Tell me what you're building, what's not working, or what you want to achieve. No briefs required — just 
-    <button type="button" class="step-link-btn" onclick="document.getElementById('copyEmailBtn').click()">message me here</button>.
+    <button type="button" class="step-link-btn" id="messageHereBtn">message me here</button>.
   </p>
 </div>
 
