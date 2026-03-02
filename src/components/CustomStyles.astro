@@ -25,9 +25,9 @@ import '@fontsource-variable/inter';
     --aw-font-serif: 'Inter Variable';
     --aw-font-heading: 'Inter Variable';
 
-    --aw-color-primary: rgb(1 97 239);
-    --aw-color-secondary: rgb(1 84 207);
-    --aw-color-accent: rgb(109 40 217);
+    --aw-color-primary: rgb(249 115 22);
+    --aw-color-secondary: rgb(239 68 68);
+    --aw-color-accent: rgb(168 85 247);
 
     --aw-color-text-heading: rgb(0 0 0);
     --aw-color-text-default: rgb(16 16 16);
@@ -45,25 +45,85 @@ import '@fontsource-variable/inter';
     }
   }
 
-  /* ── Floating Navigation ── */
+  /* ── Floating Pill Navigation (matches prototype) ── */
   header#header {
-    padding: 10px 12px 0;
+    padding: 12px 16px 0;
     border-bottom-color: transparent !important;
     background: transparent !important;
   }
   header#header > div.absolute { display: none; }
   header#header > div.relative {
-    background: rgba(255, 255, 255, 0.78);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.88);
-    border-radius: 1rem;
-    box-shadow: 0 4px 28px rgba(0, 0, 0, 0.07), 0 1px 3px rgba(0, 0, 0, 0.04);
+    background: rgba(250, 251, 255, 0.92);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 999px;
+    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.10), 0 1px 3px rgba(0, 0, 0, 0.04);
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 10px 20px;
   }
   .dark header#header > div.relative {
-    background: rgba(5, 10, 45, 0.86);
-    border-color: rgba(255, 255, 255, 0.08);
-    box-shadow: 0 4px 28px rgba(0, 0, 0, 0.35);
+    background: rgba(7, 8, 15, 0.82);
+    border-color: rgba(255, 255, 255, 0.09);
+    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.40), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+  /* Dropdown panel: rounded corners (not pill) */
+  header#header .dropdown-menu {
+    border-radius: 14px !important;
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.12) !important;
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+  }
+  .dark header#header .dropdown-menu {
+    background: rgba(10, 12, 24, 0.97) !important;
+    border-color: rgba(255,255,255,0.10);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.50) !important;
+  }
+  /* "Let's Talk" CTA button: orange gradient pill */
+  header#header a[href="/contact"] {
+    background: linear-gradient(135deg, #f97316 0%, #ef4444 45%, #a855f7 100%) !important;
+    color: #fff !important;
+    border-radius: 999px !important;
+    border: none !important;
+    box-shadow: 0 4px 20px rgba(249,115,22,0.35) !important;
+    padding: 8px 20px !important;
+    font-size: 0.875rem !important;
+    font-weight: 600 !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  }
+  header#header a[href="/contact"]:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 28px rgba(249,115,22,0.45) !important;
+  }
+
+  /* ── Footer: simple one-row prototype style ── */
+  footer .grid { display: none !important; }
+  footer > div.relative {
+    max-width: 1140px !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+  footer > div.relative > div.md\:flex {
+    border-top: 1px solid rgba(0,0,0,0.08);
+    padding: 28px 0;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row !important;
+  }
+  .dark footer > div.relative > div.md\:flex {
+    border-top-color: rgba(255,255,255,0.08);
+  }
+  footer .text-sm.mr-4 {
+    order: 2;
+    margin: 0 !important;
+    font-size: 0.83rem;
+    color: #94a3b8;
+  }
+  footer ul.flex.mb-4 {
+    order: 3;
+    margin: 0 !important;
   }
 
   .dark {
@@ -71,9 +131,9 @@ import '@fontsource-variable/inter';
     --aw-font-serif: 'Inter Variable';
     --aw-font-heading: 'Inter Variable';
 
-    --aw-color-primary: rgb(1 97 239);
-    --aw-color-secondary: rgb(1 84 207);
-    --aw-color-accent: rgb(109 40 217);
+    --aw-color-primary: rgb(249 115 22);
+    --aw-color-secondary: rgb(239 68 68);
+    --aw-color-accent: rgb(168 85 247);
 
     --aw-color-text-heading: rgb(247, 248, 248);
     --aw-color-text-default: rgb(229 236 246);

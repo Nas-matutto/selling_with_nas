@@ -144,7 +144,6 @@ const image = await findImage(post.image);
     font-size: 0.875rem;
   }
   .post-section header p a {
-    color: #f97316 !important;
     font-weight: 600;
     text-decoration: none;
   }
@@ -166,12 +165,16 @@ const image = await findImage(post.image);
     --tw-prose-links: #f97316;
   }
   .post-prose :global(a) {
-    color: #f97316 !important;
+    color: #f97316;
   }
   .post-prose :global(a:hover) {
-    color: #ea6a00 !important;
+    color: #ea6a00;
   }
   :global(.dark) .post-prose :global(a) {
-    color: #fb923c !important;
+    color: #fb923c;
+  }
+  /* Keep header metadata category link orange with specificity */
+  .post-section header p a {
+    color: #f97316 !important;
   }
 </style>

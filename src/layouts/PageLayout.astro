@@ -20,11 +20,11 @@ const { metadata } = Astro.props;
     <Announcement /> -->
   </slot>
   <slot name="header">
-    <Header 
+    <Header
   links={headerData.links}
-  actions={[]}
-  isSticky 
-  showToggleTheme 
+  actions={headerData.actions}
+  isSticky
+  showToggleTheme
    />
   </slot>
   <main>
