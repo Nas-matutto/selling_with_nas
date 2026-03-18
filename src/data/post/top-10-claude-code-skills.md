@@ -171,11 +171,190 @@ Here are the 10 skills I recommend installing first. Each one targets a high-val
 
 ### 4. LinkedIn Post Generator
 
-**What it does:** Generates high-performing LinkedIn posts in your tone of voice, structured around proven engagement formats — hooks, storytelling, lists, and calls to action.
+**What it does:** Generates high-performing LinkedIn posts in a candid, direct, no-BS tone — structured around proven engagement formats: hook, insight, breakdown, and takeaway. No corporate jargon, no motivational fluff.
 
 **Why it's useful:** Consistency is the biggest challenge with LinkedIn. This skill removes the blank-page problem entirely. You give Claude a topic or a rough idea, and it writes a post ready to publish. Watch how to set it up in my full video walkthrough above.
 
 <a href="https://www.youtube.com/@sellingwithnas" target="_blank" rel="noopener noreferrer">→ Watch the full walkthrough on YouTube</a>
+
+Unlike the other skills in this list, this one isn't hosted on GitHub — I built it specifically for this blog so you can copy it directly. Save it as a `skill.md` file in your project folder and Claude will pick it up automatically.
+
+```markdown
+---
+name: linkedin-post-generator
+description: Reviews or generates LinkedIn posts and adjusts them to a candid, direct, no-BS tone of voice. Use this skill whenever creating, rewriting, or optimizing LinkedIn posts so they sound sharp, practical, and slightly irreverent without using corporate jargon.
+---
+
+# LinkedIn Post Generator
+
+Generate or rewrite LinkedIn posts in a candid, direct, no-BS tone. The writing should feel like a smart operator sharing real insights, not a corporate marketer trying to sound impressive.
+
+Posts should be concise, practical, and slightly opinionated. Avoid buzzwords, motivational fluff, or overly polished language. Write the way an experienced founder, marketer, or builder would speak when sharing lessons learned.
+
+The goal of each post is to:
+- Share a useful insight
+- Challenge common assumptions
+- Tell a short story or observation
+- Provide actionable value
+
+Posts should feel authentic, grounded in real-world experience, and easy to read quickly in a LinkedIn feed.
+
+## Structure
+
+When possible, follow this structure:
+
+1. **Hook** — a strong first line that sparks curiosity or challenges a belief.
+2. **Insight or Story** — a short explanation, lesson, or observation.
+3. **Breakdown** — optional bullets or short paragraphs expanding the point.
+4. **Takeaway** — a clear lesson, principle, or shift in thinking.
+
+Prefer short paragraphs (1–2 sentences each) and occasional bullet points.
+
+Tone characteristics:
+- Direct
+- Slightly contrarian
+- Practical
+- Conversational but sharp
+- Confident without sounding arrogant
+
+Avoid sounding like:
+- A corporate brand
+- A motivational speaker
+- A guru selling frameworks
+
+Do not use excessive emojis, hashtags, or dramatic storytelling.
+
+## Examples
+
+### Example usage 1
+
+**User input:**
+Write a LinkedIn post about how most founders waste time perfecting products instead of validating demand.
+
+**Output style:**
+
+Most founders obsess over product.
+
+Better UI.
+More features.
+Cleaner onboarding.
+
+Meanwhile no one is buying.
+
+The real job early on isn't building.
+
+It's proving demand exists.
+
+Before writing thousands of lines of code, answer one question:
+
+**Do people actually want this?**
+
+Some faster ways to find out:
+- Sell the product before it exists
+- Build a landing page and run ads
+- Talk to 20 potential customers
+- Offer a manual version first
+
+Product perfection doesn't create demand.
+
+Demand makes product improvement obvious.
+
+Build less. Validate more.
+
+---
+
+### Example usage 2
+
+**User input:**
+Turn this idea into a LinkedIn post: AI tools are making execution cheaper, so distribution and taste matter more.
+
+**Output style:**
+
+AI is making execution cheap.
+
+What used to take a team now takes one person and a few tools.
+
+Which means something interesting is happening:
+
+Execution is no longer the bottleneck.
+
+Distribution is.
+
+Taste is.
+
+Anyone can generate content.
+Anyone can spin up a product.
+Anyone can automate workflows.
+
+But not everyone knows:
+- what to build
+- how to position it
+- how to get attention
+
+The leverage is shifting.
+
+Less "can you build it?"
+More "do people care?"
+
+---
+
+## Guidelines
+
+### Writing style
+
+- Write at a 6–8th grade readability level.
+- Use short sentences and short paragraphs.
+- Prefer clarity over cleverness.
+- Avoid corporate jargon (synergy, leverage, paradigm, etc.).
+- Avoid filler phrases like "I'm excited to share" or "thrilled to announce."
+
+### Formatting
+
+- Use spacing between sentences to improve readability.
+- Use bullets when listing ideas.
+- Keep posts typically between **80–220 words**.
+
+### Hooks
+
+Strong hooks often:
+- Challenge a common belief
+- Reveal a surprising insight
+- Start with a short statement
+
+Examples:
+- "Most startups fail before they even launch."
+- "AI didn't make building harder. It made distribution harder."
+- "Everyone says build fast. Almost no one says validate first."
+
+### Content approach
+
+Posts should focus on:
+- Marketing lessons
+- Startups
+- AI and automation
+- Go-to-market strategy
+- Founder insights
+- Real-world experimentation
+
+### Avoid
+
+- Overly motivational tone
+- Fake storytelling
+- Generic advice
+- Long introductions
+
+### Optional ending
+
+Posts may end with:
+- A short takeaway
+- A question to spark discussion
+- A concise principle
+
+Example endings:
+- "Demand first. Product second."
+- "Most founders get this backwards."
+- "Curious how others think about this."
+```
 
 
 <div style="
