@@ -225,6 +225,17 @@ A Next.js 14 e-commerce app with Stripe payments and Supabase backend
 
 Notice how every section is specific and actionable. There's no fluff, no "write clean code" - just clear instructions that Claude can follow immediately. This file is about 50 lines, which is the sweet spot for most projects.
 
+<div style="position: relative; border-radius: 16px; overflow: hidden; background: #000; aspect-ratio: 16 / 9; box-shadow: 0 0 0 1px rgba(249,115,22,0.2), 0 24px 72px rgba(0,0,0,0.5), 0 0 80px rgba(249,115,22,0.08); margin: 40px 0;">
+  <iframe
+    style="position: absolute; inset: 0; width: 100%; height: 100%; border: none;"
+    src="https://www.youtube.com/embed/xa7OVNiyP4A"
+    title="How to Write the Perfect CLAUDE.md File for Claude Code"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+  ></iframe>
+</div>
+
+
 ## How to Make Your CLAUDE.md Better Over Time
 
 Your CLAUDE.md should grow with your project. Here's how to improve it:
