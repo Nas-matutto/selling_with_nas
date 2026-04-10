@@ -1,8 +1,8 @@
 ---
-publishDate: 2026-04-08T00:00:00Z
+publishDate: 2026-04-10T00:00:00Z
 author: Nas
 title: Claude Cowork Full Tutorial for Beginners
-excerpt: Most AI tools live inside a chat. Claude Cowork is different - it has access to your computer and can literally do work for you. Here's how to set it up and start using it.
+excerpt: Most AI tools live inside a chat. Claude Cowork is different — it has access to your computer and can literally do work for you. Here's how to set it up and start using it.
 image: ~/assets/images/Cowork_Screenshot.jpg
 category: Technology
 tags:
@@ -12,55 +12,65 @@ tags:
 metadata:
   canonical: https://www.sellingwithnas.com/claude-cowork-full-tutorial-for-beginners
   title: "Claude Cowork Full Tutorial for Beginners (2026)"
-  description: "Learn how to set up and use Claude Cowork to automate real computer tasks. Covers pricing, setup, browser extension, global instructions, capabilities, and practical workflow examples."
+  description: "Learn how to set up and use Claude Cowork to automate real computer tasks. Covers pricing, setup, guardrails, connectors, skills, scheduled tasks, and practical workflow examples."
   keywords: "Claude Cowork, Claude Cowork tutorial, Claude Cowork setup, Claude desktop, Claude for Chrome, Claude computer use, Claude AI automation, how to use Claude Cowork, Claude Cowork beginners"
 ---
 
 
 # Claude Cowork Full Tutorial for Beginners
 
-Most AI tools live inside a chat — you ask questions, you get answers, and then you do the work yourself. **Claude Cowork is at a different level.**
+Most AI tools live inside a chat — you ask questions, you get answers, and then you do the work yourself. **Claude Cowork is at a completely different level.**
 
-Cowork gives Claude access to your computer. That means it can open files, navigate the web, read documents, run tasks, and actually *do* work on your behalf — not just tell you how to do it.
+Cowork gives Claude access to your computer. That means it can open files, edit documents, connect to your tools, and actually *do* work on your behalf — not just tell you how to do it.
 
-In this guide I'm going to walk you through exactly how to set it up and start using it to supercharge your day-to-day work.
+In this guide I'm going to walk you through exactly how to set it up, and cover all the key features and functionalities you need to know.
 
 Here's what we'll cover:
 
-1. [Pricing and Usage Limits](#pricing-and-usage-limits)
-2. [Setting Up Claude for Desktop](#setting-up-claude-for-desktop)
-3. [The Desktop Experience — and Your Other Options](#the-desktop-experience-and-your-other-options)
-4. [Selecting Your Model and Folder](#selecting-your-model-and-folder)
-5. [Working Inside a Project](#working-inside-a-project)
-6. [Settings Setup](#settings-setup)
-7. [Installing Claude for Chrome](#installing-claude-for-chrome)
-8. [Practical Examples](#practical-examples)
+1. [Claude Chat vs Claude Cowork — 3 Key Differences](#claude-chat-vs-claude-cowork-3-key-differences)
+2. [Pricing](#pricing)
+3. [Setting Up Claude for Desktop](#setting-up-claude-for-desktop)
+4. [Adding Instructions and Guardrails](#adding-instructions-and-guardrails)
+5. [Settings and Capabilities](#settings-and-capabilities)
+6. [How to First Test Cowork](#how-to-first-test-cowork)
+7. [Working with Files and Folders](#working-with-files-and-folders)
+8. [Connecting Cowork to External Tools](#connecting-cowork-to-external-tools)
+9. [Adding Skills to Cowork](#adding-skills-to-cowork)
+10. [Scheduled Tasks](#scheduled-tasks)
 
 
-## Watch the Video Tutorial and Follow Along
+## Claude Chat vs Claude Cowork — 3 Key Differences
 
-<div style="position: relative; border-radius: 16px; overflow: hidden; background: #000; aspect-ratio: 16 / 9; box-shadow: 0 0 0 1px rgba(249,115,22,0.2), 0 24px 72px rgba(0,0,0,0.5), 0 0 80px rgba(249,115,22,0.08); margin: 40px 0;">
-  <iframe
-    style="position: absolute; inset: 0; width: 100%; height: 100%; border: none;"
-    src="https://www.youtube.com/embed/placeholder_cowork"
-    title="Claude Cowork Full Tutorial for Beginners"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen
-  ></iframe>
-</div>
+If you're already using Claude Chat, you might be wondering: is Cowork really that different? The short answer is yes — significantly. Here are the three main differences:
+
+### 1. Much Larger Context Window
+
+Cowork has a substantially larger context window than standard Chat. In practice, this means your conversations won't need to be compacted as often, and less detail gets dropped over long sessions. For complex, multi-step work tasks, this matters a lot.
+
+### 2. File Access at a Different Scale
+
+In Claude Chat, you can upload up to 20 files per conversation — each up to 30MB — and they're temporarily stored in the cloud (and yes, they consume context). In Cowork, Claude operates as an agent directly inside the folders you give it access to. That means it can work with far more files, much larger sizes, and it reads them as needed rather than loading everything into context upfront.
+
+### 3. Claude Does the Work, Not Just the Thinking
+
+This is the most important difference. In Chat, you get an output — a document, a plan, a piece of writing — and then you have to copy it and integrate it into your own files yourself. With Cowork, Claude works directly inside your existing files and edits them in response to your requests.
+
+Chat is: *"Here's what you should do."*
+
+Cowork is: *"Don't worry, I'll do it for you."*
 
 
-## Pricing and Usage Limits
+## Pricing
 
 Claude Cowork requires a **paid Claude subscription** — you need to be on at least the **Pro plan** ($20/month) to access it. The free tier doesn't include Cowork.
 
 A few things to keep in mind:
 
-- **Usage is shared across your account**, not per project. If you're running Cowork sessions alongside regular claude.ai usage, they draw from the same token pool.
-- **Cowork sessions can be token-heavy** since Claude is actively browsing, reading files, and executing tasks. Keep an eye on your usage, especially on the Pro plan.
+- **Usage is shared across your account**, not per project. Cowork sessions, Claude Chat, and Claude Code all draw from the same token pool.
+- **Cowork sessions can be token-heavy** since Claude is actively reading files, browsing, and executing tasks. Keep an eye on your usage, especially on the Pro plan.
 - **You're never fully blocked** — once you hit your limit, Claude offers extra usage at standard API rates so work doesn't get interrupted.
 
-If you're using Cowork heavily for work tasks, the Max 5x plan ($100/month) will give you significantly more headroom.
+If you're planning to use Cowork regularly for work tasks, the Max 5x plan ($100/month) will give you significantly more headroom.
 
 
 ## Setting Up Claude for Desktop
@@ -69,24 +79,19 @@ To use Cowork, you need the **Claude Desktop app** — not the web version.
 
 **Step 1: Download Claude Desktop**
 
-Go to <a href="https://claude.ai/download" target="_blank" rel="noopener noreferrer">claude.ai/download</a> and download the desktop app for your operating system (Mac or Windows). Install it and sign in with your Claude account.
+Go to <a href="https://claude.ai/download" target="_blank" rel="noopener noreferrer">claude.ai/download</a> and download the app for your operating system (Mac or Windows). Install it and sign in with your Claude account.
 
-**Step 2: Open the App**
+**Step 2: Understand the Three Modes**
 
-Once installed, Claude Desktop gives you a clean interface with your conversations on the left and the main chat in the center. This is your base of operations for Cowork.
+Inside Claude Desktop, you have access to three different ways of working with Claude:
 
+- **Claude Chat** — conversational AI for questions, writing, and brainstorming. No file access or computer control.
+- **Claude Code** — connects to your IDE (VS Code, Cursor, Windsurf) for software development. I've made a full tutorial on this: [Claude Code Full Tutorial for Beginners](/claude-code-full-tutorial-for-beginners).
+- **Claude Cowork** — the agent mode. Claude works directly inside folders on your computer and can connect to your tools.
 
-## The Desktop Experience — and Your Other Options
+**Step 3: Notice the Files Sidebar**
 
-Within the Claude ecosystem, there are three main ways to work:
-
-- **Claude Chat** (web or desktop) — conversational AI for questions, writing, brainstorming, and research. No file access, no computer control.
-- **Claude Code** — an IDE extension (VS Code, Cursor, Windsurf) that lets Claude read and edit your project files to build software. I've made a full tutorial on this — [check it out here](/claude-code-full-tutorial-for-beginners).
-- **Claude Cowork** (desktop) — gives Claude access to your computer so it can take real actions: open files, browse the web, navigate apps, and complete tasks autonomously.
-
-Cowork is the most powerful of the three for everyday work tasks. It's best for anything that involves your computer — not just code, but documents, spreadsheets, research, content creation, and more.
-
-One thing you'll notice in the desktop app: **files become available in a sidebar on the right.** As Cowork works on tasks, you'll see files it's created or modified appear there, giving you a live view of what it's doing.
+As Cowork works on tasks, you'll see files it creates or modifies appear in a sidebar on the right side of the desktop app. This gives you a live view of what Claude is doing — what's been created, what's been edited, and where things are saved.
 
 
 <div style="
@@ -119,89 +124,98 @@ One thing you'll notice in the desktop app: **files become available in a sideba
 </div>
 
 
-## Selecting Your Model and Folder
+## Adding Instructions and Guardrails
 
-Before you start a Cowork session, you need to do two things:
+Before you start using Cowork in earnest, go to **Settings → Cowork → Add Instructions**.
 
-**1. Select your model**
+Because Cowork works directly inside your folders and files, you want guardrails in place before it starts doing anything. This is where you define how Claude should behave — what it should always check before acting, how it should name files, and what it should never touch.
 
-In Claude Desktop, you can choose which model to use. For Cowork tasks, I recommend **Sonnet** as your default — it handles the vast majority of tasks well and keeps token costs reasonable. Use **Opus** only for genuinely complex or multi-step tasks that require deeper reasoning.
+Here's a template you can copy and paste directly into your Cowork instructions:
 
-**2. Select your working folder**
+```
+Don't break things
 
-Cowork only has access to the **folders you explicitly give it**. When starting a session, select the specific folder or project directory you want Claude to work in.
+- Before you delete, overwrite, or rename anything → show me exactly what's
+  changing first and wait for approval
+- Stay inside the current working folder. Don't touch anything outside it
+  unless I explicitly say so
 
-Then type:
+---
+
+Keep things clean and traceable
+
+- Any new file → add the date at the end like this: June.26
+- After every task → give me a quick summary of:
+  - What files were created/edited
+  - Their exact names
+  - Where they're saved
+
+---
+
+Don't run ahead of me
+
+- If a task has multiple steps → outline the plan first before doing anything
+- After each major step:
+  - Say what you did (short + clear)
+  - Say what you're about to do next
+
+---
+
+Extra guardrails
+
+- If something is unclear → ask before acting, don't guess
+- Prefer small, reversible changes over big ones
+- If a change could have side effects → call it out first
+- Keep outputs simple and readable (no unnecessary complexity)
+- Default to safe options when unsure
+```
+
+These instructions apply to every Cowork session automatically. Set them once and you won't have to re-explain them every time.
+
+
+## Settings and Capabilities
+
+With instructions in place, here's what else to configure:
+
+### Enable Dispatch
+
+In **Settings → Cowork**, toggle on **Dispatch**. This is what allows Cowork to take autonomous actions. Without it, Claude can read and plan but won't actually execute anything independently.
+
+### Set Global Instructions
+
+Also in Settings, enable **Global Instructions** for preferences that apply across all sessions — things like:
+
+- "Always use Google Chrome for web browsing."
+- "Save all output files as CSV unless I specify otherwise."
+- "When researching, always check at least three sources before summarising."
+
+### Review Capabilities
+
+In the Capabilities settings, you can control exactly what Cowork is allowed to do. Enable both main capability toggles, but **leave location metadata off** to protect your location privacy. Scoping access to what you actually need keeps things predictable and safe.
+
+### Select Your Model and Working Folder
+
+Before starting a session, select the model you want to use — **Sonnet** is the right default for most tasks. Then select the specific folder you want Cowork to work in.
+
+Once you've done that, type:
 ```
 /setup
 ```
 
-This kicks off the Cowork initialization — Claude reads the folder structure, understands the context of what's in it, and prepares to start working.
+This kicks off the Cowork initialization — Claude reads the folder structure, understands the context of what's in it, and is ready to start working.
 
-**Why folder-scoped access matters:** Cowork will only touch the folders on your computer that you give it permission to access. That's by design and it's the right approach. The last thing you want is to give Claude unrestricted access to your entire machine without any guardrails. Scoped access means Claude can work freely within the boundaries you've set, while everything else stays untouched.
-
-
-## Working Inside a Project
-
-My strong recommendation: **open a dedicated Project in Claude Desktop** and run all your Cowork sessions inside it.
-
-Here's why: Claude Projects have **persistent memory**. Even as your conversation grows very long, Claude always retains context about the project — what files exist, what you've discussed, what decisions have been made. You don't have to re-explain your setup every session.
-
-This is especially valuable for recurring tasks. If you're using Cowork to update a finance tracker every week, or to research competitors every month, working inside a Project means Claude already knows the format, the folder structure, and your preferences from the previous session.
-
-Set it up once, and every session builds on the last.
+**Why folder-scoped access matters:** Cowork only touches the folders you explicitly give it access to. That's the right design. The last thing you want is to hand over unrestricted control of your entire machine without guardrails. Scoped access means Claude works freely within the boundaries you've set, while everything else stays untouched.
 
 
-## Settings Setup
+## How to First Test Cowork
 
-There are a few settings you want to configure before diving in.
+Before diving into real work tasks, here's how I'd recommend getting comfortable with Cowork:
 
-### Enable Dispatch on the Cowork Tab
+**Open a new Project** in Claude Desktop and run your first sessions inside it. Claude Projects have persistent memory — even as the conversation grows very long, Claude always retains context about what you've discussed, what files exist, and what decisions have been made. You don't need to re-explain your setup every session.
 
-In Claude Desktop, go to **Settings → Cowork** and toggle on **Dispatch**. This enables Cowork to take autonomous actions — without it, Claude can read and plan but won't execute tasks independently.
+Then create a new folder on your computer called **"Claude Work"**. This is your sandbox — the place you point Cowork at when you're testing and experimenting. It keeps everything contained and means any early mistakes stay isolated to a folder you don't care about.
 
-### Set Global Instructions
-
-Also in Settings, enable **Global Instructions**. This is where you add standing instructions that apply to every Cowork session, no matter what project you're in. Examples:
-
-- "Always use Google Chrome for web browsing."
-- "Save all output files as CSV unless I specify otherwise."
-- "When researching, always check at least three sources before summarizing."
-
-Think of Global Instructions as your personal Cowork rulebook — set it once and every session follows it automatically.
-
-### Review Capabilities Settings
-
-In the Capabilities settings, you can see and control exactly what Cowork is allowed to do:
-
-- **File access** — read and write files in permitted folders
-- **Web browsing** — navigate websites and extract information
-- **App interaction** — interact with desktop applications
-- **Form filling** — fill and submit web forms
-
-Review each one and enable only what you need. More access means more automation capability, but scoping it to what you actually use keeps things predictable and safe.
-
-
-## Installing Claude for Chrome
-
-The **Claude for Chrome** extension is a browser companion that brings Claude directly into your browsing experience — similar to how Perplexity or Comet work, but powered by Claude Cowork.
-
-With the extension installed, Claude can:
-- Read and summarize web pages as you browse
-- Extract data from sites (tables, lists, post metadata)
-- Answer questions about what's on screen
-- Take actions on pages as part of a Cowork task
-
-**How to install it:**
-
-1. Open Claude Desktop → **Settings → Extensions**
-2. Find "Claude for Chrome" and click **Install**
-3. It'll open the Chrome Web Store — add the extension
-4. Once installed, the Claude icon appears in your browser toolbar
-
-**Example of what this looks like in practice:** You can ask Claude Cowork to go through a YouTube channel, find the most recently posted videos, open a few of them, and pull the like count and top comments — all without you touching the browser. Claude does the navigation, the reading, and the summarizing, and hands you back a clean result.
-
-This is the kind of task that would normally take 20–30 minutes of clicking around. With Cowork and the Chrome extension, it takes a couple of minutes of prompting.
+Once you're comfortable with how Cowork behaves and have your guardrails dialled in, you can start pointing it at real working directories.
 
 
 <div style="
@@ -235,50 +249,78 @@ This is the kind of task that would normally take 20–30 minutes of clicking ar
 </div>
 
 
-## Practical Examples
+## Working with Files and Folders
 
-The best way to understand Cowork is to see what it can do on real tasks. Here are four concrete examples:
+This is the core of Cowork — the ability to create, edit, and organise files directly inside the folders you give it access to. Here are two practical examples to show what this looks like:
 
-### 1. Personal Finance Tracker
+### Personal Finance Tracker
 
-Tell Claude Cowork to build you a finance tracker spreadsheet in a specific folder. From that point on, whenever you drop a receipt image into the folder or type in a purchase, Cowork updates the tracker automatically — categorizing spend, updating totals, and keeping everything current.
+Ask Cowork to build you a finance tracker spreadsheet inside your Claude Work folder. From that point on, whenever you drop a receipt image into the folder, or just type in a purchase, Cowork updates the tracker — categorising the spend, updating totals, and keeping everything current.
 
-You can also upload your credit card statement at the end of the month and ask Cowork to categorize every transaction by type (food, transport, subscriptions, etc.) and add it to your tracker. What used to take an hour of manual work becomes a one-line prompt.
+You can also upload a credit card statement at the end of the month and ask Cowork to categorise every transaction by type (food, transport, subscriptions, etc.) and add it to the tracker. What used to take an hour of manual work becomes a one-line prompt.
 
-### 2. Competitive Research Report
+### Breaking Down a PDF
 
-Give Cowork a competitor's name and ask it to research them — website, product, pricing, positioning, social presence — and compile everything into a structured analysis document in your project folder. It browses, reads, extracts, and writes. You get back a formatted competitive analysis without opening a single tab yourself.
+Drop any PDF into your working folder — a contract, a report, a research paper — and ask Cowork to extract the key information, summarise the sections, or turn it into a structured document. Cowork reads the file directly and produces the output inside the same folder, named and dated according to your instructions.
 
-This works especially well when paired with the Chrome extension, which lets Claude navigate competitor sites and pull structured data directly.
 
-### 3. Content Creation for a Specific Persona
+## Connecting Cowork to External Tools
 
-Here's an example: imagine you run a travel brand focused on Japan. You can ask Cowork to step into that context and help you:
+Cowork doesn't just work inside your files — it can also connect to external tools and services, letting Claude take actions across the apps you already use.
 
-- Draft Instagram captions for a set of photos in a folder
-- Build a trip planning guide in a specific format
-- Create a distribution plan for a new piece of content — which platforms, what format, what schedule
+To set this up: **Settings → Customize → Connectors → + → Browse Connectors**
 
-Cowork works through each step sequentially, creating files as it goes. You review and adjust, but the heavy lifting is done.
+From there you can add integrations with tools like Google Calendar, email, and more. Once connected, Claude can interact with those tools as part of a task — reading data from them, creating entries, or triggering actions.
 
-### 4. Folder Organization
+**Example — Calendar integration:** Connect Cowork to your Google Calendar and you can ask things like:
 
-Point Cowork at a messy folder and ask it to organize the contents by file type, date, or project — whatever structure makes sense for you. It reads what's there, creates the folder structure, and moves files accordingly. Useful for Downloads folders, project archives, or any directory that's grown out of control.
+> "Look at my calendar for next week and prepare a briefing doc with all my meetings, the attendees, and any prep notes I should have ready."
+
+Or the other way around — after a planning session, ask Cowork to create the calendar events directly from the decisions you've made together.
+
+The combination of file access and tool connectivity is what makes Cowork genuinely powerful. It's not just reading and writing — it's connecting your work across the tools that run your day.
+
+
+## Adding Skills to Cowork
+
+Just like Claude Code, Cowork supports **Skills** — markdown files that give Claude a specialist capability for a specific type of task.
+
+Skills install once and apply automatically whenever they're relevant. For example, the **Remotion skill** gives Claude the ability to generate programmatic videos using the Remotion framework — product demos, social content, animated presentations — directly from a prompt inside your working folder.
+
+To install a skill, use:
+```
+/skills install [skill URL]
+```
+
+Once installed, the skill is available in every Cowork session. You can layer multiple skills together for more complex workflows — for example, pairing a brand guidelines skill with a content creation skill so every output stays on-brand automatically.
+
+For a full list of recommended skills to install, check out: [Top 10 Claude Code Skills — How to Start Using Them](/top-10-claude-code-skills).
+
+
+## Scheduled Tasks
+
+Scheduled Tasks aren't a new concept, but Cowork's implementation of them is seamless. You can set up tasks to run automatically on a schedule — and because Cowork has access to your tools and files, it can actually complete those tasks end-to-end without you being there.
+
+**Example — Morning email summary:**
+
+Set up a scheduled task that runs every morning at 8am. Cowork checks your inbox, pulls the most important emails from the last 24 hours, and sends you a clean summary — or drafts replies and queues them for your review.
+
+You define the task once: what to do, when to run it, and what the output should look like. Cowork handles the rest on schedule, every time.
+
+This is the step that takes Cowork from "a tool I use when I remember to" to "something that's working in the background on my behalf, every day."
 
 ---
 
-The underlying question for all of these is the same: **what do you do repeatedly in your normal workday, and what outcome do you want at the end?**
-
-That's exactly what Cowork should be handling. Think about the tasks you do every week that follow a pattern — research, reporting, content creation, file management. Once you've mapped those out, Cowork turns them from manual effort into a prompt.
+Think about the tasks you do every week that follow a pattern — reporting, research, content creation, file management. Once you've mapped those out, Cowork turns them from manual effort into a prompt. And with scheduled tasks, even the prompting becomes optional.
 
 
 ## Nas' Note: This Is What AI Assistance Actually Means
 
-Chat-based AI is useful. But Cowork is what "AI doing work for you" actually looks like in practice. It's not a better search engine or a faster way to write emails — it's a system that can sit at your computer, work through a task from start to finish, and hand you back a result.
+Chat-based AI is useful. But Cowork is what "AI doing work for you" actually looks like in practice. It's not a smarter search engine or a faster way to write emails. It's a system that can work inside your files, connect to your tools, run on a schedule, and hand you back results — without you having to be in the room.
 
-Set it up with your folders, configure your global instructions, install the Chrome extension, and start with one repeatable task from your week. See how long it takes Cowork to do what used to take you an hour.
+Set it up with your guardrails, point it at a test folder, and give it one real task from your week. See what comes back. Then build from there.
 
-Then add another task. That's how you build a workflow that genuinely saves time — not in theory, but in practice.
+That's how you go from "I use Claude sometimes" to "Claude handles things I used to spend hours on."
 
 
 ---
