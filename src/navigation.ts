@@ -14,6 +14,10 @@ export const headerData = {
       text: 'Building Area',
       links: [
         {
+          text: '🌱 LeadLanding',
+          href: getPermalink('/tools/leadlanding'),
+        },
+        {
           text: '🧮 E-Commerce Calculator',
           href: getPermalink('/tools/E-commerce_calculator'),
         },

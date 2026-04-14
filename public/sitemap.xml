@@ -24,6 +24,11 @@
 
 <!-- Tools pages -->
 <url>
+  <loc>https://www.sellingwithnas.com/tools/leadlanding</loc>
+  <lastmod>2026-04-14T00:00:00+00:00</lastmod>
+  <priority>0.85</priority>
+</url>
+<url>
   <loc>https://www.sellingwithnas.com/tools/E-commerce_calculator</loc>
   <lastmod>2026-02-24T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
