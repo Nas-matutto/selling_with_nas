@@ -1,8 +1,8 @@
 ---
 publishDate: 2026-04-14T00:00:00Z
 author: Nas
-title: How to Use Claude for Marketing - Text, Images and Videos
-excerpt: Claude can handle all three pillars of marketing content — written copy in your brand voice, visual assets, and short-form video. Here's exactly how to set it up.
+title: How to Use Claude for Marketing - Automate Social Media with AI
+excerpt: Claude can handle all three pillars of marketing content - written copy in your brand voice, visual assets, and short-form video. Here's exactly how to set it up.
 image: ~/assets/images/Claude_Skill.jpg
 category: Technology
 tags:
@@ -11,42 +11,42 @@ tags:
   - Claude Code
 metadata:
   canonical: https://www.sellingwithnas.com/how-to-use-claude-for-marketing
-  title: "How to Use Claude for Marketing — Text, Images & Videos (2026)"
-  description: "Learn how to use Claude as a full marketing assistant. Set up brand voice guidelines, generate on-brand written content, create visual assets, and produce short-form videos — all from prompts."
+  title: "How to Use Claude for Marketing - AI for Social Media (2026)"
+  description: "Learn how to use Claude as a full marketing assistant. Set up brand voice guidelines, generate on-brand written content, create visual assets, and produce short-form videos - all from just prompting."
   keywords: "Claude for marketing, Claude marketing assistant, Claude brand voice, Claude content creation, Claude image generation, Claude video marketing, Claude AI marketing, Claude web asset generator, Claude Remotion, AI marketing tools"
 ---
 
 
-# How to Use Claude for Marketing — Text, Images and Videos
+# How to Use Claude to automate Marketing with AI
 
-Claude is one of the most versatile AI tools available right now — and most people use it for maybe 20% of what it can actually do. Nowhere is this more true than in marketing.
+Claude is one of the most versatile AI tools available out there, and most people use it for maybe 20% of what it can actually do. After you go through this post, you'll be able to at least tap into 80% of what can actually be done with AI for Marketing.
 
 The way I see it, within the marketing function there are **three main types of content** you can create:
 
-1. **Text** — blog posts, LinkedIn posts, email copy, ad copy, landing pages
-2. **Images** — social media graphics, logos, brand assets, Open Graph images
-3. **Videos** — short animations, social media clips, product explainers
+1. **Text**: blog posts, LinkedIn posts, email copy, ad copy, landing pages
+2. **Images**: social media graphics, logos, brand assets, Open Graph images
+3. **Videos**: short animations, social media clips, product explainers
 
 Claude can help you with all three. And in this guide I'm going to walk you through exactly how to set each one up.
 
 
 ## What You Need Before You Start
 
-You need a **paid Claude subscription** — at minimum the **Pro plan** ($20/month). The free tier doesn't give you access to the features we're using here, particularly the plugin system and skills inside Claude Cowork.
+You need a **paid Claude subscription** so that is at least the **Pro plan** ($20/month). The free tier doesn't give you access to Claude Code nor Claude Cowork which you will need, because both the plugins and skills live inside these two environments.
 
 If you're not set up yet, start with [this guide on Claude Code for beginners](/claude-code-full-tutorial-for-beginners) which covers the full setup process.
 
 
-## Part 1: Text — Writing in Your Brand Voice
+## Part 1: Text - Writing in Your Brand Voice
 
-The biggest mistake people make when using AI for copywriting is skipping brand voice setup. Without it, Claude writes in a generic AI tone — technically fine, but not *yours*. Here's how to fix that.
+The biggest mistake people make when using AI for copywriting is skipping brand voice setup. Without it, Claude writes in a generic AI tone, which technically fine, but not *yours*. Here's how to fix that.
 
 ### Step 1: Add the Marketing Plugin and Brand Voice
 
 Open the **Claude Desktop app** and go to **Cowork → Customize → Plugins**. From there, add:
 
-- **Marketing Plugin** — gives Claude access to a suite of marketing-focused capabilities
-- **Brand Voice** — teaches Claude your brand's tone, style, and personality
+- **Marketing Plugin** - gives Claude access to a suite of marketing-focused capabilities
+- **Brand Voice** - teaches Claude your brand's tone, style, and personality
 
 Under these plugins you'll find several skills specifically built for marketing tasks — post generation, ad copy, email writing, and more.
 
@@ -58,13 +58,13 @@ Once the plugin is installed, run:
 /guideline-generation
 ```
 
-Add your website's URL when prompted. Claude will analyze your site — the copy, the tone, the structure — and extract a brand guidelines profile automatically. It reads how you write, what words you use, how formal or casual your tone is, and builds a reference document it will use for every future request.
+Add your website's URL when prompted. Claude will analyze your site - the copy, the tone, the structure - and extract a brand guidelines profile automatically. It reads how you write, what words you use, how formal or casual your tone is, and builds a reference document it will use for every future request.
 
 This takes a couple of minutes and you only need to do it once.
 
 ### Step 3: Create On-Brand Content
 
-Now that Claude knows your brand voice, you can ask it to write anything — and it will match your style automatically:
+Now that Claude knows your brand voice, you can ask it to write anything and it will match your style automatically:
 
 > "Write a LinkedIn post about why most founders underinvest in marketing."
 
@@ -105,11 +105,11 @@ Every output will be in your brand voice, not generic AI copy. If it drifts, you
 </div>
 
 
-## Part 2: Images — Building Visual Assets
+## Part 2: Images - Building Visual Assets
 
 Now that you know how to produce text-based marketing assets, let's move on to images.
 
-Claude doesn't generate images natively, but with the right skill installed it can build **production-ready visual assets** — social media graphics, logos, favicons, Open Graph images, and brand assets — through code.
+Claude doesn't generate images natively, but with the right skill installed it can build **production-ready visual assets** - social media graphics, logos, favicons, Open Graph images, and brand assets through code.
 
 ### Step 1: Enable Skill Generation
 
@@ -117,9 +117,9 @@ In Claude Desktop, go to **Customize → Skills** and enable **Skill Generation*
 
 ### Step 2: Install the Web Asset Generator Skill
 
-Switch to the **Claude Code** tab and install the **Web Asset Generator** skill. This skill gives Claude deep knowledge of web and social image formats — dimensions, compression, aspect ratios, meta tag requirements — so it can generate assets that are immediately usable.
+Switch to the **Claude Code** tab and install the **Web Asset Generator** skill. This skill gives Claude deep knowledge of web and social image formats such as dimensions, compression, aspect ratios, meta tag requirements, etc. so it can generate assets that are immediately usable.
 
-You can find and download the skill at [point 5 in this guide](/top-10-claude-code-skills) — the Web Asset Generator section has the direct GitHub link and install instructions.
+You can find and download the skill at [point 5 in this guide](/top-10-claude-code-skills) - the Web Asset Generator section has the direct GitHub link and install instructions.
 
 **What you can build with it:**
 
@@ -128,7 +128,7 @@ You can find and download the skill at [point 5 in this guide](/top-10-claude-co
 - Favicons and PWA app icons
 - Logo variations and brand asset exports
 
-Give Claude your brand colors, your logo, or a text description of your brand, and it handles the rest — producing correctly sized, export-ready files.
+Give Claude your brand colors, your logo, or a text description of your brand, and it handles the rest - producing correctly sized, export-ready files.
 
 ### What This Looks Like in Practice
 
@@ -137,9 +137,9 @@ Give Claude your brand colors, your logo, or a text description of your brand, a
 Claude builds the asset as code, renders it, and saves the output file directly to your working folder.
 
 
-## Part 3: Videos — Short-Form and Animated Content
+## Part 3 - Videos
 
-For video, the tool you want is the **Remotion skill** — and this one runs inside **Claude Cowork**, not Claude Code.
+For video, the tool you want is the **Remotion skill** - and this one runs inside **Claude Cowork**, not Claude Code.
 
 ### Install the Remotion Skill in Cowork
 
@@ -149,18 +149,18 @@ In Claude Cowork, install the Remotion skill the same way you'd install any othe
 /skills install [Remotion skill URL]
 ```
 
-Once installed, Claude can generate **programmatic videos** using the Remotion framework — animated content built from code that you can export as MP4 or WebM.
+Once installed, Claude can generate **programmatic videos** using the Remotion framework with produces animated content built from code that you can export as MP4 or WebM.
 
 ### What Remotion Is Best For
 
-This isn't a replacement for full video production — it's ideal for:
+This isn't a replacement for full a full professional video production setup, but it is ideal for:
 
-- **Short social media animations** — text animations, data visualisations, product feature highlights
-- **Product explainer clips** — animated walkthroughs of features or workflows
-- **Branded motion graphics** — intro/outro sequences, lower thirds, slide transitions
-- **Data-driven video** — charts and metrics that animate in sequence
+- **Short social media animations** - text animations, data visualisations, product feature highlights
+- **Product explainer clips** - animated walkthroughs of features or workflows
+- **Branded motion graphics** - intro/outro sequences, lower thirds, slide transitions
+- **Data-driven video** - charts and metrics that animate in sequence
 
-You describe the video you want — scenes, text, colors, timing, transitions — and Claude writes the Remotion code that generates it. No editing software, no After Effects, no video production experience needed.
+You describe the video you want - scenes, text, colors, timing, transitions - and Claude writes the Remotion code that generates it. No editing software, no After Effects, no video production experience needed.
 
 For a full walkthrough of how Remotion works and what you can build with it, read my complete guide: [How to Use Claude + Remotion to Create AI Videos](/how-to-use-claude-remotion-to-create-ai-videos).
 
@@ -213,7 +213,7 @@ That's the shift worth making.
 
 ## Nas' Note: Most Marketers Are Still Using 20% of This
 
-AI for marketing is still being treated mostly as "a faster way to write." But text is just one of the three pillars. The founders and marketers who get ahead in the next year won't be the ones who use AI to draft faster — they'll be the ones who use it across the full stack: copy, visuals, and video, all consistent, all on-brand, all at speed.
+AI for marketing is still being treated mostly as "a faster way to write." But text is just one of the three pillars. The founders and marketers who get ahead in the next year won't be the ones who use AI to draft faster - they'll be the ones who use it across the full stack: copy, visuals, and video, all consistent, all on-brand, all at speed.
 
 The setup is a few hours. The payoff compounds every week after that.
 
