@@ -3,7 +3,7 @@ publishDate: 2026-04-14T00:00:00Z
 author: Nas
 title: How to Use Claude for Marketing - Automate Social Media with AI
 excerpt: Claude can handle all three pillars of marketing content - written copy in your brand voice, visual assets, and short-form video. Here's exactly how to set it up.
-image: ~/assets/images/Claude_Skill.jpg
+image: ~/assets/images/Claude-Marketing.jpg
 category: Technology
 tags:
   - AI
