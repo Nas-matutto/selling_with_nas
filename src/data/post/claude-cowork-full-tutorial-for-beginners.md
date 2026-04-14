@@ -60,6 +60,19 @@ Chat is: *"Here's what you should do."*
 Cowork is: *"Don't worry, I'll do it for you."*
 
 
+## Watch the Video Tutorial Here
+
+<div style="position: relative; border-radius: 16px; overflow: hidden; background: #000; aspect-ratio: 16 / 9; box-shadow: 0 0 0 1px rgba(249,115,22,0.2), 0 24px 72px rgba(0,0,0,0.5), 0 0 80px rgba(249,115,22,0.08); margin: 40px 0;">
+  <iframe
+    style="position: absolute; inset: 0; width: 100%; height: 100%; border: none;"
+    src="https://www.youtube.com/embed/S3yhHDF9hW8"
+    title="Claude Cowork Full Tutorial for Beginners"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+  ></iframe>
+</div>
+
+
 ## Pricing
 
 Claude Cowork requires a **paid Claude subscription** — you need to be on at least the **Pro plan** ($20/month) to access it. The free tier doesn't include Cowork.
