@@ -3,7 +3,7 @@ publishDate: 2026-02-08T00:00:00Z
 author: Nas
 title: How to Use Claude Code for Beginners - A Non-Technical Founder's Guide
 excerpt: Everything non-technical founders need to know about Claude Code - from installation to daily use. Learn the plans, setup, and best practices to start building with AI.
-image: ~/assets/images/Claude_Code_Banner.jpg
+image: ~/assets/images/Claude_Code_Banner2.jpg
 category: Technology
 tags:
   - AI
@@ -137,6 +137,21 @@ If you're comfortable with the command line, you can run Claude Code directly in
 You can also use Claude through the web at <a href="https://claude.ai" target="_blank" rel="noopener noreferrer">claude.ai</a>. This is the simplest option - no installation needed. Just open your browser, sign in, and start chatting. It's great for brainstorming ideas, writing copy, or asking coding questions. However, it **can't directly read or edit your project files** the way VS Code or the terminal can. Think of it as your AI thinking partner, while VS Code is your AI building partner.
 
 **Bottom line:** Use **VS Code** when you want Claude to actually build and change things in your project. Use **claude.ai** when you want to brainstorm, plan, or ask questions. Use the **terminal** if you're more technical and want a faster, minimal interface.
+
+
+## Video Tutorial
+
+If you prefer to learn by watching, I've put together a full step-by-step video walkthrough below. It covers everything a beginner needs to get started with Claude Code — from pricing and IDE setup, to all the key modes, slash commands, the CLAUDE.md file, skills, and context management. By the end you'll have your environment running and know exactly how to approach your first project.
+
+<div style="position: relative; border-radius: 16px; overflow: hidden; background: #000; aspect-ratio: 16 / 9; box-shadow: 0 0 0 1px rgba(249,115,22,0.2), 0 24px 72px rgba(0,0,0,0.5), 0 0 80px rgba(249,115,22,0.08); margin: 40px 0;">
+  <iframe
+    style="position: absolute; inset: 0; width: 100%; height: 100%; border: none;"
+    src="https://www.youtube.com/embed/8YvtEcKyzP8"
+    title="Claude Code Full Tutorial for Beginners - Non-Technical Friendly"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+  ></iframe>
+</div>
 
 
 ## How to Set Up Claude Code in VS Code
