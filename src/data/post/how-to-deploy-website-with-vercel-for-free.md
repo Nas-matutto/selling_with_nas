@@ -1,7 +1,7 @@
 ---
 publishDate: 2026-04-20T00:00:00Z
 author: Nas
-title: How to Deploy Your Website with Vercel for Free: Step-by-Step Guide
+title: "How to Deploy Your Website with Vercel for Free: Step-by-Step Guide"
 excerpt: Building a website is the easy part. Making it live is where most people get stuck. This step-by-step guide shows you how to deploy your website for free using GitHub and Vercel without any coding experience needed.
 image: ~/assets/images/vercel_deployment_image.jpg
 category: Technology
