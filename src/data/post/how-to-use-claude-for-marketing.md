@@ -37,6 +37,19 @@ You need a **paid Claude subscription** so that is at least the **Pro plan** ($2
 If you're not set up yet, start with [this guide on Claude Code for beginners](/claude-code-full-tutorial-for-beginners) which covers the full setup process.
 
 
+## Watch the Video Tutorial Here
+
+<div style="position: relative; border-radius: 16px; overflow: hidden; background: #000; aspect-ratio: 16 / 9; box-shadow: 0 0 0 1px rgba(249,115,22,0.2), 0 24px 72px rgba(0,0,0,0.5), 0 0 80px rgba(249,115,22,0.08); margin: 40px 0;">
+  <iframe
+    style="position: absolute; inset: 0; width: 100%; height: 100%; border: none;"
+    src="https://www.youtube.com/embed/bmJHVK2kwaI"
+    title="How to Use Claude for Marketing - Automate Social Media with AI"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+  ></iframe>
+</div>
+
+
 ## Part 1: Text - Writing in Your Brand Voice
 
 The biggest mistake people make when using AI for copywriting is skipping brand voice setup. Without it, Claude writes in a generic AI tone, which technically fine, but not *yours*. Here's how to fix that.
