@@ -7,7 +7,7 @@ image: https://images.unsplash.com/photo-1702047143580-0f349be86369?q=80&w=2940&
 category: E-commerce
 tags:
   - e-commerce
-  - automations
+  - productivity
   - DTC
 metadata:
   canonical: https://www.sellingwithnas.com/how-to-automate-shopify-orders-with-zapier

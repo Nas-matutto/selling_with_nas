@@ -7,7 +7,7 @@ image: ~/assets/images/Claude_Remotion.jpg
 category: Technology
 tags:
   - AI
-  - video
+  - Claude Code
   - productivity
 metadata:
   canonical: https://www.sellingwithnas.com/how-to-use-claude-remotion-to-create-ai-videos

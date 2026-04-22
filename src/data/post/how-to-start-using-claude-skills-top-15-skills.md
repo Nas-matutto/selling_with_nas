@@ -9,7 +9,6 @@ tags:
   - AI
   - Claude Code
   - productivity
-  - automation
 metadata:
   canonical: https://www.sellingwithnas.com/how-to-start-using-claude-skills-top-15-skills
   title: "How to Start Using Claude Skills - Top 15 Skills to Copy (2026 Guide)"
