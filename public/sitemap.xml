@@ -51,6 +51,11 @@
 
 <!-- Blog posts - Technology / AI -->
 <url>
+  <loc>https://www.sellingwithnas.com/how-to-reduce-claude-tokens-and-avoid-usage-limits</loc>
+  <lastmod>2026-04-28T00:00:00+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
   <loc>https://www.sellingwithnas.com/how-to-deploy-website-with-vercel-for-free</loc>
   <lastmod>2026-04-20T00:00:00+00:00</lastmod>
   <priority>0.85</priority>
