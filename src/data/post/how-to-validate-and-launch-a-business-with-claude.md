@@ -219,9 +219,9 @@ Here's how to read the numbers once you start seeing traffic:
 
 | Conversion Rate | What It Means |
 |---|---|
-| Under 10% | Weak — revisit your positioning or targeting |
-| 10–20% | Good — there's real interest here |
-| Over 20% | Strong — push harder and start building |
+| Under 10% | Weak - revisit your positioning or targeting |
+| 10–20% | Good - there's real interest here |
+| Over 20% | Strong - push harder and start building |
 
 These benchmarks vary by industry, so always compare against what's typical in your space. Claude can help you find comparable benchmarks if you're unsure.
 
@@ -230,8 +230,8 @@ If you want to move faster, run a simple paid campaign. For around $25, you can 
 | CTR per 100 impressions | What It Means |
 |---|---|
 | Under 3 clicks | Weak hook or wrong audience |
-| 3–10 clicks | Good — the message is resonating |
-| Over 10 clicks | Strong — scale it |
+| 3–10 clicks | Good - the message is resonating |
+| Over 10 clicks | Strong - scale it |
 
 A low number doesn't automatically mean the idea is bad. It can simply mean you're targeting the wrong audience or your hook needs tweaking. Adjust and push again.
 
@@ -240,11 +240,11 @@ If you push your landing page to 200 people in your target audience and nothing 
 
 ## Once You Have Interest: Build It
 
-Once you're seeing real conversion numbers — people signing up, responding, reaching out — it's time to build.
+Once you're seeing real conversion numbers with people signing up, responding, reaching out - it's time to build.
 
 For this, I recommend [Claude Code](/claude-code-full-tutorial-for-beginners). If you've never used it, start with the [beginners guide](/how-to-use-claude-code-for-beginners) to get set up, then follow the full tutorial to build your first product. And when you're ready to go live, check out the guide on [how to deploy your website for free with Vercel](/how-to-deploy-website-with-vercel-for-free) - it's a step-by-step walkthrough from export to custom domain.
 
-If you get stuck at any point in this process — validating, building, or launching - [reach out via the contact page](/contact). I'm happy to help.
+If you get stuck at any point in the process of validating, building, or launching - [reach out via the contact page](/contact). I'm happy to help.
 
 
 ## Summary: The Validation Sprint
