@@ -73,6 +73,22 @@ The Validation Sprint is a 5-step process:
 The entire loop can be done in a single afternoon. And if it doesn't work the first time, you can run it again from Step 1 in under 30 minutes.
 
 
+## Follow Along with a Video Tutorial
+
+If you'd rather watch and follow along, I walk through the full Validation Sprint step by step in this video:
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; margin: 24px 0;">
+  <iframe
+    src="https://www.youtube.com/embed/MAPMIRrY9Nw"
+    title="How to Validate and Launch a Business with Claude AI"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+  </iframe>
+</div>
+
+
 ## Step 1: Define and Stress-Test Your Idea
 
 Every business starts with a hypothesis. Something like: "I think this problem exists, and here's how I'd solve it." That's your starting point.
