@@ -22,7 +22,7 @@ metadata:
 
 Product Hunt is one of the most well-known platforms for getting your product in front of early adopters, makers, and the broader tech community. On a good day, a successful launch can bring thousands of visitors, early signups, and real credibility for your product.
 
-I launched [LeadLanding](https://www.sellingwithnas.com/tools/leadlanding) — my landing page builder for lead collection — on Product Hunt, and I learned a lot from going through the process. Some things worked exactly as expected. Others were surprising. This guide covers everything I wish I knew before the day arrived.
+I launched <a href="https://www.leadlanding.dev/" target="_blank" rel="noopener noreferrer">LeadLanding</a> — my landing page builder for lead collection — on Product Hunt, and I learned a lot from going through the process. Some things worked exactly as expected. Others were surprising. This guide covers everything I wish I knew before the day arrived.
 
 If you haven't validated your product idea yet, I'd recommend reading [How to Validate and Launch a Business Idea with Claude](/how-to-validate-and-launch-a-business-with-claude) first — that piece walks through getting from idea to first lead before you even think about a platform launch.
 
@@ -101,7 +101,7 @@ Growing your follower count in the weeks before launch is one of the highest-lev
 Product Hunt rewards authentic community members. If you show up only on launch day asking for support, it shows — and it often backfires.
 
 **Well before your launch:**
-- **Join the <a href="https://www.reddit.com/r/producthunt" target="_blank" rel="noopener noreferrer">Product Hunt subreddit</a>** — there's an active community there where makers share tips, ask questions, and often post launch day threads. Introduce yourself, comment on others' launches, and get a feel for how the community works.
+- **Join the <a href="https://www.reddit.com/r/ProductHunters/" target="_blank" rel="noopener noreferrer">Product Hunt subreddit</a>** — there's an active community there where makers share tips, ask questions, and often post launch day threads. Introduce yourself, comment on others' launches, and get a feel for how the community works.
 - **Follow Product Hunt on X (Twitter)** — the <a href="https://twitter.com/ProductHunt" target="_blank" rel="noopener noreferrer">@ProductHunt</a> account and its community are active. Engage with launch day posts, share your journey as a maker, and build a small audience who'll be interested when your day comes.
 - **Engage genuinely with other makers' products** — leave thoughtful comments on launches you find interesting. This builds your reputation on the platform and often results in reciprocal engagement when you launch.
 
@@ -198,7 +198,7 @@ One important note: **for the first 4 hours after your launch goes live, you can
 
 I want to be honest about something: **if your target audience is not tech people, don't expect a surge of qualified signups**.
 
-When I launched LeadLanding on Product Hunt, I saw a decent number of signups from curious people — early adopters, other founders, makers. But my target audience — marketing teams and non-technical business owners — wasn't particularly active on Product Hunt. The platform skews toward a specific type of user, and that's worth understanding before you invest heavily in the launch.
+When I launched <a href="https://www.producthunt.com/products/leadlanding" target="_blank" rel="noopener noreferrer">LeadLanding on Product Hunt</a>, I saw a decent number of signups from curious people — early adopters, other founders, makers. But my target audience — marketing teams and non-technical business owners — wasn't particularly active on Product Hunt. The platform skews toward a specific type of user, and that's worth understanding before you invest heavily in the launch.
 
 What you can realistically expect from a well-executed launch:
 - A spike in traffic on launch day
