@@ -2,7 +2,7 @@
 publishDate: 2026-04-20T00:00:00Z
 author: Nas
 title: "How to Deploy Your Website with Vercel for Free: Step-by-Step Guide"
-excerpt: Building a website is the easy part. Making it live is where most people get stuck. This step-by-step guide shows you how to deploy your website for free using GitHub and Vercel without any coding experience needed.
+excerpt: These days building a website is the easy part, but making it live is where most people get stuck. This step-by-step guide shows you how to deploy your website for free using GitHub and Vercel without any coding experience needed.
 image: ~/assets/images/vercel_deployment_image.jpg
 category: Technology
 tags:
@@ -19,9 +19,9 @@ metadata:
 
 # How to Deploy Your Website with Vercel for Free
 
-Building a website is easier than ever with modern AI tools like <a href="https://v0.dev" target="_blank" rel="noopener noreferrer">v0</a>, Lovable, or [Claude Code](/how-to-use-claude-code-for-beginners). The real challenge? Making it actually live for the world to see.
+Building a website is easier than ever with modern AI tools like <a href="https://v0.dev" target="_blank" rel="noopener noreferrer">v0</a>, <a href="https://lovable.dev/" target="_blank" rel="noopener noreferrer">Lovable</a>, or [Claude Code](/how-to-use-claude-code-for-beginners). The challenge most people have however, is making it actually live for the world to see.
 
-That's what this guide is for. I'm going to walk you through the **complete process of deploying your website for free using Vercel** — from exporting your files to going live with a custom URL, without writing a single line of code from scratch.
+That's what this guide is for. I'm going to walk you through the **complete process of deploying your website for free using Vercel**, from exporting your files to going live with a custom URL, without writing a single line of code from scratch, and all of it for free.
 
 Here's what we'll cover:
 
@@ -37,13 +37,13 @@ Here's what we'll cover:
 
 ## Phase 1: Prepare Your Project Files
 
-Before you can deploy anything, you need your website's files on your computer.
+Before you can deploy anything, you need your websites' files saved on a folder in your computer. 
 
 ### Export Your Code
 
-If you built your site using an AI tool like <a href="https://v0.dev" target="_blank" rel="noopener noreferrer">v0</a> or Lovable, look for a **Download ZIP** or **Export** button inside the tool. Click it to download your project files as a compressed folder.
+If you built your site using an AI tool like <a href="https://v0.dev" target="_blank" rel="noopener noreferrer">v0</a> or Lovable for example, look for a **Download ZIP** or **Export** button inside the tool. Click it to download your project files as a compressed folder.
 
-If you built your site with [Claude Code](/how-to-use-claude-code-for-beginners), your files are already in a local folder on your machine — skip straight to Phase 2.
+If you built your site with [Claude Code](/how-to-use-claude-code-for-beginners), your files are already in a local folder on your machine, so just skip straight to Phase 2.
 
 ### Unzip the Folder
 
@@ -52,22 +52,22 @@ Find the downloaded ZIP file (usually in your Downloads folder) and extract it b
 
 ## Phase 2: Set Up GitHub
 
-<a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a> acts as a **storage locker for your website's code**. Vercel connects directly to GitHub to build and host your site, so this step is essential.
+<a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a> acts as a **storage locker for your website's code**. Vercel connects directly to GitHub to build and host your site, so this step is going to be essential.
 
 ### Create a GitHub Account
 
-Go to <a href="https://github.com" target="_blank" rel="noopener noreferrer">github.com</a> and sign up. The fastest way is to click **Continue with Google** and use your existing account.
+Go to <a href="https://github.com" target="_blank" rel="noopener noreferrer">github.com</a> and sign up. The fastest way is to click **Continue with Google** and use your google credentials.
 
 ### Create a New Repository
 
 A repository (or "repo") is essentially a project folder stored on GitHub. To create one:
 
 1. Click the green **Create repository** button on your dashboard
-2. Give it a name — something like `my-portfolio-website` or `my-startup-site`
+2. Give it a name, it can be something like `my-portfolio-website` or `my-startup-site`
 3. Choose **Private** if you don't want others to see your source code (your live site will still be public)
 4. Scroll down and click **Create repository**
 
-GitHub will show you a page with setup instructions — **keep this tab open**. You'll need the URL from this page in Phase 3.
+GitHub will show you a page with setup instructions - **keep this tab open**. You'll need the URL from this page in Phase 3.
 
 
 <div style="
