@@ -27,6 +27,19 @@ I launched <a href="https://www.leadlanding.dev/" target="_blank" rel="noopener 
 If you haven't validated your product idea yet, I'd recommend reading [How to Validate and Launch a Business Idea with Claude](/how-to-validate-and-launch-a-business-with-claude) first — that piece walks through getting from idea to first lead before you even think about a platform launch.
 
 
+## Watch Full Guide and Analytics from My Own Launch Here:
+
+<div style="position: relative; border-radius: 16px; overflow: hidden; background: #000; aspect-ratio: 16 / 9; box-shadow: 0 0 0 1px rgba(249,115,22,0.2), 0 24px 72px rgba(0,0,0,0.5), 0 0 80px rgba(249,115,22,0.08); margin: 40px 0;">
+  <iframe
+    style="position: absolute; inset: 0; width: 100%; height: 100%; border: none;"
+    src="https://www.youtube.com/embed/zowvP66BAxU"
+    title="How to Launch a Product on Product Hunt - Full Guide and Launch Analytics"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+  ></iframe>
+</div>
+
+
 <div style="
             background: linear-gradient(135deg, #f97316, #ef4444);
             color: white;
