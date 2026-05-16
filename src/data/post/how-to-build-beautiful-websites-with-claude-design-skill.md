@@ -11,15 +11,15 @@ tags:
   - productivity
 metadata:
   canonical: https://www.sellingwithnas.com/how-to-build-beautiful-websites-with-claude-design-skill
-  title: "How to Build Beautiful Websites with Claude Design Skill - Beginner's Guide"
+  title: "How to Build Beautiful Websites with Claude Frontend Design Skill - Beginner's Guide"
   description: "Build professional, fully responsive websites with Claude's Frontend Design Skill - no coding needed. Step-by-step guide covering design inspiration, Puppeteer, 21st.dev, and more."
-  keywords: "Claude design skill, build website with Claude, Claude Code frontend design, AI website builder, Claude Code tutorial, frontend design skill, build website without coding, 21st.dev Claude"
+  keywords: "Claude frontend design skill, build website with Claude, Claude Code frontend design, AI website builder, Claude Code tutorial, frontend design skill, build website without coding, 21st.dev Claude"
 ---
 
 
-# How to Build Beautiful Websites with Claude - Design Skill Tutorial for Beginners
+# How to Build Beautiful Websites with Claude - Frontend Design Skill Tutorial for Beginners
 
-Here's what most people don't realise about building websites with AI: the difference between a site that looks amateur and one that looks like it was designed by a professional isn't the AI itself — it's whether you know how to give that AI the right skills.
+Here's what most people don't realise about building websites with AI: the difference between a site that looks amateur and one that looks like it was designed by a professional isn't the AI itself - it's whether you know how to give that AI the right skills.
 
 With Claude's **Frontend Design Skill**, you can build fully responsive, modern websites that look like they came out of a design studio. No code. No Figma. No designer on retainer. Just a prompt and a skill.
 
