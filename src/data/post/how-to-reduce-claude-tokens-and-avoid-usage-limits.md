@@ -67,6 +67,19 @@ Now, here are the 10 ways to bring that number down.
 </div>
 
 
+## Watch my video tutorial on how to reduce Claude tokens Usage and increase usage limits:
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin: 32px 0;">
+  <iframe
+    src="https://www.youtube.com/embed/BobBm0FaVvg"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+</div>
+
+
 ## 1. Use the Edit Button for Corrections
 
 When Claude gets something wrong, **do not send a follow-up message to correct it.** Every new message adds to the history that Claude must re-read in full before responding. The more back-and-forth you have, the heavier the context load becomes.
