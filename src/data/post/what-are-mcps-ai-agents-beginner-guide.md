@@ -212,4 +212,106 @@ Yes. Anthropic is actively expanding the connector directory, and third-party de
 
 ---
 
+## More Videos You'll Like
+
+<style>
+@keyframes nasScrollVideos {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+</style>
+
+<div style="overflow: hidden; margin: 20px 0 36px 0; position: relative;">
+  <div
+    style="display: flex; gap: 12px; animation: nasScrollVideos 50s linear infinite; width: max-content; cursor: pointer;"
+    onmouseover="this.style.animationPlayState='paused'"
+    onmouseout="this.style.animationPlayState='running'"
+  >
+    <a href="https://www.youtube.com/watch?v=W1_jBBhl3V0" target="_blank" rel="noopener noreferrer" style="display:flex;flex-direction:column;text-decoration:none;width:196px;flex-shrink:0;border-radius:10px;overflow:hidden;background:#111;border:1px solid rgba(255,255,255,0.1);">
+      <img src="https://img.youtube.com/vi/W1_jBBhl3V0/mqdefault.jpg" alt="How to use Claude Code to build Apps" style="width:196px;height:110px;object-fit:cover;display:block;" loading="lazy"/>
+      <span style="font-size:11.5px;color:#ccc;padding:8px 10px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">How to use Claude Code to build Apps</span>
+    </a>
+    <a href="https://www.youtube.com/watch?v=msaaFo_wg-Y" target="_blank" rel="noopener noreferrer" style="display:flex;flex-direction:column;text-decoration:none;width:196px;flex-shrink:0;border-radius:10px;overflow:hidden;background:#111;border:1px solid rgba(255,255,255,0.1);">
+      <img src="https://img.youtube.com/vi/msaaFo_wg-Y/mqdefault.jpg" alt="10 Best Claude Code Skills for beginners" style="width:196px;height:110px;object-fit:cover;display:block;" loading="lazy"/>
+      <span style="font-size:11.5px;color:#ccc;padding:8px 10px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">10 Best Claude Code Skills for beginners</span>
+    </a>
+    <a href="https://www.youtube.com/watch?v=FroqHFmAu_4" target="_blank" rel="noopener noreferrer" style="display:flex;flex-direction:column;text-decoration:none;width:196px;flex-shrink:0;border-radius:10px;overflow:hidden;background:#111;border:1px solid rgba(255,255,255,0.1);">
+      <img src="https://img.youtube.com/vi/FroqHFmAu_4/mqdefault.jpg" alt="How to create AI Video Animations with Claude + Remotion" style="width:196px;height:110px;object-fit:cover;display:block;" loading="lazy"/>
+      <span style="font-size:11.5px;color:#ccc;padding:8px 10px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">How to create AI Video Animations with Claude + Remotion</span>
+    </a>
+    <a href="https://www.youtube.com/watch?v=onATqcFhpX0" target="_blank" rel="noopener noreferrer" style="display:flex;flex-direction:column;text-decoration:none;width:196px;flex-shrink:0;border-radius:10px;overflow:hidden;background:#111;border:1px solid rgba(255,255,255,0.1);">
+      <img src="https://img.youtube.com/vi/onATqcFhpX0/mqdefault.jpg" alt="How to use Claude Code to build a Website" style="width:196px;height:110px;object-fit:cover;display:block;" loading="lazy"/>
+      <span style="font-size:11.5px;color:#ccc;padding:8px 10px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">How to use Claude Code to build a Website</span>
+    </a>
+    <a href="https://www.youtube.com/watch?v=TWZsx4U3g2E" target="_blank" rel="noopener noreferrer" style="display:flex;flex-direction:column;text-decoration:none;width:196px;flex-shrink:0;border-radius:10px;overflow:hidden;background:#111;border:1px solid rgba(255,255,255,0.1);">
+      <img src="https://img.youtube.com/vi/TWZsx4U3g2E/mqdefault.jpg" alt="How to use Claude Skills for beginners" style="width:196px;height:110px;object-fit:cover;display:block;" loading="lazy"/>
+      <span style="font-size:11.5px;color:#ccc;padding:8px 10px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">How to use Claude Skills for beginners</span>
+    </a>
+    <a href="https://www.youtube.com/watch?v=xa7OVNiyP4A" target="_blank" rel="noopener noreferrer" style="display:flex;flex-direction:column;text-decoration:none;width:196px;flex-shrink:0;border-radius:10px;overflow:hidden;background:#111;border:1px solid rgba(255,255,255,0.1);">
+      <img src="https://img.youtube.com/vi/xa7OVNiyP4A/mqdefault.jpg" alt="How to write the PERFECT CLAUDE.md file" style="width:196px;height:110px;object-fit:cover;display:block;" loading="lazy"/>
+      <span style="font-size:11.5px;color:#ccc;padding:8px 10px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">How to write the PERFECT CLAUDE.md file</span>
+    </a>
+    <a href="https://www.youtube.com/watch?v=bmJHVK2kwaI" target="_blank" rel="noopener noreferrer" style="display:flex;flex-direction:column;text-decoration:none;width:196px;flex-shrink:0;border-radius:10px;overflow:hidden;background:#111;border:1px solid rgba(255,255,255,0.1);">
+      <img src="https://img.youtube.com/vi/bmJHVK2kwaI/mqdefault.jpg" alt="Automate 80% of your Marketing with Claude" style="width:196px;height:110px;object-fit:cover;display:block;" loading="lazy"/>
+      <span style="font-size:11.5px;color:#ccc;padding:8px 10px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">Automate 80% of your Marketing with Claude</span>
+    </a>
+    <a href="https://www.youtube.com/watch?v=8YvtEcKyzP8" target="_blank" rel="noopener noreferrer" style="display:flex;flex-direction:column;text-decoration:none;width:196px;flex-shrink:0;border-radius:10px;overflow:hidden;background:#111;border:1px solid rgba(255,255,255,0.1);">
+      <img src="https://img.youtube.com/vi/8YvtEcKyzP8/mqdefault.jpg" alt="How to use Claude Code — The basics" style="width:196px;height:110px;object-fit:cover;display:block;" loading="lazy"/>
+      <span style="font-size:11.5px;color:#ccc;padding:8px 10px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">How to use Claude Code — The basics</span>
+    </a>
+    <a href="https://www.youtube.com/watch?v=S3yhHDF9hW8" target="_blank" rel="noopener noreferrer" style="display:flex;flex-direction:column;text-decoration:none;width:196px;flex-shrink:0;border-radius:10px;overflow:hidden;background:#111;border:1px solid rgba(255,255,255,0.1);">
+      <img src="https://img.youtube.com/vi/S3yhHDF9hW8/mqdefault.jpg" alt="Work 2X Faster with Claude Cowork" style="width:196px;height:110px;object-fit:cover;display:block;" loading="lazy"/>
+      <span style="font-size:11.5px;color:#ccc;padding:8px 10px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">Work 2X Faster with Claude Cowork</span>
+    </a>
+    <a href="https://www.youtube.com/watch?v=BobBm0FaVvg" target="_blank" rel="noopener noreferrer" style="display:flex;flex-direction:column;text-decoration:none;width:196px;flex-shrink:0;border-radius:10px;overflow:hidden;background:#111;border:1px solid rgba(255,255,255,0.1);">
+      <img src="https://img.youtube.com/vi/BobBm0FaVvg/mqdefault.jpg" alt="How to NEVER Hit Claude Usage Limits Again" style="width:196px;height:110px;object-fit:cover;display:block;" loading="lazy"/>
+      <span style="font-size:11.5px;color:#ccc;padding:8px 10px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">How to NEVER Hit Claude Usage Limits Again</span>
+    </a>
+    <!-- Duplicate set for seamless loop -->
+    <a href="https://www.youtube.com/watch?v=W1_jBBhl3V0" target="_blank" rel="noopener noreferrer" style="display:flex;flex-direction:column;text-decoration:none;width:196px;flex-shrink:0;border-radius:10px;overflow:hidden;background:#111;border:1px solid rgba(255,255,255,0.1);">
+      <img src="https://img.youtube.com/vi/W1_jBBhl3V0/mqdefault.jpg" alt="How to use Claude Code to build Apps" style="width:196px;height:110px;object-fit:cover;display:block;" loading="lazy"/>
+      <span style="font-size:11.5px;color:#ccc;padding:8px 10px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">How to use Claude Code to build Apps</span>
+    </a>
+    <a href="https://www.youtube.com/watch?v=msaaFo_wg-Y" target="_blank" rel="noopener noreferrer" style="display:flex;flex-direction:column;text-decoration:none;width:196px;flex-shrink:0;border-radius:10px;overflow:hidden;background:#111;border:1px solid rgba(255,255,255,0.1);">
+      <img src="https://img.youtube.com/vi/msaaFo_wg-Y/mqdefault.jpg" alt="10 Best Claude Code Skills for beginners" style="width:196px;height:110px;object-fit:cover;display:block;" loading="lazy"/>
+      <span style="font-size:11.5px;color:#ccc;padding:8px 10px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">10 Best Claude Code Skills for beginners</span>
+    </a>
+    <a href="https://www.youtube.com/watch?v=FroqHFmAu_4" target="_blank" rel="noopener noreferrer" style="display:flex;flex-direction:column;text-decoration:none;width:196px;flex-shrink:0;border-radius:10px;overflow:hidden;background:#111;border:1px solid rgba(255,255,255,0.1);">
+      <img src="https://img.youtube.com/vi/FroqHFmAu_4/mqdefault.jpg" alt="How to create AI Video Animations with Claude + Remotion" style="width:196px;height:110px;object-fit:cover;display:block;" loading="lazy"/>
+      <span style="font-size:11.5px;color:#ccc;padding:8px 10px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">How to create AI Video Animations with Claude + Remotion</span>
+    </a>
+    <a href="https://www.youtube.com/watch?v=onATqcFhpX0" target="_blank" rel="noopener noreferrer" style="display:flex;flex-direction:column;text-decoration:none;width:196px;flex-shrink:0;border-radius:10px;overflow:hidden;background:#111;border:1px solid rgba(255,255,255,0.1);">
+      <img src="https://img.youtube.com/vi/onATqcFhpX0/mqdefault.jpg" alt="How to use Claude Code to build a Website" style="width:196px;height:110px;object-fit:cover;display:block;" loading="lazy"/>
+      <span style="font-size:11.5px;color:#ccc;padding:8px 10px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">How to use Claude Code to build a Website</span>
+    </a>
+    <a href="https://www.youtube.com/watch?v=TWZsx4U3g2E" target="_blank" rel="noopener noreferrer" style="display:flex;flex-direction:column;text-decoration:none;width:196px;flex-shrink:0;border-radius:10px;overflow:hidden;background:#111;border:1px solid rgba(255,255,255,0.1);">
+      <img src="https://img.youtube.com/vi/TWZsx4U3g2E/mqdefault.jpg" alt="How to use Claude Skills for beginners" style="width:196px;height:110px;object-fit:cover;display:block;" loading="lazy"/>
+      <span style="font-size:11.5px;color:#ccc;padding:8px 10px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">How to use Claude Skills for beginners</span>
+    </a>
+    <a href="https://www.youtube.com/watch?v=xa7OVNiyP4A" target="_blank" rel="noopener noreferrer" style="display:flex;flex-direction:column;text-decoration:none;width:196px;flex-shrink:0;border-radius:10px;overflow:hidden;background:#111;border:1px solid rgba(255,255,255,0.1);">
+      <img src="https://img.youtube.com/vi/xa7OVNiyP4A/mqdefault.jpg" alt="How to write the PERFECT CLAUDE.md file" style="width:196px;height:110px;object-fit:cover;display:block;" loading="lazy"/>
+      <span style="font-size:11.5px;color:#ccc;padding:8px 10px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">How to write the PERFECT CLAUDE.md file</span>
+    </a>
+    <a href="https://www.youtube.com/watch?v=bmJHVK2kwaI" target="_blank" rel="noopener noreferrer" style="display:flex;flex-direction:column;text-decoration:none;width:196px;flex-shrink:0;border-radius:10px;overflow:hidden;background:#111;border:1px solid rgba(255,255,255,0.1);">
+      <img src="https://img.youtube.com/vi/bmJHVK2kwaI/mqdefault.jpg" alt="Automate 80% of your Marketing with Claude" style="width:196px;height:110px;object-fit:cover;display:block;" loading="lazy"/>
+      <span style="font-size:11.5px;color:#ccc;padding:8px 10px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">Automate 80% of your Marketing with Claude</span>
+    </a>
+    <a href="https://www.youtube.com/watch?v=8YvtEcKyzP8" target="_blank" rel="noopener noreferrer" style="display:flex;flex-direction:column;text-decoration:none;width:196px;flex-shrink:0;border-radius:10px;overflow:hidden;background:#111;border:1px solid rgba(255,255,255,0.1);">
+      <img src="https://img.youtube.com/vi/8YvtEcKyzP8/mqdefault.jpg" alt="How to use Claude Code — The basics" style="width:196px;height:110px;object-fit:cover;display:block;" loading="lazy"/>
+      <span style="font-size:11.5px;color:#ccc;padding:8px 10px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">How to use Claude Code — The basics</span>
+    </a>
+    <a href="https://www.youtube.com/watch?v=S3yhHDF9hW8" target="_blank" rel="noopener noreferrer" style="display:flex;flex-direction:column;text-decoration:none;width:196px;flex-shrink:0;border-radius:10px;overflow:hidden;background:#111;border:1px solid rgba(255,255,255,0.1);">
+      <img src="https://img.youtube.com/vi/S3yhHDF9hW8/mqdefault.jpg" alt="Work 2X Faster with Claude Cowork" style="width:196px;height:110px;object-fit:cover;display:block;" loading="lazy"/>
+      <span style="font-size:11.5px;color:#ccc;padding:8px 10px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">Work 2X Faster with Claude Cowork</span>
+    </a>
+    <a href="https://www.youtube.com/watch?v=BobBm0FaVvg" target="_blank" rel="noopener noreferrer" style="display:flex;flex-direction:column;text-decoration:none;width:196px;flex-shrink:0;border-radius:10px;overflow:hidden;background:#111;border:1px solid rgba(255,255,255,0.1);">
+      <img src="https://img.youtube.com/vi/BobBm0FaVvg/mqdefault.jpg" alt="How to NEVER Hit Claude Usage Limits Again" style="width:196px;height:110px;object-fit:cover;display:block;" loading="lazy"/>
+      <span style="font-size:11.5px;color:#ccc;padding:8px 10px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">How to NEVER Hit Claude Usage Limits Again</span>
+    </a>
+  </div>
+</div>
+
+
+---
+
 **Liked what you just saw?** Follow me on <a href="https://www.youtube.com/@sellingwithnas" target="_blank" rel="noopener noreferrer">Youtube</a> or connect on <a href="https://www.linkedin.com/in/nasser-mansurali-659145102/" target="_blank" rel="noopener noreferrer">LinkedIn</a> for more insights on growing your business online.
