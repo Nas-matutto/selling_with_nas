@@ -1,0 +1,134 @@
+---
+// Rotating video carousel — shown at the bottom of every blog post
+const videos = [
+  { id: 'W1_jBBhl3V0', title: 'How to use Claude Code to build Apps' },
+  { id: 'msaaFo_wg-Y', title: '10 Best Claude Code Skills for beginners' },
+  { id: 'FroqHFmAu_4', title: 'How to create AI Video Animations with Claude + Remotion' },
+  { id: 'onATqcFhpX0', title: 'How to use Claude Code to build a Website' },
+  { id: 'TWZsx4U3g2E', title: 'How to use Claude Skills for beginners' },
+  { id: 'xa7OVNiyP4A', title: 'How to write the PERFECT CLAUDE.md file' },
+  { id: 'bmJHVK2kwaI', title: 'Automate 80% of your Marketing with Claude' },
+  { id: '8YvtEcKyzP8', title: 'How to use Claude Code — The basics' },
+  { id: 'S3yhHDF9hW8', title: 'Work 2X Faster with Claude Cowork' },
+  { id: 'BobBm0FaVvg', title: 'How to NEVER Hit Claude Usage Limits Again' },
+];
+---
+
+<div class="video-carousel-section">
+  <h2 class="video-carousel-title">Video Guides you might like:</h2>
+  <div class="video-carousel-wrapper">
+    <div
+      class="video-carousel-track"
+      onmouseover="this.style.animationPlayState='paused'"
+      onmouseout="this.style.animationPlayState='running'"
+    >
+      {/* First set */}
+      {videos.map((v) => (
+        <a
+          href={`https://www.youtube.com/watch?v=${v.id}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="video-card"
+        >
+          <img
+            src={`https://img.youtube.com/vi/${v.id}/mqdefault.jpg`}
+            alt={v.title}
+            width="196"
+            height="110"
+            loading="lazy"
+            decoding="async"
+          />
+          <span>{v.title}</span>
+        </a>
+      ))}
+      {/* Duplicate for seamless loop */}
+      {videos.map((v) => (
+        <a
+          href={`https://www.youtube.com/watch?v=${v.id}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="video-card"
+          aria-hidden="true"
+          tabindex="-1"
+        >
+          <img
+            src={`https://img.youtube.com/vi/${v.id}/mqdefault.jpg`}
+            alt=""
+            width="196"
+            height="110"
+            loading="lazy"
+            decoding="async"
+          />
+          <span>{v.title}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .video-carousel-section {
+    margin: 40px 0 8px 0;
+  }
+
+  .video-carousel-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: inherit;
+  }
+
+  .video-carousel-wrapper {
+    overflow: hidden;
+    position: relative;
+  }
+
+  @keyframes scrollVideos {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .video-carousel-track {
+    display: flex;
+    gap: 12px;
+    width: max-content;
+    animation: scrollVideos 50s linear infinite;
+    cursor: pointer;
+  }
+
+  .video-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    width: 196px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #111;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .video-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(249, 115, 22, 0.5);
+  }
+
+  .video-card img {
+    width: 196px;
+    height: 110px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .video-card span {
+    font-size: 11.5px;
+    color: #ccc;
+    padding: 8px 10px;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
