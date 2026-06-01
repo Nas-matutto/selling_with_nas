@@ -1,89 +1,288 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import { Image } from 'astro:assets';
-import ttmdImage from '~/assets/images/TTMD_HP.png';
 
 const metadata = {
-  title: 'Talk to Me Data - AI-Powered Landing Page Analytics | Selling with Nas',
-  description: 'Talk to Me Data analyzes your landing page and gives you actionable insights to improve conversions, design, and user experience — powered by AI.',
-  keywords: 'landing page analytics, AI website analysis, conversion optimization, Talk to Me Data, landing page feedback, website audit tool',
+  title: 'Talk to Me Data — Build, Deploy & Host AI Agents for Your Business',
+  description: 'Talk to Me Data helps businesses build, deploy, and host custom AI agents in days — not months. No code required. Full infrastructure managed for you.',
+  keywords: 'AI agents for business, build AI agent, deploy AI agent, host AI agent, custom AI automation, no-code AI, AI workflow automation, Talk to Me Data',
   canonical: 'https://www.sellingwithnas.com/tools/talk-to-me-data',
+  openGraph: {
+    type: 'website',
+    title: 'Talk to Me Data — AI Agents Built, Deployed & Hosted for You',
+    description: 'Describe your workflow in plain language. We handle the rest — design, deployment, hosting, and ongoing management. Live in days, not months.',
+    image: 'https://www.sellingwithnas.com/og-ttmd.png',
+  },
 };
 ---
 
 <Layout metadata={metadata}>
-  <div class="product-page">
-    <div class="floating-elements">
-      <div class="floating-circle"></div>
-      <div class="floating-circle"></div>
-      <div class="floating-circle"></div>
+  <div class="ttmd-page">
+
+    <!-- Ambient background blobs -->
+    <div class="ambient" aria-hidden="true">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
     </div>
 
-    <div class="container">
-      <!-- Hero Section -->
-      <div class="hero-section">
-        <div class="badge">Product</div>
-        <h1>Talk to Me Data</h1>
-        <p class="hero-subtitle">AI-powered shopify store analysis that tells you how to increase conversion rates.</p>
-      </div>
+    <!-- ── HERO ── -->
+    <section class="hero">
+      <div class="container">
+        <div class="badge-row">
+          <span class="badge">AI Agents Platform</span>
+        </div>
 
-      <!-- Screenshot Section (Full Width) -->
-      <div class="video-section">
-        <h2 class="section-title"><b>Learn about Talk to me Data</b></h2>
-        <div class="screenshot-wrapper">
-          <Image src={ttmdImage} alt="Talk to Me Data - AI-powered landing page analytics for Shopify Stores" class="product-screenshot" width={1200} />
+        <h1 class="hero-title">
+          Build, Deploy &amp; Host<br />
+          <span class="gradient-text">AI Agents for Your Business</span>
+        </h1>
+
+        <p class="hero-sub">
+          Describe your workflow in plain language. We design, deploy, and manage
+          custom AI agents that run 24/7 — live in days, not months.
+        </p>
+
+        <div class="hero-cta-row">
+          <a href="https://talktomedata.com/" target="_blank" rel="noopener noreferrer" class="btn-primary">
+            Get Your AI Agent →
+          </a>
+          <a href="#how-it-works" class="btn-ghost">See How It Works</a>
+        </div>
+
+        <!-- Stat pills -->
+        <div class="stat-row">
+          <div class="stat-pill">
+            <span class="stat-num">24h</span>
+            <span class="stat-label">Average go-live time</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-num">99.9%</span>
+            <span class="stat-label">Uptime guarantee</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-num">0</span>
+            <span class="stat-label">Lines of code you write</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-num">24/7</span>
+            <span class="stat-label">Real-time monitoring</span>
+          </div>
         </div>
       </div>
+    </section>
 
-      <!-- Product Info Section -->
-      <div class="info-section">
-          <h2 class="section-title"><b>What It Does</b></h2>
+    <!-- ── HOW IT WORKS ── -->
+    <section class="section" id="how-it-works">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">The Process</span>
+          <h2 class="section-title">From idea to live agent — in three steps</h2>
+          <p class="section-sub">No engineering team required. No months of waiting. Just results.</p>
+        </div>
 
-          <div class="feature-item">
-            <div class="feature-icon">🔍</div>
-            <div>
-              <h3>Instant Page Analysis</h3>
-              <p>Drop in your URL and get a full breakdown of your landing page — copy, layout, CTA placement, mobile responsiveness, and more.</p>
-            </div>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num gradient-text">01</div>
+            <div class="step-icon">🧠</div>
+            <h3>Build</h3>
+            <p>Describe your workflow in plain language. We map it into a fully custom AI agent — trained on your business logic, tone, and tools.</p>
           </div>
-
-          <div class="feature-item">
-            <div class="feature-icon">📊</div>
-            <div>
-              <h3>Conversion Scoring</h3>
-              <p>Get a clear score on how well your page converts, with specific recommendations ranked by impact.</p>
-            </div>
+          <div class="step-arrow">→</div>
+          <div class="step">
+            <div class="step-num gradient-text">02</div>
+            <div class="step-icon">🚀</div>
+            <h3>Deploy</h3>
+            <p>Your agent goes live in ~24 hours, connected to your stack — Gmail, Zendesk, calendars, CRMs, and more. Zero downtime.</p>
           </div>
-
-          <div class="feature-item">
-            <div class="feature-icon">🧠</div>
-            <div>
-              <h3>AI-Powered Suggestions</h3>
-              <p>Receive actionable, plain-English suggestions to improve headlines, CTAs, trust signals, and page flow.</p>
-            </div>
+          <div class="step-arrow">→</div>
+          <div class="step">
+            <div class="step-num gradient-text">03</div>
+            <div class="step-icon">⚙️</div>
+            <h3>Host</h3>
+            <p>We handle everything after launch — infrastructure, monitoring, updates, and automatic improvements as AI models advance.</p>
           </div>
-
-          <div class="feature-item">
-            <div class="feature-icon">📱</div>
-            <div>
-              <h3>Mobile & Speed Check</h3>
-              <p>Know exactly how your page performs on mobile devices and where load times are costing you visitors.</p>
-            </div>
-          </div>
+        </div>
       </div>
+    </section>
 
-      <!-- CTA Section -->
-      <div class="cta-section">
-        <h2>Try It Out</h2>
-        <p>Try it out and share your feedback with me.</p>
-        <a href="https://talktomedata.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Check It Out →</a>
-      </div>
+    <!-- ── USE CASES ── -->
+    <section class="section section-dark">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Use Cases</span>
+          <h2 class="section-title">What your AI agent can do</h2>
+          <p class="section-sub">Any repetitive, language-based workflow is a candidate.</p>
+        </div>
 
-      <!-- Back button -->
-      <div style="text-align: center; margin: 40px 0;">
-        <a href="/" class="btn btn-secondary">← Back to Home</a>
+        <div class="use-case-grid">
+          <div class="use-card">
+            <div class="use-icon">💬</div>
+            <h3>Customer Support</h3>
+            <p>Handle FAQs, order tracking, and escalation routing — automatically, around the clock.</p>
+          </div>
+          <div class="use-card">
+            <div class="use-icon">🎯</div>
+            <h3>Lead Qualification</h3>
+            <p>Score and route inbound leads in real time. Your sales team only talks to buyers who are ready.</p>
+          </div>
+          <div class="use-card">
+            <div class="use-icon">📅</div>
+            <h3>Booking & Scheduling</h3>
+            <p>Let the agent handle appointment booking, reminders, and rescheduling without a human in the loop.</p>
+          </div>
+          <div class="use-card">
+            <div class="use-icon">📄</div>
+            <h3>Document Q&amp;A</h3>
+            <p>Give the agent your SOPs, contracts, or knowledge base — it answers questions instantly and accurately.</p>
+          </div>
+          <div class="use-card">
+            <div class="use-icon">📦</div>
+            <h3>Order Notifications</h3>
+            <p>Proactively update customers on order status, shipping changes, and delivery confirmations.</p>
+          </div>
+          <div class="use-card">
+            <div class="use-icon">🔧</div>
+            <h3>Custom Workflows</h3>
+            <p>Any process that involves text, data, and decisions — we can automate it with a tailored agent.</p>
+          </div>
+        </div>
       </div>
+    </section>
+
+    <!-- ── WHY TTMD ── -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Why Talk to Me Data</span>
+          <h2 class="section-title">Built differently from the start</h2>
+        </div>
+
+        <div class="compare-grid">
+          <div class="compare-card compare-bad">
+            <h3>❌ Building in-house</h3>
+            <ul>
+              <li>3–6 months to ship</li>
+              <li>Dedicated engineering team</li>
+              <li>You manage infrastructure</li>
+              <li>Maintenance on your plate</li>
+              <li>Falls behind as AI evolves</li>
+            </ul>
+          </div>
+          <div class="compare-card compare-good">
+            <h3><span class="gradient-text">✦ Talk to Me Data</span></h3>
+            <ul>
+              <li>Live in ~24 hours</li>
+              <li>Zero technical knowledge needed</li>
+              <li>Fully managed hosting &amp; infra</li>
+              <li>We handle every update</li>
+              <li>Auto-improves with new AI models</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── BUILDER STORY ── -->
+    <section class="section section-dark">
+      <div class="container">
+        <div class="story-card">
+          <div class="story-tag gradient-text">Built by Nas</div>
+          <h2 class="story-title">Why I built this platform</h2>
+          <div class="story-body">
+            <p>
+              I kept seeing the same problem: businesses <em>wanted</em> to use AI to automate their workflows,
+              but every path forward required either hiring expensive engineers or settling for generic,
+              one-size-fits-all chatbots that didn't actually fit their business.
+            </p>
+            <p>
+              So I built Talk to Me Data — a platform where you describe what you need in plain English,
+              and we handle everything else. The design, the integration, the deployment, the hosting, and
+              the ongoing improvements.
+            </p>
+            <p>
+              The goal was simple: make it possible for any business — regardless of technical sophistication —
+              to have a custom AI agent working for them within 24 hours. Not a demo. Not a prototype.
+              A real, production-grade agent that runs around the clock and gets better over time.
+            </p>
+          </div>
+          <div class="story-author">
+            <div class="author-avatar">N</div>
+            <div>
+              <div class="author-name">Nas</div>
+              <div class="author-role">Founder, Talk to Me Data</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FEATURES ── -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Platform Features</span>
+          <h2 class="section-title">Everything managed, so you don't have to</h2>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon-wrap">🔗</div>
+            <h3>Multi-platform integrations</h3>
+            <p>Gmail, Zendesk, Slack, calendar systems, CRMs — your agent plugs into your existing stack on day one.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-wrap">📊</div>
+            <h3>Real-time monitoring</h3>
+            <p>24/7 oversight of every conversation, with uptime guarantees and instant alerts if anything needs attention.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-wrap">🔒</div>
+            <h3>Data security</h3>
+            <p>Isolated environments per client. Your data is never used to train models. Privacy-first by design.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-wrap">⚡</div>
+            <h3>Automatic upgrades</h3>
+            <p>As AI models improve, your agent does too — no migration work, no re-engineering. It just gets better.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-wrap">🌐</div>
+            <h3>Managed infrastructure</h3>
+            <p>Hosting, scaling, backups, and maintenance are fully handled. You focus on your business, not servers.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-wrap">💬</div>
+            <h3>Plain-language setup</h3>
+            <p>No technical knowledge required. Describe what you need in natural language — we translate it into a working agent.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA ── -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-card">
+          <div class="cta-glow" aria-hidden="true"></div>
+          <span class="section-tag">Get Started</span>
+          <h2 class="cta-title">
+            Your AI agent could be live <span class="gradient-text">tomorrow.</span>
+          </h2>
+          <p class="cta-sub">
+            Tell us what you want to automate. We'll design, build, and deploy your custom AI agent — fully managed, forever.
+          </p>
+          <a href="https://talktomedata.com/" target="_blank" rel="noopener noreferrer" class="btn-primary btn-large">
+            Visit Talk to Me Data →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── BACK ── -->
+    <div class="back-row">
+      <a href="/" class="btn-ghost">← Back to Home</a>
     </div>
+
   </div>
 
   <script type="application/ld+json">
@@ -91,14 +290,22 @@ const metadata = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Talk to Me Data",
-    "description": "AI-powered landing page analytics tool that gives actionable insights to improve conversions and user experience.",
+    "description": "Talk to Me Data helps businesses build, deploy, and host custom AI agents in days. Describe your workflow in plain language — we handle design, deployment, hosting, and ongoing management.",
     "url": "https://www.sellingwithnas.com/tools/talk-to-me-data",
     "applicationCategory": "BusinessApplication",
     "operatingSystem": "Web Browser",
+    "featureList": [
+      "Custom AI agent building",
+      "Managed deployment and hosting",
+      "Multi-platform integrations",
+      "24/7 real-time monitoring",
+      "Automatic AI model upgrades",
+      "Data-isolated environments"
+    ],
     "offers": {
       "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
+      "availability": "https://schema.org/InStock",
+      "url": "https://talktomedata.com/"
     },
     "creator": {
       "@type": "Person",
@@ -110,380 +317,514 @@ const metadata = {
 </Layout>
 
 <style>
-  .product-page {
-    background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 40%, #fed7aa 100%);
+  /* ── Reset & base ── */
+  .ttmd-page {
+    background: #05050f;
     min-height: 100vh;
-    color: #0f172a;
+    color: #e2e8f0;
     overflow-x: hidden;
-    padding-top: 80px;
-  }
-
-  .product-page * {
-    box-sizing: border-box;
-  }
-
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    min-height: calc(100vh - 80px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  /* Hero */
-  .hero-section {
-    text-align: center;
-    margin-bottom: 50px;
     position: relative;
   }
 
-  .badge {
-    display: inline-block;
-    background: linear-gradient(135deg, #f97316, #ef4444);
-    color: white;
-    padding: 6px 20px;
-    border-radius: 50px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    margin-bottom: 20px;
-    text-transform: uppercase;
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
   }
 
-  .hero-section h1 {
-    font-size: 3rem;
-    font-weight: 700;
-    background: linear-gradient(45deg, #f97316, #ef4444, #a855f7);
-    background-size: 200% 200%;
+  /* ── Gradient text ── */
+  .gradient-text {
+    background: linear-gradient(to right, #f97316, #60a5fa, #8b5cf6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: gradientShift 3s ease-in-out infinite;
-    margin: 0 0 16px 0;
   }
 
-  .hero-subtitle {
-    font-size: 1.25rem;
-    color: #475569;
+  /* ── Ambient blobs ── */
+  .ambient {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.18;
+    animation: blobDrift 14s ease-in-out infinite alternate;
+  }
+  .blob-1 {
+    width: 600px; height: 600px;
+    background: #f97316;
+    top: -150px; left: -150px;
+    animation-delay: 0s;
+  }
+  .blob-2 {
+    width: 500px; height: 500px;
+    background: #60a5fa;
+    top: 40%; right: -100px;
+    animation-delay: 4s;
+  }
+  .blob-3 {
+    width: 400px; height: 400px;
+    background: #8b5cf6;
+    bottom: -100px; left: 30%;
+    animation-delay: 8s;
+  }
+  @keyframes blobDrift {
+    from { transform: translate(0, 0) scale(1); }
+    to   { transform: translate(40px, 30px) scale(1.08); }
+  }
+
+  /* All sections sit above the ambient layer */
+  .section, .hero, .back-row {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    padding: 120px 0 80px;
+    text-align: center;
+  }
+  .badge-row {
+    margin-bottom: 24px;
+  }
+  .badge {
+    display: inline-block;
+    padding: 6px 18px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, rgba(249,115,22,0.15), rgba(139,92,246,0.15));
+    border: 1px solid rgba(249,115,22,0.3);
+    color: #fb923c;
+  }
+  .hero-title {
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: #f8fafc;
+    margin: 0 0 24px;
+  }
+  .hero-sub {
+    font-size: 1.15rem;
+    color: #94a3b8;
     max-width: 600px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+  .hero-cta-row {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+  }
+
+  /* ── Buttons ── */
+  .btn-primary {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    background: linear-gradient(135deg, #f97316, #60a5fa, #8b5cf6);
+    color: #fff;
+    box-shadow: 0 0 40px rgba(96,165,250,0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 60px rgba(96,165,250,0.35);
+  }
+  .btn-primary.btn-large {
+    padding: 16px 40px;
+    font-size: 1.1rem;
+  }
+  .btn-ghost {
+    display: inline-block;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: #94a3b8;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: all 0.2s ease;
+  }
+  .btn-ghost:hover {
+    color: #f8fafc;
+    border-color: rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.05);
+  }
+
+  /* ── Stat pills ── */
+  .stat-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .stat-pill {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px 28px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(8px);
+  }
+  .stat-num {
+    font-size: 1.6rem;
+    font-weight: 800;
+    background: linear-gradient(to right, #f97316, #60a5fa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: #64748b;
+    margin-top: 2px;
+    text-align: center;
+  }
+
+  /* ── Sections ── */
+  .section {
+    padding: 96px 0;
+  }
+  .section-dark {
+    background: rgba(255,255,255,0.025);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .section-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .section-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #60a5fa;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 800;
+    color: #f8fafc;
+    margin: 0 0 16px;
+    letter-spacing: -0.025em;
+  }
+  .section-sub {
+    color: #64748b;
+    font-size: 1.05rem;
+    max-width: 520px;
     margin: 0 auto;
     line-height: 1.6;
   }
 
-  @keyframes gradientShift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-  }
-
-  @media (max-width: 768px) {
-    .hero-section h1 {
-      font-size: 2.2rem;
-    }
-
-    .container {
-      padding: 15px;
-    }
-
-    .video-section, .info-section {
-      padding: 20px;
-    }
-  }
-
-  /* Sections */
-  .video-section, .info-section {
-    margin-bottom: 40px;
-  }
-
-  .video-section, .info-section {
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 20px;
-    padding: 30px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(249, 115, 22, 0.2);
-    box-shadow: 0 20px 40px rgba(249, 115, 22, 0.1);
-    transition: all 0.3s ease;
-  }
-
-  .video-section:hover, .info-section:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 25px 50px rgba(249, 115, 22, 0.15);
-  }
-
-  .section-title {
-    font-size: 1.8rem;
-    margin-bottom: 25px;
-    color: #f97316;
-    text-align: center;
-    position: relative;
-  }
-
-  .section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(90deg, #f97316, #ef4444);
-    border-radius: 2px;
-  }
-
-  /* Screenshot */
-  .screenshot-wrapper {
-    margin-top: 15px;
-    border-radius: 16px;
-    overflow: hidden;
-    border: 2px solid rgba(249, 115, 22, 0.3);
-    transition: all 0.3s ease;
-  }
-
-  .screenshot-wrapper:hover {
-    border-color: rgba(249, 115, 22, 0.6);
-    box-shadow: 0 10px 30px rgba(249, 115, 22, 0.2);
-  }
-
-  .product-screenshot {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  /* Features */
-  .feature-item {
+  /* ── Steps ── */
+  .steps {
     display: flex;
-    gap: 16px;
-    padding: 20px;
+    align-items: flex-start;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .step {
+    flex: 1;
+    min-width: 220px;
+    max-width: 300px;
+    text-align: center;
+    padding: 40px 28px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .step:hover {
+    transform: translateY(-4px);
+    border-color: rgba(96,165,250,0.25);
+  }
+  .step-num {
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+  .step-icon {
+    font-size: 2.2rem;
     margin-bottom: 16px;
-    background: rgba(255, 255, 255, 0.6);
-    border-radius: 14px;
-    border: 1px solid rgba(249, 115, 22, 0.1);
-    transition: all 0.3s ease;
   }
-
-  .feature-item:hover {
-    background: rgba(255, 255, 255, 0.9);
-    transform: translateX(4px);
+  .step h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin: 0 0 12px;
   }
-
-  .feature-icon {
-    font-size: 1.8rem;
+  .step p {
+    font-size: 0.92rem;
+    color: #64748b;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .step-arrow {
+    font-size: 1.5rem;
+    color: #334155;
+    padding-top: 80px;
     flex-shrink: 0;
-    width: 48px;
-    height: 48px;
+  }
+
+  /* ── Use cases ── */
+  .use-case-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .use-card {
+    padding: 32px 28px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    transition: all 0.25s ease;
+  }
+  .use-card:hover {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(139,92,246,0.25);
+    transform: translateY(-3px);
+  }
+  .use-icon {
+    font-size: 2rem;
+    margin-bottom: 16px;
+  }
+  .use-card h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin: 0 0 10px;
+  }
+  .use-card p {
+    font-size: 0.9rem;
+    color: #64748b;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ── Compare ── */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .compare-card {
+    padding: 36px 32px;
+    border-radius: 20px;
+  }
+  .compare-bad {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+  }
+  .compare-good {
+    background: linear-gradient(135deg, rgba(249,115,22,0.07), rgba(96,165,250,0.07), rgba(139,92,246,0.07));
+    border: 1px solid rgba(96,165,250,0.2);
+  }
+  .compare-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin: 0 0 20px;
+  }
+  .compare-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .compare-card li {
+    font-size: 0.92rem;
+    color: #94a3b8;
+    padding-left: 0;
+  }
+  .compare-bad li::before {
+    content: '— ';
+    color: #475569;
+  }
+  .compare-good li::before {
+    content: '✓ ';
+    color: #60a5fa;
+    font-weight: 700;
+  }
+
+  /* ── Story ── */
+  .story-card {
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 56px 48px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 24px;
+  }
+  .story-tag {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 16px;
+  }
+  .story-title {
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: #f8fafc;
+    margin: 0 0 28px;
+    letter-spacing: -0.025em;
+  }
+  .story-body p {
+    color: #94a3b8;
+    line-height: 1.8;
+    margin: 0 0 18px;
+    font-size: 1rem;
+  }
+  .story-body em {
+    color: #cbd5e1;
+    font-style: normal;
+    font-weight: 600;
+  }
+  .story-author {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 36px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+  .author-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f97316, #8b5cf6);
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-
-  .feature-item h3 {
     font-size: 1.1rem;
-    font-weight: 700;
-    color: #0f172a;
-    margin: 0 0 6px 0;
+    font-weight: 800;
+    color: white;
+    flex-shrink: 0;
   }
-
-  .feature-item p {
+  .author-name {
     font-size: 0.95rem;
-    color: #475569;
-    margin: 0;
-    line-height: 1.5;
-  }
-
-  /* CTA Section */
-  .cta-section {
-    text-align: center;
-    padding: 50px 30px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(249, 115, 22, 0.2);
-    box-shadow: 0 20px 40px rgba(249, 115, 22, 0.1);
-    margin-bottom: 20px;
-  }
-
-  .cta-section h2 {
-    font-size: 2rem;
     font-weight: 700;
-    color: #0f172a;
-    margin: 0 0 12px 0;
+    color: #f1f5f9;
+  }
+  .author-role {
+    font-size: 0.82rem;
+    color: #64748b;
+    margin-top: 2px;
   }
 
-  .cta-section p {
-    color: #475569;
-    font-size: 1.1rem;
-    margin: 0 0 24px 0;
+  /* ── Feature grid ── */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .feature-card {
+    padding: 32px 28px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.07);
+    transition: all 0.25s ease;
+  }
+  .feature-card:hover {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(249,115,22,0.2);
+    transform: translateY(-3px);
+  }
+  .feature-icon-wrap {
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+  }
+  .feature-card h3 {
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin: 0 0 10px;
+  }
+  .feature-card p {
+    font-size: 0.9rem;
+    color: #64748b;
+    line-height: 1.6;
+    margin: 0;
   }
 
-  /* Buttons */
-  .btn {
-    display: inline-block;
-    padding: 12px 24px;
-    border-radius: 12px;
-    text-decoration: none;
-    font-weight: 600;
+  /* ── CTA card ── */
+  .cta-card {
     text-align: center;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
+    padding: 80px 40px;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 28px;
+    position: relative;
+    overflow: hidden;
   }
-
-  .btn-primary {
-    background: linear-gradient(135deg, #f97316, #ef4444);
-    color: white;
-    padding: 14px 32px;
-    font-size: 1.05rem;
-    border: none;
-    box-shadow: 0 8px 25px rgba(249, 115, 22, 0.3);
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 35px rgba(249, 115, 22, 0.4);
-  }
-
-  .btn-secondary {
-    background: transparent;
-    color: #f97316;
-    border: 2px solid #f97316;
-  }
-
-  .btn-secondary:hover {
-    background: #f97316;
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(249, 115, 22, 0.4);
-  }
-
-  /* Floating Elements */
-  .floating-elements {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -1;
-  }
-
-  .floating-circle {
+  .cta-glow {
     position: absolute;
-    border-radius: 50%;
-    background: linear-gradient(45deg, rgba(249, 115, 22, 0.1), rgba(239, 68, 68, 0.1));
-    animation: float 6s ease-in-out infinite;
+    width: 500px;
+    height: 300px;
+    background: radial-gradient(ellipse, rgba(96,165,250,0.12) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+  .cta-title {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800;
+    color: #f8fafc;
+    margin: 16px 0 20px;
+    letter-spacing: -0.03em;
+    position: relative;
+  }
+  .cta-sub {
+    font-size: 1.05rem;
+    color: #64748b;
+    max-width: 520px;
+    margin: 0 auto 36px;
+    line-height: 1.7;
+    position: relative;
   }
 
-  .floating-circle:nth-child(1) {
-    width: 80px;
-    height: 80px;
-    top: 20%;
-    left: 10%;
-    animation-delay: 0s;
+  /* ── Back row ── */
+  .back-row {
+    text-align: center;
+    padding: 40px 0 80px;
+    position: relative;
+    z-index: 1;
   }
 
-  .floating-circle:nth-child(2) {
-    width: 120px;
-    height: 120px;
-    top: 60%;
-    right: 15%;
-    animation-delay: 2s;
-  }
-
-  .floating-circle:nth-child(3) {
-    width: 60px;
-    height: 60px;
-    bottom: 20%;
-    left: 20%;
-    animation-delay: 4s;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(180deg); }
-  }
-
-  /* Dark Mode */
-  :global(.dark) .product-page {
-    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
-    color: #ffffff;
-  }
-
-  :global(.dark) .hero-subtitle {
-    color: #a0a0a0;
-  }
-
-  :global(.dark) .hero-section h1 {
-    background: linear-gradient(45deg, #fb923c, #ef4444, #a855f7);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 30px rgba(249, 115, 22, 0.3);
-  }
-
-  :global(.dark) .video-section,
-  :global(.dark) .info-section,
-  :global(.dark) .cta-section {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-  }
-
-  :global(.dark) .section-title {
-    color: #fb923c;
-  }
-
-  :global(.dark) .section-title::after {
-    background: linear-gradient(90deg, #fb923c, #ef4444);
-  }
-
-  :global(.dark) .screenshot-wrapper {
-    border-color: rgba(249, 115, 22, 0.3);
-  }
-
-  :global(.dark) .screenshot-wrapper:hover {
-    border-color: rgba(249, 115, 22, 0.6);
-  }
-
-  :global(.dark) .feature-item {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-  }
-
-  :global(.dark) .feature-item:hover {
-    background: rgba(255, 255, 255, 0.08);
-  }
-
-  :global(.dark) .feature-item h3 {
-    color: #e0e0e0;
-  }
-
-  :global(.dark) .feature-item p {
-    color: #a0a0a0;
-  }
-
-  :global(.dark) .cta-section h2 {
-    color: #e0e0e0;
-  }
-
-  :global(.dark) .cta-section p {
-    color: #a0a0a0;
-  }
-
-  :global(.dark) .floating-circle {
-    background: linear-gradient(45deg, rgba(249, 115, 22, 0.1), rgba(239, 68, 68, 0.1));
-  }
-
-  :global(.dark) .btn-secondary {
-    color: #fb923c;
-    border-color: #fb923c;
-  }
-
-  :global(.dark) .btn-secondary:hover {
-    background: #fb923c;
-    color: #0f0f23;
-  }
-
-  :global(.dark) .btn-primary {
-    background: linear-gradient(135deg, #fb923c, #ef4444);
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    .hero { padding: 90px 0 60px; }
+    .section { padding: 64px 0; }
+    .step-arrow { display: none; }
+    .story-card { padding: 36px 24px; }
+    .cta-card { padding: 56px 24px; }
+    .stat-pill { padding: 12px 18px; }
+    .hero-cta-row { flex-direction: column; align-items: center; }
   }
 </style>
