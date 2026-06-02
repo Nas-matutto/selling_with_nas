@@ -7,9 +7,7 @@ image: ~/assets/images/Travel_Mcps.jpg
 category: Technology
 tags:
   - AI
-  - Claude
-  - MCP
-  - AI Agents
+  - Claude 
   - productivity
 metadata:
   canonical: https://www.sellingwithnas.com/how-to-build-your-first-ai-agent-with-claude

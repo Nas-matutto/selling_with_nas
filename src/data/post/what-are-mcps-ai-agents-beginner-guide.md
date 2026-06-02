@@ -8,8 +8,6 @@ category: Technology
 tags:
   - AI
   - Claude
-  - MCP
-  - AI Agents
   - productivity
 metadata:
   canonical: https://www.sellingwithnas.com/what-are-mcps-ai-agents-beginner-guide
