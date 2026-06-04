@@ -51,6 +51,11 @@
 
 <!-- Blog posts - Technology / AI -->
 <url>
+  <loc>https://www.sellingwithnas.com/how-to-build-a-voice-ai-agent-with-claude-and-elevenlabs</loc>
+  <lastmod>2026-06-04T00:00:00+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
   <loc>https://www.sellingwithnas.com/how-to-build-your-first-ai-agent-with-claude</loc>
   <lastmod>2026-05-19T00:00:00+00:00</lastmod>
   <priority>0.90</priority>
