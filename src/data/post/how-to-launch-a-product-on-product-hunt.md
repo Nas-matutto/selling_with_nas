@@ -13,7 +13,7 @@ metadata:
   canonical: https://www.sellingwithnas.com/how-to-launch-a-product-on-product-hunt
   title: "How to Launch a Product on Product Hunt (Beginner Guide 2026)"
   description: "Learn how to successfully launch a product on Product Hunt - from setting up your page weeks in advance, to timing your drop, avoiding algorithm traps, and setting realistic expectations. Real experience, no fluff."
-  keywords: "how to launch on product hunt, product hunt launch guide, product hunt tips, product hunt beginner guide, product hunt strategy, product hunt upvotes, how to get upvotes product hunt, product hunt launch checklist, product hunt first launch"
+  keywords: "how to launch on product hunt, product hunt launch guide, product hunt launch guide official, product hunt tips, product hunt beginner guide, product hunt strategy, product hunt upvotes, how to get upvotes product hunt, product hunt launch checklist, product hunt first launch, official product hunt launch guide"
 ---
 
 
@@ -225,6 +225,21 @@ What you probably won't get:
 - Product-market fit validation from the PH audience alone
 
 Product Hunt is one piece of a launch strategy, not the whole strategy. Pair it with a targeted approach for your specific audience — content marketing, outreach, community building in the right spaces — for the best results.
+
+
+## Product Hunt's Official Launch Resources
+
+Before you go live, it's worth reading through Product Hunt's own official launch documentation. The platform maintains a set of official resources and guidelines that are updated as the algorithm and community policies evolve — and some of the details there can change without much fanfare.
+
+The most useful official references to bookmark:
+
+- **<a href="https://www.producthunt.com/launch" target="_blank" rel="noopener noreferrer">Product Hunt Launch Guide</a>** — the official step-by-step walkthrough from the Product Hunt team covering how to set up your page, when to post, and what makes a strong submission.
+- **<a href="https://www.producthunt.com/discussions/the-product-hunt-community-guidelines" target="_blank" rel="noopener noreferrer">Community Guidelines</a>** — the official rules on what is and isn't allowed. This is especially relevant if you're planning coordinated outreach, as the line between community building and manipulation is clearly defined here.
+- **<a href="https://www.producthunt.com/newsletter" target="_blank" rel="noopener noreferrer">Product Hunt Newsletter</a>** — worth subscribing to before your launch. The editorial team occasionally features products in the newsletter independently of the daily vote rankings, which can give your listing a second wave of visibility.
+
+Everything in this guide is based on my direct experience launching LeadLanding and the patterns I've observed from studying successful launches — but the official Product Hunt launch guide is always the ground truth when there's any conflict. The platform updates its rules, and what was true 12 months ago may have shifted.
+
+One thing the official documentation won't tell you: **the community matters more than the mechanics**. Product Hunt's own team has said publicly that genuine engagement — real comments, real conversations, authentic interest — is what they're optimizing for. The tactics in this guide are just ways to make sure real people who care about your product actually hear about it.
 
 
 ## Frequently Asked Questions
