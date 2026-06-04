@@ -100,6 +100,17 @@ A few things to note about these instructions:
 You can adapt these instructions for any kind of agent. The logic is the same: define the role, name the tools, set the constraints.
 
 
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 14px; margin: 36px 0;">
+  <iframe
+    src="https://www.youtube.com/embed/fFKQb1RacLI"
+    title="How to Build Your First AI Agent with Claude"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+  ></iframe>
+</div>
+
+
 ## Step 3: Add the MCP Connectors
 
 Instructions alone give Claude a role, but without connectors it has no tools to act with. To enable real flight and hotel searches, you need to add the **Expedia** and **Booking.com** connectors via the MCP directory.
