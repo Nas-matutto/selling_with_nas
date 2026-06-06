@@ -42,6 +42,19 @@ Building a voice AI agent sounds like it should require a team of engineers, a c
 This guide walks you through the complete setup: what you're actually building, how to connect ElevenLabs to Claude, what instructions to give your agent, and what the honest limitations are before you go in. I'll also cover some fun things to test once your agent is live, and what it looks like to take this further for a real business.
 
 
+## Watch a video tutorial on how to build a Voice AI Agent:
+
+<div style="position: relative; border-radius: 16px; overflow: hidden; background: #000; aspect-ratio: 16 / 9; box-shadow: 0 0 0 1px rgba(249,115,22,0.2), 0 24px 72px rgba(0,0,0,0.5), 0 0 80px rgba(249,115,22,0.08); margin: 40px 0;">
+  <iframe
+    style="position: absolute; inset: 0; width: 100%; height: 100%; border: none;"
+    src="https://www.youtube.com/embed/lzuc3YP2UAY"
+    title="How to Build a Voice AI Agent with Claude and ElevenLabs"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+  ></iframe>
+</div>
+
+
 ## What Are We Actually Building?
 
 Before jumping into the steps, it's worth being clear about what this agent is and how it fits together. If you've been following along with my previous content, you'll already know that every AI agent is made up of three core elements: a **model**, **tools**, and **context** (instructions and memory).
