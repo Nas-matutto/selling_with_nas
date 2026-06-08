@@ -420,6 +420,101 @@ const metadata = {
     margin-top: 52px;
   }
   @media (max-width: 860px) { .hp-services-grid { grid-template-columns: 1fr; } }
+
+  /* ── Masterclass banner ── */
+  .hp-masterclass-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-top: 28px;
+    padding: 26px 36px;
+    border-radius: 20px;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(249,115,22,0.07) 0%, rgba(168,85,247,0.09) 100%);
+    border: 1.5px solid transparent;
+    background-clip: padding-box;
+    outline: 1.5px solid rgba(168,85,247,0.25);
+    transition: all 0.25s ease;
+  }
+  .hp-masterclass-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(249,115,22,0.04), rgba(168,85,247,0.04));
+    transition: opacity 0.25s ease;
+  }
+  .hp-masterclass-banner:hover {
+    outline-color: rgba(168,85,247,0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(168,85,247,0.12);
+  }
+  .hp-mc-pulse {
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hp-mc-left {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    position: relative;
+    z-index: 1;
+    flex: 1;
+  }
+  .hp-mc-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #a855f7;
+  }
+  .hp-mc-text {
+    font-size: 1.18rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+    background: linear-gradient(to right, #f97316, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hp-mc-sub {
+    font-size: 0.87rem;
+    color: #64748b;
+    line-height: 1.5;
+    max-width: 520px;
+  }
+  :global(.dark) .hp-mc-sub { color: #94a3b8; }
+  .hp-mc-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    border-radius: 12px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    white-space: nowrap;
+    background: linear-gradient(135deg, #f97316, #a855f7);
+    color: #fff;
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+    box-shadow: 0 4px 20px rgba(168,85,247,0.25);
+    transition: box-shadow 0.2s ease;
+  }
+  .hp-masterclass-banner:hover .hp-mc-cta { box-shadow: 0 6px 28px rgba(168,85,247,0.35); }
+  .hp-mc-arrow { transition: transform 0.2s ease; }
+  .hp-masterclass-banner:hover .hp-mc-arrow { transform: translateX(3px); }
+  @media (max-width: 680px) {
+    .hp-masterclass-banner { flex-direction: column; align-items: flex-start; padding: 22px 24px; gap: 16px; }
+    .hp-mc-cta { width: 100%; justify-content: center; }
+  }
   .hp-svc-card {
     position: relative;
     border-radius: var(--hp-radius);
@@ -876,6 +971,18 @@ const metadata = {
             </div>
 
           </div>
+
+          <!-- ── Masterclass banner ── -->
+          <a href="/ai-masterclass-with-nas" class="hp-masterclass-banner hp-reveal">
+            <div class="hp-mc-pulse" aria-hidden="true"></div>
+            <div class="hp-mc-left">
+              <span class="hp-mc-eyebrow">Live · End of every month</span>
+              <span class="hp-mc-text">Join an AI Masterclass with me</span>
+              <span class="hp-mc-sub">Build real AI agents, automate your workflows, and get your questions answered live — in 90 minutes.</span>
+            </div>
+            <span class="hp-mc-cta">Reserve my spot <span class="hp-mc-arrow">→</span></span>
+          </a>
+
         </div>
       </section>
 
