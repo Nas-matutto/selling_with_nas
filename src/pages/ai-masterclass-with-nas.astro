@@ -2,7 +2,7 @@
 import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
-  title: 'Live AI Masterclass with Nas — Build Real AI Workflows in 90 Minutes',
+  title: 'Live AI Masterclass with Nas - Build Real AI Workflows in 90 Minutes',
   description: 'Join a live AI masterclass with Nas and learn how to build real AI agents, automate your workflows, and use Claude like the top 1% of users. One session, end of every month. Spots are limited.',
   keywords: 'AI masterclass, live AI workshop, Claude masterclass, AI agent workshop, learn AI with Nas, build AI workflows, AI for business, Claude tutorial live, AI automation masterclass',
   canonical: 'https://www.sellingwithnas.com/ai-masterclass-with-nas',
@@ -10,8 +10,6 @@ const metadata = {
 
 // Update this date each month
 const sessionDate = 'June 30, 2026';
-const sessionDay  = 'Tuesday, June 30';
-const spotsLeft   = 12;
 // Replace with your real Stripe payment link when ready
 const STRIPE_LINK = '#book';
 ---
@@ -32,7 +30,7 @@ const STRIPE_LINK = '#book';
 
       <div class="mc-urgency-bar">
         <span class="mc-urgency-dot"></span>
-        Only <strong>{spotsLeft} spots left</strong> for the {sessionDate} session
+        Seats are limited for the <strong>{sessionDate}</strong> session
       </div>
 
       <div class="mc-eyebrow">Live Masterclass · End of Every Month</div>
@@ -45,13 +43,11 @@ const STRIPE_LINK = '#book';
       <p class="mc-hero-sub">
         Stop watching tutorials that teach theory. In this live session you'll build actual AI agents,
         automate real workflows, and leave with working systems you can use the same day.
-        No code required. No fluff.
+
       </p>
 
       <div class="mc-session-pills">
-        <div class="mc-pill">📅 {sessionDay}</div>
         <div class="mc-pill">⏱ 90 min + live Q&amp;A</div>
-        <div class="mc-pill">🎥 Live via Zoom</div>
         <div class="mc-pill">🔒 Limited seats</div>
       </div>
 
@@ -60,7 +56,7 @@ const STRIPE_LINK = '#book';
         <a href="#what-youll-learn" class="mc-btn-ghost">See what's covered</a>
       </div>
 
-      <p class="mc-guarantee">✓ Can't make this date? You'll get the recording. 100% satisfaction guaranteed or your money back.</p>
+      <p class="mc-guarantee">✓ Can't make this date? You'll get the recording. Talk to me after if you have questions.</p>
 
     </div>
   </section>
@@ -69,8 +65,8 @@ const STRIPE_LINK = '#book';
   <div class="mc-proof-strip">
     <div class="mc-container mc-proof-inner">
       <div class="mc-proof-item">
-        <span class="mc-proof-num">10k+</span>
-        <span class="mc-proof-label">YouTube subscribers</span>
+        <span class="mc-proof-num">100k+</span>
+        <span class="mc-proof-label">YouTube Viewers</span>
       </div>
       <div class="mc-proof-div"></div>
       <div class="mc-proof-item">
@@ -90,6 +86,59 @@ const STRIPE_LINK = '#book';
     </div>
   </div>
 
+  <!-- ── BOOKING ── -->
+  <section class="mc-section mc-section-alt" id="booking">
+    <div class="mc-container">
+      <div class="mc-section-header">
+        <span class="mc-tag">Reserve Your Spot</span>
+        <h2 class="mc-section-title">Next session: <span class="mc-gradient">{sessionDate}</span></h2>
+        <p class="mc-section-sub">Choose the time that works for you. Both slots cover the same content.</p>
+      </div>
+
+      <div class="mc-slots-wrap">
+
+        <label class="mc-slot" for="slot-am">
+          <input type="radio" name="slot" id="slot-am" value="am" checked />
+          <div class="mc-slot-inner">
+            <div class="mc-slot-check">✓</div>
+            <div class="mc-slot-times">
+              <div class="mc-slot-primary">02:00 PM Eastern (ET)</div>
+              <div class="mc-slot-secondary">7:00 PM London · 11:00 AM Los Angeles</div>
+            </div>
+            <div class="mc-slot-badge">Morning</div>
+          </div>
+        </label>
+
+        <label class="mc-slot" for="slot-pm">
+          <input type="radio" name="slot" id="slot-pm" value="pm" />
+          <div class="mc-slot-inner">
+            <div class="mc-slot-check">✓</div>
+            <div class="mc-slot-times">
+              <div class="mc-slot-primary">6:00 PM Eastern (ET)</div>
+              <div class="mc-slot-secondary">11:00 PM London · Midnight Paris · 3:00 PM Los Angeles</div>
+            </div>
+            <div class="mc-slot-badge">Evening</div>
+          </div>
+        </label>
+
+        <div class="mc-booking-cta-wrap">
+          <a href={STRIPE_LINK} class="mc-btn-book mc-btn-book-lg">
+            Reserve My Spot for {sessionDate} →
+          </a>
+          <p class="mc-booking-note">
+            🔒 Secure checkout · Recording included if you can't attend live · Full refund if you're not satisfied
+          </p>
+        </div>
+
+        <div class="mc-spots-warning">
+          <span class="mc-urgency-dot"></span>
+          <strong>Seats are limited</strong> - book early to secure your place
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ── WHAT YOU'LL LEARN ── -->
   <section class="mc-section" id="what-youll-learn">
     <div class="mc-container">
@@ -102,9 +151,9 @@ const STRIPE_LINK = '#book';
       <div class="mc-learn-grid">
         <div class="mc-learn-card">
           <div class="mc-learn-num">01</div>
-          <div class="mc-learn-icon">🤖</div>
-          <h3>Build your first AI agent</h3>
-          <p>We'll create a working AI agent inside the Claude desktop app using Projects, custom instructions, and MCP connectors — step by step, live.</p>
+          <div class="mc-learn-icon">🗣️</div>
+          <h3>AI thinking and Prompting</h3>
+          <p>ULearn how to write great prompts that don't overwhelm you (or your AI) and that produce the results you want.</p>
         </div>
         <div class="mc-learn-card">
           <div class="mc-learn-num">02</div>
@@ -120,9 +169,9 @@ const STRIPE_LINK = '#book';
         </div>
         <div class="mc-learn-card">
           <div class="mc-learn-num">04</div>
-          <div class="mc-learn-icon">🗣️</div>
-          <h3>Build a voice AI agent</h3>
-          <p>Using ElevenLabs and Claude together, you'll set up an agent that responds with spoken audio — no code, no infrastructure, live in minutes.</p>
+          <div class="mc-learn-icon">🤖</div>
+          <h3>Build your first AI agent</h3>
+          <p>We'll create a working AI agent inside the Claude desktop app using Projects, custom instructions, and MCP connectors - step by step, live.</p>
         </div>
         <div class="mc-learn-card">
           <div class="mc-learn-num">05</div>
@@ -180,11 +229,11 @@ const STRIPE_LINK = '#book';
           <span class="mc-tag" style="margin-bottom:12px;">Your host</span>
           <h2 class="mc-about-name">Nas</h2>
           <p class="mc-about-bio">
-            I've built and shipped over 50 AI-powered products — from landing page generators and e-commerce tools to full AI agent platforms. I run a YouTube channel
+            I've built and shipped over 50 AI-powered products - from landing page generators and e-commerce tools to full AI agent platforms. I run a YouTube channel
             where I teach practical AI skills to tens of thousands of founders and builders, and I consult with businesses on embedding AI into their real workflows.
           </p>
           <p class="mc-about-bio">
-            I started these masterclasses because most AI education is either too theoretical or too technical. This session is built around what actually works — the
+            I started these masterclasses because most AI education is either too theoretical or too technical. This session is built around what actually works, so the
             tools, the prompts, and the systems I use every day to build faster than most teams.
           </p>
           <div class="mc-about-links">
@@ -192,59 +241,6 @@ const STRIPE_LINK = '#book';
             <a href="https://www.linkedin.com/in/nasser-mansurali-659145102/" target="_blank" rel="noopener noreferrer" class="mc-about-link">LinkedIn →</a>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── BOOKING ── -->
-  <section class="mc-section mc-section-alt" id="booking">
-    <div class="mc-container">
-      <div class="mc-section-header">
-        <span class="mc-tag">Reserve Your Spot</span>
-        <h2 class="mc-section-title">Next session: <span class="mc-gradient">{sessionDate}</span></h2>
-        <p class="mc-section-sub">Choose the time that works for you. Both slots cover the same content.</p>
-      </div>
-
-      <div class="mc-slots-wrap">
-
-        <label class="mc-slot" for="slot-am">
-          <input type="radio" name="slot" id="slot-am" value="am" checked />
-          <div class="mc-slot-inner">
-            <div class="mc-slot-check">✓</div>
-            <div class="mc-slot-times">
-              <div class="mc-slot-primary">10:00 AM Eastern (ET)</div>
-              <div class="mc-slot-secondary">3:00 PM London · 4:00 PM Paris · 7:00 AM Los Angeles</div>
-            </div>
-            <div class="mc-slot-badge">Morning</div>
-          </div>
-        </label>
-
-        <label class="mc-slot" for="slot-pm">
-          <input type="radio" name="slot" id="slot-pm" value="pm" />
-          <div class="mc-slot-inner">
-            <div class="mc-slot-check">✓</div>
-            <div class="mc-slot-times">
-              <div class="mc-slot-primary">6:00 PM Eastern (ET)</div>
-              <div class="mc-slot-secondary">11:00 PM London · Midnight Paris · 3:00 PM Los Angeles</div>
-            </div>
-            <div class="mc-slot-badge">Evening</div>
-          </div>
-        </label>
-
-        <div class="mc-booking-cta-wrap">
-          <a href={STRIPE_LINK} class="mc-btn-book mc-btn-book-lg">
-            Reserve My Spot for {sessionDate} →
-          </a>
-          <p class="mc-booking-note">
-            🔒 Secure checkout · Recording included if you can't attend live · Full refund if you're not satisfied
-          </p>
-        </div>
-
-        <div class="mc-spots-warning">
-          <span class="mc-urgency-dot"></span>
-          Only <strong>{spotsLeft} spots remaining</strong> for this session
-        </div>
-
       </div>
     </div>
   </section>
@@ -260,7 +256,7 @@ const STRIPE_LINK = '#book';
 
         <div class="mc-faq-item">
           <h3>Do I need any technical experience?</h3>
-          <p>None at all. The whole point of this masterclass is showing you what's possible without writing code. If you can use Gmail, you can follow along.</p>
+          <p>None at all. The whole point of this masterclass is showing you what's possible without writing code. If you can use Claude, you can follow along.</p>
         </div>
         <div class="mc-faq-item">
           <h3>What do I need to have ready before the session?</h3>
@@ -268,7 +264,7 @@ const STRIPE_LINK = '#book';
         </div>
         <div class="mc-faq-item">
           <h3>Will I get a recording if I can't attend live?</h3>
-          <p>Yes — everyone who books gets access to the full recording, regardless of whether they can join live. The recording is available within 24 hours of the session.</p>
+          <p>Yes - everyone who books gets access to the full recording, regardless of whether they can join live. The recording is available within 24 hours of the session.</p>
         </div>
         <div class="mc-faq-item">
           <h3>How often do these sessions happen?</h3>
@@ -276,11 +272,11 @@ const STRIPE_LINK = '#book';
         </div>
         <div class="mc-faq-item">
           <h3>Is there a refund policy?</h3>
-          <p>Full refund if you're not satisfied after attending. No questions asked. The goal is for you to leave with something valuable — if that doesn't happen, you shouldn't pay for it.</p>
+          <p>Full refund if you can't attend and notify me 48 hours ahead. No questions asked. The goal is for you learn something valuable - if that doesn't happen, you shouldn't pay for it.</p>
         </div>
         <div class="mc-faq-item">
           <h3>Will the content be different each month?</h3>
-          <p>The core curriculum stays consistent so every attendee gets the same foundation, but the live build and Q&A section adapts to what's most relevant that month — new Claude features, new tools, and questions from attendees in the room.</p>
+          <p>The core curriculum stays consistent so every attendee gets the same foundation, but the live build and Q&A section adapts to what's most relevant that month - new Claude features, new tools, and questions from attendees in the room.</p>
         </div>
 
       </div>
@@ -298,10 +294,10 @@ const STRIPE_LINK = '#book';
           <span class="mc-gradient">a working AI agent in your business.</span>
         </h2>
         <p class="mc-final-sub">
-          Stop saving tutorials for later. Join live, follow along, and build something real — with me guiding you every step of the way.
+          Stop saving tutorials for later. Join live, follow along, and build something real - with me guiding you every step of the way.
         </p>
         <a href={STRIPE_LINK} class="mc-btn-book mc-btn-book-lg">Reserve My Spot →</a>
-        <p class="mc-guarantee" style="margin-top:20px;">✓ Recording included · ✓ Money-back guarantee · ✓ {spotsLeft} spots left</p>
+        <p class="mc-guarantee" style="margin-top:20px;">✓ Recording included · ✓ Chat to me after if you have questions</p>
       </div>
     </div>
   </section>
