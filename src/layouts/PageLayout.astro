@@ -2,7 +2,6 @@
 import Layout from '~/layouts/Layout.astro';
 import Header from '~/components/widgets/Header.astro';
 import Footer from '~/components/widgets/Footer.astro';
-import Announcement from '~/components/widgets/Announcement.astro';
 
 import { headerData, footerData } from '~/navigation';
 
@@ -17,16 +16,13 @@ const isMasterclassPage = Astro.url.pathname.includes('ai-masterclass-with-nas')
 ---
 
 <Layout metadata={metadata}>
-  <!-- <slot name="announcement">
-    <Announcement /> -->
-  </slot>
   <slot name="header">
     <Header
-  links={headerData.links}
-  actions={headerData.actions}
-  isSticky
-  showToggleTheme
-   />
+      links={headerData.links}
+      actions={headerData.actions}
+      isSticky
+      showToggleTheme
+    />
   </slot>
   <main>
     <slot />
