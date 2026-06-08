@@ -1,0 +1,356 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Free AI Guides — Selling with Nas',
+  description: 'Download free PDF guides on AI agents, Claude, prompt engineering, and AI automation for business. Drop your email and the guide lands in your inbox instantly.',
+  keywords: 'free AI guide, Claude guide PDF, AI agent guide, prompt engineering guide, AI automation for business, free AI resources, Nas AI guides',
+  canonical: 'https://www.sellingwithnas.com/guides',
+};
+
+// Each guide: id, title, description, tag, emoji, gradient colors
+// Set pdfLabel to the actual file name when you add it
+const guides = [
+  {
+    id: 'claude-beginner-guide',
+    emoji: '🤖',
+    tag: 'Claude',
+    title: 'The Claude Beginner's Playbook',
+    description: 'Everything you need to go from zero to productive with Claude — covering Projects, custom instructions, MCP connectors, and the 10 prompting habits that change how fast you work.',
+    gradient: 'from:#f97316,to:#ef4444',
+    gradientClass: 'gg-orange',
+    subject: 'Your Claude Beginner\'s Playbook',
+    message: 'Thanks for downloading the Claude Beginner\'s Playbook! Here is your guide.',
+  },
+  {
+    id: 'ai-agent-blueprint',
+    emoji: '⚙️',
+    tag: 'AI Agents',
+    title: 'The AI Agent Blueprint',
+    description: 'A step-by-step framework for building your first AI agent with no code — covers the model/tools/context model, real workflow examples, and how to connect Claude to Gmail, Notion, and more.',
+    gradient: 'from:#a855f7,to:#6366f1',
+    gradientClass: 'gg-purple',
+    subject: 'Your AI Agent Blueprint',
+    message: 'Thanks for downloading the AI Agent Blueprint! Here is your guide.',
+  },
+  {
+    id: 'prompt-engineering-playbook',
+    emoji: '✍️',
+    tag: 'Prompting',
+    title: 'Prompt Engineering Playbook',
+    description: 'The exact prompt frameworks I use every day — including the role/context/output structure, chain-of-thought techniques, and the 5 most common prompting mistakes that kill your results.',
+    gradient: 'from:#22d3ee,to:#3b82f6',
+    gradientClass: 'gg-cyan',
+    subject: 'Your Prompt Engineering Playbook',
+    message: 'Thanks for downloading the Prompt Engineering Playbook! Here is your guide.',
+  },
+  {
+    id: 'ai-marketing-automation',
+    emoji: '📈',
+    tag: 'Marketing',
+    title: 'AI Marketing Automation Guide',
+    description: 'How to use Claude to automate your content pipeline, draft email sequences, generate social posts in your brand voice, and build a repeatable marketing system that runs without you.',
+    gradient: 'from:#f59e0b,to:#f97316',
+    gradientClass: 'gg-amber',
+    subject: 'Your AI Marketing Automation Guide',
+    message: 'Thanks for downloading the AI Marketing Automation Guide! Here is your guide.',
+  },
+];
+
+// Replace with your email address — formsubmit.co routes the form to this address
+const FORM_EMAIL = 'nasser.m.95@gmail.com';
+---
+
+<Layout metadata={metadata}>
+<div class="guides-page">
+
+  <div class="guides-ambient" aria-hidden="true">
+    <div class="guides-blob gb-1"></div>
+    <div class="guides-blob gb-2"></div>
+  </div>
+
+  <!-- ── HERO ── -->
+  <section class="guides-hero">
+    <div class="guides-container">
+      <span class="guides-eyebrow">Free Resources</span>
+      <h1 class="guides-title">
+        Free AI Guides —<br />
+        <span class="guides-gradient">delivered to your inbox</span>
+      </h1>
+      <p class="guides-sub">
+        Practical PDF guides on Claude, AI agents, prompting, and automation.
+        Drop your email on any guide below and I'll send it straight to you.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── GUIDES GRID ── -->
+  <section class="guides-section">
+    <div class="guides-container">
+      <div class="guides-grid">
+
+        {guides.map((guide) => (
+          <div class="guide-card" id={guide.id}>
+            <div class={`guide-card-top ${guide.gradientClass}`}></div>
+            <div class="guide-card-body">
+
+              <div class="guide-meta-row">
+                <span class="guide-emoji">{guide.emoji}</span>
+                <span class="guide-tag">{guide.tag}</span>
+              </div>
+
+              <h2 class="guide-title">{guide.title}</h2>
+              <p class="guide-desc">{guide.description}</p>
+
+              <!-- Email capture form -->
+              <!-- formsubmit.co sends the form data to FORM_EMAIL with no backend needed.
+                   Add a _next hidden field to redirect after submit.
+                   Wire up ConvertKit/Mailchimp here later if preferred. -->
+              <form
+                class="guide-form"
+                action={`https://formsubmit.co/${FORM_EMAIL}`}
+                method="POST"
+              >
+                <input type="hidden" name="_subject" value={guide.subject} />
+                <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_next" value={`https://www.sellingwithnas.com/guides?sent=${guide.id}`} />
+                <input type="hidden" name="guide" value={guide.title} />
+                <input type="hidden" name="message" value={guide.message} />
+
+                <div class="guide-form-row">
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Your email address"
+                    required
+                    class="guide-input"
+                    autocomplete="email"
+                  />
+                  <button type="submit" class={`guide-btn ${guide.gradientClass}`}>
+                    Send me this guide →
+                  </button>
+                </div>
+                <p class="guide-privacy">No spam. Unsubscribe any time.</p>
+              </form>
+
+            </div>
+          </div>
+        ))}
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SUCCESS TOAST (shown via URL param) ── -->
+  <div id="guides-toast" class="guides-toast" aria-live="polite">
+    ✅ Guide on its way — check your inbox!
+  </div>
+
+  <!-- ── CTA STRIP ── -->
+  <section class="guides-cta-strip">
+    <div class="guides-container guides-cta-inner">
+      <div>
+        <p class="guides-cta-label">Want to go deeper?</p>
+        <p class="guides-cta-text">Join my live AI Masterclass and build real workflows in 90 minutes.</p>
+      </div>
+      <a href="/ai-masterclass-with-nas" class="guides-cta-btn">See the Masterclass →</a>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  // Show toast if URL contains ?sent=...
+  const params = new URLSearchParams(window.location.search);
+  if (params.has('sent')) {
+    const toast = document.getElementById('guides-toast');
+    if (toast) {
+      toast.classList.add('guides-toast-visible');
+      setTimeout(() => toast.classList.remove('guides-toast-visible'), 5000);
+    }
+    // Clean URL without reload
+    window.history.replaceState({}, '', '/guides');
+  }
+</script>
+
+<style>
+  /* ════ BASE ════ */
+  .guides-page {
+    background: #ffffff;
+    color: #0f172a;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+  :global(.dark) .guides-page { background: #05050f; color: #e2e8f0; }
+
+  .guides-container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* ════ AMBIENT ════ */
+  .guides-ambient { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .guides-blob {
+    position: absolute; border-radius: 50%;
+    filter: blur(130px); opacity: 0.06;
+    animation: gbDrift 18s ease-in-out infinite alternate;
+  }
+  :global(.dark) .guides-blob { opacity: 0.14; }
+  .gb-1 { width: 600px; height: 600px; background: #f97316; top: -100px; left: -100px; }
+  .gb-2 { width: 500px; height: 500px; background: #a855f7; bottom: -100px; right: -100px; animation-delay: 8s; }
+  @keyframes gbDrift {
+    from { transform: translate(0,0) scale(1); }
+    to   { transform: translate(30px, 20px) scale(1.06); }
+  }
+  .guides-hero, .guides-section, .guides-cta-strip { position: relative; z-index: 1; }
+
+  /* ════ HERO ════ */
+  .guides-hero { padding: 96px 0 56px; text-align: center; }
+  .guides-eyebrow {
+    display: inline-block;
+    font-size: 0.73rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: #f97316; margin-bottom: 16px;
+  }
+  .guides-title {
+    font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800;
+    letter-spacing: -0.03em; line-height: 1.15;
+    color: #0f172a; margin: 0 0 20px;
+  }
+  :global(.dark) .guides-title { color: #f8fafc; }
+  .guides-gradient {
+    background: linear-gradient(to right, #f97316, #a855f7);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .guides-sub {
+    font-size: 1.05rem; color: #475569; max-width: 540px; margin: 0 auto; line-height: 1.7;
+  }
+  :global(.dark) .guides-sub { color: #94a3b8; }
+
+  /* ════ GRID ════ */
+  .guides-section { padding: 16px 0 96px; }
+  .guides-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(460px, 1fr));
+    gap: 24px;
+  }
+  @media (max-width: 560px) { .guides-grid { grid-template-columns: 1fr; } }
+
+  /* ════ GUIDE CARD ════ */
+  .guide-card {
+    border-radius: 20px;
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+    display: flex; flex-direction: column;
+  }
+  :global(.dark) .guide-card { background: rgba(255,255,255,0.035); border-color: rgba(255,255,255,0.08); box-shadow: none; }
+  .guide-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+  :global(.dark) .guide-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+
+  /* Top colour strip */
+  .guide-card-top { height: 5px; }
+  .gg-orange { background: linear-gradient(90deg, #f97316, #ef4444); }
+  .gg-purple { background: linear-gradient(90deg, #a855f7, #6366f1); }
+  .gg-cyan   { background: linear-gradient(90deg, #22d3ee, #3b82f6); }
+  .gg-amber  { background: linear-gradient(90deg, #f59e0b, #f97316); }
+
+  .guide-card-body { padding: 28px 28px 24px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
+
+  .guide-meta-row { display: flex; align-items: center; gap: 10px; }
+  .guide-emoji { font-size: 1.6rem; line-height: 1; }
+  .guide-tag {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: #64748b; background: #f1f5f9; padding: 4px 10px; border-radius: 999px;
+  }
+  :global(.dark) .guide-tag { background: rgba(255,255,255,0.07); color: #94a3b8; }
+
+  .guide-title {
+    font-size: 1.2rem; font-weight: 800; color: #0f172a;
+    margin: 0; letter-spacing: -0.02em; line-height: 1.3;
+  }
+  :global(.dark) .guide-title { color: #f1f5f9; }
+  .guide-desc { font-size: 0.9rem; color: #475569; line-height: 1.65; margin: 0; flex: 1; }
+  :global(.dark) .guide-desc { color: #94a3b8; }
+
+  /* ════ FORM ════ */
+  .guide-form { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+  .guide-form-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .guide-input {
+    flex: 1; min-width: 0;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    font-size: 0.9rem;
+    color: #0f172a;
+    outline: none;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  }
+  :global(.dark) .guide-input { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); color: #f1f5f9; }
+  .guide-input::placeholder { color: #94a3b8; }
+  .guide-input:focus { border-color: #a855f7; box-shadow: 0 0 0 3px rgba(168,85,247,0.12); }
+  .guide-btn {
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #fff;
+    white-space: nowrap;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    flex-shrink: 0;
+  }
+  .guide-btn:hover { transform: translateY(-1px); }
+  .guide-btn.gg-orange { background: linear-gradient(135deg, #f97316, #ef4444); box-shadow: 0 4px 16px rgba(249,115,22,0.3); }
+  .guide-btn.gg-purple { background: linear-gradient(135deg, #a855f7, #6366f1); box-shadow: 0 4px 16px rgba(168,85,247,0.3); }
+  .guide-btn.gg-cyan   { background: linear-gradient(135deg, #22d3ee, #3b82f6); box-shadow: 0 4px 16px rgba(34,211,238,0.3); }
+  .guide-btn.gg-amber  { background: linear-gradient(135deg, #f59e0b, #f97316); box-shadow: 0 4px 16px rgba(245,158,11,0.3); }
+  .guide-privacy { font-size: 0.75rem; color: #94a3b8; margin: 0; }
+
+  /* ════ TOAST ════ */
+  .guides-toast {
+    position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: #0f172a; color: #fff;
+    padding: 14px 28px; border-radius: 12px;
+    font-size: 0.9rem; font-weight: 600;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 9999; white-space: nowrap;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  }
+  :global(.dark) .guides-toast { background: #f1f5f9; color: #0f172a; }
+  .guides-toast-visible { opacity: 1 !important; transform: translateX(-50%) translateY(0) !important; }
+
+  /* ════ CTA STRIP ════ */
+  .guides-cta-strip {
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+    padding: 40px 0;
+  }
+  :global(.dark) .guides-cta-strip { background: rgba(255,255,255,0.025); border-color: rgba(255,255,255,0.06); }
+  .guides-cta-inner {
+    display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+  }
+  .guides-cta-label { font-size: 0.73rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #a855f7; margin: 0 0 6px; }
+  .guides-cta-text { font-size: 1rem; font-weight: 600; color: #0f172a; margin: 0; }
+  :global(.dark) .guides-cta-text { color: #f1f5f9; }
+  .guides-cta-btn {
+    display: inline-block; padding: 13px 28px; border-radius: 12px;
+    background: linear-gradient(135deg, #f97316, #a855f7);
+    color: #fff; font-weight: 700; font-size: 0.95rem; text-decoration: none;
+    box-shadow: 0 4px 20px rgba(168,85,247,0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease; white-space: nowrap;
+  }
+  .guides-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(168,85,247,0.35); }
+
+  /* ════ RESPONSIVE ════ */
+  @media (max-width: 600px) {
+    .guides-hero { padding: 72px 0 40px; }
+    .guide-form-row { flex-direction: column; }
+    .guide-btn { width: 100%; text-align: center; }
+    .guides-cta-inner { flex-direction: column; align-items: flex-start; }
+    .guides-cta-btn { width: 100%; text-align: center; }
+  }
+</style>
+</Layout>

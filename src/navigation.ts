@@ -44,12 +44,34 @@ export const headerData = {
 };
 
 export const footerData = {
-  links: [],
+  links: [
+    {
+      title: 'Content',
+      links: [
+        { text: 'Blog Posts', href: '/blog' },
+        { text: 'Guides', href: '/guides' },
+      ],
+    },
+    {
+      title: 'Work with Me',
+      links: [
+        { text: 'Services', href: '/#hp-services' },
+        { text: 'AI Masterclass', href: '/ai-masterclass-with-nas' },
+        { text: 'Contact', href: '/contact' },
+      ],
+    },
+    {
+      title: 'Products',
+      links: [
+        { text: 'Talk to Me Data', href: '/tools/talk-to-me-data' },
+        { text: 'LeadLanding', href: '/tools/leadlanding' },
+      ],
+    },
+  ],
   secondaryLinks: [],
   socialLinks: [
     { ariaLabel: 'LinkedIn', icon: 'tabler:brand-linkedin', href: 'https://www.linkedin.com/in/nasser-mansurali-659145102/' },
     { ariaLabel: 'YouTube', icon: 'tabler:brand-youtube', href: 'https://www.youtube.com/@sellingwithnas' },
-
   ],
   footNote: `© 2026 Selling with Nas. All rights reserved.`,
 };
