@@ -27,11 +27,6 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/ai-masterclass';
   <section class="mc-hero">
     <div class="mc-container">
 
-      <div class="mc-urgency-bar">
-        <span class="mc-urgency-dot"></span>
-        Seats are limited for the <strong>{sessionDate}</strong> session
-      </div>
-
       <div class="mc-hero-split">
 
         <!-- Left: copy -->
@@ -98,46 +93,6 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/ai-masterclass';
       </div>
     </div>
   </div>
-
-  <!-- ── BOOKING ── -->
-  <section class="mc-section mc-section-alt" id="booking">
-    <div class="mc-container">
-      <div class="mc-section-header">
-        <span class="mc-tag">Reserve Your Spot</span>
-        <h2 class="mc-section-title">Next session: <span class="mc-gradient">{sessionDate}</span></h2>
-        <p class="mc-section-sub">One session, one time slot. Book directly and you'll receive a confirmation with everything you need.</p>
-      </div>
-
-      <div class="mc-slots-wrap">
-
-        <div class="mc-slot mc-slot-selected">
-          <div class="mc-slot-inner">
-            <div class="mc-slot-check" style="border-color:#a855f7;background:#a855f7;color:white;">✓</div>
-            <div class="mc-slot-times">
-              <div class="mc-slot-primary">2:00 PM Eastern (ET)</div>
-              <div class="mc-slot-secondary">7:00 PM London · 4:00 PM Los Angeles · {sessionDate}</div>
-            </div>
-            <div class="mc-slot-badge">Only session</div>
-          </div>
-        </div>
-
-        <div class="mc-booking-cta-wrap">
-          <a href={BOOKING_LINK} target="_blank" rel="noopener noreferrer" class="mc-btn-book mc-btn-book-lg">
-            Reserve My Spot for {sessionDate} →
-          </a>
-          <p class="mc-booking-note">
-            Recording included if you can't attend live · Chat to me after if you have questions
-          </p>
-        </div>
-
-        <div class="mc-spots-warning">
-          <span class="mc-urgency-dot"></span>
-          <strong>Seats are limited</strong> — book early to secure your place
-        </div>
-
-      </div>
-    </div>
-  </section>
 
   <!-- ── WHAT YOU'LL LEARN ── -->
   <section class="mc-section" id="what-youll-learn">
@@ -482,20 +437,20 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/ai-masterclass';
     margin-bottom: 18px;
   }
   .mc-hero-title {
-    font-size: clamp(2rem, 5vw, 3.6rem);
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
     font-weight: 800;
-    line-height: 1.15;
-    letter-spacing: -0.03em;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
     color: #0f172a;
-    margin: 0 0 24px;
+    margin: 0 0 16px;
   }
   :global(.dark) .mc-hero-title { color: #f8fafc; }
   .mc-hero-sub {
-    font-size: 1.12rem;
+    font-size: 0.97rem;
     color: #475569;
-    max-width: 620px;
-    margin: 0 auto 36px;
-    line-height: 1.75;
+    max-width: 480px;
+    margin: 0 0 24px;
+    line-height: 1.7;
   }
   :global(.dark) .mc-hero-sub { color: #94a3b8; }
 
