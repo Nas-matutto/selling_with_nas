@@ -9,9 +9,8 @@ const metadata = {
 };
 
 // Update this date each month
-const sessionDate = 'June 30, 2026';
-// Replace with your real Stripe payment link when ready
-const STRIPE_LINK = '#book';
+const sessionDate = 'June 27, 2026';
+const BOOKING_LINK = 'https://cal.com/nas-mansurali/ai-masterclass';
 ---
 
 <Layout metadata={metadata}>
@@ -33,31 +32,45 @@ const STRIPE_LINK = '#book';
         Seats are limited for the <strong>{sessionDate}</strong> session
       </div>
 
-      <div class="mc-eyebrow">Live Masterclass · End of Every Month</div>
+      <div class="mc-hero-split">
 
-      <h1 class="mc-hero-title">
-        Build Real AI Workflows<br />
-        <span class="mc-gradient">in 90 Minutes with Nas</span>
-      </h1>
+        <!-- Left: copy -->
+        <div class="mc-hero-left">
+          <div class="mc-eyebrow">Live Masterclass · End of Every Month</div>
+          <h1 class="mc-hero-title">
+            Build Real AI Workflows<br />
+            <span class="mc-gradient">in 90 Minutes with Nas</span>
+          </h1>
+          <p class="mc-hero-sub">
+            Stop watching tutorials that teach theory. In this live session you'll build actual AI agents,
+            automate real workflows, and leave with working systems you can use the same day.
+            No code required. No fluff.
+          </p>
+          <div class="mc-session-pills">
+            <div class="mc-pill">⏱ 90 min + live Q&amp;A</div>
+            <div class="mc-pill">🔒 Limited seats</div>
+            <div class="mc-pill">📅 {sessionDate}</div>
+          </div>
+          <a href="#what-youll-learn" class="mc-btn-ghost mc-ghost-inline">See what's covered ↓</a>
+        </div>
 
-      <p class="mc-hero-sub">
-        Stop watching tutorials that teach theory. In this live session you'll build actual AI agents,
-        automate real workflows, and leave with working systems you can use the same day.
+        <!-- Right: booking card -->
+        <div class="mc-hero-right">
+          <div class="mc-hero-booking-card">
+            <div class="mc-hbc-tag">Next Session</div>
+            <div class="mc-hbc-date">{sessionDate}</div>
+            <div class="mc-hbc-time-row">
+              <div class="mc-hbc-time-primary">2:00 PM Eastern (ET)</div>
+              <div class="mc-hbc-time-secondary">7:00 PM London · 11:00 AM Los Angeles</div>
+            </div>
+            <a href={BOOKING_LINK} target="_blank" rel="noopener noreferrer" class="mc-btn-book mc-btn-book-full" id="book">
+              Reserve My Spot →
+            </a>
+            <p class="mc-hbc-guarantee">✓ Can't make it? You'll get the recording.<br />Chat to me after if you have questions.</p>
+          </div>
+        </div>
 
-      </p>
-
-      <div class="mc-session-pills">
-        <div class="mc-pill">⏱ 90 min + live Q&amp;A</div>
-        <div class="mc-pill">🔒 Limited seats</div>
       </div>
-
-      <div class="mc-hero-cta-row">
-        <a href={STRIPE_LINK} class="mc-btn-book" id="book">Reserve My Spot →</a>
-        <a href="#what-youll-learn" class="mc-btn-ghost">See what's covered</a>
-      </div>
-
-      <p class="mc-guarantee">✓ Can't make this date? You'll get the recording. Talk to me after if you have questions.</p>
-
     </div>
   </section>
 
@@ -92,47 +105,34 @@ const STRIPE_LINK = '#book';
       <div class="mc-section-header">
         <span class="mc-tag">Reserve Your Spot</span>
         <h2 class="mc-section-title">Next session: <span class="mc-gradient">{sessionDate}</span></h2>
-        <p class="mc-section-sub">Choose the time that works for you. Both slots cover the same content.</p>
+        <p class="mc-section-sub">One session, one time slot. Book directly and you'll receive a confirmation with everything you need.</p>
       </div>
 
       <div class="mc-slots-wrap">
 
-        <label class="mc-slot" for="slot-am">
-          <input type="radio" name="slot" id="slot-am" value="am" checked />
+        <div class="mc-slot mc-slot-selected">
           <div class="mc-slot-inner">
-            <div class="mc-slot-check">✓</div>
+            <div class="mc-slot-check" style="border-color:#a855f7;background:#a855f7;color:white;">✓</div>
             <div class="mc-slot-times">
-              <div class="mc-slot-primary">02:00 PM Eastern (ET)</div>
-              <div class="mc-slot-secondary">7:00 PM London · 11:00 AM Los Angeles</div>
+              <div class="mc-slot-primary">2:00 PM Eastern (ET)</div>
+              <div class="mc-slot-secondary">7:00 PM London · 4:00 PM Los Angeles · {sessionDate}</div>
             </div>
-            <div class="mc-slot-badge">Morning</div>
+            <div class="mc-slot-badge">Only session</div>
           </div>
-        </label>
-
-        <label class="mc-slot" for="slot-pm">
-          <input type="radio" name="slot" id="slot-pm" value="pm" />
-          <div class="mc-slot-inner">
-            <div class="mc-slot-check">✓</div>
-            <div class="mc-slot-times">
-              <div class="mc-slot-primary">6:00 PM Eastern (ET)</div>
-              <div class="mc-slot-secondary">11:00 PM London · Midnight Paris · 3:00 PM Los Angeles</div>
-            </div>
-            <div class="mc-slot-badge">Evening</div>
-          </div>
-        </label>
+        </div>
 
         <div class="mc-booking-cta-wrap">
-          <a href={STRIPE_LINK} class="mc-btn-book mc-btn-book-lg">
+          <a href={BOOKING_LINK} target="_blank" rel="noopener noreferrer" class="mc-btn-book mc-btn-book-lg">
             Reserve My Spot for {sessionDate} →
           </a>
           <p class="mc-booking-note">
-            🔒 Secure checkout · Recording included if you can't attend live · Full refund if you're not satisfied
+            Recording included if you can't attend live · Chat to me after if you have questions
           </p>
         </div>
 
         <div class="mc-spots-warning">
           <span class="mc-urgency-dot"></span>
-          <strong>Seats are limited</strong> - book early to secure your place
+          <strong>Seats are limited</strong> — book early to secure your place
         </div>
 
       </div>
@@ -296,7 +296,7 @@ const STRIPE_LINK = '#book';
         <p class="mc-final-sub">
           Stop saving tutorials for later. Join live, follow along, and build something real - with me guiding you every step of the way.
         </p>
-        <a href={STRIPE_LINK} class="mc-btn-book mc-btn-book-lg">Reserve My Spot →</a>
+        <a href={BOOKING_LINK} target="_blank" rel="noopener noreferrer" class="mc-btn-book mc-btn-book-lg">Reserve My Spot →</a>
         <p class="mc-guarantee" style="margin-top:20px;">✓ Recording included · ✓ Chat to me after if you have questions</p>
       </div>
     </div>
@@ -404,7 +404,75 @@ const STRIPE_LINK = '#book';
   }
 
   /* ════ HERO ════ */
-  .mc-hero { padding: 100px 0 80px; text-align: center; }
+  .mc-hero { padding: 100px 0 80px; }
+
+  /* ── Hero split layout ── */
+  .mc-hero-split {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 56px;
+    align-items: center;
+    margin-top: 32px;
+  }
+  .mc-hero-left { display: flex; flex-direction: column; align-items: flex-start; }
+  .mc-ghost-inline { margin-top: 24px; }
+
+  /* ── Hero booking card ── */
+  .mc-hero-booking-card {
+    background: #ffffff;
+    border: 1.5px solid rgba(168,85,247,0.25);
+    border-radius: 20px;
+    padding: 32px 28px;
+    box-shadow: 0 8px 40px rgba(168,85,247,0.1), 0 2px 12px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  :global(.dark) .mc-hero-booking-card {
+    background: rgba(255,255,255,0.04);
+    border-color: rgba(168,85,247,0.3);
+    box-shadow: 0 8px 40px rgba(168,85,247,0.12);
+  }
+  .mc-hbc-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #a855f7;
+  }
+  .mc-hbc-date {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  :global(.dark) .mc-hbc-date { color: #f8fafc; }
+  .mc-hbc-time-row {
+    padding: 14px 16px;
+    background: #f8fafc;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+  }
+  :global(.dark) .mc-hbc-time-row { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.08); }
+  .mc-hbc-time-primary { font-size: 1rem; font-weight: 700; color: #0f172a; }
+  :global(.dark) .mc-hbc-time-primary { color: #f1f5f9; }
+  .mc-hbc-time-secondary { font-size: 0.78rem; color: #64748b; margin-top: 4px; line-height: 1.5; }
+  .mc-btn-book-full { width: 100%; text-align: center; box-sizing: border-box; }
+  .mc-hbc-guarantee {
+    font-size: 0.78rem;
+    color: #64748b;
+    text-align: center;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @media (max-width: 860px) {
+    .mc-hero-split { grid-template-columns: 1fr; gap: 36px; }
+    .mc-hero-left { align-items: center; text-align: center; }
+    .mc-hero-booking-card { max-width: 480px; margin: 0 auto; width: 100%; }
+    .mc-ghost-inline { align-self: center; }
+  }
   .mc-eyebrow {
     font-size: 0.78rem;
     font-weight: 700;
@@ -763,7 +831,7 @@ const STRIPE_LINK = '#book';
 
   /* ════ RESPONSIVE ════ */
   @media (max-width: 640px) {
-    .mc-hero { padding: 80px 0 60px; }
+    .mc-hero { padding: 72px 0 56px; }
     .mc-section { padding: 64px 0; }
     .mc-about-card { flex-direction: column; gap: 24px; padding: 32px 24px; }
     .mc-about-avatar { width: 60px; height: 60px; font-size: 1.5rem; }
