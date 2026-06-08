@@ -8,57 +8,18 @@ const metadata = {
   canonical: 'https://www.sellingwithnas.com/guides',
 };
 
-// Each guide: id, title, description, tag, emoji, gradient colors
-// Set pdfLabel to the actual file name when you add it
 const guides = [
   {
-    id: 'claude-beginner-guide',
-    emoji: '🤖',
+    id: 'best-claude-skills',
+    emoji: '⚡',
     tag: 'Claude',
-    title: 'The Claude Beginners Playbook',
-    description: 'Everything you need to go from zero to productive with Claude — covering Projects, custom instructions, MCP connectors, and the 10 prompting habits that change how fast you work.',
-    gradient: 'from:#f97316,to:#ef4444',
+    title: 'Best Claude Skills',
+    description: 'A curated guide to the most powerful Claude Skills available right now — what they do, how to install them, and exactly how to use them to build websites, create AI videos, automate marketing, and ship faster than ever. This is the shortcut to getting real results with Claude from day one.',
     gradientClass: 'gg-orange',
-    subject: 'Your Claude Beginner\'s Playbook',
-    message: 'Thanks for downloading the Claude Beginner\'s Playbook! Here is your guide.',
-  },
-  {
-    id: 'ai-agent-blueprint',
-    emoji: '⚙️',
-    tag: 'AI Agents',
-    title: 'The AI Agent Blueprint',
-    description: 'A step-by-step framework for building your first AI agent with no code — covers the model/tools/context model, real workflow examples, and how to connect Claude to Gmail, Notion, and more.',
-    gradient: 'from:#a855f7,to:#6366f1',
-    gradientClass: 'gg-purple',
-    subject: 'Your AI Agent Blueprint',
-    message: 'Thanks for downloading the AI Agent Blueprint! Here is your guide.',
-  },
-  {
-    id: 'prompt-engineering-playbook',
-    emoji: '✍️',
-    tag: 'Prompting',
-    title: 'Prompt Engineering Playbook',
-    description: 'The exact prompt frameworks I use every day — including the role/context/output structure, chain-of-thought techniques, and the 5 most common prompting mistakes that kill your results.',
-    gradient: 'from:#22d3ee,to:#3b82f6',
-    gradientClass: 'gg-cyan',
-    subject: 'Your Prompt Engineering Playbook',
-    message: 'Thanks for downloading the Prompt Engineering Playbook! Here is your guide.',
-  },
-  {
-    id: 'ai-marketing-automation',
-    emoji: '📈',
-    tag: 'Marketing',
-    title: 'AI Marketing Automation Guide',
-    description: 'How to use Claude to automate your content pipeline, draft email sequences, generate social posts in your brand voice, and build a repeatable marketing system that runs without you.',
-    gradient: 'from:#f59e0b,to:#f97316',
-    gradientClass: 'gg-amber',
-    subject: 'Your AI Marketing Automation Guide',
-    message: 'Thanks for downloading the AI Marketing Automation Guide! Here is your guide.',
+    subject: 'Your Best Claude Skills Guide',
   },
 ];
 
-// Replace with your email address — formsubmit.co routes the form to this address
-const FORM_EMAIL = 'nasser.m.95@gmail.com';
 ---
 
 <Layout metadata={metadata}>
@@ -102,20 +63,11 @@ const FORM_EMAIL = 'nasser.m.95@gmail.com';
               <h2 class="guide-title">{guide.title}</h2>
               <p class="guide-desc">{guide.description}</p>
 
-              <!-- Email capture form -->
-              <!-- formsubmit.co sends the form data to FORM_EMAIL with no backend needed.
-                   Add a _next hidden field to redirect after submit.
-                   Wire up ConvertKit/Mailchimp here later if preferred. -->
               <form
                 class="guide-form"
-                action={`https://formsubmit.co/${FORM_EMAIL}`}
+                action="/api/send-guide"
                 method="POST"
               >
-                <input type="hidden" name="_subject" value={guide.subject} />
-                <input type="hidden" name="_captcha" value="false" />
-                <input type="hidden" name="_next" value={`https://www.sellingwithnas.com/guides?sent=${guide.id}`} />
-                <input type="hidden" name="guide" value={guide.title} />
-                <input type="hidden" name="message" value={guide.message} />
 
                 <div class="guide-form-row">
                   <input
@@ -141,9 +93,26 @@ const FORM_EMAIL = 'nasser.m.95@gmail.com';
     </div>
   </section>
 
-  <!-- ── SUCCESS TOAST (shown via URL param) ── -->
-  <div id="guides-toast" class="guides-toast" aria-live="polite">
-    ✅ Guide on its way — check your inbox!
+  <!-- ── ERROR BANNER ── -->
+  <div id="guides-error" class="guides-error" style="display:none;" aria-live="polite">
+    <div class="guides-success-inner">
+      <span class="guides-success-icon">⚠️</span>
+      <div>
+        <strong>Something went wrong — the email wasn't sent.</strong>
+        <p>Please try again, or email me directly at <a href="mailto:nas@talktomedata.com">nas@talktomedata.com</a> and I'll send it to you manually.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SUCCESS BANNER (shown via URL param) ── -->
+  <div id="guides-success" class="guides-success" style="display:none;" aria-live="polite">
+    <div class="guides-success-inner">
+      <span class="guides-success-icon">✅</span>
+      <div>
+        <strong>Check your inbox — the guide is on its way!</strong>
+        <p>Can't find it? Check your spam folder, or email me directly at <a href="mailto:nas@talktomedata.com">nas@talktomedata.com</a> and I'll send it over.</p>
+      </div>
+    </div>
   </div>
 
   <!-- ── CTA STRIP ── -->
@@ -160,15 +129,15 @@ const FORM_EMAIL = 'nasser.m.95@gmail.com';
 </div>
 
 <script>
-  // Show toast if URL contains ?sent=...
   const params = new URLSearchParams(window.location.search);
   if (params.has('sent')) {
-    const toast = document.getElementById('guides-toast');
-    if (toast) {
-      toast.classList.add('guides-toast-visible');
-      setTimeout(() => toast.classList.remove('guides-toast-visible'), 5000);
-    }
-    // Clean URL without reload
+    const banner = document.getElementById('guides-success');
+    if (banner) { banner.style.display = 'block'; banner.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+    window.history.replaceState({}, '', '/guides');
+  }
+  if (params.has('error')) {
+    const banner = document.getElementById('guides-error');
+    if (banner) { banner.style.display = 'block'; banner.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
     window.history.replaceState({}, '', '/guides');
   }
 </script>
@@ -224,103 +193,115 @@ const FORM_EMAIL = 'nasser.m.95@gmail.com';
   }
   :global(.dark) .guides-sub { color: #94a3b8; }
 
-  /* ════ GRID ════ */
+  /* ════ GRID — single centred card ════ */
   .guides-section { padding: 16px 0 96px; }
   .guides-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(460px, 1fr));
-    gap: 24px;
+    display: flex;
+    justify-content: center;
   }
-  @media (max-width: 560px) { .guides-grid { grid-template-columns: 1fr; } }
 
-  /* ════ GUIDE CARD ════ */
+  /* ════ GUIDE CARD — large single ════ */
   .guide-card {
-    border-radius: 20px;
+    width: 100%;
+    max-width: 720px;
+    border-radius: 24px;
     border: 1px solid #e2e8f0;
     background: #ffffff;
     overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-    transition: transform 0.22s ease, box-shadow 0.22s ease;
-    display: flex; flex-direction: column;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+    display: flex;
+    flex-direction: column;
   }
-  :global(.dark) .guide-card { background: rgba(255,255,255,0.035); border-color: rgba(255,255,255,0.08); box-shadow: none; }
-  .guide-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
-  :global(.dark) .guide-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+  :global(.dark) .guide-card { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.09); box-shadow: none; }
 
-  /* Top colour strip */
-  .guide-card-top { height: 5px; }
+  .guide-card-top { height: 6px; }
   .gg-orange { background: linear-gradient(90deg, #f97316, #ef4444); }
   .gg-purple { background: linear-gradient(90deg, #a855f7, #6366f1); }
   .gg-cyan   { background: linear-gradient(90deg, #22d3ee, #3b82f6); }
   .gg-amber  { background: linear-gradient(90deg, #f59e0b, #f97316); }
 
-  .guide-card-body { padding: 28px 28px 24px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
+  .guide-card-body { padding: 44px 48px 40px; display: flex; flex-direction: column; gap: 20px; flex: 1; }
 
-  .guide-meta-row { display: flex; align-items: center; gap: 10px; }
-  .guide-emoji { font-size: 1.6rem; line-height: 1; }
+  .guide-meta-row { display: flex; align-items: center; gap: 12px; }
+  .guide-emoji { font-size: 2.4rem; line-height: 1; }
   .guide-tag {
-    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-    color: #64748b; background: #f1f5f9; padding: 4px 10px; border-radius: 999px;
+    font-size: 0.73rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: #64748b; background: #f1f5f9; padding: 5px 14px; border-radius: 999px;
   }
   :global(.dark) .guide-tag { background: rgba(255,255,255,0.07); color: #94a3b8; }
 
   .guide-title {
-    font-size: 1.2rem; font-weight: 800; color: #0f172a;
-    margin: 0; letter-spacing: -0.02em; line-height: 1.3;
+    font-size: 2rem; font-weight: 800; color: #0f172a;
+    margin: 0; letter-spacing: -0.03em; line-height: 1.2;
   }
   :global(.dark) .guide-title { color: #f1f5f9; }
-  .guide-desc { font-size: 0.9rem; color: #475569; line-height: 1.65; margin: 0; flex: 1; }
+  .guide-desc { font-size: 1rem; color: #475569; line-height: 1.75; margin: 0; }
   :global(.dark) .guide-desc { color: #94a3b8; }
 
   /* ════ FORM ════ */
-  .guide-form { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
-  .guide-form-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .guide-form { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+  .guide-form-row { display: flex; gap: 10px; }
   .guide-input {
     flex: 1; min-width: 0;
-    padding: 12px 16px;
-    border-radius: 10px;
+    padding: 14px 18px;
+    border-radius: 12px;
     border: 1px solid #e2e8f0;
     background: #f8fafc;
-    font-size: 0.9rem;
+    font-size: 0.97rem;
     color: #0f172a;
     outline: none;
     transition: border-color 0.18s ease, box-shadow 0.18s ease;
   }
   :global(.dark) .guide-input { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); color: #f1f5f9; }
   .guide-input::placeholder { color: #94a3b8; }
-  .guide-input:focus { border-color: #a855f7; box-shadow: 0 0 0 3px rgba(168,85,247,0.12); }
+  .guide-input:focus { border-color: #f97316; box-shadow: 0 0 0 3px rgba(249,115,22,0.1); }
   .guide-btn {
-    padding: 12px 20px;
-    border-radius: 10px;
+    padding: 14px 28px;
+    border-radius: 12px;
     border: none;
     cursor: pointer;
-    font-size: 0.88rem;
+    font-size: 0.97rem;
     font-weight: 700;
     color: #fff;
     white-space: nowrap;
     transition: transform 0.18s ease, box-shadow 0.18s ease;
     flex-shrink: 0;
   }
-  .guide-btn:hover { transform: translateY(-1px); }
-  .guide-btn.gg-orange { background: linear-gradient(135deg, #f97316, #ef4444); box-shadow: 0 4px 16px rgba(249,115,22,0.3); }
-  .guide-btn.gg-purple { background: linear-gradient(135deg, #a855f7, #6366f1); box-shadow: 0 4px 16px rgba(168,85,247,0.3); }
-  .guide-btn.gg-cyan   { background: linear-gradient(135deg, #22d3ee, #3b82f6); box-shadow: 0 4px 16px rgba(34,211,238,0.3); }
-  .guide-btn.gg-amber  { background: linear-gradient(135deg, #f59e0b, #f97316); box-shadow: 0 4px 16px rgba(245,158,11,0.3); }
-  .guide-privacy { font-size: 0.75rem; color: #94a3b8; margin: 0; }
+  .guide-btn:hover { transform: translateY(-2px); }
+  .guide-btn.gg-orange { background: linear-gradient(135deg, #f97316, #ef4444); box-shadow: 0 4px 20px rgba(249,115,22,0.3); }
+  .guide-privacy { font-size: 0.78rem; color: #94a3b8; margin: 0; }
 
-  /* ════ TOAST ════ */
-  .guides-toast {
-    position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px);
-    background: #0f172a; color: #fff;
-    padding: 14px 28px; border-radius: 12px;
-    font-size: 0.9rem; font-weight: 600;
-    opacity: 0; pointer-events: none;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    z-index: 9999; white-space: nowrap;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  /* ════ SUCCESS BANNER ════ */
+  .guides-success {
+    max-width: 720px;
+    margin: 0 auto 32px;
+    padding: 20px 24px;
+    border-radius: 14px;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #15803d;
   }
-  :global(.dark) .guides-toast { background: #f1f5f9; color: #0f172a; }
-  .guides-toast-visible { opacity: 1 !important; transform: translateX(-50%) translateY(0) !important; }
+  :global(.dark) .guides-success { background: rgba(34,197,94,0.08); border-color: rgba(34,197,94,0.2); color: #86efac; }
+  .guides-success-inner { display: flex; gap: 14px; align-items: flex-start; }
+  .guides-success-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .guides-success strong { display: block; font-size: 0.97rem; margin-bottom: 4px; }
+  .guides-success p { font-size: 0.88rem; margin: 0; opacity: 0.9; }
+  .guides-success a { color: inherit; font-weight: 600; }
+
+  /* ════ ERROR BANNER ════ */
+  .guides-error {
+    max-width: 720px;
+    margin: 0 auto 32px;
+    padding: 20px 24px;
+    border-radius: 14px;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    color: #92400e;
+  }
+  :global(.dark) .guides-error { background: rgba(245,158,11,0.08); border-color: rgba(245,158,11,0.2); color: #fcd34d; }
+  .guides-error strong { display: block; font-size: 0.97rem; margin-bottom: 4px; }
+  .guides-error p { font-size: 0.88rem; margin: 0; opacity: 0.9; }
+  .guides-error a { color: inherit; font-weight: 600; }
 
   /* ════ CTA STRIP ════ */
   .guides-cta-strip {
@@ -347,6 +328,8 @@ const FORM_EMAIL = 'nasser.m.95@gmail.com';
   /* ════ RESPONSIVE ════ */
   @media (max-width: 600px) {
     .guides-hero { padding: 72px 0 40px; }
+    .guide-card-body { padding: 28px 24px 24px; }
+    .guide-title { font-size: 1.4rem; }
     .guide-form-row { flex-direction: column; }
     .guide-btn { width: 100%; text-align: center; }
     .guides-cta-inner { flex-direction: column; align-items: flex-start; }
