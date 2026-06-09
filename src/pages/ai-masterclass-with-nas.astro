@@ -1,5 +1,7 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+import { Image } from 'astro:assets';
+import nasProfile from '~/assets/images/nas-profile.jpg';
 
 const metadata = {
   title: 'Live AI Masterclass with Nas - Build Real AI Workflows in 90 Minutes',
@@ -144,8 +146,33 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/ai-masterclass';
     </div>
   </section>
 
-  <!-- ── WHO IT'S FOR ── -->
+  <!-- ── ABOUT NAS ── -->
   <section class="mc-section mc-section-alt">
+    <div class="mc-container">
+      <div class="mc-about-card">
+        <Image src={nasProfile} alt="Nas" class="mc-about-avatar" width={80} height={80} />
+        <div class="mc-about-body">
+          <span class="mc-tag" style="margin-bottom:12px;">Your host</span>
+          <h2 class="mc-about-name">Nas</h2>
+          <p class="mc-about-bio">
+            I've built and shipped over 50 AI-powered products - from landing page generators and e-commerce tools to full AI agent platforms. I run a YouTube channel
+            where I teach practical AI skills to tens of thousands of founders and builders, and I consult with businesses on embedding AI into their real workflows.
+          </p>
+          <p class="mc-about-bio">
+            I started these masterclasses because most AI education is either too theoretical or too technical. This session is built around what actually works — the
+            tools, the prompts, and the systems I use every day to build faster than most teams.
+          </p>
+          <div class="mc-about-links">
+            <a href="https://www.youtube.com/@sellingwithnas" target="_blank" rel="noopener noreferrer" class="mc-about-link">YouTube →</a>
+            <a href="https://www.linkedin.com/in/nasser-mansurali-659145102/" target="_blank" rel="noopener noreferrer" class="mc-about-link">LinkedIn →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WHO IT'S FOR ── -->
+  <section class="mc-section">
     <div class="mc-container">
       <div class="mc-section-header">
         <span class="mc-tag">Who Should Join</span>
@@ -170,31 +197,6 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/ai-masterclass';
             <li>You're looking for a passive course you can watch on 2× speed</li>
             <li>You're not ready to follow along and actually build during the session</li>
           </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── ABOUT NAS ── -->
-  <section class="mc-section">
-    <div class="mc-container">
-      <div class="mc-about-card">
-        <div class="mc-about-avatar">N</div>
-        <div class="mc-about-body">
-          <span class="mc-tag" style="margin-bottom:12px;">Your host</span>
-          <h2 class="mc-about-name">Nas</h2>
-          <p class="mc-about-bio">
-            I've built and shipped over 50 AI-powered products - from landing page generators and e-commerce tools to full AI agent platforms. I run a YouTube channel
-            where I teach practical AI skills to tens of thousands of founders and builders, and I consult with businesses on embedding AI into their real workflows.
-          </p>
-          <p class="mc-about-bio">
-            I started these masterclasses because most AI education is either too theoretical or too technical. This session is built around what actually works, so the
-            tools, the prompts, and the systems I use every day to build faster than most teams.
-          </p>
-          <div class="mc-about-links">
-            <a href="https://www.youtube.com/@sellingwithnas" target="_blank" rel="noopener noreferrer" class="mc-about-link">YouTube →</a>
-            <a href="https://www.linkedin.com/in/nasser-mansurali-659145102/" target="_blank" rel="noopener noreferrer" class="mc-about-link">LinkedIn →</a>
-          </div>
         </div>
       </div>
     </div>
@@ -640,9 +642,8 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/ai-masterclass';
   .mc-about-avatar {
     width: 80px; height: 80px; flex-shrink: 0;
     border-radius: 50%;
-    background: linear-gradient(135deg, #f97316, #a855f7);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 2rem; font-weight: 800; color: white;
+    object-fit: cover;
+    border: 3px solid rgba(168,85,247,0.3);
   }
   .mc-about-name { font-size: 1.6rem; font-weight: 800; color: #0f172a; margin: 0 0 16px; }
   :global(.dark) .mc-about-name { color: #f8fafc; }
