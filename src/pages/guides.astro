@@ -2,7 +2,7 @@
 import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
-  title: 'Free AI Guides — Selling with Nas',
+  title: 'Free AI Guides - Selling with Nas',
   description: 'Download free PDF guides on AI agents, Claude, prompt engineering, and AI automation for business. Drop your email and the guide lands in your inbox instantly.',
   keywords: 'free AI guide, Claude guide PDF, AI agent guide, prompt engineering guide, AI automation for business, free AI resources, Nas AI guides',
   canonical: 'https://www.sellingwithnas.com/guides',
@@ -14,7 +14,7 @@ const guides = [
     emoji: '⚡',
     tag: 'Claude',
     title: 'Best Claude Skills',
-    description: 'A curated guide to the most powerful Claude Skills available right now — what they do, how to install them, and exactly how to use them to build websites, create AI videos, automate marketing, and ship faster than ever. This is the shortcut to getting real results with Claude from day one.',
+    description: 'A curated guide to the most powerful Claude Skills available right now, including what they do and how to install them.',
     gradientClass: 'gg-orange',
     subject: 'Your Best Claude Skills Guide',
   },
@@ -35,7 +35,7 @@ const guides = [
     <div class="guides-container">
       <span class="guides-eyebrow">Free Resources</span>
       <h1 class="guides-title">
-        Free AI Guides —<br />
+        Free AI Guides<br />
         <span class="guides-gradient">delivered to your inbox</span>
       </h1>
       <p class="guides-sub">
@@ -48,28 +48,6 @@ const guides = [
   <!-- ── GUIDES GRID ── -->
   <section class="guides-section">
     <div class="guides-container">
-
-      <!-- ── ERROR BANNER ── -->
-      <div id="guides-error" class="guides-error" style="display:none;" aria-live="polite">
-        <div class="guides-success-inner">
-          <span class="guides-success-icon">⚠️</span>
-          <div>
-            <strong>Something went wrong — the email wasn't sent.</strong>
-            <p>Please try again, or email me at <a href="mailto:nas@talktomedata.com">nas@talktomedata.com</a> and I'll send it manually.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- ── SUCCESS BANNER ── -->
-      <div id="guides-success" class="guides-success" style="display:none;" aria-live="polite">
-        <div class="guides-success-inner">
-          <span class="guides-success-icon">✅</span>
-          <div>
-            <strong>Check your inbox — the guide is on its way!</strong>
-            <p>Can't find it? Check your spam folder, or email me at <a href="mailto:nas@talktomedata.com">nas@talktomedata.com</a> and I'll send it over.</p>
-          </div>
-        </div>
-      </div>
 
       <div class="guides-grid">
 
@@ -130,17 +108,67 @@ const guides = [
 </div>
 
 <script>
-  const params = new URLSearchParams(window.location.search);
-  if (params.has('sent')) {
-    const banner = document.getElementById('guides-success');
-    if (banner) { banner.style.display = 'block'; banner.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
-    window.history.replaceState({}, '', '/guides');
-  }
-  if (params.has('error')) {
-    const banner = document.getElementById('guides-error');
-    if (banner) { banner.style.display = 'block'; banner.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
-    window.history.replaceState({}, '', '/guides');
-  }
+  document.querySelectorAll('.guide-form').forEach((form) => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const f = e.currentTarget as HTMLFormElement;
+      const card = f.closest('.guide-card-body') as HTMLElement;
+      const btn = f.querySelector('button[type="submit"]') as HTMLButtonElement;
+
+      // Loading state
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+
+      const data = new FormData(f);
+
+      try {
+        const res = await fetch('/api/send-guide', {
+          method: 'POST',
+          body: data,
+        });
+        const json = await res.json();
+
+        if (json.ok) {
+          // Replace the form with the success message inside the card
+          f.innerHTML = `
+            <div style="padding:24px 0 8px;">
+              <div style="font-size:2rem;margin-bottom:12px;">✅</div>
+              <p style="font-size:1rem;font-weight:700;color:inherit;margin:0 0 8px;">Check your inbox — the guide is on its way!</p>
+              <p style="font-size:0.88rem;color:#64748b;margin:0;line-height:1.6;">
+                Can't find it? Check your spam folder first. If it's not there, email me at
+                <a href="mailto:nas@talktomedata.com" style="color:#f97316;font-weight:600;">nas@talktomedata.com</a>
+                and I'll send it over.
+              </p>
+            </div>
+          `;
+        } else {
+          // Show error below the form
+          btn.disabled = false;
+          btn.textContent = 'Send me this guide →';
+          let err = card.querySelector('.guide-inline-error') as HTMLElement | null;
+          if (!err) {
+            err = document.createElement('p');
+            err.className = 'guide-inline-error';
+            err.style.cssText = 'font-size:0.85rem;color:#dc2626;margin:8px 0 0;';
+            card.appendChild(err);
+          }
+          err.textContent = 'Something went wrong. Please try again or email nas@talktomedata.com.';
+        }
+      } catch {
+        btn.disabled = false;
+        btn.textContent = 'Send me this guide →';
+        let err = card.querySelector('.guide-inline-error') as HTMLElement | null;
+        if (!err) {
+          err = document.createElement('p');
+          err.className = 'guide-inline-error';
+          err.style.cssText = 'font-size:0.85rem;color:#dc2626;margin:8px 0 0;';
+          card.appendChild(err);
+        }
+        err.textContent = 'Something went wrong. Please try again or email nas@talktomedata.com.';
+      }
+    });
+  });
 </script>
 
 <style>

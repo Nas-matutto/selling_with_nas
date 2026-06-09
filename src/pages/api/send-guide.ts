@@ -69,12 +69,21 @@ export async function POST({ request }: { request: Request }) {
     if (!resendRes.ok) {
       const err = await resendRes.text();
       console.error('Resend error:', err);
-      return Response.redirect(`${base}/guides?error=send-failed`, 302);
+      return new Response(JSON.stringify({ ok: false }), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
+      });
     }
 
-    return Response.redirect(`${base}/guides?sent=best-claude-skills`, 302);
+    return new Response(JSON.stringify({ ok: true }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
   } catch (err) {
     console.error('Unexpected error:', err);
-    return Response.redirect(`${base}/guides?error=send-failed`, 302);
+    return new Response(JSON.stringify({ ok: false }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
 }
