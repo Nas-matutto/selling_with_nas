@@ -48,6 +48,29 @@ const guides = [
   <!-- ── GUIDES GRID ── -->
   <section class="guides-section">
     <div class="guides-container">
+
+      <!-- ── ERROR BANNER ── -->
+      <div id="guides-error" class="guides-error" style="display:none;" aria-live="polite">
+        <div class="guides-success-inner">
+          <span class="guides-success-icon">⚠️</span>
+          <div>
+            <strong>Something went wrong — the email wasn't sent.</strong>
+            <p>Please try again, or email me at <a href="mailto:nas@talktomedata.com">nas@talktomedata.com</a> and I'll send it manually.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SUCCESS BANNER ── -->
+      <div id="guides-success" class="guides-success" style="display:none;" aria-live="polite">
+        <div class="guides-success-inner">
+          <span class="guides-success-icon">✅</span>
+          <div>
+            <strong>Check your inbox — the guide is on its way!</strong>
+            <p>Can't find it? Check your spam folder, or email me at <a href="mailto:nas@talktomedata.com">nas@talktomedata.com</a> and I'll send it over.</p>
+          </div>
+        </div>
+      </div>
+
       <div class="guides-grid">
 
         {guides.map((guide) => (
@@ -92,28 +115,6 @@ const guides = [
       </div>
     </div>
   </section>
-
-  <!-- ── ERROR BANNER ── -->
-  <div id="guides-error" class="guides-error" style="display:none;" aria-live="polite">
-    <div class="guides-success-inner">
-      <span class="guides-success-icon">⚠️</span>
-      <div>
-        <strong>Something went wrong — the email wasn't sent.</strong>
-        <p>Please try again, or email me directly at <a href="mailto:nas@talktomedata.com">nas@talktomedata.com</a> and I'll send it to you manually.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── SUCCESS BANNER (shown via URL param) ── -->
-  <div id="guides-success" class="guides-success" style="display:none;" aria-live="polite">
-    <div class="guides-success-inner">
-      <span class="guides-success-icon">✅</span>
-      <div>
-        <strong>Check your inbox — the guide is on its way!</strong>
-        <p>Can't find it? Check your spam folder, or email me directly at <a href="mailto:nas@talktomedata.com">nas@talktomedata.com</a> and I'll send it over.</p>
-      </div>
-    </div>
-  </div>
 
   <!-- ── CTA STRIP ── -->
   <section class="guides-cta-strip">
