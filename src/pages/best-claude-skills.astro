@@ -1,0 +1,485 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Best Claude Skills — Where to Find Them and How to Use Them',
+  description: 'Download the free guide to the most powerful Claude Skills available right now. Curated list, installation walkthroughs, and real use-case examples — straight to your inbox.',
+  keywords: 'best Claude skills, Claude skills guide, Claude AI skills, how to use Claude skills, Claude AI tools, free Claude guide',
+  canonical: 'https://www.sellingwithnas.com/best-claude-skills',
+};
+---
+
+<Layout metadata={metadata}>
+<div class="csg-page">
+
+  <div class="csg-ambient" aria-hidden="true">
+    <div class="csg-blob csg-blob-1"></div>
+    <div class="csg-blob csg-blob-2"></div>
+  </div>
+
+  <!-- ── HERO ── -->
+  <section class="csg-hero">
+    <div class="csg-container">
+
+      <div class="csg-hero-inner">
+
+        <!-- Badge -->
+        <div class="csg-badge">
+          <span class="csg-badge-dot"></span>
+          Free Guide · Instant Delivery
+        </div>
+
+        <!-- Headline -->
+        <h1 class="csg-title">
+          Best Claude Skills —<br />
+          <span class="csg-gradient">Where to Find Them &amp;<br class="csg-br-mobile" /> How to Use Them</span>
+        </h1>
+
+        <p class="csg-sub">
+          A curated breakdown of the most powerful Claude Skills available right now.
+          What they do, where to find them, and how to get them running in minutes.
+        </p>
+
+        <!-- What's inside -->
+        <ul class="csg-inside-list">
+          <li>
+            <span class="csg-check">✓</span>
+            The top Claude Skills worth installing right now
+          </li>
+          <li>
+            <span class="csg-check">✓</span>
+            Step-by-step install walkthrough for each one
+          </li>
+          <li>
+            <span class="csg-check">✓</span>
+            Real use cases and example prompts
+          </li>
+          <li>
+            <span class="csg-check">✓</span>
+            How to combine Skills for maximum output
+          </li>
+        </ul>
+
+        <!-- Form card -->
+        <div class="csg-form-card">
+          <p class="csg-form-label">Drop your email — I'll send the guide instantly.</p>
+          <form class="csg-form" id="csgForm">
+            <div class="csg-form-row">
+              <input
+                type="email"
+                name="email"
+                id="csgEmail"
+                placeholder="your@email.com"
+                required
+                autocomplete="email"
+                class="csg-input"
+              />
+              <button type="submit" class="csg-btn" id="csgSubmit">
+                Send me the guide →
+              </button>
+            </div>
+            <p class="csg-privacy">Free. No spam. Unsubscribe any time.</p>
+          </form>
+
+          <div class="csg-success" id="csgSuccess" style="display:none;">
+            <div class="csg-success-icon">✅</div>
+            <div>
+              <p class="csg-success-title">Check your inbox — it's on its way!</p>
+              <p class="csg-success-sub">
+                Can't find it? Check your spam folder. Still nothing?
+                Email <a href="mailto:nas@talktomedata.com">nas@talktomedata.com</a> and I'll sort it.
+              </p>
+            </div>
+          </div>
+
+          <p class="csg-error" id="csgError" style="display:none;">
+            Something went wrong. Please try again or email
+            <a href="mailto:nas@talktomedata.com">nas@talktomedata.com</a>.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Guide preview mockup -->
+      <div class="csg-preview">
+        <div class="csg-preview-card">
+          <div class="csg-preview-bar"></div>
+          <div class="csg-preview-body">
+            <div class="csg-preview-tag">FREE GUIDE</div>
+            <p class="csg-preview-title">Best Claude Skills</p>
+            <p class="csg-preview-sub">Where to find them &amp; how to use them</p>
+            <div class="csg-preview-lines">
+              <div class="csg-line csg-line-full"></div>
+              <div class="csg-line csg-line-full"></div>
+              <div class="csg-line csg-line-mid"></div>
+              <div class="csg-line csg-line-sm" style="margin-top:16px;"></div>
+              <div class="csg-line csg-line-full"></div>
+              <div class="csg-line csg-line-full"></div>
+              <div class="csg-line csg-line-mid"></div>
+            </div>
+          </div>
+        </div>
+        <div class="csg-preview-label">PDF · Free Download</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── BACK ── -->
+  <div class="csg-back-row">
+    <a href="/guides" class="csg-btn-ghost">← Back to Guides</a>
+  </div>
+
+</div>
+
+<script>
+  const form = document.getElementById('csgForm') as HTMLFormElement;
+  const submitBtn = document.getElementById('csgSubmit') as HTMLButtonElement;
+  const successEl = document.getElementById('csgSuccess') as HTMLElement;
+  const errorEl = document.getElementById('csgError') as HTMLElement;
+  const emailInput = document.getElementById('csgEmail') as HTMLInputElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+    errorEl.style.display = 'none';
+
+    const data = new FormData(form);
+
+    try {
+      const res = await fetch('/api/send-guide', { method: 'POST', body: data });
+      const json = await res.json();
+
+      if (json.ok) {
+        form.style.display = 'none';
+        (form.previousElementSibling as HTMLElement).style.display = 'none';
+        successEl.style.display = 'flex';
+      } else {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send me the guide →';
+        errorEl.style.display = 'block';
+      }
+    } catch {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send me the guide →';
+      errorEl.style.display = 'block';
+    }
+  });
+</script>
+
+<style>
+  /* ════ BASE ════ */
+  .csg-page {
+    background: #ffffff;
+    color: #0f172a;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+  :global(.dark) .csg-page { background: #05050f; color: #e2e8f0; }
+
+  .csg-container {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 72px;
+    align-items: center;
+  }
+
+  /* ════ AMBIENT ════ */
+  .csg-ambient { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .csg-blob {
+    position: absolute; border-radius: 50%;
+    filter: blur(130px); opacity: 0.06;
+    animation: csgDrift 18s ease-in-out infinite alternate;
+  }
+  :global(.dark) .csg-blob { opacity: 0.15; }
+  .csg-blob-1 { width: 600px; height: 600px; background: #f97316; top: -100px; left: -100px; }
+  .csg-blob-2 { width: 480px; height: 480px; background: #a855f7; bottom: -60px; right: -60px; animation-delay: 8s; }
+  @keyframes csgDrift {
+    from { transform: translate(0,0) scale(1); }
+    to   { transform: translate(30px, 20px) scale(1.06); }
+  }
+  .csg-hero, .csg-back-row { position: relative; z-index: 1; }
+
+  /* ════ HERO ════ */
+  .csg-hero { padding: 100px 0 80px; }
+
+  .csg-hero-inner { display: flex; flex-direction: column; align-items: flex-start; }
+
+  /* Badge */
+  .csg-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(249,115,22,0.08);
+    border: 1px solid rgba(249,115,22,0.25);
+    border-radius: 999px;
+    padding: 7px 18px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #c2410c;
+    margin-bottom: 28px;
+  }
+  :global(.dark) .csg-badge { background: rgba(249,115,22,0.12); color: #fb923c; }
+  .csg-badge-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #f97316;
+    animation: csgPulse 1.8s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+  @keyframes csgPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  /* Title */
+  .csg-title {
+    font-size: clamp(1.9rem, 3.8vw, 2.9rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: #0f172a;
+    margin: 0 0 20px;
+  }
+  :global(.dark) .csg-title { color: #f8fafc; }
+  .csg-gradient {
+    background: linear-gradient(to right, #f97316, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .csg-br-mobile { display: none; }
+
+  .csg-sub {
+    font-size: 1.05rem;
+    color: #475569;
+    line-height: 1.75;
+    max-width: 500px;
+    margin: 0 0 32px;
+  }
+  :global(.dark) .csg-sub { color: #94a3b8; }
+
+  /* What's inside */
+  .csg-inside-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .csg-inside-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.97rem;
+    color: #334155;
+    font-weight: 500;
+  }
+  :global(.dark) .csg-inside-list li { color: #cbd5e1; }
+  .csg-check {
+    font-size: 0.9rem;
+    color: #f97316;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+
+  /* Form card */
+  .csg-form-card {
+    width: 100%;
+    max-width: 540px;
+    background: #ffffff;
+    border: 1.5px solid rgba(249,115,22,0.2);
+    border-radius: 20px;
+    padding: 32px 32px 28px;
+    box-shadow: 0 8px 40px rgba(249,115,22,0.08), 0 2px 12px rgba(0,0,0,0.05);
+  }
+  :global(.dark) .csg-form-card {
+    background: rgba(255,255,255,0.04);
+    border-color: rgba(249,115,22,0.25);
+    box-shadow: 0 8px 40px rgba(249,115,22,0.06);
+  }
+
+  .csg-form-label {
+    font-size: 0.97rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 16px;
+  }
+  :global(.dark) .csg-form-label { color: #f1f5f9; }
+
+  .csg-form { display: flex; flex-direction: column; gap: 10px; }
+  .csg-form-row { display: flex; gap: 10px; }
+
+  .csg-input {
+    flex: 1; min-width: 0;
+    padding: 14px 18px;
+    border-radius: 12px;
+    border: 1.5px solid #e2e8f0;
+    background: #f8fafc;
+    font-size: 0.97rem;
+    color: #0f172a;
+    outline: none;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  }
+  :global(.dark) .csg-input { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12); color: #f1f5f9; }
+  .csg-input::placeholder { color: #94a3b8; }
+  .csg-input:focus { border-color: #f97316; box-shadow: 0 0 0 3px rgba(249,115,22,0.12); }
+
+  .csg-btn {
+    padding: 14px 28px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.97rem;
+    font-weight: 700;
+    color: #fff;
+    white-space: nowrap;
+    background: linear-gradient(135deg, #f97316, #ef4444);
+    box-shadow: 0 4px 20px rgba(249,115,22,0.35);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    flex-shrink: 0;
+  }
+  .csg-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(249,115,22,0.45); }
+  .csg-btn:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
+
+  .csg-privacy {
+    font-size: 0.78rem;
+    color: #94a3b8;
+    margin: 0;
+  }
+
+  /* Success */
+  .csg-success {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 4px 0;
+  }
+  .csg-success-icon { font-size: 1.8rem; flex-shrink: 0; line-height: 1; }
+  .csg-success-title { font-size: 1rem; font-weight: 700; color: #0f172a; margin: 0 0 8px; }
+  :global(.dark) .csg-success-title { color: #f1f5f9; }
+  .csg-success-sub {
+    font-size: 0.88rem;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.65;
+  }
+  .csg-success-sub a { color: #f97316; font-weight: 600; text-decoration: none; }
+  .csg-success-sub a:hover { text-decoration: underline; }
+
+  /* Error */
+  .csg-error {
+    font-size: 0.85rem;
+    color: #dc2626;
+    margin: 8px 0 0;
+    line-height: 1.5;
+  }
+  .csg-error a { color: #dc2626; font-weight: 600; }
+
+  /* ════ PREVIEW MOCKUP ════ */
+  .csg-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  .csg-preview-card {
+    width: 100%;
+    max-width: 320px;
+    border-radius: 20px;
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+    overflow: hidden;
+    box-shadow: 0 12px 48px rgba(0,0,0,0.1);
+    transform: rotate(1.5deg);
+    transition: transform 0.3s ease;
+  }
+  :global(.dark) .csg-preview-card { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); }
+  .csg-preview-card:hover { transform: rotate(0deg) translateY(-4px); }
+  .csg-preview-bar { height: 6px; background: linear-gradient(90deg, #f97316, #ef4444); }
+  .csg-preview-body { padding: 32px 28px 36px; }
+  .csg-preview-tag {
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #f97316;
+    margin-bottom: 14px;
+  }
+  .csg-preview-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 6px;
+    letter-spacing: -0.02em;
+  }
+  :global(.dark) .csg-preview-title { color: #f1f5f9; }
+  .csg-preview-sub {
+    font-size: 0.82rem;
+    color: #64748b;
+    margin: 0 0 24px;
+    line-height: 1.5;
+  }
+  .csg-preview-lines { display: flex; flex-direction: column; gap: 8px; }
+  .csg-line {
+    height: 8px;
+    border-radius: 4px;
+    background: #e2e8f0;
+  }
+  :global(.dark) .csg-line { background: rgba(255,255,255,0.1); }
+  .csg-line-full { width: 100%; }
+  .csg-line-mid  { width: 70%; }
+  .csg-line-sm   { width: 40%; }
+
+  .csg-preview-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ════ GHOST BUTTON ════ */
+  .csg-btn-ghost {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: #64748b;
+    border: 1px solid #e2e8f0;
+    transition: all 0.2s ease;
+  }
+  :global(.dark) .csg-btn-ghost { color: #94a3b8; border-color: rgba(255,255,255,0.1); }
+  .csg-btn-ghost:hover { color: #0f172a; border-color: #94a3b8; background: #f8fafc; }
+  :global(.dark) .csg-btn-ghost:hover { color: #f8fafc; background: rgba(255,255,255,0.06); }
+
+  /* ════ BACK ROW ════ */
+  .csg-back-row { text-align: center; padding: 32px 0 80px; }
+
+  /* ════ RESPONSIVE ════ */
+  @media (max-width: 860px) {
+    .csg-container {
+      grid-template-columns: 1fr;
+      gap: 56px;
+    }
+    .csg-preview { display: none; }
+    .csg-hero { padding: 80px 0 60px; }
+  }
+
+  @media (max-width: 560px) {
+    .csg-hero { padding: 64px 0 48px; }
+    .csg-form-card { padding: 24px 20px 20px; }
+    .csg-form-row { flex-direction: column; }
+    .csg-btn { width: 100%; text-align: center; }
+    .csg-br-mobile { display: inline; }
+  }
+</style>
+</Layout>

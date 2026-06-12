@@ -52,7 +52,7 @@ const guides = [
       <div class="guides-grid">
 
         {guides.map((guide) => (
-          <div class="guide-card" id={guide.id}>
+          <a class="guide-card guide-card-link" id={guide.id} href={`/${guide.id}`}>
             <div class={`guide-card-top ${guide.gradientClass}`}></div>
             <div class="guide-card-body">
 
@@ -64,30 +64,13 @@ const guides = [
               <h2 class="guide-title">{guide.title}</h2>
               <p class="guide-desc">{guide.description}</p>
 
-              <form
-                class="guide-form"
-                action="/api/send-guide"
-                method="POST"
-              >
-
-                <div class="guide-form-row">
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Your email address"
-                    required
-                    class="guide-input"
-                    autocomplete="email"
-                  />
-                  <button type="submit" class={`guide-btn ${guide.gradientClass}`}>
-                    Send me this guide →
-                  </button>
-                </div>
-                <p class="guide-privacy">No spam. Unsubscribe any time.</p>
-              </form>
+              <div class="guide-card-footer">
+                <span class={`guide-btn ${guide.gradientClass}`}>Get the Free Guide →</span>
+                <p class="guide-privacy">Free · No spam · Instant delivery</p>
+              </div>
 
             </div>
-          </div>
+          </a>
         ))}
 
       </div>
@@ -107,69 +90,6 @@ const guides = [
 
 </div>
 
-<script>
-  document.querySelectorAll('.guide-form').forEach((form) => {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const f = e.currentTarget as HTMLFormElement;
-      const card = f.closest('.guide-card-body') as HTMLElement;
-      const btn = f.querySelector('button[type="submit"]') as HTMLButtonElement;
-
-      // Loading state
-      btn.disabled = true;
-      btn.textContent = 'Sending…';
-
-      const data = new FormData(f);
-
-      try {
-        const res = await fetch('/api/send-guide', {
-          method: 'POST',
-          body: data,
-        });
-        const json = await res.json();
-
-        if (json.ok) {
-          // Replace the form with the success message inside the card
-          f.innerHTML = `
-            <div style="padding:24px 0 8px;">
-              <div style="font-size:2rem;margin-bottom:12px;">✅</div>
-              <p style="font-size:1rem;font-weight:700;color:inherit;margin:0 0 8px;">Check your inbox — the guide is on its way!</p>
-              <p style="font-size:0.88rem;color:#64748b;margin:0;line-height:1.6;">
-                Can't find it? Check your spam folder first. If it's not there, email me at
-                <a href="mailto:nas@talktomedata.com" style="color:#f97316;font-weight:600;">nas@talktomedata.com</a>
-                and I'll send it over.
-              </p>
-            </div>
-          `;
-        } else {
-          // Show error below the form
-          btn.disabled = false;
-          btn.textContent = 'Send me this guide →';
-          let err = card.querySelector('.guide-inline-error') as HTMLElement | null;
-          if (!err) {
-            err = document.createElement('p');
-            err.className = 'guide-inline-error';
-            err.style.cssText = 'font-size:0.85rem;color:#dc2626;margin:8px 0 0;';
-            card.appendChild(err);
-          }
-          err.textContent = 'Something went wrong. Please try again or email nas@talktomedata.com.';
-        }
-      } catch {
-        btn.disabled = false;
-        btn.textContent = 'Send me this guide →';
-        let err = card.querySelector('.guide-inline-error') as HTMLElement | null;
-        if (!err) {
-          err = document.createElement('p');
-          err.className = 'guide-inline-error';
-          err.style.cssText = 'font-size:0.85rem;color:#dc2626;margin:8px 0 0;';
-          card.appendChild(err);
-        }
-        err.textContent = 'Something went wrong. Please try again or email nas@talktomedata.com.';
-      }
-    });
-  });
-</script>
 
 <style>
   /* ════ BASE ════ */
@@ -267,36 +187,31 @@ const guides = [
   .guide-desc { font-size: 1rem; color: #475569; line-height: 1.75; margin: 0; }
   :global(.dark) .guide-desc { color: #94a3b8; }
 
-  /* ════ FORM ════ */
-  .guide-form { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
-  .guide-form-row { display: flex; gap: 10px; }
-  .guide-input {
-    flex: 1; min-width: 0;
-    padding: 14px 18px;
-    border-radius: 12px;
-    border: 1px solid #e2e8f0;
-    background: #f8fafc;
-    font-size: 0.97rem;
-    color: #0f172a;
-    outline: none;
-    transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  /* ════ CARD LINK ════ */
+  .guide-card-link {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
   }
-  :global(.dark) .guide-input { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); color: #f1f5f9; }
-  .guide-input::placeholder { color: #94a3b8; }
-  .guide-input:focus { border-color: #f97316; box-shadow: 0 0 0 3px rgba(249,115,22,0.1); }
+  .guide-card-link:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(249,115,22,0.15);
+  }
+
+  /* ════ CARD FOOTER ════ */
+  .guide-card-footer { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
   .guide-btn {
+    display: inline-block;
     padding: 14px 28px;
     border-radius: 12px;
-    border: none;
-    cursor: pointer;
     font-size: 0.97rem;
     font-weight: 700;
     color: #fff;
     white-space: nowrap;
+    text-align: center;
     transition: transform 0.18s ease, box-shadow 0.18s ease;
-    flex-shrink: 0;
   }
-  .guide-btn:hover { transform: translateY(-2px); }
   .guide-btn.gg-orange { background: linear-gradient(135deg, #f97316, #ef4444); box-shadow: 0 4px 20px rgba(249,115,22,0.3); }
   .guide-privacy { font-size: 0.78rem; color: #94a3b8; margin: 0; }
 
@@ -359,8 +274,7 @@ const guides = [
     .guides-hero { padding: 72px 0 40px; }
     .guide-card-body { padding: 28px 24px 24px; }
     .guide-title { font-size: 1.4rem; }
-    .guide-form-row { flex-direction: column; }
-    .guide-btn { width: 100%; text-align: center; }
+    .guide-btn { width: 100%; }
     .guides-cta-inner { flex-direction: column; align-items: flex-start; }
     .guides-cta-btn { width: 100%; text-align: center; }
   }
