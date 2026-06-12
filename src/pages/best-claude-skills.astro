@@ -177,9 +177,13 @@ const metadata = {
   :global(.dark) .csg-page { background: #05050f; color: #e2e8f0; }
 
   .csg-container {
-    max-width: 860px;
+    max-width: 1060px;
     margin: 0 auto;
     padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 72px;
+    align-items: center;
   }
 
   /* ════ AMBIENT ════ */
@@ -201,7 +205,7 @@ const metadata = {
   /* ════ HERO ════ */
   .csg-hero { padding: 100px 0 80px; }
 
-  .csg-hero-inner { display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .csg-hero-inner { display: flex; flex-direction: column; align-items: flex-start; }
 
   /* Badge */
   .csg-badge {
@@ -262,9 +266,8 @@ const metadata = {
     padding: 0;
     margin: 0 0 36px;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px 28px;
+    flex-direction: column;
+    gap: 12px;
   }
   .csg-inside-list li {
     display: flex;
@@ -457,7 +460,14 @@ const metadata = {
   .csg-back-row { text-align: center; padding: 32px 0 80px; }
 
   /* ════ RESPONSIVE ════ */
-  .csg-preview { display: none; }
+  @media (max-width: 860px) {
+    .csg-container {
+      grid-template-columns: 1fr;
+      gap: 56px;
+    }
+    .csg-preview { display: none; }
+    .csg-hero { padding: 80px 0 60px; }
+  }
 
   @media (max-width: 560px) {
     .csg-hero { padding: 64px 0 48px; }
@@ -465,7 +475,6 @@ const metadata = {
     .csg-form-row { flex-direction: column; }
     .csg-btn { width: 100%; text-align: center; }
     .csg-br-mobile { display: inline; }
-    .csg-inside-list { flex-direction: column; align-items: center; }
   }
 </style>
 </Layout>
