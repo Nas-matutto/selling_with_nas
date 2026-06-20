@@ -37,6 +37,34 @@ Just paste the code into your message, either alone or in combination with your 
 
 Claude reads the code first and adjusts how it approaches the entire response. Some work better standalone; others are best paired with a specific request. I'll note where it matters.
 
+<div style="display: flex; flex-direction: column; align-items: center; margin: 36px 0;">
+  <blockquote
+    class="instagram-media"
+    data-instgrm-permalink="https://www.instagram.com/p/DZs0MMIIJ4I/"
+    data-instgrm-version="14"
+    style="background:#fff; border:0; border-radius:12px; box-shadow:0 4px 24px rgba(0,0,0,0.12); margin:0; max-width:480px; width:100%;">
+  </blockquote>
+  <script async src="//www.instagram.com/embed.js"></script>
+  <a
+    href="https://www.instagram.com/sellingwithnas/"
+    target="_blank"
+    rel="noopener noreferrer"
+    style="
+      display: inline-block;
+      margin-top: 18px;
+      background: linear-gradient(135deg, #f97316, #e1306c);
+      color: white;
+      padding: 12px 28px;
+      border-radius: 18px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      box-shadow: 0 4px 16px rgba(225, 48, 108, 0.35);
+    ">
+    Want to see more Claude tips and tricks — follow along here →
+  </a>
+</div>
+
 ---
 
 ## Writing & Style
