@@ -160,6 +160,37 @@ Sees through the obvious answer to find what's really going on. Claude looks pas
 
 ---
 
+<div style="display: flex; flex-direction: column; align-items: center; margin: 36px 0;">
+  <blockquote
+    class="tiktok-embed"
+    cite="https://www.tiktok.com/@sellingwithnas/video/7651928262683135254"
+    data-video-id="7651928262683135254"
+    style="max-width: 480px; min-width: 325px; width: 100%; border-radius: 12px; overflow: hidden;">
+    <section></section>
+  </blockquote>
+  <script async src="https://www.tiktok.com/embed.js"></script>
+  <a
+    href="https://www.tiktok.com/@sellingwithnas"
+    target="_blank"
+    rel="noopener noreferrer"
+    style="
+      display: inline-block;
+      margin-top: 18px;
+      background: #000000;
+      color: white;
+      padding: 12px 28px;
+      border-radius: 18px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    ">
+    Want to see more Claude tips and tricks — follow along here →
+  </a>
+</div>
+
+---
+
 ## Learning & Mastery
 
 These codes turn Claude into a teacher, tutor, or personal mentor.
