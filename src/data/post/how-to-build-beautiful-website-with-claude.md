@@ -3,7 +3,7 @@ publishDate: 2026-06-22T00:00:00Z
 author: Nas
 title: How to Build a Beautiful Website with Claude - All the Design Skills You Need
 excerpt: Most AI websites look identical. Here's the exact skill stack that makes Claude build something genuinely distinctive — five design skills, the order to use them, and the prompts that get results.
-image: ~/assets/images/Claude_AI_customize.png
+image: ~/assets/images/Design_Skills_Claude_website.png
 category: Technology
 tags:
   - AI
@@ -49,7 +49,7 @@ A Claude Skill is a markdown file that teaches Claude how to do something with e
 
 For web design, this means Claude doesn't just know *how* to write CSS - it knows how to make design *decisions*: which direction to commit to, how to build a coherent visual system, and how to audit the result for quality.
 
-If you haven't installed skills before, read [How to Download and Use a Skill with Claude AI](/how-to-download-and-use-a-skill-with-claude) first — it covers the full process in under five minutes.
+If you haven't installed skills before, read [How to Download and Use a Skill with Claude AI](/how-to-download-and-use-a-skill-with-claude) first - it covers the full process in under five minutes.
 
 ---
 
@@ -61,7 +61,7 @@ Here are the five skills, in the order you should use them on any web project.
 
 ### 1. Frontend Design Skill - Start Here, Every Time
 
-**What it does:** Before Claude writes a single line of code, this skill forces it to commit to a specific aesthetic direction. Think: brutalist, editorial, warm minimalist, retro-futuristic. It defines the visual language up front — typography, spacing system, colour philosophy, motion treatment — and holds to it throughout the entire build.
+**What it does:** Before Claude writes a single line of code, this skill forces it to commit to a specific aesthetic direction. Think: brutalist, editorial, warm minimalist, retro-futuristic. It defines the visual language up front, like the typography, spacing system, colour philosophy, motion treatment, and more. All of it while holding the design principles throughout the build.
 
 **Why it matters:** The root cause of generic AI design is that models skip the "what direction are we going?" question and jump straight to building. This skill makes Claude answer that question first, so every decision that follows is coherent and intentional.
 
@@ -79,7 +79,7 @@ The audience is [describe them]. I want the aesthetic to feel [bold/minimal/edit
 
 ---
 
-### 2. Taste Skill — Set the Dials Before Building
+### 2. Taste Skill - Set the Dials Before Building
 
 **What it does:** Three adjustable parameters that tell Claude exactly what register to work in before it starts:
 - **Design variance** - how experimental vs. conventional the aesthetic should be
@@ -150,11 +150,11 @@ Select a colour palette and type system that fits the brand direction we've esta
 
 **When to use it:** After Taste and Frontend Design, once the aesthetic direction is locked in. Let this skill build the design system on top of the direction you've already set.
 
-<a href="https://github.com/anthropics/skills" target="_blank" rel="noopener noreferrer">→ Find the UI-UX Pro Max Skill on GitHub</a>
+<a href="https://github.com/nextlevelbuilder/ui-ux-pro-max-skill" target="_blank" rel="noopener noreferrer">→ Install the UI-UX Pro Max Skill on GitHub</a>
 
 ---
 
-### 4. Artifacts Builder — Bring the Site to Life with Interactive Elements
+### 4. Artifacts Builder - Bring the Site to Life with Interactive Elements
 
 **What it does:** Specialises Claude in building complex, multi-component web elements that go beyond static pages - interactive dashboards, animated hero sections, custom calculators, data visualisations, pricing tables with live logic, and feature showcases with real interactivity.
 
@@ -175,7 +175,7 @@ Brand it using the design system we've already established.
 
 ---
 
-### 5. Vercel UI Guidelines — Audit Before You Ship
+### 5. Vercel UI Guidelines - Audit Before You Ship
 
 **What it does:** A final quality pass that audits your completed site against 100+ rules covering accessibility, performance, visual hierarchy, and responsive behaviour. It catches specific issues that are easy to miss in a visual preview: missing focus states, insufficient colour contrast, poor touch target sizes, inconsistent spacing, and layout breakpoints that don't quite work on mobile.
 
@@ -196,7 +196,7 @@ List every issue found, categorised by severity, with specific recommendations f
 ---
 
 
-## The Full Workflow — Step by Step
+## The Full Workflow - Step by Step
 
 Here's how the five skills fit together into a complete build process:
 
@@ -227,7 +227,7 @@ Run the full quality audit on the completed site. Work through the issues it fla
   <p style="font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #f97316; margin: 0 0 12px;">Free Resource</p>
   <h3 style="font-size: 1.4rem; font-weight: 800; margin: 0 0 14px; letter-spacing: -0.02em;">Get My Full Claude Skills Guide</h3>
   <p style="font-size: 1rem; line-height: 1.7; max-width: 480px; margin: 0 auto 24px; opacity: 0.8;">
-    Every skill I use regularly — with direct GitHub links and install instructions. Free to download.
+    Every skill I use regularly - with direct GitHub links and install instructions. Free to download.
   </p>
   <a href="/best-claude-skills" style="
     display: inline-block;
@@ -271,7 +271,7 @@ v0 and Lovable are excellent for fast prototyping on top of pre-built component 
 
 **Do I need all five skills on every project?**
 
-No. A simple landing page works well with just Frontend Design and the Vercel audit. The full stack — Taste, Frontend Design, UI-UX Pro Max, Artifacts Builder, Vercel — is best for full sites where you want maximum control over quality and consistency.
+No. A simple landing page works well with just Frontend Design and the Vercel audit. The full stack - Taste, Frontend Design, UI-UX Pro Max, Artifacts Builder, Vercel - is best for full sites where you want maximum control over quality and consistency.
 
 **What if Claude ignores the skill and goes back to defaults?**
 
