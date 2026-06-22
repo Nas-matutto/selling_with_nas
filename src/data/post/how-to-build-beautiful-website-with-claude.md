@@ -3,7 +3,7 @@ publishDate: 2026-06-22T00:00:00Z
 author: Nas
 title: How to Build a Beautiful Website with Claude - All the Design Skills You Need
 excerpt: Most AI websites look identical. Here's the exact skill stack that makes Claude build something genuinely distinctive — five design skills, the order to use them, and the prompts that get results.
-image: ~/assets/images/Design_Skills_Claude_website.png
+image: ~/assets/images/Design_Skills_website.png
 category: Technology
 tags:
   - AI
