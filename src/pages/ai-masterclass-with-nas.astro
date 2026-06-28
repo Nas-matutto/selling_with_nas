@@ -4,15 +4,13 @@ import { Image } from 'astro:assets';
 import nasProfile from '~/assets/images/nas-profile.jpg';
 
 const metadata = {
-  title: 'Live AI Masterclass with Nas - Build Real AI Workflows in 90 Minutes',
-  description: 'Join a live AI masterclass with Nas and learn how to build real AI agents, automate your workflows, and use Claude like the top 1% of users. One session, end of every month. Spots are limited.',
-  keywords: 'AI masterclass, live AI workshop, Claude masterclass, AI agent workshop, learn AI with Nas, build AI workflows, AI for business, Claude tutorial live, AI automation masterclass',
+  title: '1-on-1 AI Masterclass with Nas - Claude Skills, Claude Code & AI Agents',
+  description: 'Book a private 1-on-1 AI masterclass with Nas. In one focused hour you\'ll learn Claude Skills, how to build apps with Claude Code, and how to build AI agents - tailored entirely to you.',
+  keywords: 'AI masterclass, 1-on-1 AI coaching, Claude masterclass, Claude skills, Claude Code, AI agent coaching, learn AI with Nas, private AI session, AI for business',
   canonical: 'https://www.sellingwithnas.com/ai-masterclass-with-nas',
 };
 
-// Update this date each month
-const sessionDate = 'June 27, 2026';
-const BOOKING_LINK = 'https://cal.com/nas-mansurali/ai-masterclass';
+const BOOKING_LINK = 'https://cal.com/nas-mansurali/1-on-1-masterclass';
 ---
 
 <Layout metadata={metadata}>
@@ -33,20 +31,21 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/ai-masterclass';
 
         <!-- Left: copy -->
         <div class="mc-hero-left">
-          <div class="mc-eyebrow">Live Masterclass · End of Every Month</div>
+          <div class="mc-eyebrow">Private 1-on-1 Masterclass</div>
           <h1 class="mc-hero-title">
-            Learn Real AI Workflows<br />
-            <span class="mc-gradient">in 90 Minutes</span>
+            Master AI With Nas<br />
+            <span class="mc-gradient">in a 1-Hour 1-on-1</span>
           </h1>
           <p class="mc-hero-sub">
-            Stop watching tutorials that teach theory. In this live session you'll build actual AI agents,
-            automate real workflows, and leave with working systems you can use the same day.
-          
+            Stop watching tutorials that teach theory. In this private 1-on-1 session we'll focus on exactly
+            what you need - Claude Skills, building apps with Claude Code, and building AI agents - and you'll
+            leave with working systems you can use the same day.
+
           </p>
           <div class="mc-session-pills">
-            <div class="mc-pill">⏱ 90 min + live Q&amp;A</div>
-            <div class="mc-pill">🔒 Limited seats</div>
-            <div class="mc-pill">📅 {sessionDate}</div>
+            <div class="mc-pill">⏱ 1-hour 1-on-1 session</div>
+            <div class="mc-pill">🎯 Book your spot</div>
+            <div class="mc-pill">👤 Just you &amp; Nas</div>
           </div>
           <a href="#what-youll-learn" class="mc-btn-ghost mc-ghost-inline">See what's covered ↓</a>
         </div>
@@ -54,16 +53,15 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/ai-masterclass';
         <!-- Right: booking card -->
         <div class="mc-hero-right">
           <div class="mc-hero-booking-card">
-            <div class="mc-hbc-tag">Next Session</div>
-            <div class="mc-hbc-date">{sessionDate}</div>
+            <div class="mc-hbc-tag">Learn With Me</div>
+            <div class="mc-hbc-date">1-on-1 Masterclass</div>
             <div class="mc-hbc-time-row">
-              <div class="mc-hbc-time-primary">2:00 PM Eastern (ET)</div>
-              <div class="mc-hbc-time-secondary">7:00 PM London · 11:00 AM Los Angeles</div>
+              <div class="mc-hbc-time-primary">A private 1-hour session</div>
+              <div class="mc-hbc-time-secondary">Booked at a time that works for you</div>
             </div>
             <a href={BOOKING_LINK} target="_blank" rel="noopener noreferrer" class="mc-btn-book mc-btn-book-full" id="book">
-              Reserve My Spot →
+              Book a 1-on-1 Session →
             </a>
-            <p class="mc-hbc-guarantee">✓ Can't make it? You'll get the recording.<br />Chat to me after if you have questions.</p>
           </div>
         </div>
 
@@ -90,7 +88,7 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/ai-masterclass';
       </div>
       <div class="mc-proof-div"></div>
       <div class="mc-proof-item">
-        <span class="mc-proof-num">90 min</span>
+        <span class="mc-proof-num">1-on-1</span>
         <span class="mc-proof-label">Zero filler, all action</span>
       </div>
     </div>
@@ -101,46 +99,28 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/ai-masterclass';
     <div class="mc-container">
       <div class="mc-section-header">
         <span class="mc-tag">The Curriculum</span>
-        <h2 class="mc-section-title">What you'll walk away with</h2>
-        <p class="mc-section-sub">Every session is hands-on. You follow along live and leave with working systems, not just notes.</p>
+        <h2 class="mc-section-title">Three things, done properly</h2>
+        <p class="mc-section-sub">This session is hands-on and built around you. We go deep on three things, you follow along live, and you leave with working systems - not just notes.</p>
       </div>
 
       <div class="mc-learn-grid">
         <div class="mc-learn-card">
           <div class="mc-learn-num">01</div>
-          <div class="mc-learn-icon">🗣️</div>
-          <h3>AI thinking and Prompting</h3>
-          <p>ULearn how to write great prompts that don't overwhelm you (or your AI) and that produce the results you want.</p>
+          <div class="mc-learn-icon">🧩</div>
+          <h3>Claude Skills</h3>
+          <p>Learn what Claude Skills are, how to create your own, and how to use them to get reliable, repeatable results tailored to the way you work.</p>
         </div>
         <div class="mc-learn-card">
           <div class="mc-learn-num">02</div>
-          <div class="mc-learn-icon">🔗</div>
-          <h3>Connect Claude to your tools</h3>
-          <p>You'll learn how MCP connectors work and how to link Claude to Gmail, Notion, Google Calendar, and more in under 5 minutes per integration.</p>
+          <div class="mc-learn-icon">💻</div>
+          <h3>Build Apps with Claude Code</h3>
+          <p>I'll show you how to set up Claude Code and use it to build real, working apps - without writing a single line of code yourself.</p>
         </div>
         <div class="mc-learn-card">
           <div class="mc-learn-num">03</div>
-          <div class="mc-learn-icon">⚙️</div>
-          <h3>Automate a real workflow</h3>
-          <p>We pick a live workflow such as lead qualification, email drafting, or content generation - and automate it end to end during the session.</p>
-        </div>
-        <div class="mc-learn-card">
-          <div class="mc-learn-num">04</div>
           <div class="mc-learn-icon">🤖</div>
-          <h3>Build your first AI agent</h3>
-          <p>We'll create a working AI agent inside the Claude desktop app using Projects, custom instructions, and MCP connectors - step by step, live.</p>
-        </div>
-        <div class="mc-learn-card">
-          <div class="mc-learn-num">05</div>
-          <div class="mc-learn-icon">💻</div>
-          <h3>Claude Code Introduction</h3>
-          <p>How to setup Claude Code to get started with building Apps without writing a single line of code.</p>
-        </div>
-        <div class="mc-learn-card">
-          <div class="mc-learn-num">06</div>
-          <div class="mc-learn-icon">💬</div>
-          <h3>Live Q&amp;A with Nas</h3>
-          <p>The last 20 minutes are open Q&amp;A. Bring your specific workflows, your blockers, or your product - we'll work through them together.</p>
+          <h3>Build AI Agents</h3>
+          <p>We'll create a working AI agent step by step - using Projects, custom instructions, and MCP connectors - so you leave with one running in your business.</p>
         </div>
       </div>
     </div>
@@ -159,8 +139,8 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/ai-masterclass';
             where I teach practical AI skills to tens of thousands of founders and builders, and I consult with businesses on embedding AI into their real workflows.
           </p>
           <p class="mc-about-bio">
-            I started these masterclasses because most AI education is either too theoretical or too technical. This session is built around what actually works — the
-            tools, the prompts, and the systems I use every day to build faster than most teams.
+            I started these 1-on-1 masterclasses because most AI education is either too theoretical or too technical. This private session is built around what actually
+            works for you — the tools and systems I use every day to build faster than most teams.
           </p>
           <div class="mc-about-links">
             <a href="https://www.youtube.com/@sellingwithnas" target="_blank" rel="noopener noreferrer" class="mc-about-link">YouTube →</a>
@@ -213,27 +193,27 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/ai-masterclass';
 
         <div class="mc-faq-item">
           <h3>Do I need any technical experience?</h3>
-          <p>None at all. The whole point of this masterclass is showing you what's possible without writing code. If you can use Claude, you can follow along.</p>
+          <p>None at all. The whole point of this 1-on-1 is showing you what's possible without writing code. If you can use Claude, you can follow along.</p>
         </div>
         <div class="mc-faq-item">
           <h3>What do I need to have ready before the session?</h3>
           <p>Just a Claude account (free or paid) and a laptop. We'll set everything else up together during the session. A Claude Pro subscription will let you follow along with the full demos.</p>
         </div>
         <div class="mc-faq-item">
-          <h3>Will I get a recording if I can't attend live?</h3>
-          <p>Yes - everyone who books gets access to the full recording, regardless of whether they can join live. The recording is available within 24 hours of the session.</p>
+          <h3>Is this really just me and you?</h3>
+          <p>Yes - it's a private 1-on-1 session. The full hour is yours, so we focus entirely on your goals, your tools, and the things you want to build.</p>
         </div>
         <div class="mc-faq-item">
-          <h3>How often do these sessions happen?</h3>
-          <p>Once a month, at the end of each month. Each session covers core AI workflow topics and includes a live build + Q&A. The curriculum evolves as the AI landscape does.</p>
+          <h3>How long is the session?</h3>
+          <p>One hour, fully focused on you. We go deep on Claude Skills, building apps with Claude Code, and building AI agents - and adapt to whatever matters most for your business.</p>
         </div>
         <div class="mc-faq-item">
           <h3>Is there a refund policy?</h3>
-          <p>Full refund if you can't attend and notify me 48 hours ahead. No questions asked. The goal is for you learn something valuable - if that doesn't happen, you shouldn't pay for it.</p>
+          <p>Full refund if you can't make it and notify me 48 hours ahead. No questions asked. The goal is for you to learn something valuable - if that doesn't happen, you shouldn't pay for it.</p>
         </div>
         <div class="mc-faq-item">
-          <h3>Will the content be different each month?</h3>
-          <p>The core curriculum stays consistent so every attendee gets the same foundation, but the live build and Q&A section adapts to what's most relevant that month - new Claude features, new tools, and questions from attendees in the room.</p>
+          <h3>Can we tailor the session to my needs?</h3>
+          <p>Absolutely - that's the whole point of going 1-on-1. We cover the three core topics, but how deep we go on each one is entirely up to you and what you're trying to build.</p>
         </div>
 
       </div>
@@ -245,16 +225,16 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/ai-masterclass';
     <div class="mc-container">
       <div class="mc-final-cta">
         <div class="mc-final-glow" aria-hidden="true"></div>
-        <div class="mc-final-badge">Next session: {sessionDate}</div>
+        <div class="mc-final-badge">Learn With Me</div>
         <h2 class="mc-final-title">
-          90 minutes from now you could have<br />
+          One hour from now you could have<br />
           <span class="mc-gradient">a working AI agent in your business.</span>
         </h2>
         <p class="mc-final-sub">
-          Stop saving tutorials for later. Join live, follow along, and build something real - with me guiding you every step of the way.
+          Stop saving tutorials for later. Book a private 1-on-1, follow along, and build something real - with me guiding you every step of the way.
         </p>
-        <a href={BOOKING_LINK} target="_blank" rel="noopener noreferrer" class="mc-btn-book mc-btn-book-lg">Reserve My Spot →</a>
-        <p class="mc-guarantee" style="margin-top:20px;">✓ Recording included · ✓ Chat to me after if you have questions</p>
+        <a href={BOOKING_LINK} target="_blank" rel="noopener noreferrer" class="mc-btn-book mc-btn-book-lg">Book a 1-on-1 Session →</a>
+        <p class="mc-guarantee" style="margin-top:20px;">✓ Just you &amp; Nas · ✓ Tailored entirely to your goals</p>
       </div>
     </div>
   </section>
