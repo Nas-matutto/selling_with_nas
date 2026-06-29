@@ -1,13 +1,23 @@
 ---
 export const prerender = true;
 
+import type { ImageMetadata } from 'astro';
 import Layout from '~/layouts/PageLayout.astro';
+import { findImage } from '~/utils/images';
+
+const ogImage = (await findImage('~/assets/images/Claude_Basics.jpg')) as ImageMetadata | string | undefined;
 
 const metadata = {
   title: 'Claude Code Setup Guide: Install It & Build Apps Without Code',
   description: 'Download the free Claude Code Setup Guide. A step-by-step walkthrough to install and set up Claude Code so you can start building real apps without writing a single line of code - straight to your inbox.',
   keywords: 'Claude Code setup, Claude Code guide, install Claude Code, build apps without code, Claude Code tutorial, free Claude Code guide',
   canonical: 'https://www.sellingwithnas.com/claude-code-setup',
+  openGraph: {
+    type: 'website',
+    ...(ogImage
+      ? { images: [{ url: ogImage, width: (ogImage as ImageMetadata)?.width, height: (ogImage as ImageMetadata)?.height }] }
+      : {}),
+  },
 };
 ---
 
