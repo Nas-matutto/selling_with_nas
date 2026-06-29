@@ -1,0 +1,1417 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Selling with Nas - AI Builder · Founder · GTM Strategist',
+  description: 'Helping founders and brands move faster with AI, automation, and Go-To-Market strategy that actually ships.',
+  ignoreTitleTemplate: true,
+};
+---
+
+<style>
+  /* ─── CSS TOKENS ─── */
+  .hp {
+    --hp-bg:           #fafbff;
+    --hp-bg-2:         #f1f5fb;
+    --hp-card:         rgba(255,255,255,0.8);
+    --hp-card-hover:   rgba(255,255,255,1);
+    --hp-border:       rgba(0,0,0,0.08);
+    --hp-border-hover: rgba(249,115,22,0.6);
+    --hp-text:         #0f172a;
+    --hp-muted:        #64748b;
+    --hp-subtle:       #94a3b8;
+    --hp-orange:       #f97316;
+    --hp-purple:       #a855f7;
+    --hp-cyan:         #22d3ee;
+    --hp-grad-brand:   linear-gradient(135deg, #f97316 0%, #ef4444 45%, #a855f7 100%);
+    --hp-grad-warm:    linear-gradient(135deg, #f97316, #f59e0b);
+    --hp-max-w:        1140px;
+    --hp-radius:       16px;
+    --hp-radius-sm:    10px;
+    --hp-radius-pill:  999px;
+    --hp-ease:         cubic-bezier(0.4, 0, 0.2, 1);
+    --hp-t:            0.25s;
+    font-family: 'Inter Variable', 'Inter', -apple-system, 'Segoe UI', sans-serif;
+  }
+  :global(.dark) .hp {
+    --hp-bg:           #07080f;
+    --hp-bg-2:         #0c0e1a;
+    --hp-card:         rgba(255,255,255,0.04);
+    --hp-card-hover:   rgba(255,255,255,0.07);
+    --hp-border:       rgba(255,255,255,0.08);
+    --hp-border-hover: rgba(249,115,22,0.5);
+    --hp-text:         #f1f5f9;
+    --hp-muted:        #8899aa;
+    --hp-subtle:       #4b5563;
+  }
+
+  /* ─── AURORA ─── */
+  .aurora {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    opacity: 0.6;
+  }
+  :global(.dark) .aurora { opacity: 1; }
+  .aurora-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 1;
+  }
+  .ab1 {
+    width: 700px; height: 700px;
+    top: -200px; left: -200px;
+    background: radial-gradient(circle, rgba(249,115,22,0.28), transparent 68%);
+    animation: hpDrift1 22s ease-in-out infinite;
+  }
+  .ab2 {
+    width: 600px; height: 600px;
+    top: -100px; right: -180px;
+    background: radial-gradient(circle, rgba(168,85,247,0.22), transparent 68%);
+    animation: hpDrift2 28s ease-in-out infinite;
+  }
+  .ab3 {
+    width: 500px; height: 500px;
+    top: 40vh; left: 35%;
+    background: radial-gradient(circle, rgba(239,68,68,0.14), transparent 68%);
+    animation: hpDrift3 18s ease-in-out infinite;
+  }
+  .ab4 {
+    width: 400px; height: 400px;
+    bottom: 10vh; left: -100px;
+    background: radial-gradient(circle, rgba(34,211,238,0.16), transparent 68%);
+    animation: hpDrift4 24s ease-in-out infinite;
+  }
+  .ab5 {
+    width: 550px; height: 550px;
+    bottom: -100px; right: -80px;
+    background: radial-gradient(circle, rgba(245,158,11,0.2), transparent 68%);
+    animation: hpDrift1 30s ease-in-out infinite reverse;
+  }
+  @keyframes hpDrift1 {
+    0%, 100% { transform: translate(0,0) scale(1); }
+    33%       { transform: translate(40px,-25px) scale(1.06); }
+    66%       { transform: translate(-30px,35px) scale(0.94); }
+  }
+  @keyframes hpDrift2 {
+    0%, 100% { transform: translate(0,0) scale(1); }
+    33%       { transform: translate(-50px,30px) scale(1.04); }
+    66%       { transform: translate(35px,-40px) scale(0.96); }
+  }
+  @keyframes hpDrift3 {
+    0%, 100% { transform: translate(0,0); }
+    50%       { transform: translate(-45px,50px) scale(1.08); }
+  }
+  @keyframes hpDrift4 {
+    0%, 100% { transform: translate(0,0); }
+    50%       { transform: translate(60px,-35px) scale(1.05); }
+  }
+
+  /* ─── LAYOUT HELPERS ─── */
+  .hp-main { position: relative; z-index: 1; }
+  .hp-container {
+    max-width: var(--hp-max-w);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ─── TYPOGRAPHY ─── */
+  .hp-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--hp-orange);
+  }
+  .hp-label::before {
+    content: '';
+    display: block;
+    width: 20px; height: 2px;
+    background: var(--hp-grad-warm);
+    border-radius: 2px;
+  }
+  .hp-grad-text {
+    background: var(--hp-grad-brand);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ─── BUTTONS ─── */
+  .hp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 26px;
+    border-radius: var(--hp-radius-pill);
+    font-size: 0.92rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all var(--hp-t) var(--hp-ease);
+    white-space: nowrap;
+  }
+  .hp-btn-primary {
+    background: var(--hp-grad-brand);
+    color: #fff;
+    box-shadow: 0 4px 24px rgba(249,115,22,0.35);
+  }
+  .hp-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(249,115,22,0.45);
+  }
+  .hp-btn-ghost {
+    background: var(--hp-card);
+    color: var(--hp-text);
+    border: 1px solid var(--hp-border);
+    backdrop-filter: blur(12px);
+  }
+  .hp-btn-ghost:hover {
+    background: var(--hp-card-hover);
+    border-color: var(--hp-border-hover);
+    transform: translateY(-2px);
+  }
+  .hp-btn-youtube {
+    background: #FF0000;
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(255,0,0,0.3);
+  }
+  .hp-btn-youtube:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(255,0,0,0.42);
+  }
+
+  /* ─── HERO ─── */
+  #hp-hero {
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    padding: 80px 0;
+  }
+  .hp-hero-inner { max-width: 820px; }
+  .hp-hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 16px 6px 10px;
+    border-radius: var(--hp-radius-pill);
+    background: rgba(249,115,22,0.1);
+    border: 1px solid rgba(249,115,22,0.25);
+    margin-bottom: 32px;
+    animation: hpFadeUp 0.7s ease both 0.1s;
+  }
+  .hp-eyebrow-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--hp-orange);
+    animation: hpPulse 2s ease-in-out infinite;
+  }
+  @keyframes hpPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.6; transform: scale(0.85); }
+  }
+  .hp-eyebrow-text {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--hp-orange);
+  }
+  .hp-hero-h1 {
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 1.06;
+    letter-spacing: -0.04em;
+    font-weight: 800;
+    color: var(--hp-text);
+    margin-bottom: 28px;
+    animation: hpFadeUp 0.7s ease both 0.2s;
+  }
+  .hp-hero-sub {
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    color: var(--hp-muted);
+    max-width: 580px;
+    line-height: 1.65;
+    margin-bottom: 44px;
+    animation: hpFadeUp 0.7s ease both 0.3s;
+  }
+  .hp-hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    animation: hpFadeUp 0.7s ease both 0.4s;
+  }
+  @keyframes hpFadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── YOUTUBE SECTION ─── */
+  #hp-youtube { padding: 80px 0 100px; }
+  .hp-yt-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  @media (max-width: 860px) {
+    .hp-yt-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+  .hp-yt-video-wrap {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #000;
+    aspect-ratio: 16 / 9;
+    box-shadow:
+      0 0 0 1px rgba(249,115,22,0.2),
+      0 24px 72px rgba(0,0,0,0.5),
+      0 0 80px rgba(249,115,22,0.08);
+  }
+  .hp-yt-video-wrap iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    border: none;
+  }
+  .hp-yt-title {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--hp-text);
+    margin: 14px 0 16px;
+    line-height: 1.2;
+  }
+  .hp-yt-desc {
+    color: var(--hp-muted);
+    font-size: 0.97rem;
+    line-height: 1.72;
+    margin-bottom: 28px;
+  }
+  .hp-yt-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+  .hp-yt-topic {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 5px 12px;
+    border-radius: var(--hp-radius-pill);
+    background: var(--hp-card);
+    border: 1px solid var(--hp-border);
+    color: var(--hp-muted);
+  }
+  .hp-yt-topic-dot { width: 6px; height: 6px; border-radius: 50%; }
+
+  /* ─── EXPERTISE BENTO ─── */
+  #hp-expertise { padding: 100px 0; }
+  .hp-section-header { margin-bottom: 52px; }
+  .hp-section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: var(--hp-text);
+    margin-top: 14px;
+  }
+  .hp-section-sub {
+    font-size: 1.05rem;
+    color: var(--hp-muted);
+    margin-top: 12px;
+    max-width: 480px;
+    line-height: 1.65;
+  }
+  .hp-bento {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto auto;
+    gap: 16px;
+  }
+  .hp-bento-card {
+    background: var(--hp-card);
+    border: 1px solid var(--hp-border);
+    border-radius: var(--hp-radius);
+    padding: 36px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: all var(--hp-t) var(--hp-ease);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  }
+  :global(.dark) .hp-bento-card { box-shadow: none; }
+  .hp-bento-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--hp-radius);
+    opacity: 0;
+    transition: opacity var(--hp-t) var(--hp-ease);
+    background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(249,115,22,0.06), transparent 40%);
+  }
+  .hp-bento-card:hover {
+    border-color: rgba(249,115,22,0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(249,115,22,0.12);
+  }
+  :global(.dark) .hp-bento-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.25); }
+  .hp-bento-card:hover::before { opacity: 1; }
+  .hp-bc-1 { grid-column: span 7; }
+  .hp-bc-2 { grid-column: span 5; }
+  .hp-bc-3 { grid-column: span 4; }
+  .hp-bc-4 { grid-column: span 8; }
+  @media (max-width: 900px) {
+    .hp-bc-1, .hp-bc-2, .hp-bc-3, .hp-bc-4 { grid-column: span 12; }
+  }
+  @media (min-width: 901px) and (max-width: 1100px) {
+    .hp-bc-1, .hp-bc-2, .hp-bc-3, .hp-bc-4 { grid-column: span 6; }
+  }
+  .hp-bento-icon {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 24px;
+  }
+  .hp-bento-card h3 {
+    font-size: 1.3rem; font-weight: 700;
+    color: var(--hp-text); margin-bottom: 10px;
+    letter-spacing: -0.025em;
+  }
+  .hp-bento-card p { font-size: 0.95rem; color: var(--hp-muted); line-height: 1.65; }
+  .hp-bento-tag {
+    display: inline-block;
+    font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.07em; text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: var(--hp-radius-pill);
+    margin-bottom: 16px;
+  }
+  .hp-bento-large {
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 800; letter-spacing: -0.03em;
+    color: var(--hp-text); line-height: 1.2; margin-bottom: 12px;
+  }
+
+  /* ─── SERVICES ─── */
+  #hp-services { padding: 100px 0; position: relative; }
+  .hp-services-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(249,115,22,0.04) 0%, transparent 50%, rgba(168,85,247,0.04) 100%);
+    pointer-events: none;
+  }
+  .hp-services-wrapper { position: relative; }
+  .hp-services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 52px;
+  }
+  @media (max-width: 860px) { .hp-services-grid { grid-template-columns: 1fr; } }
+
+  /* ── Masterclass banner ── */
+  .hp-masterclass-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-top: 28px;
+    padding: 26px 36px;
+    border-radius: 20px;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(249,115,22,0.07) 0%, rgba(168,85,247,0.09) 100%);
+    border: 1.5px solid transparent;
+    background-clip: padding-box;
+    outline: 1.5px solid rgba(168,85,247,0.25);
+    transition: all 0.25s ease;
+  }
+  .hp-masterclass-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(249,115,22,0.04), rgba(168,85,247,0.04));
+    transition: opacity 0.25s ease;
+  }
+  .hp-masterclass-banner:hover {
+    outline-color: rgba(168,85,247,0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(168,85,247,0.12);
+  }
+  .hp-mc-pulse {
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hp-mc-left {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    position: relative;
+    z-index: 1;
+    flex: 1;
+  }
+  .hp-mc-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #a855f7;
+  }
+  .hp-mc-text {
+    font-size: 1.18rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+    background: linear-gradient(to right, #f97316, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hp-mc-sub {
+    font-size: 0.87rem;
+    color: #64748b;
+    line-height: 1.5;
+    max-width: 520px;
+  }
+  :global(.dark) .hp-mc-sub { color: #94a3b8; }
+  .hp-mc-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    border-radius: 12px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    white-space: nowrap;
+    background: linear-gradient(135deg, #f97316, #a855f7);
+    color: #fff;
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+    box-shadow: 0 4px 20px rgba(168,85,247,0.25);
+    transition: box-shadow 0.2s ease;
+  }
+  .hp-masterclass-banner:hover .hp-mc-cta { box-shadow: 0 6px 28px rgba(168,85,247,0.35); }
+  .hp-mc-arrow { transition: transform 0.2s ease; }
+  .hp-masterclass-banner:hover .hp-mc-arrow { transform: translateX(3px); }
+  @media (max-width: 680px) {
+    .hp-masterclass-banner { flex-direction: column; align-items: flex-start; padding: 22px 24px; gap: 16px; }
+    .hp-mc-cta { width: 100%; justify-content: center; }
+  }
+  .hp-svc-card {
+    position: relative;
+    border-radius: var(--hp-radius);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: all var(--hp-t) var(--hp-ease);
+    border: 1px solid var(--hp-border);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+  }
+  :global(.dark) .hp-svc-card { box-shadow: none; }
+  .hp-svc-card-header {
+    padding: 28px 28px 22px;
+    position: relative;
+  }
+  .hp-svc-1 .hp-svc-card-header { background: linear-gradient(135deg, rgba(249,115,22,0.13) 0%, rgba(249,115,22,0.03) 100%); }
+  .hp-svc-2 .hp-svc-card-header { background: linear-gradient(135deg, rgba(168,85,247,0.15) 0%, rgba(168,85,247,0.03) 100%); }
+  .hp-svc-3 .hp-svc-card-header { background: linear-gradient(135deg, rgba(34,211,238,0.13) 0%, rgba(34,211,238,0.03) 100%); }
+  .hp-svc-card-body {
+    padding: 20px 28px 28px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    background: var(--hp-card);
+  }
+  :global(.dark) .hp-svc-card-body { background: rgba(255,255,255,0.03); }
+  .hp-svc-card:hover { transform: translateY(-6px); }
+  .hp-svc-1:hover { border-color: rgba(249,115,22,0.4); box-shadow: 0 20px 56px rgba(249,115,22,0.14); }
+  .hp-svc-2:hover { border-color: rgba(168,85,247,0.4); box-shadow: 0 20px 56px rgba(168,85,247,0.14); }
+  .hp-svc-3:hover { border-color: rgba(34,211,238,0.4);  box-shadow: 0 20px 56px rgba(34,211,238,0.12); }
+  .hp-svc-icon {
+    width: 48px; height: 48px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 14px;
+  }
+  .hp-svc-1 .hp-svc-icon { background: rgba(249,115,22,0.15); }
+  .hp-svc-2 .hp-svc-icon { background: rgba(168,85,247,0.15); }
+  .hp-svc-3 .hp-svc-icon { background: rgba(34,211,238,0.14); }
+  .hp-svc-num {
+    position: absolute; top: 16px; right: 20px;
+    font-size: 3rem; font-weight: 900;
+    letter-spacing: -0.05em; line-height: 1;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    user-select: none;
+  }
+  .hp-svc-1 .hp-svc-num { background: linear-gradient(135deg, rgba(249,115,22,0.3), rgba(249,115,22,0.07)); }
+  .hp-svc-2 .hp-svc-num { background: linear-gradient(135deg, rgba(168,85,247,0.35), rgba(168,85,247,0.07)); }
+  .hp-svc-3 .hp-svc-num { background: linear-gradient(135deg, rgba(34,211,238,0.32), rgba(34,211,238,0.06)); }
+  .hp-svc-badge {
+    display: inline-block;
+    font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: var(--hp-radius-pill);
+    width: fit-content;
+    margin-bottom: 10px;
+  }
+  .hp-svc-1 .hp-svc-badge { background: rgba(249,115,22,0.12); color: #f97316; border: 1px solid rgba(249,115,22,0.25); }
+  .hp-svc-2 .hp-svc-badge { background: rgba(168,85,247,0.12); color: #a855f7; border: 1px solid rgba(168,85,247,0.25); }
+  .hp-svc-3 .hp-svc-badge { background: rgba(34,211,238,0.12);  color: #22d3ee; border: 1px solid rgba(34,211,238,0.25); }
+  .hp-svc-title { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.025em; color: var(--hp-text); line-height: 1.3; }
+  .hp-svc-desc { font-size: 0.92rem; color: var(--hp-muted); line-height: 1.65; }
+  .hp-svc-bullets { list-style: none; display: flex; flex-direction: column; gap: 9px; flex: 1; padding: 0; margin: 0; }
+  .hp-svc-bullets li {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 0.86rem; color: var(--hp-muted); line-height: 1.5;
+  }
+  .hp-svc-bullets li::before {
+    content: ''; flex-shrink: 0;
+    width: 5px; height: 5px; border-radius: 50%; margin-top: 7px;
+  }
+  .hp-svc-1 .hp-svc-bullets li::before { background: #f97316; }
+  .hp-svc-2 .hp-svc-bullets li::before { background: #a855f7; }
+  .hp-svc-3 .hp-svc-bullets li::before { background: #22d3ee; }
+  .hp-svc-cta {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 0.86rem; font-weight: 600;
+    text-decoration: none; padding: 10px 0 0;
+    transition: gap var(--hp-t) var(--hp-ease);
+    margin-top: auto;
+  }
+  .hp-svc-1 .hp-svc-cta { color: #f97316; }
+  .hp-svc-2 .hp-svc-cta { color: #a855f7; }
+  .hp-svc-3 .hp-svc-cta { color: #22d3ee; }
+  .hp-svc-cta:hover { gap: 10px; }
+
+  /* ─── CTA ─── */
+  #hp-cta {
+    padding: 120px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hp-cta-glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(249,115,22,0.12), transparent 70%);
+    pointer-events: none;
+  }
+  .hp-cta-card {
+    position: relative;
+    background: var(--hp-card);
+    border: 1px solid rgba(249,115,22,0.2);
+    border-radius: 24px;
+    padding: 72px 48px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    max-width: 680px;
+    margin: 0 auto;
+    box-shadow: 0 0 0 1px rgba(249,115,22,0.06), 0 40px 80px rgba(0,0,0,0.15);
+  }
+  :global(html:not(.dark)) .hp-cta-card {
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 20px 60px rgba(249,115,22,0.1), 0 4px 24px rgba(0,0,0,0.08);
+  }
+  .hp-cta-eyebrow { margin-bottom: 20px; }
+  .hp-cta-h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; letter-spacing: -0.03em; color: var(--hp-text); margin-bottom: 16px; }
+  .hp-cta-sub { font-size: 1.05rem; color: var(--hp-muted); line-height: 1.65; margin-bottom: 40px; }
+  .hp-cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+  /* ─── POSTS CAROUSEL ─── */
+  #hp-posts {
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .hp-posts-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(249,115,22,0.025) 50%, transparent 100%);
+    pointer-events: none;
+  }
+  .hp-posts-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
+  }
+  .hp-posts-arrows { display: flex; gap: 8px; flex-shrink: 0; }
+  .hp-posts-arrow {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--hp-border);
+    background: var(--hp-card);
+    color: var(--hp-muted);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: all var(--hp-t) var(--hp-ease);
+  }
+  .hp-posts-arrow:hover:not(:disabled) { background: var(--hp-card-hover); border-color: var(--hp-border-hover); color: var(--hp-text); }
+  .hp-posts-arrow:disabled { opacity: 0.3; cursor: not-allowed; }
+  .hp-posts-track-wrap { overflow: hidden; }
+  .hp-posts-track {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.45s var(--hp-ease);
+    will-change: transform;
+  }
+  .hp-post-card {
+    flex: 0 0 calc(33.333% - 14px);
+    background: var(--hp-card);
+    border: 1px solid var(--hp-border);
+    border-radius: var(--hp-radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: all var(--hp-t) var(--hp-ease);
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  }
+  :global(.dark) .hp-post-card { box-shadow: none; }
+  .hp-post-card:hover { transform: translateY(-4px); border-color: rgba(249,115,22,0.3); }
+  :global(html:not(.dark)) .hp-post-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
+  :global(.dark) .hp-post-card:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.25); }
+  .hp-post-card-top { height: 6px; }
+  .hp-post-card-body {
+    padding: 22px 22px 18px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .hp-post-card-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .hp-post-category {
+    font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.07em; text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: var(--hp-radius-pill);
+  }
+  .hp-post-date { font-size: 0.74rem; color: var(--hp-subtle); }
+  .hp-post-title {
+    font-size: 0.98rem; font-weight: 700;
+    line-height: 1.38; letter-spacing: -0.015em;
+    color: var(--hp-text);
+  }
+  .hp-post-excerpt {
+    font-size: 0.84rem; color: var(--hp-muted);
+    line-height: 1.62; flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .hp-post-read-more {
+    font-size: 0.82rem; font-weight: 600; color: var(--hp-orange);
+    display: flex; align-items: center; gap: 4px;
+    margin-top: 4px;
+    transition: gap var(--hp-t) var(--hp-ease);
+  }
+  .hp-post-card:hover .hp-post-read-more { gap: 8px; }
+  .hp-posts-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 28px;
+  }
+  .hp-posts-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--hp-border);
+    cursor: pointer;
+    transition: all var(--hp-t) var(--hp-ease);
+    border: none;
+  }
+  .hp-posts-dot.active { background: var(--hp-orange); width: 24px; border-radius: 4px; }
+  .hp-posts-cta { text-align: center; margin-top: 36px; }
+  @media (max-width: 900px) { .hp-post-card { flex: 0 0 calc(50% - 10px); } }
+  @media (max-width: 600px) {
+    .hp-post-card { flex: 0 0 85%; }
+    .hp-posts-header { flex-direction: column; align-items: flex-start; }
+  }
+
+  /* ─── SCROLL REVEAL ─── */
+  .hp-reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s var(--hp-ease), transform 0.65s var(--hp-ease);
+  }
+  .hp-reveal.visible { opacity: 1; transform: translateY(0); }
+  .hp-reveal-d1 { transition-delay: 0.1s; }
+  .hp-reveal-d2 { transition-delay: 0.2s; }
+  .hp-reveal-d3 { transition-delay: 0.3s; }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 720px) {
+    #hp-hero     { padding: 60px 0 48px; min-height: auto; }
+    #hp-youtube  { padding: 44px 0 56px; }
+    #hp-expertise{ padding: 52px 0; }
+    #hp-services { padding: 52px 0; }
+    #hp-cta      { padding: 56px 0; }
+    #hp-posts    { padding: 56px 0; }
+    .hp-section-header { margin-bottom: 32px; }
+    .hp-services-grid  { gap: 14px; margin-top: 36px; }
+    .hp-bento    { gap: 12px; }
+    .hp-bento-card { padding: 22px; }
+    .hp-cta-card { padding: 40px 24px; }
+    .hp-yt-grid  { gap: 28px; }
+    .hp-container { padding: 0 16px; }
+    .hp-hero-h1  { margin-bottom: 20px; }
+    .hp-hero-sub { margin-bottom: 32px; }
+  }
+</style>
+
+<Layout metadata={metadata}>
+
+  <div class="hp">
+
+    <!-- Aurora background -->
+    <div class="aurora" aria-hidden="true">
+      <div class="aurora-blob ab1"></div>
+      <div class="aurora-blob ab2"></div>
+      <div class="aurora-blob ab3"></div>
+      <div class="aurora-blob ab4"></div>
+      <div class="aurora-blob ab5"></div>
+    </div>
+
+    <main class="hp-main">
+
+      <!-- ─── HERO ─── -->
+      <section id="hp-hero">
+        <div class="hp-container">
+          <div class="hp-hero-inner">
+            <div class="hp-hero-eyebrow">
+              <span class="hp-eyebrow-dot"></span>
+              <span class="hp-eyebrow-text">AI Builder · Founder · GTM Strategist</span>
+            </div>
+            <h1 class="hp-hero-h1">
+              Sharing
+              <span class="hp-grad-text">AI insights</span><br>
+              every week.
+            </h1>
+            <p class="hp-hero-sub">
+              Helping founders and brands move faster with AI,
+              automation, and Go-To-Market strategy that actually ships.
+            </p>
+            <div class="hp-hero-ctas">
+              <a href="/contact" class="hp-btn hp-btn-primary">Work With Me →</a>
+              <a href="/blog" class="hp-btn hp-btn-ghost">Browse Posts</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ─── YOUTUBE ─── -->
+      <section id="hp-youtube">
+        <div class="hp-container">
+          <div class="hp-yt-grid hp-reveal">
+            <div class="hp-yt-video-wrap">
+              <iframe
+                src="https://www.youtube.com/embed/fFKQb1RacLI"
+                title="Selling with Nas - YouTube"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <div class="hp-yt-text">
+              <span class="hp-label">On YouTube</span>
+              <h2 class="hp-yt-title">Practical content for founders who build with AI</h2>
+              <p class="hp-yt-desc">
+                I make videos about building real things with AI - no fluff, no hype.
+                From hands-on Claude Code tutorials to building AI Agents,
+                every video is designed to save you time and help you move faster.
+              </p>
+              <div class="hp-yt-topics">
+                <span class="hp-yt-topic"><span class="hp-yt-topic-dot" style="background:#f97316;"></span>AI &amp; Claude</span>
+                <span class="hp-yt-topic"><span class="hp-yt-topic-dot" style="background:#a855f7;"></span>Building Products</span>
+                <span class="hp-yt-topic"><span class="hp-yt-topic-dot" style="background:#22d3ee;"></span>Selling &amp; Growth</span>
+                <span class="hp-yt-topic"><span class="hp-yt-topic-dot" style="background:#f59e0b;"></span>E-Commerce</span>
+              </div>
+              <a href="https://www.youtube.com/@sellingwithnas" target="_blank" rel="noopener noreferrer" class="hp-btn hp-btn-youtube">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                Visit my YouTube Channel
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ─── EXPERTISE BENTO ─── -->
+      <section id="hp-expertise">
+        <div class="hp-container">
+          <div class="hp-section-header hp-reveal">
+            <span class="hp-label">Background</span>
+            <h2 class="hp-section-title">Why founders work with me</h2>
+            <p class="hp-section-sub">I've been in the trenches - from corporate e-commerce to founding, raising, and exiting a startup.</p>
+          </div>
+          <div class="hp-bento">
+            <div class="hp-bento-card hp-bc-1 hp-reveal hp-reveal-d1">
+              <div class="hp-bento-icon" style="background:rgba(249,115,22,0.12);">🛒</div>
+              <span class="hp-bento-tag" style="background:rgba(249,115,22,0.1);color:#f97316;border:1px solid rgba(249,115,22,0.2);">E-Commerce</span>
+              <div class="hp-bento-large">Ex-Amazon<br><span class="hp-grad-text">5 years</span></div>
+              <p>Spent five years at Amazon supporting brands scale revenue across e-commerce, building a deep understanding of what actually moves the needle online.</p>
+            </div>
+            <div class="hp-bento-card hp-bc-2 hp-reveal hp-reveal-d2">
+              <div class="hp-bento-icon" style="background:rgba(168,85,247,0.12);">🚀</div>
+              <span class="hp-bento-tag" style="background:rgba(168,85,247,0.1);color:#a855f7;border:1px solid rgba(168,85,247,0.2);">Founder</span>
+              <div class="hp-bento-large">Built, raised,<br><span style="background:linear-gradient(135deg,#a855f7,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">exited.</span></div>
+              <p>Founded a startup, raised VC capital, scaled to 15k+ users, and exited to a larger brand. I know what it takes to go from zero to a real business.</p>
+            </div>
+            <div class="hp-bento-card hp-bc-3 hp-reveal hp-reveal-d1">
+              <div class="hp-bento-icon" style="background:rgba(34,211,238,0.1);">🤖</div>
+              <span class="hp-bento-tag" style="background:rgba(34,211,238,0.1);color:#22d3ee;border:1px solid rgba(34,211,238,0.2);">AI &amp; Automation</span>
+              <h3>AI-First by Default</h3>
+              <p>I build with AI, not on top of it. From Claude-powered products to full automation pipelines, every workflow I design is built to scale without headcount.</p>
+            </div>
+            <div class="hp-bento-card hp-bc-4 hp-reveal hp-reveal-d2">
+              <div class="hp-bento-icon" style="background:rgba(245,158,11,0.12);">📈</div>
+              <span class="hp-bento-tag" style="background:rgba(245,158,11,0.1);color:#f59e0b;border:1px solid rgba(245,158,11,0.2);">Growth</span>
+              <div class="hp-bento-large">Obsessed with<br><span style="background:linear-gradient(135deg,#f59e0b,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Revenue</span></div>
+              <p>Growth, automations, and product development - that's what I focus on every day. Whether Meta ads for Shopify, landing page conversion, or building new revenue streams with AI.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ─── SERVICES ─── -->
+      <section id="hp-services">
+        <div class="hp-services-bg"></div>
+        <div class="hp-container hp-services-wrapper">
+          <div class="hp-section-header hp-reveal">
+            <span class="hp-label">Services</span>
+            <h2 class="hp-section-title">How I can help you grow</h2>
+            <p class="hp-section-sub">Three focused ways I work with founders and brands - each one AI-native from day one.</p>
+          </div>
+          <div class="hp-services-grid">
+
+            <div class="hp-svc-card hp-svc-1 hp-reveal hp-reveal-d1">
+              <div class="hp-svc-card-header">
+                <span class="hp-svc-num">01</span>
+                <div class="hp-svc-icon">🌐</div>
+                <span class="hp-svc-badge">Done For You</span>
+                <div class="hp-svc-title">AI Website Build &amp; Launch</div>
+              </div>
+              <div class="hp-svc-card-body">
+                <p class="hp-svc-desc">From idea to fully live, AI-powered website. I handle the offer, the code, the design, the deployment, and the SEO foundation.</p>
+                <ul class="hp-svc-bullets">
+                  <li>Offer &amp; site structure consulting</li>
+                  <li>Code generation &amp; design with Claude + v0</li>
+                  <li>Vercel deployment &amp; analytics setup</li>
+                  <li>SEO foundation &amp; conversion optimisation</li>
+                </ul>
+                <a href="/contact" class="hp-svc-cta">Get in touch <span>→</span></a>
+              </div>
+            </div>
+
+            <div class="hp-svc-card hp-svc-2 hp-reveal hp-reveal-d2">
+              <div class="hp-svc-card-header">
+                <span class="hp-svc-num">02</span>
+                <div class="hp-svc-icon">🧠</div>
+                <span class="hp-svc-badge">Consulting</span>
+                <div class="hp-svc-title">AI Implementation Consulting</div>
+              </div>
+              <div class="hp-svc-card-body">
+                <p class="hp-svc-desc">I audit your workflows and embed AI into your marketing, operations, and growth systems — from prompt frameworks to full automation pipelines.</p>
+                <ul class="hp-svc-bullets">
+                  <li>Workflow audit &amp; opportunity mapping</li>
+                  <li>Prompt systems &amp; internal AI design</li>
+                  <li>Content &amp; growth pipeline implementation</li>
+                  <li>Tool stack integration &amp; optimisation</li>
+                </ul>
+                <a href="/contact" class="hp-svc-cta">Get in touch <span>→</span></a>
+              </div>
+            </div>
+
+            <div class="hp-svc-card hp-svc-3 hp-reveal hp-reveal-d3">
+              <div class="hp-svc-card-header">
+                <span class="hp-svc-num">03</span>
+                <div class="hp-svc-icon">⚡</div>
+                <span class="hp-svc-badge">High-Touch Coaching</span>
+                <div class="hp-svc-title">Build With Me</div>
+              </div>
+              <div class="hp-svc-card-body">
+                <p class="hp-svc-desc">A high-touch coaching program where I guide you through building, deploying, and launching your own AI-powered product or SaaS.</p>
+                <ul class="hp-svc-bullets">
+                  <li>Product validation &amp; architecture direction</li>
+                  <li>Code reviews &amp; prompt frameworks</li>
+                  <li>Deployment support &amp; launch strategy</li>
+                  <li>Independent capability building</li>
+                </ul>
+                <a href="/contact" class="hp-svc-cta">Get in touch <span>→</span></a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- ── Masterclass banner ── -->
+          <a href="/ai-masterclass-with-nas" class="hp-masterclass-banner hp-reveal">
+            <div class="hp-mc-pulse" aria-hidden="true"></div>
+            <div class="hp-mc-left">
+              <span class="hp-mc-eyebrow">1-on-1 · Live Masterclass</span>
+              <span class="hp-mc-text">Master AI in 1 hour, 1-on-1 with me</span>
+              <span class="hp-mc-sub">Pick one of three topics - Claude Skills, Claude Code, or AI Agents - and go deep in a private 1-hour session.</span>
+            </div>
+            <span class="hp-mc-cta">Book a 1-on-1 session <span class="hp-mc-arrow">→</span></span>
+          </a>
+
+        </div>
+      </section>
+
+
+      <!-- ─── CTA ─── -->
+      <section id="hp-cta">
+        <div class="hp-cta-glow" aria-hidden="true"></div>
+        <div class="hp-container">
+          <div class="hp-cta-card hp-reveal">
+            <div class="hp-cta-eyebrow">
+              <span class="hp-label" style="justify-content:center;">Let's build something</span>
+            </div>
+            <h2 class="hp-cta-h2">Ready to grow with AI?</h2>
+            <p class="hp-cta-sub">
+              Drop me a message and let's figure out the best way I can help —
+              whether that's a website, an automation, or building something entirely new.
+            </p>
+            <div class="hp-cta-btns">
+              <a href="/contact" class="hp-btn hp-btn-primary">Get in Touch →</a>
+              <a href="https://www.linkedin.com/in/nasser-mansurali-659145102/" target="_blank" rel="noopener" class="hp-btn hp-btn-ghost">Connect on LinkedIn</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ─── POSTS ─── -->
+      <section id="hp-posts">
+        <div class="hp-posts-bg" aria-hidden="true"></div>
+        <div class="hp-container">
+
+          <div class="hp-posts-header hp-reveal">
+            <div class="hp-section-header" style="margin-bottom:0;">
+              <span class="hp-label">From the blog</span>
+              <h2 class="hp-section-title">Latest Posts</h2>
+            </div>
+            <div class="hp-posts-arrows">
+              <button class="hp-posts-arrow" id="hpArrowPrev" aria-label="Previous" disabled>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              </button>
+              <button class="hp-posts-arrow" id="hpArrowNext" aria-label="Next">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="hp-posts-track-wrap hp-reveal hp-reveal-d1">
+            <div class="hp-posts-track" id="hpPostsTrack">
+
+              <a class="hp-post-card" href="/how-to-build-beautiful-website-with-claude">
+                <div class="hp-post-card-top" style="background:linear-gradient(90deg,#f97316,#a855f7);"></div>
+                <div class="hp-post-card-body">
+                  <div class="hp-post-card-meta">
+                    <span class="hp-post-category" style="background:rgba(249,115,22,0.1);color:#f97316;border:1px solid rgba(249,115,22,0.2);">AI &amp; Tools</span>
+                    <span class="hp-post-date">Jun 22, 2026</span>
+                  </div>
+                  <div class="hp-post-title">How to Build a Beautiful Website with Claude — All the Design Skills You Need</div>
+                  <p class="hp-post-excerpt">Most AI websites look identical. Here's the exact skill stack that makes Claude build something genuinely distinctive — five design skills, the order to use them, and the prompts that get results.</p>
+                  <span class="hp-post-read-more">Read more <span>→</span></span>
+                </div>
+              </a>
+
+              <a class="hp-post-card" href="/best-claude-hacks-and-secret-codes">
+                <div class="hp-post-card-top" style="background:linear-gradient(90deg,#f97316,#a855f7);"></div>
+                <div class="hp-post-card-body">
+                  <div class="hp-post-card-meta">
+                    <span class="hp-post-category" style="background:rgba(249,115,22,0.1);color:#f97316;border:1px solid rgba(249,115,22,0.2);">AI &amp; Tools</span>
+                    <span class="hp-post-date">Jun 16, 2026</span>
+                  </div>
+                  <div class="hp-post-title">50 Best Claude Hacks and Secret Codes That Actually Work</div>
+                  <p class="hp-post-excerpt">Short prompts that instantly unlock Claude's hidden modes — from /ghost to BEASTMODE. Copy any of these 50 codes into your next message and watch what happens.</p>
+                  <span class="hp-post-read-more">Read more <span>→</span></span>
+                </div>
+              </a>
+
+              <a class="hp-post-card" href="/best-claude-skills-for-website-design">
+                <div class="hp-post-card-top" style="background:linear-gradient(90deg,#f97316,#a855f7);"></div>
+                <div class="hp-post-card-body">
+                  <div class="hp-post-card-meta">
+                    <span class="hp-post-category" style="background:rgba(249,115,22,0.1);color:#f97316;border:1px solid rgba(249,115,22,0.2);">AI &amp; Tools</span>
+                    <span class="hp-post-date">Jun 14, 2026</span>
+                  </div>
+                  <div class="hp-post-title">Best Claude Skills to Design a Beautiful Website (With Links)</div>
+                  <p class="hp-post-excerpt">Five Claude Skills that turn Claude into a serious web designer — from locking in a bold aesthetic before writing a single line, to auditing the finished site for 100+ quality rules.</p>
+                  <span class="hp-post-read-more">Read more <span>→</span></span>
+                </div>
+              </a>
+
+              <a class="hp-post-card" href="/how-to-build-a-voice-ai-agent-with-claude-and-elevenlabs">
+                <div class="hp-post-card-top" style="background:linear-gradient(90deg,#f97316,#a855f7);"></div>
+                <div class="hp-post-card-body">
+                  <div class="hp-post-card-meta">
+                    <span class="hp-post-category" style="background:rgba(249,115,22,0.1);color:#f97316;border:1px solid rgba(249,115,22,0.2);">AI &amp; Tools</span>
+                    <span class="hp-post-date">Jun 4, 2026</span>
+                  </div>
+                  <div class="hp-post-title">How to Build a Voice AI Agent with Claude and ElevenLabs (No Code)</div>
+                  <p class="hp-post-excerpt">Connect ElevenLabs to Claude in minutes and build a voice agent that speaks its responses. Free tier, no code, and ready to demo in under 30 minutes.</p>
+                  <span class="hp-post-read-more">Read more <span>→</span></span>
+                </div>
+              </a>
+
+              <a class="hp-post-card" href="/how-to-build-your-first-ai-agent-with-claude">
+                <div class="hp-post-card-top" style="background:linear-gradient(90deg,#f97316,#a855f7);"></div>
+                <div class="hp-post-card-body">
+                  <div class="hp-post-card-meta">
+                    <span class="hp-post-category" style="background:rgba(249,115,22,0.1);color:#f97316;border:1px solid rgba(249,115,22,0.2);">AI &amp; Tools</span>
+                    <span class="hp-post-date">May 19, 2026</span>
+                  </div>
+                  <div class="hp-post-title">How to Build Your First AI Agent with Claude</div>
+                  <p class="hp-post-excerpt">No code required. Create a working travel planning agent inside the Claude desktop app using Projects, custom instructions, and MCP connectors like Expedia and Booking.com.</p>
+                  <span class="hp-post-read-more">Read more <span>→</span></span>
+                </div>
+              </a>
+
+              <a class="hp-post-card" href="/what-are-mcps-ai-agents-beginner-guide">
+                <div class="hp-post-card-top" style="background:linear-gradient(90deg,#f97316,#a855f7);"></div>
+                <div class="hp-post-card-body">
+                  <div class="hp-post-card-meta">
+                    <span class="hp-post-category" style="background:rgba(249,115,22,0.1);color:#f97316;border:1px solid rgba(249,115,22,0.2);">AI &amp; Tools</span>
+                    <span class="hp-post-date">May 13, 2026</span>
+                  </div>
+                  <div class="hp-post-title">What are MCPs? AI Agents Beginner Guide</div>
+                  <p class="hp-post-excerpt">MCPs are the universal translator that lets Claude talk to Gmail, Google Drive, Notion, Figma, and more — no custom infrastructure needed. Here's how they work.</p>
+                  <span class="hp-post-read-more">Read more <span>→</span></span>
+                </div>
+              </a>
+
+              <a class="hp-post-card" href="/how-to-launch-a-product-on-product-hunt">
+                <div class="hp-post-card-top" style="background:linear-gradient(90deg,#f97316,#ef4444);"></div>
+                <div class="hp-post-card-body">
+                  <div class="hp-post-card-meta">
+                    <span class="hp-post-category" style="background:rgba(249,115,22,0.1);color:#f97316;border:1px solid rgba(249,115,22,0.2);">Marketing</span>
+                    <span class="hp-post-date">May 7, 2026</span>
+                  </div>
+                  <div class="hp-post-title">How to Launch a Product on Product Hunt (Beginner Guide)</div>
+                  <p class="hp-post-excerpt">What I learned from launching LeadLanding on Product Hunt — timing, algorithm traps, realistic expectations, and exactly what to do in the weeks before your drop.</p>
+                  <span class="hp-post-read-more">Read more <span>→</span></span>
+                </div>
+              </a>
+
+              <a class="hp-post-card" href="/how-to-download-and-use-a-skill-with-claude">
+                <div class="hp-post-card-top" style="background:linear-gradient(90deg,#f97316,#a855f7);"></div>
+                <div class="hp-post-card-body">
+                  <div class="hp-post-card-meta">
+                    <span class="hp-post-category" style="background:rgba(249,115,22,0.1);color:#f97316;border:1px solid rgba(249,115,22,0.2);">AI &amp; Tools</span>
+                    <span class="hp-post-date">May 2, 2026</span>
+                  </div>
+                  <div class="hp-post-title">How to Download and Use a Skill with Claude AI and Claude Desktop App</div>
+                  <p class="hp-post-excerpt">Skills are lightweight files that give Claude specific expertise on demand. Here's how to find one on GitHub and install it in the Claude desktop app in under 5 minutes.</p>
+                  <span class="hp-post-read-more">Read more <span>→</span></span>
+                </div>
+              </a>
+
+              <a class="hp-post-card" href="/how-to-validate-and-launch-a-business-with-claude">
+                <div class="hp-post-card-top" style="background:linear-gradient(90deg,#a855f7,#f97316);"></div>
+                <div class="hp-post-card-body">
+                  <div class="hp-post-card-meta">
+                    <span class="hp-post-category" style="background:rgba(168,85,247,0.1);color:#a855f7;border:1px solid rgba(168,85,247,0.2);">AI &amp; Tools</span>
+                    <span class="hp-post-date">Apr 29, 2026</span>
+                  </div>
+                  <div class="hp-post-title">How to Validate and Launch a Business Idea with Claude AI</div>
+                  <p class="hp-post-excerpt">The Validation Sprint: a free 5-step framework to go from random idea to first lead captured in a single afternoon — using Claude, a landing page, and no budget.</p>
+                  <span class="hp-post-read-more">Read more <span>→</span></span>
+                </div>
+              </a>
+
+              <a class="hp-post-card" href="/how-to-reduce-claude-tokens-and-avoid-usage-limits">
+                <div class="hp-post-card-top" style="background:linear-gradient(90deg,#f97316,#ef4444);"></div>
+                <div class="hp-post-card-body">
+                  <div class="hp-post-card-meta">
+                    <span class="hp-post-category" style="background:rgba(249,115,22,0.1);color:#f97316;border:1px solid rgba(249,115,22,0.2);">AI &amp; Tools</span>
+                    <span class="hp-post-date">Apr 28, 2026</span>
+                  </div>
+                  <div class="hp-post-title">How to Reduce Claude Token Usage and Avoid Usage Limits</div>
+                  <p class="hp-post-excerpt">Hitting Claude's limits after just a few messages? Here are 10 practical ways to stretch your plan further and get more done without constantly running into the wall.</p>
+                  <span class="hp-post-read-more">Read more <span>→</span></span>
+                </div>
+              </a>
+
+              <a class="hp-post-card" href="/how-to-deploy-website-with-vercel-for-free">
+                <div class="hp-post-card-top" style="background:linear-gradient(90deg,#22d3ee,#3b82f6);"></div>
+                <div class="hp-post-card-body">
+                  <div class="hp-post-card-meta">
+                    <span class="hp-post-category" style="background:rgba(59,130,246,0.1);color:#3b82f6;border:1px solid rgba(59,130,246,0.2);">Web Dev</span>
+                    <span class="hp-post-date">Apr 20, 2026</span>
+                  </div>
+                  <div class="hp-post-title">How to Deploy Your Website with Vercel for Free</div>
+                  <p class="hp-post-excerpt">From exporting your files to going live with a custom domain — a beginner-friendly step-by-step guide to hosting your site for free with GitHub and Vercel.</p>
+                  <span class="hp-post-read-more">Read more <span>→</span></span>
+                </div>
+              </a>
+
+              <a class="hp-post-card" href="/how-to-use-claude-for-marketing">
+                <div class="hp-post-card-top" style="background:linear-gradient(90deg,#f97316,#a855f7);"></div>
+                <div class="hp-post-card-body">
+                  <div class="hp-post-card-meta">
+                    <span class="hp-post-category" style="background:rgba(249,115,22,0.1);color:#f97316;border:1px solid rgba(249,115,22,0.2);">AI &amp; Tools</span>
+                    <span class="hp-post-date">Apr 14, 2026</span>
+                  </div>
+                  <div class="hp-post-title">How to Use Claude for Marketing - Automate Social Media with AI</div>
+                  <p class="hp-post-excerpt">Claude can handle all three pillars of marketing content — written copy in your brand voice, visual assets, and short-form video. Here's exactly how to set it up.</p>
+                  <span class="hp-post-read-more">Read more <span>→</span></span>
+                </div>
+              </a>
+
+              <a class="hp-post-card" href="/claude-cowork-full-tutorial-for-beginners">
+                <div class="hp-post-card-top" style="background:linear-gradient(90deg,#f97316,#ef4444);"></div>
+                <div class="hp-post-card-body">
+                  <div class="hp-post-card-meta">
+                    <span class="hp-post-category" style="background:rgba(249,115,22,0.1);color:#f97316;border:1px solid rgba(249,115,22,0.2);">AI &amp; Tools</span>
+                    <span class="hp-post-date">Apr 8, 2026</span>
+                  </div>
+                  <div class="hp-post-title">Claude Cowork Full Tutorial for Beginners</div>
+                  <p class="hp-post-excerpt">Claude Cowork gives Claude access to your computer so it can actually do work for you. Here's how to set it up and start automating your day-to-day tasks.</p>
+                  <span class="hp-post-read-more">Read more <span>→</span></span>
+                </div>
+              </a>
+
+              <a class="hp-post-card" href="/claude-code-full-tutorial-for-beginners">
+                <div class="hp-post-card-top" style="background:linear-gradient(90deg,#f97316,#22d3ee);"></div>
+                <div class="hp-post-card-body">
+                  <div class="hp-post-card-meta">
+                    <span class="hp-post-category" style="background:rgba(249,115,22,0.1);color:#f97316;border:1px solid rgba(249,115,22,0.2);">AI &amp; Tools</span>
+                    <span class="hp-post-date">Apr 8, 2026</span>
+                  </div>
+                  <div class="hp-post-title">Claude Code Full Tutorial for Beginners — Non-Technical Friendly</div>
+                  <p class="hp-post-excerpt">Everything you need to know to get started with Claude Code — pricing, IDE setup, modes, slash commands, CLAUDE.md, skills, and a 5-step workflow from idea to launch.</p>
+                  <span class="hp-post-read-more">Read more <span>→</span></span>
+                </div>
+              </a>
+
+              <a class="hp-post-card" href="/top-10-claude-code-skills">
+                <div class="hp-post-card-top" style="background:linear-gradient(90deg,#f97316,#22d3ee);"></div>
+                <div class="hp-post-card-body">
+                  <div class="hp-post-card-meta">
+                    <span class="hp-post-category" style="background:rgba(249,115,22,0.1);color:#f97316;border:1px solid rgba(249,115,22,0.2);">AI &amp; Tools</span>
+                    <span class="hp-post-date">Mar 14, 2026</span>
+                  </div>
+                  <div class="hp-post-title">Top 10 Claude Code Skills — How to Start Using Them</div>
+                  <p class="hp-post-excerpt">Build websites, create AI videos, generate LinkedIn posts and more — all from a single prompt. Here are the 10 best Claude Skills to install right now.</p>
+                  <span class="hp-post-read-more">Read more <span>→</span></span>
+                </div>
+              </a>
+
+              <a class="hp-post-card" href="/how-to-start-using-claude-skills-top-15-skills">
+                <div class="hp-post-card-top" style="background:linear-gradient(90deg,#f97316,#a855f7);"></div>
+                <div class="hp-post-card-body">
+                  <div class="hp-post-card-meta">
+                    <span class="hp-post-category" style="background:rgba(249,115,22,0.1);color:#f97316;border:1px solid rgba(249,115,22,0.2);">AI &amp; Tools</span>
+                    <span class="hp-post-date">Mar 5, 2026</span>
+                  </div>
+                  <div class="hp-post-title">How to Start Using Claude Skills — Top 15 Skills to Copy Right Now</div>
+                  <p class="hp-post-excerpt">Claude Skills are reusable slash commands that supercharge Claude Code. Install them from GitHub in seconds and discover 15 must-have skills.</p>
+                  <span class="hp-post-read-more">Read more <span>→</span></span>
+                </div>
+              </a>
+
+              <a class="hp-post-card" href="/how-to-build-beautiful-websites-with-claude-design-skill">
+                <div class="hp-post-card-top" style="background:linear-gradient(90deg,#f97316,#ef4444);"></div>
+                <div class="hp-post-card-body">
+                  <div class="hp-post-card-meta">
+                    <span class="hp-post-category" style="background:rgba(249,115,22,0.1);color:#f97316;border:1px solid rgba(249,115,22,0.2);">AI &amp; Tools</span>
+                    <span class="hp-post-date">Feb 27, 2026</span>
+                  </div>
+                  <div class="hp-post-title">How to Build Beautiful Websites with Claude — Design Skill Tutorial</div>
+                  <p class="hp-post-excerpt">Learn how to build fully responsive, professional-looking websites with Claude's Frontend Design Skill — no coding required.</p>
+                  <span class="hp-post-read-more">Read more <span>→</span></span>
+                </div>
+              </a>
+
+              <a class="hp-post-card" href="/how-to-use-claude-remotion-to-create-ai-videos">
+                <div class="hp-post-card-top" style="background:linear-gradient(90deg,#a855f7,#ec4899);"></div>
+                <div class="hp-post-card-body">
+                  <div class="hp-post-card-meta">
+                    <span class="hp-post-category" style="background:rgba(168,85,247,0.1);color:#a855f7;border:1px solid rgba(168,85,247,0.2);">AI &amp; Tools</span>
+                    <span class="hp-post-date">Feb 20, 2026</span>
+                  </div>
+                  <div class="hp-post-title">How to Use Claude + Remotion to Create AI Videos</div>
+                  <p class="hp-post-excerpt">Create product demos, social media content, and animated videos using Claude and Remotion — no coding required. Step-by-step guide.</p>
+                  <span class="hp-post-read-more">Read more <span>→</span></span>
+                </div>
+              </a>
+
+              <a class="hp-post-card" href="/how-to-write-a-claude_md-file">
+                <div class="hp-post-card-top" style="background:linear-gradient(90deg,#22d3ee,#6366f1);"></div>
+                <div class="hp-post-card-body">
+                  <div class="hp-post-card-meta">
+                    <span class="hp-post-category" style="background:rgba(34,211,238,0.1);color:#22d3ee;border:1px solid rgba(34,211,238,0.2);">AI &amp; Tools</span>
+                    <span class="hp-post-date">Feb 13, 2026</span>
+                  </div>
+                  <div class="hp-post-title">The Complete Guide to Writing the Perfect CLAUDE.md File</div>
+                  <p class="hp-post-excerpt">Learn how to create a CLAUDE.md file that makes Claude Code smarter. Real examples, best practices, and common mistakes to avoid.</p>
+                  <span class="hp-post-read-more">Read more <span>→</span></span>
+                </div>
+              </a>
+
+              <a class="hp-post-card" href="/how-to-use-claude-code-for-beginners">
+                <div class="hp-post-card-top" style="background:linear-gradient(90deg,#f59e0b,#f97316);"></div>
+                <div class="hp-post-card-body">
+                  <div class="hp-post-card-meta">
+                    <span class="hp-post-category" style="background:rgba(245,158,11,0.1);color:#f59e0b;border:1px solid rgba(245,158,11,0.2);">AI &amp; Tools</span>
+                    <span class="hp-post-date">Feb 8, 2026</span>
+                  </div>
+                  <div class="hp-post-title">How to Use Claude Code for Beginners — A Non-Technical Founder's Guide</div>
+                  <p class="hp-post-excerpt">Everything non-technical founders need to know about Claude Code — from installation to daily use, plans, setup, and best practices.</p>
+                  <span class="hp-post-read-more">Read more <span>→</span></span>
+                </div>
+              </a>
+
+              <a class="hp-post-card" href="/how-to-build-website-with-v0">
+                <div class="hp-post-card-top" style="background:linear-gradient(90deg,#6366f1,#8b5cf6);"></div>
+                <div class="hp-post-card-body">
+                  <div class="hp-post-card-meta">
+                    <span class="hp-post-category" style="background:rgba(99,102,241,0.1);color:#6366f1;border:1px solid rgba(99,102,241,0.2);">Web Dev</span>
+                    <span class="hp-post-date">Dec 24, 2025</span>
+                  </div>
+                  <div class="hp-post-title">How to Build a Landing Page for Free with v0 — Step by Step</div>
+                  <p class="hp-post-excerpt">Complete tutorial on using Vercel's v0 to create professional, conversion-optimized landing pages in minutes, absolutely free.</p>
+                  <span class="hp-post-read-more">Read more <span>→</span></span>
+                </div>
+              </a>
+
+              <a class="hp-post-card" href="/how-to-automate-shopify-orders-with-zapier">
+                <div class="hp-post-card-top" style="background:linear-gradient(90deg,#10b981,#22d3ee);"></div>
+                <div class="hp-post-card-body">
+                  <div class="hp-post-card-meta">
+                    <span class="hp-post-category" style="background:rgba(16,185,129,0.1);color:#10b981;border:1px solid rgba(16,185,129,0.2);">E-Commerce</span>
+                    <span class="hp-post-date">Aug 23, 2025</span>
+                  </div>
+                  <div class="hp-post-title">Automate Your Shopify Orders to Google Sheets with Zapier</div>
+                  <p class="hp-post-excerpt">Automating your Shopify orders can save you hours per week and supercharge the way you manage and leverage your brand's data.</p>
+                  <span class="hp-post-read-more">Read more <span>→</span></span>
+                </div>
+              </a>
+
+            </div>
+          </div>
+
+          <div class="hp-posts-dots" id="hpPostsDots"></div>
+
+          <div class="hp-posts-cta hp-reveal">
+            <a href="/blog" class="hp-btn hp-btn-ghost">See all posts →</a>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+</Layout>
+
+<script>
+  let _hpRevealObserver: IntersectionObserver | null = null;
+
+  function initHomepage() {
+    // ── Scroll reveal ──
+    if (_hpRevealObserver) {
+      _hpRevealObserver.disconnect();
+    }
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    _hpRevealObserver = revealObserver;
+    document.querySelectorAll('.hp-reveal').forEach(el => revealObserver.observe(el));
+
+    // ── Bento card mouse spotlight ──
+    document.querySelectorAll('.hp-bento-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const me = e as MouseEvent;
+        const rect = (card as HTMLElement).getBoundingClientRect();
+        (card as HTMLElement).style.setProperty('--mouse-x', ((me.clientX - rect.left) / rect.width * 100) + '%');
+        (card as HTMLElement).style.setProperty('--mouse-y', ((me.clientY - rect.top) / rect.height * 100) + '%');
+      });
+    });
+
+    // ── Posts carousel ──
+    const track = document.getElementById('hpPostsTrack') as HTMLElement;
+    const dotsEl = document.getElementById('hpPostsDots') as HTMLElement;
+    const prevBtn = document.getElementById('hpArrowPrev') as HTMLButtonElement;
+    const nextBtn = document.getElementById('hpArrowNext') as HTMLButtonElement;
+    if (!track || !dotsEl || !prevBtn || !nextBtn) return;
+    const cards = Array.from(track.children) as HTMLElement[];
+    let idx = 0;
+
+    function visibleCount() {
+      const w = window.innerWidth;
+      if (w <= 600) return 1;
+      if (w <= 900) return 2;
+      return 3;
+    }
+    function totalSlides() { return Math.max(1, cards.length - visibleCount() + 1); }
+
+    function buildDots() {
+      dotsEl.innerHTML = '';
+      for (let i = 0; i < totalSlides(); i++) {
+        const btn = document.createElement('button');
+        btn.className = 'hp-posts-dot' + (i === 0 ? ' active' : '');
+        btn.setAttribute('aria-label', 'Slide ' + (i + 1));
+        btn.addEventListener('click', () => goTo(i));
+        dotsEl.appendChild(btn);
+      }
+    }
+
+    function goTo(n: number) {
+      idx = Math.max(0, Math.min(n, totalSlides() - 1));
+      const gap = 20;
+      const cardW = cards[0].offsetWidth + gap;
+      track.style.transform = 'translateX(-' + (idx * cardW) + 'px)';
+      dotsEl.querySelectorAll('.hp-posts-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+      prevBtn.disabled = idx === 0;
+      nextBtn.disabled = idx >= totalSlides() - 1;
+    }
+
+    prevBtn.addEventListener('click', () => goTo(idx - 1));
+    nextBtn.addEventListener('click', () => goTo(idx + 1));
+
+    let sx = 0;
+    track.addEventListener('touchstart', e => { sx = (e as TouchEvent).touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', e => {
+      const dx = (e as TouchEvent).changedTouches[0].clientX - sx;
+      if (Math.abs(dx) > 50) goTo(dx < 0 ? idx + 1 : idx - 1);
+    });
+
+    function initCarousel() { idx = 0; buildDots(); goTo(0); }
+    initCarousel();
+    window.addEventListener('resize', initCarousel);
+  }
+
+  initHomepage();
+  document.addEventListener('astro:after-swap', initHomepage);
+</script>

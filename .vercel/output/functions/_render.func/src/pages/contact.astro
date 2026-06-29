@@ -1,0 +1,559 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Contact Nas - E-commerce & Sales Strategy Consultation | Selling with Nas',
+  description: 'Get in touch with Nas for e-commerce consulting, sales strategy guidance, GTM support, and business automation advice. Free consultation available.',
+  keywords: 'contact nas, e-commerce consultant, sales strategy, GTM consulting, business automation, e-commerce expert',
+  canonical: 'https://www.sellingwithnas.com/contact',
+};
+---
+
+<Layout metadata={metadata}>
+
+  <!-- ── Contact Hero ── -->
+  <div class="contact-hero">
+    <div class="contact-hero-inner">
+      <span class="contact-label">Work With Me</span>
+      <h1 class="contact-title">Let's build something<br><span class="contact-title-grad">together</span></h1>
+      <p class="contact-sub">Founder, product, or growth — tell me what you're working on and I'll get back to you within 24 hours.</p>
+    </div>
+  </div>
+
+  <!-- ── Email CTA ── -->
+<div class="cta-section">
+  <div class="cta-inner">
+    <p class="cta-hint">No forms. Just a real conversation.</p>
+    <button type="button" class="email-btn" id="copyEmailBtn">
+      <!-- copy icon -->
+      <svg id="emailIconCopy" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+      </svg>
+      <!-- check icon (hidden by default) -->
+      <svg id="emailIconCheck" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:none">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+      <span id="emailBtnLabel">Email me</span>
+    </button>
+    <p class="cta-response" id="emailConfirm" style="min-height:1.4em;">I typically reply within a day.</p>
+  </div>
+</div>
+
+<script>
+  const EMAIL = 'nas@talktomedata.com';
+
+  async function copyToClipboard() {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+    } catch {
+      const ta = document.createElement('textarea');
+      ta.value = EMAIL;
+      ta.style.cssText = 'position:fixed;opacity:0;pointer-events:none';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    }
+  }
+
+  function showCopied() {
+    const label   = document.getElementById('emailBtnLabel');
+    const iconCopy  = document.getElementById('emailIconCopy');
+    const iconCheck = document.getElementById('emailIconCheck');
+    const confirm   = document.getElementById('emailConfirm');
+    if (label)     label.textContent = 'Copied!';
+    if (iconCopy)  iconCopy.style.display  = 'none';
+    if (iconCheck) iconCheck.style.display = '';
+    if (confirm)   confirm.textContent = '✓ Email copied — paste it into Gmail, Outlook, or any app.';
+    setTimeout(() => {
+      if (label)     label.textContent = 'Email me';
+      if (iconCopy)  iconCopy.style.display  = '';
+      if (iconCheck) iconCheck.style.display = 'none';
+      if (confirm)   confirm.textContent = 'I typically reply within a day.';
+    }, 3500);
+  }
+
+  function handleEmailClick() {
+    let emailClientOpened = false;
+    const onBlur = () => { emailClientOpened = true; };
+    window.addEventListener('blur', onBlur, { once: true });
+    window.location.href = 'mailto:' + EMAIL;
+    setTimeout(async () => {
+      window.removeEventListener('blur', onBlur);
+      if (!emailClientOpened) {
+        await copyToClipboard();
+        showCopied();
+      }
+    }, 600);
+  }
+
+  function initEmailButtons() {
+    const mainBtn = document.getElementById('copyEmailBtn');
+    if (mainBtn && !mainBtn.dataset.bound) {
+      mainBtn.dataset.bound = '1';
+      mainBtn.addEventListener('click', handleEmailClick);
+    }
+    const inlineBtn = document.getElementById('messageHereBtn');
+    if (inlineBtn && !inlineBtn.dataset.bound) {
+      inlineBtn.dataset.bound = '1';
+      inlineBtn.addEventListener('click', handleEmailClick);
+    }
+  }
+
+  initEmailButtons();
+  document.addEventListener('astro:after-swap', initEmailButtons);
+</script>
+
+  <!-- ── Services ── -->
+  <div class="services-section">
+    <div class="services-inner">
+      <div class="services-header">
+        <span class="contact-label">Services</span>
+        <h2 class="services-title">How I can help you grow</h2>
+        <p class="services-sub">Three focused ways I work with founders and brands — each one AI-native from day one.</p>
+      </div>
+      <div class="services-grid">
+
+        <div class="svc-card">
+          <div class="svc-top">
+            <span class="svc-num">01</span>
+            <div class="svc-icon">🌐</div>
+            <span class="svc-badge">Done For You</span>
+            <h3 class="svc-title">AI Website Build &amp; Launch</h3>
+          </div>
+          <div class="svc-body">
+            <p class="svc-desc">From idea to fully live, AI-powered website. I handle the offer, the code, the design, the deployment, and the SEO foundation.</p>
+            <ul class="svc-bullets">
+              <li>Offer &amp; site structure consulting</li>
+              <li>Code generation &amp; design with Claude + v0</li>
+              <li>Vercel deployment &amp; analytics setup</li>
+              <li>SEO foundation &amp; conversion optimisation</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="svc-card">
+          <div class="svc-top">
+            <span class="svc-num">02</span>
+            <div class="svc-icon">🧠</div>
+            <span class="svc-badge">Consulting</span>
+            <h3 class="svc-title">AI Implementation Consulting</h3>
+          </div>
+          <div class="svc-body">
+            <p class="svc-desc">I audit your workflows and embed AI into your marketing, operations, and growth systems — from prompt frameworks to full automation pipelines.</p>
+            <ul class="svc-bullets">
+              <li>Workflow audit &amp; opportunity mapping</li>
+              <li>Prompt systems &amp; internal AI design</li>
+              <li>Content &amp; growth pipeline implementation</li>
+              <li>Tool stack integration &amp; optimisation</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="svc-card">
+          <div class="svc-top">
+            <span class="svc-num">03</span>
+            <div class="svc-icon">⚡</div>
+            <span class="svc-badge">High-Touch Coaching</span>
+            <h3 class="svc-title">Build With Me</h3>
+          </div>
+          <div class="svc-body">
+            <p class="svc-desc">A high-touch coaching program where I guide you through building, deploying, and launching your own AI-powered product or SaaS.</p>
+            <ul class="svc-bullets">
+              <li>Product validation &amp; architecture direction</li>
+              <li>Code reviews &amp; prompt frameworks</li>
+              <li>Deployment support &amp; launch strategy</li>
+              <li>Independent capability building</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ── How I Work ── -->
+  <div class="process-section">
+    <div class="process-inner">
+      <div class="services-header">
+        <span class="contact-label">The Process</span>
+        <h2 class="services-title">How we'll work together</h2>
+        <p class="services-sub">Simple, low-friction, and built around your goals from the very first message.</p>
+      </div>
+      <div class="process-steps">
+
+<div class="process-step">
+  <div class="step-number">1</div>
+  <div class="step-connector" aria-hidden="true"></div>
+  <div class="step-icon">✉️</div>
+  <h3 class="step-title">Send me an email</h3>
+  <p class="step-desc">
+    Tell me what you're building, what's not working, or what you want to achieve. No briefs required — just 
+    <button type="button" class="step-link-btn" id="messageHereBtn">message me here</button>.
+  </p>
+</div>
+
+        <div class="process-step">
+          <div class="step-number">2</div>
+          <div class="step-connector" aria-hidden="true"></div>
+          <div class="step-icon">📞</div>
+          <h3 class="step-title">We jump on a call</h3>
+          <p class="step-desc">A short video call to understand your situation clearly, align on scope, and figure out the best way I can help. No sales pitch — just an honest conversation.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="step-number">3</div>
+          <div class="step-connector last" aria-hidden="true"></div>
+          <div class="step-icon">🚀</div>
+          <h3 class="step-title">We build together</h3>
+          <p class="step-desc">We agree on a plan and get moving. Whether it's a full site build, an AI implementation, or a coaching engagement — you'll have a hands-on partner throughout.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</Layout>
+
+<style>
+  /* ── Hero ── */
+  .contact-hero {
+    background: radial-gradient(ellipse at 50% -20%, rgba(249,115,22,0.10) 0%, transparent 65%);
+    padding: 64px 24px 0;
+    text-align: center;
+    animation: contactFadeUp 0.65s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+  :global(.dark) .contact-hero {
+    background: radial-gradient(ellipse at 50% -20%, rgba(249,115,22,0.07) 0%, transparent 65%);
+  }
+  .contact-hero-inner {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .contact-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #f97316;
+    margin-bottom: 16px;
+  }
+  .contact-label::before,
+  .contact-label::after {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: linear-gradient(90deg, #f97316, #f59e0b);
+    border-radius: 2px;
+  }
+
+  .contact-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: var(--aw-color-text-heading);
+    margin-bottom: 16px;
+  }
+  .contact-title-grad {
+    background: linear-gradient(135deg, #f97316 0%, #ef4444 50%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .contact-sub {
+    font-size: 1.05rem;
+    color: var(--aw-color-text-muted);
+    line-height: 1.65;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* ── Email CTA ── */
+  .cta-section {
+    padding: 56px 24px 64px;
+    text-align: center;
+  }
+  .cta-inner {
+    max-width: 560px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .cta-hint {
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--aw-color-text-muted);
+    margin: 0;
+  }
+  .email-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #f97316 0%, #ef4444 50%, #a855f7 100%);
+    color: #fff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    padding: 18px 36px;
+    border-radius: 999px;
+    text-decoration: none;
+    box-shadow: 0 8px 32px rgba(249,115,22,0.35), 0 2px 8px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: none;
+    cursor: pointer;
+  }
+  .email-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 40px rgba(249,115,22,0.45), 0 4px 12px rgba(0,0,0,0.10);
+    color: #fff;
+    text-decoration: none;
+  }
+  .cta-response {
+    font-size: 0.875rem;
+    color: var(--aw-color-text-muted);
+    margin: 0;
+  }
+
+  /* ── Services ── */
+  .services-section {
+    padding: 20px 24px 80px;
+    background: linear-gradient(135deg, rgba(249,115,22,0.03) 0%, transparent 50%, rgba(168,85,247,0.03) 100%);
+  }
+  :global(.dark) .services-section {
+    background: linear-gradient(135deg, rgba(249,115,22,0.05) 0%, transparent 50%, rgba(168,85,247,0.05) 100%);
+  }
+  .services-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .services-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .services-title {
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--aw-color-text-heading);
+    margin-bottom: 12px;
+  }
+  .services-sub {
+    font-size: 1rem;
+    color: var(--aw-color-text-muted);
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.65;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 860px) {
+    .services-grid { grid-template-columns: 1fr; }
+  }
+
+  .svc-card {
+    background: var(--aw-color-bg-page);
+    border: 1px solid rgba(0,0,0,0.07);
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .svc-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.09);
+  }
+  :global(.dark) .svc-card {
+    background: rgba(255,255,255,0.04);
+    border-color: rgba(255,255,255,0.07);
+  }
+  :global(.dark) .svc-card:hover {
+    box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+  }
+  .svc-top {
+    padding: 28px 28px 20px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  :global(.dark) .svc-top {
+    border-bottom-color: rgba(255,255,255,0.06);
+  }
+  .svc-card:nth-child(1) .svc-top { background: linear-gradient(135deg, rgba(249,115,22,0.06) 0%, transparent 70%); }
+  .svc-card:nth-child(2) .svc-top { background: linear-gradient(135deg, rgba(168,85,247,0.06) 0%, transparent 70%); }
+  .svc-card:nth-child(3) .svc-top { background: linear-gradient(135deg, rgba(6,182,212,0.06) 0%, transparent 70%); }
+  .svc-num {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: #f97316;
+    opacity: 0.7;
+  }
+  .svc-icon {
+    font-size: 2rem;
+    margin: 8px 0;
+  }
+  .svc-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #f97316;
+    background: rgba(249,115,22,0.1);
+    border-radius: 999px;
+    padding: 3px 10px;
+    margin-bottom: 10px;
+  }
+  .svc-card:nth-child(2) .svc-badge {
+    color: #a855f7;
+    background: rgba(168,85,247,0.1);
+  }
+  .svc-card:nth-child(3) .svc-badge {
+    color: #06b6d4;
+    background: rgba(6,182,212,0.1);
+  }
+  .svc-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--aw-color-text-heading);
+    margin: 0;
+    line-height: 1.3;
+  }
+  .svc-body {
+    padding: 20px 28px 28px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .svc-desc {
+    font-size: 0.9rem;
+    color: var(--aw-color-text-muted);
+    line-height: 1.65;
+    margin: 0;
+  }
+  .svc-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .svc-bullets li {
+    font-size: 0.875rem;
+    color: var(--aw-color-text-default);
+    padding-left: 18px;
+    position: relative;
+  }
+  .svc-bullets li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #f97316;
+    font-size: 0.75rem;
+    top: 1px;
+  }
+
+  /* ── Process ── */
+  .process-section {
+    padding: 0 24px 96px;
+  }
+  .process-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    position: relative;
+    margin-top: 8px;
+  }
+  @media (max-width: 720px) {
+    .process-steps { grid-template-columns: 1fr; gap: 32px; }
+    .step-connector { display: none; }
+  }
+
+  .process-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    position: relative;
+  }
+  .step-number {
+    width: 48px;
+    height: 48px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #f97316, #ef4444);
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(249,115,22,0.35);
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+    margin-bottom: 20px;
+  }
+  .step-connector {
+    position: absolute;
+    top: 24px;
+    left: calc(50% + 28px);
+    right: calc(-50% + 28px);
+    height: 2px;
+    background: linear-gradient(90deg, rgba(249,115,22,0.4), rgba(168,85,247,0.2));
+    pointer-events: none;
+  }
+  .step-connector.last { display: none; }
+  .step-icon {
+    font-size: 2.2rem;
+    margin-bottom: 14px;
+  }
+  .step-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--aw-color-text-heading);
+    margin-bottom: 10px;
+  }
+  .step-desc {
+    font-size: 0.875rem;
+    color: var(--aw-color-text-muted);
+    line-height: 1.7;
+    margin: 0;
+  }
+  .step-link-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: #f97316;
+    font-weight: 600;
+    font-size: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .step-link-btn:hover {
+    color: #ea6a00;
+  }
+
+  @keyframes contactFadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>

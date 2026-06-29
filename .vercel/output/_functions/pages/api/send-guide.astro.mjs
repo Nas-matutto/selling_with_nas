@@ -1,32 +1,23 @@
-export const prerender = false;
+export { renderers } from '../../renderers.mjs';
 
-const SITE = 'https://www.sellingwithnas.com';
-
-type Guide = {
-  pdfUrl: string;
-  subject: string;
-  title: string;
-  emoji: string;
-};
-
-const GUIDES: Record<string, Guide> = {
-  'claude-skills': {
+const prerender = false;
+const SITE = "https://www.sellingwithnas.com";
+const GUIDES = {
+  "claude-skills": {
     pdfUrl: `${SITE}/guides/claude-skills-guide.pdf`,
-    subject: 'Your Best Claude Skills Guide ⚡',
-    title: 'Best Claude Skills Guide',
-    emoji: '⚡',
+    subject: "Your Best Claude Skills Guide ⚡",
+    title: "Best Claude Skills Guide",
+    emoji: "⚡"
   },
-  'claude-code-setup': {
+  "claude-code-setup": {
     pdfUrl: `${SITE}/guides/claude-code-setup-guide.pdf`,
-    subject: 'Your Claude Code Setup Guide 💻',
-    title: 'Claude Code Setup Guide',
-    emoji: '💻',
-  },
+    subject: "Your Claude Code Setup Guide 💻",
+    title: "Claude Code Setup Guide",
+    emoji: "💻"
+  }
 };
-
-const DEFAULT_GUIDE = 'claude-skills';
-
-const html = (guide: Guide) => `<!DOCTYPE html>
+const DEFAULT_GUIDE = "claude-skills";
+const html = (guide) => `<!DOCTYPE html>
 <html lang="en">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
 <body style="margin:0;padding:0;background:#f8fafc;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
@@ -62,54 +53,58 @@ const html = (guide: Guide) => `<!DOCTYPE html>
   </table>
 </body>
 </html>`;
-
-export async function POST({ request }: { request: Request }) {
+async function POST({ request }) {
   const formData = await request.formData();
-  const email = (formData.get('email') as string | null)?.trim();
-  const guideKey = (formData.get('guide') as string | null)?.trim() || DEFAULT_GUIDE;
+  const email = formData.get("email")?.trim();
+  const guideKey = formData.get("guide")?.trim() || DEFAULT_GUIDE;
   const guide = GUIDES[guideKey] ?? GUIDES[DEFAULT_GUIDE];
-
   const base = new URL(request.url).origin;
-
-  if (!email || !email.includes('@')) {
+  if (!email || !email.includes("@")) {
     return Response.redirect(`${base}/guides?error=invalid-email`, 302);
   }
-
   try {
-    const resendRes = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
+    const resendRes = await fetch("https://api.resend.com/emails", {
+      method: "POST",
       headers: {
-        Authorization: `Bearer ${import.meta.env.RESEND_API_KEY}`,
-        'Content-Type': 'application/json',
+        Authorization: `Bearer ${undefined                              }`,
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        from: 'Nas <nas@talktomedata.com>',
+        from: "Nas <nas@talktomedata.com>",
         to: [email],
-        bcc: ['nas@talktomedata.com'],
-        reply_to: 'nas@talktomedata.com',
+        bcc: ["nas@talktomedata.com"],
+        reply_to: "nas@talktomedata.com",
         subject: guide.subject,
-        html: html(guide),
-      }),
+        html: html(guide)
+      })
     });
-
     if (!resendRes.ok) {
       const err = await resendRes.text();
-      console.error('Resend error:', err);
+      console.error("Resend error:", err);
       return new Response(JSON.stringify({ ok: false }), {
         status: 500,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { "Content-Type": "application/json" }
       });
     }
-
     return new Response(JSON.stringify({ ok: true }), {
       status: 200,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { "Content-Type": "application/json" }
     });
   } catch (err) {
-    console.error('Unexpected error:', err);
+    console.error("Unexpected error:", err);
     return new Response(JSON.stringify({ ok: false }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { "Content-Type": "application/json" }
     });
   }
 }
+
+const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  POST,
+  prerender
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const page = () => _page;
+
+export { page };
