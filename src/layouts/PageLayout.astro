@@ -13,6 +13,19 @@ const isMasterclassPage = Astro.url.pathname.includes('ai-masterclass-with-nas')
 ---
 
 <Layout metadata={metadata}>
+  <!-- ── ANNOUNCEMENT BAR ── -->
+  <div id="nas-announce" role="region" aria-label="Site announcement">
+    <div id="nas-announce-track">
+      <a href="/ai-masterclass-with-nas" class="nas-announce-msg nas-announce-active">
+        Master AI with me. Book a 1-on-1 session today <span class="nas-announce-arrow">→</span>
+      </a>
+      <a href="/guides" class="nas-announce-msg">
+        Download a free AI guide <span class="nas-announce-arrow">→</span>
+      </a>
+    </div>
+    <button id="nas-announce-close" aria-label="Close announcement">&times;</button>
+  </div>
+
   <slot name="header">
     <Header
       links={headerData.links}
@@ -107,6 +120,77 @@ const isMasterclassPage = Astro.url.pathname.includes('ai-masterclass-with-nas')
 </Layout>
 
 <style is:global>
+  /* ══════════════════════════════════
+     ANNOUNCEMENT BAR
+  ══════════════════════════════════ */
+  #nas-announce {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    padding: 7px 44px;
+    background: linear-gradient(135deg, #f97316, #a855f7);
+    color: #fff;
+    text-align: center;
+    overflow: hidden;
+  }
+  #nas-announce.nas-announce-hidden { display: none; }
+  #nas-announce-track {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 24px;
+  }
+  .nas-announce-msg {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease;
+  }
+  .nas-announce-msg.nas-announce-active {
+    opacity: 1;
+    visibility: visible;
+  }
+  .nas-announce-msg:hover { text-decoration: underline; }
+  .nas-announce-arrow {
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+  .nas-announce-msg:hover .nas-announce-arrow { transform: translateX(3px); }
+  #nas-announce-close {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 1.3rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 4px 8px;
+    opacity: 0.85;
+    transition: opacity 0.2s ease;
+  }
+  #nas-announce-close:hover { opacity: 1; }
+  @media (max-width: 480px) {
+    .nas-announce-msg { font-size: 0.76rem; white-space: normal; }
+  }
+
   /* ══════════════════════════════════
      FOOTER
   ══════════════════════════════════ */
@@ -330,4 +414,27 @@ const isMasterclassPage = Astro.url.pathname.includes('ai-masterclass-with-nas')
   document.getElementById('mc-popup-cta')?.addEventListener('click', () => {
     sessionStorage.setItem(STORAGE_KEY, '1');
   });
+
+  // ── Announcement bar ──
+  const ANNOUNCE_KEY = 'nas_announce_closed';
+  const announce = document.getElementById('nas-announce');
+  if (announce) {
+    if (sessionStorage.getItem(ANNOUNCE_KEY)) {
+      announce.classList.add('nas-announce-hidden');
+    } else {
+      const messages = announce.querySelectorAll('.nas-announce-msg');
+      let current = 0;
+      if (messages.length > 1) {
+        setInterval(() => {
+          messages[current].classList.remove('nas-announce-active');
+          current = (current + 1) % messages.length;
+          messages[current].classList.add('nas-announce-active');
+        }, 6000);
+      }
+      document.getElementById('nas-announce-close')?.addEventListener('click', () => {
+        announce.classList.add('nas-announce-hidden');
+        sessionStorage.setItem(ANNOUNCE_KEY, '1');
+      });
+    }
+  }
 </script>
