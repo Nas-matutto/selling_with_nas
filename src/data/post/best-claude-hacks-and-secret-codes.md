@@ -119,9 +119,9 @@ Creates a full project plan with files, structure, and sequencing. Instead of as
             box-shadow: 0 8px 25px rgba(249, 115, 22, 0.3);
         ">
             <h3 style="margin: 0 0 12px 0; font-size: 20px; color: white; font-weight: 600;">
-                Want help getting more out of Claude for your business?
+                Want to Master AI with me?
             </h3>
-            <a href="/contact" style="
+            <a href="https://www.sellingwithnas.com/ai-masterclass-with-nas" style="
                 display: inline-block;
                 background: rgba(255,255,255,0.2);
                 color: white;
@@ -134,7 +134,7 @@ Creates a full project plan with files, structure, and sequencing. Instead of as
             "
             onmouseover="this.style.background='rgba(255,255,255,0.3)'; this.style.transform='translateY(-2px)'"
             onmouseout="this.style.background='rgba(255,255,255,0.2)'; this.style.transform='translateY(0px)'">
-                Get in Touch Today →
+                Book a 1-on-1 Session →
             </a>
 </div>
 
@@ -243,10 +243,10 @@ Finds the one move that changes everything else. Claude analyzes your situation 
             box-shadow: 0 8px 25px rgba(249, 115, 22, 0.3);
         ">
             <h3 style="margin: 0 0 12px 0; font-size: 20px; color: white; font-weight: 600;">
-                Need a sharper AI strategy for your business?
+                Want to Master AI with me?
             </h3>
-            <p style="margin: 0 0 16px 0; opacity: 0.9; font-size: 15px;">I work with founders to build real workflows that save time and drive growth.</p>
-            <a href="/contact" style="
+            <p style="margin: 0 0 16px 0; opacity: 0.9; font-size: 15px;">Book a private 1-on-1 and go deep on Claude Skills, Claude Code, or AI Agents.</p>
+            <a href="https://www.sellingwithnas.com/ai-masterclass-with-nas" style="
                 display: inline-block;
                 background: rgba(255,255,255,0.2);
                 color: white;
@@ -259,7 +259,7 @@ Finds the one move that changes everything else. Claude analyzes your situation 
             "
             onmouseover="this.style.background='rgba(255,255,255,0.3)'; this.style.transform='translateY(-2px)'"
             onmouseout="this.style.background='rgba(255,255,255,0.2)'; this.style.transform='translateY(0px)'">
-                Get in Touch →
+                Book a 1-on-1 Session →
             </a>
 </div>
 
@@ -337,9 +337,9 @@ Compiles a full briefing on any topic, person, company, or market. Give Claude t
             box-shadow: 0 8px 25px rgba(249, 115, 22, 0.3);
         ">
             <h3 style="margin: 0 0 12px 0; font-size: 20px; color: white; font-weight: 600;">
-                Want Claude working inside your business — not just answering questions?
+                Want to Master AI with me?
             </h3>
-            <a href="/contact" style="
+            <a href="https://www.sellingwithnas.com/ai-masterclass-with-nas" style="
                 display: inline-block;
                 background: rgba(255,255,255,0.2);
                 color: white;
@@ -352,7 +352,7 @@ Compiles a full briefing on any topic, person, company, or market. Give Claude t
             "
             onmouseover="this.style.background='rgba(255,255,255,0.3)'; this.style.transform='translateY(-2px)'"
             onmouseout="this.style.background='rgba(255,255,255,0.2)'; this.style.transform='translateY(0px)'">
-                Let's Talk →
+                Book a 1-on-1 Session →
             </a>
 </div>
 
