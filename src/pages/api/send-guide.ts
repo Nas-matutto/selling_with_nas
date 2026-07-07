@@ -63,6 +63,70 @@ const html = (guide: Guide) => `<!DOCTYPE html>
 </body>
 </html>`;
 
+// Adds/updates the contact in Brevo and adds them to the configured list.
+// Runs after the guide email is sent and never blocks delivery: any failure
+// is logged and swallowed so the visitor still gets their guide.
+async function addToBrevoList(email: string, guideKey: string, guide: Guide) {
+  const apiKey = import.meta.env.BREVO_API_KEY;
+  const listId = Number(import.meta.env.BREVO_LIST_ID);
+
+  if (!apiKey || !Number.isFinite(listId) || listId <= 0) {
+    console.warn(
+      `Brevo not configured - skipping contact sync. apiKeyPresent=${Boolean(apiKey)} listIdRaw=${JSON.stringify(import.meta.env.BREVO_LIST_ID)}`
+    );
+    return;
+  }
+
+  const post = (body: Record<string, unknown>) =>
+    fetch('https://api.brevo.com/v3/contacts', {
+      method: 'POST',
+      headers: {
+        'api-key': apiKey,
+        'Content-Type': 'application/json',
+        accept: 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+
+  try {
+    // First attempt includes attributes for segmentation.
+    let res = await post({
+      email,
+      listIds: [listId],
+      updateEnabled: true, // add existing contacts to the list instead of erroring
+      attributes: {
+        LAST_GUIDE: guide.title,
+        LAST_GUIDE_KEY: guideKey,
+        SOURCE: 'guide-download',
+      },
+    });
+
+    // Brevo rejects the whole request if any attribute is not defined in the
+    // account. In that case, retry without attributes so the contact is still
+    // added to the list (the core goal).
+    if (!res.ok) {
+      const firstErr = await res.text();
+      console.error('Brevo sync (with attributes) failed:', res.status, firstErr, '- retrying without attributes.');
+
+      res = await post({
+        email,
+        listIds: [listId],
+        updateEnabled: true,
+      });
+
+      if (!res.ok) {
+        const secondErr = await res.text();
+        console.error('Brevo sync (no attributes) failed:', res.status, secondErr);
+        return;
+      }
+    }
+
+    console.log(`Brevo: contact ${email} added to list ${listId} (status ${res.status}).`);
+  } catch (err) {
+    console.error('Brevo contact sync error:', err);
+  }
+}
+
 export async function POST({ request }: { request: Request }) {
   const formData = await request.formData();
   const email = (formData.get('email') as string | null)?.trim();
@@ -100,6 +164,9 @@ export async function POST({ request }: { request: Request }) {
         headers: { 'Content-Type': 'application/json' },
       });
     }
+
+    // Email sent - now add the contact to Brevo (non-blocking on failure).
+    await addToBrevoList(email, guideKey, guide);
 
     return new Response(JSON.stringify({ ok: true }), {
       status: 200,
