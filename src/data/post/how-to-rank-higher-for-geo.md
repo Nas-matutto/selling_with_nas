@@ -1,5 +1,5 @@
 ---
-publishDate: 2026-06-29T00:00:00Z
+publishDate: 2026-07-17T00:00:00Z
 author: Nas
 title: How to Rank Higher for GEO (Generative Engine Optimization)
 excerpt: SEO gets you ranked on Google, but GEO gets you cited inside ChatGPT, Claude, and Google's AI answers. Here is exactly how AI models choose their sources, and how to become one of them.
