@@ -1,0 +1,820 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { Image } from 'astro:assets';
+import nasProfile from '~/assets/images/nas-profile.jpg';
+
+const metadata = {
+  title: 'AI Intensive Mentorship with Nas - Master AI in One Month, 1-on-1',
+  description:
+    'A high-touch, one-month 1-on-1 mentorship to master AI. Weekly private sessions, hands-on assignments and a structured curriculum that takes you from AI 101 to building multi-layered AI agents for your business.',
+  keywords:
+    'AI mentorship, 1-on-1 AI mentor, AI intensive, master AI in a month, AI agents, learn AI with Nas, AI for business owners, monetize with AI, AI coaching program',
+  canonical: 'https://www.sellingwithnas.com/ai-intensive-mentorship',
+};
+
+// TODO: Replace with the real application / checkout link when ready.
+const APPLY_LINK = '#apply-placeholder';
+---
+
+<Layout metadata={metadata}>
+<div class="im-page">
+
+  <!-- ambient -->
+  <div class="im-ambient" aria-hidden="true">
+    <div class="im-blob im-blob-1"></div>
+    <div class="im-blob im-blob-2"></div>
+    <div class="im-blob im-blob-3"></div>
+  </div>
+
+  <!-- ── HERO ── -->
+  <section class="im-hero">
+    <div class="im-container">
+
+      <div class="im-hero-split">
+
+        <!-- Left: copy -->
+        <div class="im-hero-left">
+          <div class="im-eyebrow">Private 1-on-1 · 30-Day Intensive</div>
+          <h1 class="im-hero-title">
+            Work with me for a month<br />
+            <span class="im-gradient">and truly master AI</span>
+          </h1>
+          <p class="im-hero-sub">
+            This isn't a course you watch alone. For four weeks, you get me in your corner - weekly
+            1-on-1 sessions, hands-on assignments, and a clear path that takes you from AI fundamentals
+            all the way to building multi-layered AI agents that work inside your business.
+          </p>
+          <div class="im-session-pills">
+            <div class="im-pill">📅 4 weekly 1-on-1 sessions</div>
+            <div class="im-pill">📝 Tasks &amp; assignments</div>
+            <div class="im-pill">🧭 AI 101 → AI agents</div>
+          </div>
+          <a href="#curriculum" class="im-btn-ghost im-ghost-inline">See the curriculum ↓</a>
+        </div>
+
+        <!-- Right: offer card -->
+        <div class="im-hero-right">
+          <div class="im-hero-offer-card">
+            <div class="im-hoc-tag">Apply to Work With Me</div>
+            <div class="im-hoc-title">AI Intensive Mentorship</div>
+            <div class="im-hoc-detail-row">
+              <div class="im-hoc-detail-primary">A full month of 1-on-1 mentorship</div>
+              <div class="im-hoc-detail-secondary">One private session every week for four weeks, built around your goals.</div>
+              <div class="im-hoc-detail-secondary">Personalised curriculum, real assignments and direct access to me between sessions.</div>
+            </div>
+            <ul class="im-hoc-list">
+              <li>4× weekly 1-on-1 mentorship calls</li>
+              <li>Structured curriculum from beginner to advanced</li>
+              <li>Assignments reviewed personally by me</li>
+              <li>Leave with real AI systems built for you</li>
+            </ul>
+            <a href={APPLY_LINK} class="im-btn-book im-btn-book-full" id="apply">
+              Apply for the Mentorship →
+            </a>
+            <p class="im-hoc-note">Limited to a small number of mentees each month so every session stays fully hands-on.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SOCIAL PROOF STRIP ── -->
+  <div class="im-proof-strip">
+    <div class="im-container im-proof-inner">
+      <div class="im-proof-item">
+        <span class="im-proof-num">100k+</span>
+        <span class="im-proof-label">YouTube Viewers</span>
+      </div>
+      <div class="im-proof-div"></div>
+      <div class="im-proof-item">
+        <span class="im-proof-num">50+</span>
+        <span class="im-proof-label">AI builds shipped</span>
+      </div>
+      <div class="im-proof-div"></div>
+      <div class="im-proof-item">
+        <span class="im-proof-num">4 Weeks</span>
+        <span class="im-proof-label">Fully 1-on-1</span>
+      </div>
+      <div class="im-proof-div"></div>
+      <div class="im-proof-item">
+        <span class="im-proof-num">AI 101 → Agents</span>
+        <span class="im-proof-label">A complete journey</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── WHAT'S INCLUDED ── -->
+  <section class="im-section" id="whats-included">
+    <div class="im-container">
+      <div class="im-section-header">
+        <span class="im-tag">The Program</span>
+        <h2 class="im-section-title">Everything you get in your month with me</h2>
+        <p class="im-section-sub">This is a high-touch, done-with-you experience. You're not buying content - you're getting a month of my time, structure and accountability.</p>
+      </div>
+
+      <div class="im-learn-grid">
+        <div class="im-learn-card">
+          <div class="im-learn-num">01</div>
+          <div class="im-learn-icon">🎥</div>
+          <h3>Weekly 1-on-1 Sessions</h3>
+          <p>One private call with me every week for four weeks. We work through your curriculum live, solve your real problems and adapt the plan to where you're going.</p>
+        </div>
+        <div class="im-learn-card">
+          <div class="im-learn-num">02</div>
+          <div class="im-learn-icon">📝</div>
+          <h3>Tasks &amp; Assignments</h3>
+          <p>Between sessions you'll get focused assignments that turn theory into skill. I review your work personally so every week builds on the last.</p>
+        </div>
+        <div class="im-learn-card">
+          <div class="im-learn-num">03</div>
+          <div class="im-learn-icon">🧭</div>
+          <h3>A Clear Learning Curriculum</h3>
+          <p>A structured path from AI 101 to building multi-layered AI agents - no guessing what to learn next, just a proven progression tailored to your goals.</p>
+        </div>
+        <div class="im-learn-card">
+          <div class="im-learn-num">04</div>
+          <div class="im-learn-icon">🤖</div>
+          <h3>Real Systems You Keep</h3>
+          <p>By the end of the month you'll have built working AI tools and agents for your own business or projects - not demos, but systems you actually use.</p>
+        </div>
+        <div class="im-learn-card">
+          <div class="im-learn-num">05</div>
+          <div class="im-learn-icon">💬</div>
+          <h3>Direct Access to Me</h3>
+          <p>Stuck between calls? You have a direct line to me for questions, feedback and quick unblocks throughout the whole month.</p>
+        </div>
+        <div class="im-learn-card">
+          <div class="im-learn-num">06</div>
+          <div class="im-learn-icon">💰</div>
+          <h3>A Focus on Monetisation</h3>
+          <p>Everything is oriented around outcomes: implementing AI in your business, scaling with it, or building something new you can actually make money from.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CURRICULUM / 4-WEEK JOURNEY ── -->
+  <section class="im-section im-section-alt" id="curriculum">
+    <div class="im-container">
+      <div class="im-section-header">
+        <span class="im-tag">Your 4-Week Journey</span>
+        <h2 class="im-section-title">From AI 101 to multi-layered agents</h2>
+        <p class="im-section-sub">A clear, guided progression. Each week builds on the last so nothing feels overwhelming - and by week four you're building things most people think require a developer.</p>
+      </div>
+
+      <div class="im-timeline">
+        <div class="im-week">
+          <div class="im-week-marker"><span>W1</span></div>
+          <div class="im-week-body">
+            <h3>Week 1 — AI 101 &amp; Foundations</h3>
+            <p>We start with the fundamentals: how modern AI actually works, the tools that matter, and how to prompt like a pro. You'll get comfortable using AI confidently for real tasks in your work.</p>
+          </div>
+        </div>
+        <div class="im-week">
+          <div class="im-week-marker"><span>W2</span></div>
+          <div class="im-week-body">
+            <h3>Week 2 — Workflows &amp; Automation</h3>
+            <p>Now we turn AI into leverage. We map the repetitive work in your business and build AI-powered workflows, custom instructions and skills that save you hours every week.</p>
+          </div>
+        </div>
+        <div class="im-week">
+          <div class="im-week-marker"><span>W3</span></div>
+          <div class="im-week-body">
+            <h3>Week 3 — Building With AI</h3>
+            <p>You'll build real things - apps, tools and assets - using AI to do the heavy lifting, even with no coding background. This is where the "I can actually make this" moment happens.</p>
+          </div>
+        </div>
+        <div class="im-week">
+          <div class="im-week-marker im-week-marker-final"><span>W4</span></div>
+          <div class="im-week-body">
+            <h3>Week 4 — Multi-Layered AI Agents</h3>
+            <p>We bring it all together and build multi-layered AI agents that can plan, use tools and take action - deployed inside your business or project so you leave with a real, working system.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WHO IT'S FOR ── -->
+  <section class="im-section" id="who-its-for">
+    <div class="im-container">
+      <div class="im-section-header">
+        <span class="im-tag">Who Is This For</span>
+        <h2 class="im-section-title">Is the intensive right for you?</h2>
+        <p class="im-section-sub">This mentorship is a serious investment of time and money - it's built for people who are ready to act on AI, not just learn about it.</p>
+      </div>
+
+      <div class="im-who-grid">
+        <div class="im-who-card">
+          <div class="im-who-icon">🏢</div>
+          <h3>Business Owners</h3>
+          <p>You want to implement AI inside your business and scale with it - cutting costs, moving faster and staying ahead of competitors.</p>
+        </div>
+        <div class="im-who-card">
+          <div class="im-who-icon">🚀</div>
+          <h3>Entrepreneurs Upskilling</h3>
+          <p>You're an entrepreneur who knows AI is the edge, and you want to seriously upskill so you're never dependent on anyone else to build.</p>
+        </div>
+        <div class="im-who-card">
+          <div class="im-who-icon">💡</div>
+          <h3>Future Founders</h3>
+          <p>You're looking to start your business and want to build your new projects with AI from day one - fast, lean and without a big team.</p>
+        </div>
+        <div class="im-who-card">
+          <div class="im-who-icon">💸</div>
+          <h3>Monetisers</h3>
+          <p>You want to learn how to actually monetise with AI - turning new skills into products, services and income streams.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT NAS ── -->
+  <section class="im-section im-section-alt">
+    <div class="im-container">
+      <div class="im-about-card">
+        <Image src={nasProfile} alt="Nas" class="im-about-avatar" width={80} height={80} />
+        <div class="im-about-body">
+          <span class="im-tag" style="margin-bottom:12px;">Your mentor</span>
+          <h2 class="im-about-name">Nas</h2>
+          <p class="im-about-bio">
+            I've built and shipped over 50 AI-powered products - from landing page generators and e-commerce tools to full AI agent platforms. I run a YouTube channel
+            where I teach practical AI skills to tens of thousands of founders and builders, and I consult with businesses on embedding AI into their real workflows.
+          </p>
+          <p class="im-about-bio">
+            I created this intensive because a single session is rarely enough to truly change how someone works. Over a full month, with weekly guidance and real
+            accountability, I can take you from curious to genuinely capable - using the exact tools and systems I use every day to build faster than most teams.
+          </p>
+          <div class="im-about-links">
+            <a href="https://www.youtube.com/@sellingwithnas" target="_blank" rel="noopener noreferrer" class="im-about-link">YouTube →</a>
+            <a href="https://www.linkedin.com/in/nasser-mansurali-659145102/" target="_blank" rel="noopener noreferrer" class="im-about-link">LinkedIn →</a>
+            <a href="https://www.tiktok.com/@sellingwithnas" target="_blank" rel="noopener noreferrer" class="im-about-link">TikTok →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section class="im-section">
+    <div class="im-container">
+      <div class="im-section-header">
+        <span class="im-tag">Questions</span>
+        <h2 class="im-section-title">Frequently asked</h2>
+      </div>
+      <div class="im-faq-grid">
+
+        <div class="im-faq-item">
+          <h3>How much time will I need each week?</h3>
+          <p>Plan for your weekly 1-on-1 session plus a few hours for assignments. The more you put in, the more you'll walk away with - this is designed for people ready to do the work.</p>
+        </div>
+        <div class="im-faq-item">
+          <h3>Do I need any technical experience?</h3>
+          <p>No. We start at AI 101 and build up. You don't need to code - I'll show you how to build real tools and agents using AI to do the heavy lifting.</p>
+        </div>
+        <div class="im-faq-item">
+          <h3>Is the curriculum fixed?</h3>
+          <p>There's a proven structure from fundamentals to agents, but it's tailored to you. We adapt each week to your business, your goals and what you most want to build.</p>
+        </div>
+        <div class="im-faq-item">
+          <h3>How is this different from the 1-on-1 masterclass?</h3>
+          <p>The masterclass is a single focused hour on one topic. The intensive is a full month of weekly mentorship, assignments and accountability that takes you from beginner to building advanced AI agents.</p>
+        </div>
+        <div class="im-faq-item">
+          <h3>What will I actually have at the end?</h3>
+          <p>Real, working AI systems built for your business or projects - plus the skills and confidence to keep building on your own long after the month is over.</p>
+        </div>
+        <div class="im-faq-item">
+          <h3>How do I get started?</h3>
+          <p>Because spots are limited, it starts with a short application so I can make sure it's the right fit. Click apply and we'll take it from there.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FINAL CTA ── -->
+  <section class="im-section">
+    <div class="im-container">
+      <div class="im-final-cta">
+        <div class="im-final-glow" aria-hidden="true"></div>
+        <div class="im-final-badge">Apply to Work With Me</div>
+        <h2 class="im-final-title">
+          One month from now, you could be<br />
+          <span class="im-gradient">the person who builds with AI.</span>
+        </h2>
+        <p class="im-final-sub">
+          Stop collecting tutorials and start building. Spend a month working directly with me and walk away
+          able to implement, scale and monetise with AI - with real systems already running.
+        </p>
+        <a href={APPLY_LINK} class="im-btn-book im-btn-book-lg">Apply for the Mentorship →</a>
+        <p class="im-guarantee" style="margin-top:20px;">✓ Just you &amp; Nas · ✓ Only a few mentees per month · ✓ Built entirely around your goals</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BACK ── -->
+  <div class="im-back-row">
+    <a href="/" class="im-btn-ghost">← Back to Home</a>
+  </div>
+
+</div>
+
+<style>
+  /* ════ BASE ════ */
+  .im-page {
+    background: #ffffff;
+    color: #0f172a;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+  :global(.dark) .im-page { background: #05050f; color: #e2e8f0; }
+
+  .im-container {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .im-gradient {
+    background: linear-gradient(to right, #f97316, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ════ AMBIENT ════ */
+  .im-ambient {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .im-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(130px);
+    opacity: 0.06;
+    animation: imDrift 16s ease-in-out infinite alternate;
+  }
+  :global(.dark) .im-blob { opacity: 0.15; }
+  .im-blob-1 { width: 600px; height: 600px; background: #f97316; top: -100px; left: -100px; animation-delay: 0s; }
+  .im-blob-2 { width: 500px; height: 500px; background: #a855f7; top: 40%; right: -100px; animation-delay: 5s; }
+  .im-blob-3 { width: 400px; height: 400px; background: #f97316; bottom: 0; left: 30%; animation-delay: 10s; }
+  @keyframes imDrift {
+    from { transform: translate(0, 0) scale(1); }
+    to   { transform: translate(30px, 20px) scale(1.06); }
+  }
+  .im-hero, .im-section, .im-proof-strip, .im-back-row { position: relative; z-index: 1; }
+
+  /* ════ HERO ════ */
+  .im-hero { padding: 100px 0 80px; }
+
+  .im-hero-split {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 56px;
+    align-items: center;
+    margin-top: 32px;
+  }
+  .im-hero-left { display: flex; flex-direction: column; align-items: flex-start; }
+  .im-ghost-inline { margin-top: 24px; }
+
+  /* ── Hero offer card ── */
+  .im-hero-offer-card {
+    background: #ffffff;
+    border: 1.5px solid rgba(168,85,247,0.25);
+    border-radius: 20px;
+    padding: 32px 28px;
+    box-shadow: 0 8px 40px rgba(168,85,247,0.1), 0 2px 12px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  :global(.dark) .im-hero-offer-card {
+    background: rgba(255,255,255,0.04);
+    border-color: rgba(168,85,247,0.3);
+    box-shadow: 0 8px 40px rgba(168,85,247,0.12);
+  }
+  .im-hoc-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #a855f7;
+  }
+  .im-hoc-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  :global(.dark) .im-hoc-title { color: #f8fafc; }
+  .im-hoc-detail-row {
+    padding: 14px 16px;
+    background: #f8fafc;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+  }
+  :global(.dark) .im-hoc-detail-row { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.08); }
+  .im-hoc-detail-primary { font-size: 1rem; font-weight: 700; color: #0f172a; }
+  :global(.dark) .im-hoc-detail-primary { color: #f1f5f9; }
+  .im-hoc-detail-secondary { font-size: 0.78rem; color: #64748b; margin-top: 4px; line-height: 1.5; }
+  .im-hoc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+  .im-hoc-list li {
+    font-size: 0.86rem;
+    color: #475569;
+    line-height: 1.4;
+    padding-left: 24px;
+    position: relative;
+  }
+  :global(.dark) .im-hoc-list li { color: #cbd5e1; }
+  .im-hoc-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #a855f7;
+    font-weight: 800;
+  }
+  .im-btn-book-full { width: 100%; text-align: center; box-sizing: border-box; }
+  .im-hoc-note {
+    font-size: 0.78rem;
+    color: #64748b;
+    text-align: center;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @media (max-width: 860px) {
+    .im-hero-split { grid-template-columns: 1fr; gap: 36px; }
+    .im-hero-left { align-items: center; text-align: center; }
+    .im-hero-offer-card { max-width: 480px; margin: 0 auto; width: 100%; }
+    .im-ghost-inline { align-self: center; }
+  }
+  .im-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #a855f7;
+    margin-bottom: 18px;
+  }
+  .im-hero-title {
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+    color: #0f172a;
+    margin: 0 0 16px;
+  }
+  :global(.dark) .im-hero-title { color: #f8fafc; }
+  .im-hero-sub {
+    font-size: 0.97rem;
+    color: #475569;
+    max-width: 480px;
+    margin: 0 0 24px;
+    line-height: 1.7;
+  }
+  :global(.dark) .im-hero-sub { color: #94a3b8; }
+
+  /* session pills */
+  .im-session-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+  .im-pill {
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    background: #f1f5f9;
+    color: #334155;
+    border: 1px solid #e2e8f0;
+  }
+  :global(.dark) .im-pill { background: rgba(255,255,255,0.06); color: #cbd5e1; border-color: rgba(255,255,255,0.1); }
+
+  /* ════ BUTTONS ════ */
+  .im-btn-book {
+    display: inline-block;
+    padding: 15px 36px;
+    border-radius: 14px;
+    font-size: 1rem;
+    font-weight: 800;
+    text-decoration: none;
+    background: linear-gradient(135deg, #f97316, #a855f7);
+    color: #fff;
+    box-shadow: 0 4px 28px rgba(249,115,22,0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    letter-spacing: -0.01em;
+  }
+  .im-btn-book:hover { transform: translateY(-2px); box-shadow: 0 8px 40px rgba(249,115,22,0.4); }
+  .im-btn-book-lg { padding: 18px 44px; font-size: 1.1rem; }
+  .im-btn-ghost {
+    display: inline-block;
+    padding: 15px 28px;
+    border-radius: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: #64748b;
+    border: 1px solid #e2e8f0;
+    transition: all 0.2s ease;
+  }
+  :global(.dark) .im-btn-ghost { color: #94a3b8; border-color: rgba(255,255,255,0.1); }
+  .im-btn-ghost:hover { color: #0f172a; border-color: #94a3b8; background: #f8fafc; }
+  :global(.dark) .im-btn-ghost:hover { color: #f8fafc; background: rgba(255,255,255,0.06); }
+
+  .im-guarantee {
+    font-size: 0.83rem;
+    color: #64748b;
+    margin: 0;
+  }
+  :global(.dark) .im-guarantee { color: #475569; }
+
+  /* ════ PROOF STRIP ════ */
+  .im-proof-strip {
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 28px 0;
+  }
+  :global(.dark) .im-proof-strip { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.06); }
+  .im-proof-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .im-proof-item { text-align: center; padding: 0 16px; }
+  .im-proof-num {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 800;
+    background: linear-gradient(to right, #f97316, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .im-proof-label { font-size: 0.78rem; color: #64748b; margin-top: 2px; display: block; }
+  .im-proof-div { width: 1px; height: 36px; background: #e2e8f0; }
+  :global(.dark) .im-proof-div { background: rgba(255,255,255,0.08); }
+
+  /* ════ SECTIONS ════ */
+  .im-section { padding: 96px 0; }
+  .im-section-alt {
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  :global(.dark) .im-section-alt { background: rgba(255,255,255,0.025); border-color: rgba(255,255,255,0.06); }
+  .im-section-header { text-align: center; margin-bottom: 56px; }
+  .im-tag {
+    display: inline-block;
+    font-size: 0.73rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #a855f7;
+    margin-bottom: 12px;
+  }
+  .im-section-title {
+    font-size: clamp(1.6rem, 3.5vw, 2.3rem);
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 14px;
+    letter-spacing: -0.025em;
+  }
+  :global(.dark) .im-section-title { color: #f8fafc; }
+  .im-section-sub { font-size: 1.02rem; color: #64748b; max-width: 560px; margin: 0 auto; line-height: 1.65; }
+
+  /* ════ WHAT'S INCLUDED ════ */
+  .im-learn-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 20px;
+  }
+  .im-learn-card {
+    padding: 32px 28px;
+    border-radius: 18px;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    position: relative;
+    transition: all 0.22s ease;
+  }
+  :global(.dark) .im-learn-card { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.07); box-shadow: none; }
+  .im-learn-card:hover { transform: translateY(-3px); border-color: rgba(168,85,247,0.3); box-shadow: 0 8px 28px rgba(168,85,247,0.1); }
+  :global(.dark) .im-learn-card:hover { box-shadow: none; }
+  .im-learn-num {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #a855f7;
+    margin-bottom: 10px;
+  }
+  .im-learn-icon { font-size: 1.9rem; margin-bottom: 14px; }
+  .im-learn-card h3 { font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 10px; }
+  :global(.dark) .im-learn-card h3 { color: #f1f5f9; }
+  .im-learn-card p { font-size: 0.9rem; color: #64748b; line-height: 1.65; margin: 0; }
+
+  /* ════ CURRICULUM TIMELINE ════ */
+  .im-timeline {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+  }
+  .im-week {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 24px;
+    align-items: stretch;
+  }
+  .im-week-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  .im-week-marker span {
+    width: 52px; height: 52px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.95rem;
+    color: #fff;
+    background: linear-gradient(135deg, #f97316, #a855f7);
+    box-shadow: 0 4px 16px rgba(168,85,247,0.25);
+    z-index: 1;
+  }
+  .im-week-marker::after {
+    content: '';
+    width: 2px;
+    flex: 1;
+    background: linear-gradient(to bottom, rgba(168,85,247,0.4), rgba(168,85,247,0.05));
+    margin-top: 4px;
+  }
+  .im-week-marker-final::after { display: none; }
+  .im-week-body {
+    padding: 4px 0 40px;
+  }
+  .im-week-body h3 { font-size: 1.1rem; font-weight: 800; color: #0f172a; margin: 8px 0 8px; letter-spacing: -0.01em; }
+  :global(.dark) .im-week-body h3 { color: #f8fafc; }
+  .im-week-body p { font-size: 0.94rem; color: #64748b; line-height: 1.7; margin: 0; max-width: 560px; }
+  :global(.dark) .im-week-body p { color: #94a3b8; }
+
+  /* ════ WHO IT'S FOR ════ */
+  .im-who-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .im-who-card {
+    padding: 32px 28px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(168,85,247,0.05), rgba(249,115,22,0.03));
+    border: 1px solid rgba(168,85,247,0.18);
+    transition: all 0.22s ease;
+  }
+  :global(.dark) .im-who-card { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.07); }
+  .im-who-card:hover { transform: translateY(-3px); border-color: rgba(168,85,247,0.35); }
+  .im-who-icon { font-size: 1.9rem; margin-bottom: 14px; }
+  .im-who-card h3 { font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 10px; }
+  :global(.dark) .im-who-card h3 { color: #f1f5f9; }
+  .im-who-card p { font-size: 0.9rem; color: #64748b; line-height: 1.65; margin: 0; }
+  :global(.dark) .im-who-card p { color: #94a3b8; }
+
+  /* ════ ABOUT ════ */
+  .im-about-card {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 52px 48px;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 24px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+  }
+  :global(.dark) .im-about-card { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.08); box-shadow: none; }
+  .im-about-avatar {
+    width: 80px; height: 80px; flex-shrink: 0;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(168,85,247,0.3);
+  }
+  .im-about-name { font-size: 1.6rem; font-weight: 800; color: #0f172a; margin: 0 0 16px; }
+  :global(.dark) .im-about-name { color: #f8fafc; }
+  .im-about-bio { font-size: 0.97rem; color: #475569; line-height: 1.8; margin: 0 0 14px; }
+  :global(.dark) .im-about-bio { color: #94a3b8; }
+  .im-about-links { display: flex; gap: 16px; margin-top: 8px; }
+  .im-about-link { font-size: 0.88rem; font-weight: 700; color: #a855f7; text-decoration: none; }
+  .im-about-link:hover { text-decoration: underline; }
+
+  /* ════ FAQ ════ */
+  .im-faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .im-faq-item {
+    padding: 28px 24px;
+    border-radius: 16px;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+  }
+  :global(.dark) .im-faq-item { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.07); }
+  .im-faq-item h3 { font-size: 0.97rem; font-weight: 700; color: #0f172a; margin: 0 0 10px; }
+  :global(.dark) .im-faq-item h3 { color: #f1f5f9; }
+  .im-faq-item p { font-size: 0.88rem; color: #64748b; line-height: 1.65; margin: 0; }
+
+  /* ════ FINAL CTA ════ */
+  .im-final-cta {
+    text-align: center;
+    padding: 88px 40px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  :global(.dark) .im-final-cta { background: rgba(255,255,255,0.025); border-color: rgba(255,255,255,0.08); }
+  .im-final-glow {
+    position: absolute;
+    width: 600px; height: 300px;
+    background: radial-gradient(ellipse, rgba(168,85,247,0.1) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+  .im-final-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #a855f7;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .im-final-title {
+    font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 20px;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    position: relative;
+  }
+  :global(.dark) .im-final-title { color: #f8fafc; }
+  .im-final-sub {
+    font-size: 1.02rem;
+    color: #64748b;
+    max-width: 520px;
+    margin: 0 auto 36px;
+    line-height: 1.7;
+    position: relative;
+  }
+
+  /* ════ BACK ROW ════ */
+  .im-back-row { text-align: center; padding: 40px 0 80px; }
+
+  /* ════ RESPONSIVE ════ */
+  @media (max-width: 640px) {
+    .im-hero { padding: 72px 0 56px; }
+    .im-section { padding: 64px 0; }
+    .im-about-card { flex-direction: column; gap: 24px; padding: 32px 24px; }
+    .im-about-avatar { width: 60px; height: 60px; font-size: 1.5rem; }
+    .im-final-cta { padding: 56px 24px; }
+    .im-proof-div { display: none; }
+    .im-proof-inner { gap: 8px; }
+    .im-week { grid-template-columns: 48px 1fr; gap: 16px; }
+    .im-week-marker span { width: 44px; height: 44px; font-size: 0.85rem; }
+  }
+</style>
+</Layout>
