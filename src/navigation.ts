@@ -36,10 +36,6 @@ export const headerData = {
       ],
     },
     {
-      text: 'AI Mentorship',
-      href: '/ai-intensive-mentorship',
-    },
-    {
       text: 'Posts',
       href: '/blog',
     },

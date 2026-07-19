@@ -43,12 +43,7 @@ const APPLY_LINK = 'https://tally.so/r/QKaM67';
             1-on-1 sessions, hands-on assignments, and a clear path that takes you from AI fundamentals
             all the way to building multi-layered AI agents that work inside your business.
           </p>
-          <div class="im-session-pills">
-            <div class="im-pill">📅 4 weekly 1-on-1 sessions</div>
-            <div class="im-pill">📝 Tasks &amp; assignments</div>
-            <div class="im-pill">🧭 AI 101 → AI agents</div>
-          </div>
-          <a href="#curriculum" class="im-btn-ghost im-ghost-inline">See the curriculum ↓</a>
+          <a href="#curriculum" class="im-btn-ghost im-ghost-inline im-ghost-center">See the curriculum ↓</a>
         </div>
 
         <!-- Right: offer card -->
@@ -149,6 +144,9 @@ const APPLY_LINK = 'https://tally.so/r/QKaM67';
           <h3>A Focus on Monetisation</h3>
           <p>Everything is oriented around outcomes: implementing AI in your business, scaling with it, or building something new you can actually make money from.</p>
         </div>
+      </div>
+      <div class="im-section-cta">
+        <a href={APPLY_LINK} target="_blank" rel="noopener noreferrer" class="im-btn-book im-btn-book-lg">Apply for the Mentorship →</a>
       </div>
     </div>
   </section>
@@ -381,6 +379,8 @@ const APPLY_LINK = 'https://tally.so/r/QKaM67';
   }
   .im-hero-left { display: flex; flex-direction: column; align-items: flex-start; }
   .im-ghost-inline { margin-top: 24px; }
+  .im-ghost-center { align-self: center; }
+  .im-section-cta { text-align: center; margin-top: 48px; }
 
   /* ── Hero offer card ── */
   .im-hero-offer-card {
