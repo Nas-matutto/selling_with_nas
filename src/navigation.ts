@@ -60,7 +60,7 @@ export const footerData = {
       title: 'Work with Me',
       links: [
         { text: 'Services', href: '/#hp-services' },
-        { text: 'AI Intensive Mentorship', href: '/ai-intensive-mentorship' },
+        { text: 'AI Mentorship', href: '/ai-intensive-mentorship' },
         { text: 'AI Masterclass', href: '/ai-masterclass-with-nas' },
         { text: 'Contact', href: '/contact' },
       ],
