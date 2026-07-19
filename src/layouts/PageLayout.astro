@@ -9,7 +9,9 @@ export interface Props {
 }
 
 const { metadata } = Astro.props;
-const isMasterclassPage = Astro.url.pathname.includes('ai-masterclass-with-nas');
+const isMasterclassPage =
+  Astro.url.pathname.includes('ai-masterclass-with-nas') ||
+  Astro.url.pathname.includes('ai-intensive-mentorship');
 ---
 
 <Layout metadata={metadata}>
@@ -102,16 +104,16 @@ const isMasterclassPage = Astro.url.pathname.includes('ai-masterclass-with-nas')
 
   <!-- ── POPUP ── -->
   {!isMasterclassPage && (
-    <div id="mc-popup" role="dialog" aria-modal="true" aria-label="AI Masterclass popup" style="display:none;">
+    <div id="mc-popup" role="dialog" aria-modal="true" aria-label="AI Intensive Mentorship popup" style="display:none;">
       <div id="mc-popup-backdrop"></div>
       <div id="mc-popup-card">
         <button id="mc-popup-close" aria-label="Close">&times;</button>
         <div id="mc-popup-icon">🎓</div>
-        <p id="mc-popup-eyebrow">1-on-1 Live Session</p>
-        <h2 id="mc-popup-title">Master AI in 1 hour</h2>
-        <p id="mc-popup-body">We will deep dive into Claude Skills, Claude Code and AI Agents</p>
+        <p id="mc-popup-eyebrow">1:1 · 30-Day Intensive</p>
+        <h2 id="mc-popup-title">Master AI in 1 month</h2>
+        <p id="mc-popup-body">Work with me 1-on-1 in my 1-month AI Intensive Mentorship program — from AI 101 to building your own AI agents.</p>
         <div id="mc-popup-actions">
-          <a href="/ai-masterclass-with-nas" id="mc-popup-cta">Learn more →</a>
+          <a href="/ai-intensive-mentorship" id="mc-popup-cta">Learn more →</a>
           <button id="mc-popup-dismiss">Not interested</button>
         </div>
       </div>
