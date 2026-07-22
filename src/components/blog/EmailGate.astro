@@ -1,0 +1,269 @@
+---
+// Email gate for blog posts. Only activates when the URL carries the
+// `?unlock=1` tag AND the visitor hasn't unlocked before. Mounted only on
+// single-post pages, so it never affects any other page on the site.
+interface Props {
+  slug: string;
+  title: string;
+}
+const { slug, title } = Astro.props;
+---
+
+{/*
+  Runs before the post body is parsed (this component is rendered above
+  <SinglePost>). Adds `blog-gated` to <html> synchronously so the body is
+  hidden by CSS before it ever paints — no flash of ungated content.
+*/}
+<script is:inline>
+  (function () {
+    try {
+      var params = new URLSearchParams(window.location.search);
+      var alreadyIn = localStorage.getItem('nas_blog_unlocked');
+      if (params.has('unlock') && !alreadyIn) {
+        document.documentElement.classList.add('blog-gated');
+      }
+    } catch (e) {
+      /* if storage/URL APIs are unavailable, fail open (content stays public) */
+    }
+  })();
+</script>
+
+<div class="blog-gate" role="dialog" aria-modal="true" aria-label="Read this post">
+  <div class="blog-gate-backdrop"></div>
+  <div class="blog-gate-card">
+    <div class="blog-gate-icon">🔓</div>
+    <p class="blog-gate-eyebrow">Free to read</p>
+    <h2 class="blog-gate-title">Enter your email to keep reading</h2>
+    <p class="blog-gate-sub">
+      Drop your email below and the full post unlocks instantly — no spam, just my best AI content.
+    </p>
+    <form class="blog-gate-form" data-slug={slug} data-title={title}>
+      <input
+        type="email"
+        name="email"
+        class="blog-gate-input"
+        placeholder="you@email.com"
+        autocomplete="email"
+        required
+      />
+      <button type="submit" class="blog-gate-btn">Unlock the post →</button>
+      <p class="blog-gate-error" hidden>Something went wrong — please try again.</p>
+    </form>
+  </div>
+</div>
+
+<style is:global>
+  /* Gated state — only when <html> has .blog-gated */
+  html.blog-gated body {
+    overflow: hidden;
+  }
+  html.blog-gated .post-prose {
+    filter: blur(7px);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .blog-gate {
+    display: none;
+  }
+  html.blog-gated .blog-gate {
+    display: flex;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+  .blog-gate-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  .blog-gate-card {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 40px 32px 32px;
+    text-align: center;
+    box-shadow: 0 24px 72px rgba(0, 0, 0, 0.28);
+    border: 1px solid rgba(249, 115, 22, 0.18);
+  }
+  :global(.dark) .blog-gate-card {
+    background: #0c0e1a;
+    border-color: rgba(249, 115, 22, 0.25);
+  }
+  .blog-gate-icon {
+    font-size: 2.4rem;
+    margin-bottom: 12px;
+  }
+  .blog-gate-eyebrow {
+    margin: 0 0 8px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #f97316;
+  }
+  .blog-gate-title {
+    margin: 0 0 12px;
+    font-size: 1.45rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: #0f172a;
+  }
+  :global(.dark) .blog-gate-title {
+    color: #f8fafc;
+  }
+  .blog-gate-sub {
+    margin: 0 0 24px;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: #64748b;
+  }
+  :global(.dark) .blog-gate-sub {
+    color: #94a3b8;
+  }
+  .blog-gate-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .blog-gate-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px 16px;
+    font-size: 1rem;
+    border-radius: 12px;
+    border: 1.5px solid #e2e8f0;
+    background: #f8fafc;
+    color: #0f172a;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+  .blog-gate-input:focus {
+    border-color: #f97316;
+  }
+  :global(.dark) .blog-gate-input {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.12);
+    color: #f1f5f9;
+  }
+  .blog-gate-btn {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    color: #fff;
+    background: linear-gradient(135deg, #f97316, #ef4444);
+    box-shadow: 0 4px 24px rgba(249, 115, 22, 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  }
+  .blog-gate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(249, 115, 22, 0.45);
+  }
+  .blog-gate-btn:disabled {
+    opacity: 0.6;
+    cursor: default;
+    transform: none;
+  }
+  .blog-gate-error {
+    margin: 4px 0 0;
+    font-size: 0.85rem;
+    color: #ef4444;
+  }
+  @media (max-width: 480px) {
+    .blog-gate-card {
+      padding: 32px 22px 26px;
+    }
+    .blog-gate-title {
+      font-size: 1.25rem;
+    }
+  }
+</style>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('.blog-gate-form');
+  const gate = document.querySelector<HTMLElement>('.blog-gate');
+
+  if (form && gate) {
+    const input = form.querySelector<HTMLInputElement>('.blog-gate-input');
+    const btn = form.querySelector<HTMLButtonElement>('.blog-gate-btn');
+    const errorEl = form.querySelector<HTMLElement>('.blog-gate-error');
+
+    function unlock() {
+      try {
+        localStorage.setItem('nas_blog_unlocked', '1');
+      } catch (e) {
+        /* ignore storage failures */
+      }
+      document.documentElement.classList.remove('blog-gated');
+      gate!.style.opacity = '0';
+      setTimeout(() => {
+        gate!.style.display = 'none';
+      }, 300);
+      // Optional analytics ping (GA4 is loaded site-wide).
+      try {
+        (window as any).gtag?.('event', 'blog_gate_unlock');
+      } catch (e) {
+        /* no-op */
+      }
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = input?.value.trim() ?? '';
+      if (!email.includes('@')) {
+        if (errorEl) {
+          errorEl.textContent = 'Please enter a valid email.';
+          errorEl.hidden = false;
+        }
+        return;
+      }
+
+      if (errorEl) errorEl.hidden = true;
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = 'Unlocking…';
+      }
+
+      try {
+        const res = await fetch('/api/blog-capture', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email,
+            slug: form.dataset.slug ?? '',
+            title: form.dataset.title ?? '',
+          }),
+        });
+        const data = await res.json().catch(() => ({ ok: false }));
+        if (res.ok && data.ok) {
+          unlock();
+        } else {
+          throw new Error('capture-failed');
+        }
+      } catch (err) {
+        if (errorEl) {
+          errorEl.textContent = 'Something went wrong — please try again.';
+          errorEl.hidden = false;
+        }
+        if (btn) {
+          btn.disabled = false;
+          btn.textContent = 'Unlock the post →';
+        }
+      }
+    });
+  }
+</script>
