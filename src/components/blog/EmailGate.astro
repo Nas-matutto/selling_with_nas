@@ -32,10 +32,11 @@ const { slug, title } = Astro.props;
   <div class="blog-gate-backdrop"></div>
   <div class="blog-gate-card">
     <div class="blog-gate-icon">🔓</div>
-    <p class="blog-gate-eyebrow">Free to read</p>
-    <h2 class="blog-gate-title">Enter your email to keep reading</h2>
+    <p class="blog-gate-eyebrow">Access the Free AI Guide</p>
+    <h2 class="blog-gate-title">Enter your email to get the guide</h2>
     <p class="blog-gate-sub">
-      Drop your email below and the full post unlocks instantly — no spam, just my best AI content.
+      Enter your email below and get instant access. You'll join my AI newsletter where I show you
+      how to get the most out of Claude and build your own AI agents.
     </p>
     <form class="blog-gate-form" data-slug={slug} data-title={title}>
       <input
@@ -47,6 +48,7 @@ const { slug, title } = Astro.props;
         required
       />
       <button type="submit" class="blog-gate-btn">Unlock the post →</button>
+      <p class="blog-gate-fineprint">No spam, just my best AI content. Unsubscribe anytime.</p>
       <p class="blog-gate-error" hidden>Something went wrong — please try again.</p>
     </form>
   </div>
@@ -177,6 +179,15 @@ const { slug, title } = Astro.props;
     opacity: 0.6;
     cursor: default;
     transform: none;
+  }
+  .blog-gate-fineprint {
+    margin: 2px 0 0;
+    font-size: 0.72rem;
+    line-height: 1.4;
+    color: #94a3b8;
+  }
+  :global(.dark) .blog-gate-fineprint {
+    color: #64748b;
   }
   .blog-gate-error {
     margin: 4px 0 0;
