@@ -9,9 +9,6 @@ export interface Props {
 }
 
 const { metadata } = Astro.props;
-const isMasterclassPage =
-  Astro.url.pathname.includes('ai-masterclass-with-nas') ||
-  Astro.url.pathname.includes('ai-intensive-mentorship');
 ---
 
 <Layout metadata={metadata}>
@@ -102,23 +99,6 @@ const isMasterclassPage =
     </div>
   </footer>
 
-  <!-- ── POPUP ── -->
-  {!isMasterclassPage && (
-    <div id="mc-popup" role="dialog" aria-modal="true" aria-label="AI Intensive Mentorship popup" style="display:none;">
-      <div id="mc-popup-backdrop"></div>
-      <div id="mc-popup-card">
-        <button id="mc-popup-close" aria-label="Close">&times;</button>
-        <div id="mc-popup-icon">🎓</div>
-        <p id="mc-popup-eyebrow">1:1 · 30-Day Intensive</p>
-        <h2 id="mc-popup-title">Master AI in 1 month</h2>
-        <p id="mc-popup-body">Work with me 1-on-1 in my 1-month AI Intensive Mentorship program — from AI 101 to building your own AI agents.</p>
-        <div id="mc-popup-actions">
-          <a href="/ai-intensive-mentorship" id="mc-popup-cta">Learn more →</a>
-          <button id="mc-popup-dismiss">Not interested</button>
-        </div>
-      </div>
-    </div>
-  )}
 </Layout>
 
 <style is:global>
@@ -311,112 +291,9 @@ const isMasterclassPage =
       grid-column: auto;
     }
   }
-
-  /* ══════════════════════════════════
-     POPUP
-  ══════════════════════════════════ */
-  #mc-popup {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-  }
-  #mc-popup-backdrop {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.55);
-    backdrop-filter: blur(4px);
-  }
-  #mc-popup-card {
-    position: relative;
-    z-index: 1;
-    background: #ffffff;
-    border-radius: 20px;
-    padding: 40px 36px 32px;
-    max-width: 420px;
-    width: 100%;
-    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.2);
-    text-align: center;
-  }
-  .dark #mc-popup-card {
-    background: #0f1120;
-    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-  }
-  #mc-popup-close {
-    position: absolute; top: 14px; right: 16px;
-    background: none; border: none;
-    font-size: 1.4rem; line-height: 1;
-    color: #94a3b8; cursor: pointer;
-    padding: 4px 8px; border-radius: 6px;
-    transition: color 0.15s, background 0.15s;
-  }
-  #mc-popup-close:hover { color: #0f172a; background: #f1f5f9; }
-  .dark #mc-popup-close:hover { color: #f8fafc; background: rgba(255,255,255,0.08); }
-  #mc-popup-icon { font-size: 2.4rem; margin-bottom: 12px; }
-  #mc-popup-eyebrow {
-    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
-    text-transform: uppercase; color: #a855f7; margin: 0 0 10px;
-  }
-  #mc-popup-title {
-    font-size: 1.25rem; font-weight: 800; color: #0f172a;
-    margin: 0 0 12px; letter-spacing: -0.02em; line-height: 1.25;
-  }
-  .dark #mc-popup-title { color: #f8fafc; }
-  #mc-popup-body {
-    font-size: 0.9rem; color: #64748b; line-height: 1.65; margin: 0 0 28px;
-  }
-  .dark #mc-popup-body { color: #94a3b8; }
-  #mc-popup-actions { display: flex; flex-direction: column; gap: 10px; }
-  #mc-popup-cta {
-    display: block; padding: 13px 24px; border-radius: 12px;
-    font-size: 0.95rem; font-weight: 700; text-decoration: none;
-    background: linear-gradient(135deg, #f97316, #a855f7); color: #fff;
-    box-shadow: 0 4px 20px rgba(168,85,247,0.3);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  #mc-popup-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(168,85,247,0.4); }
-  #mc-popup-dismiss {
-    display: block; width: 100%; padding: 11px 24px; border-radius: 12px;
-    font-size: 0.88rem; font-weight: 600; background: none;
-    border: 1px solid #e2e8f0; color: #64748b; cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  .dark #mc-popup-dismiss { border-color: rgba(255,255,255,0.1); }
-  #mc-popup-dismiss:hover { background: #f8fafc; color: #0f172a; border-color: #94a3b8; }
-  .dark #mc-popup-dismiss:hover { background: rgba(255,255,255,0.06); color: #e2e8f0; }
-  @media (max-width: 480px) {
-    #mc-popup-card { padding: 32px 24px 28px; }
-  }
 </style>
 
 <script>
-  const STORAGE_KEY = 'nas_mc_popup_seen';
-  const popup = document.getElementById('mc-popup');
-
-  function closePopup() {
-    if (popup) {
-      popup.style.opacity = '0';
-      popup.style.transition = 'opacity 0.25s ease';
-      setTimeout(() => { (popup as HTMLElement).style.display = 'none'; }, 250);
-    }
-    sessionStorage.setItem(STORAGE_KEY, '1');
-  }
-
-  if (popup && !sessionStorage.getItem(STORAGE_KEY)) {
-    setTimeout(() => { (popup as HTMLElement).style.display = 'flex'; }, 10000);
-  }
-
-  document.getElementById('mc-popup-dismiss')?.addEventListener('click', closePopup);
-  document.getElementById('mc-popup-close')?.addEventListener('click', closePopup);
-  document.getElementById('mc-popup-backdrop')?.addEventListener('click', closePopup);
-  document.getElementById('mc-popup-cta')?.addEventListener('click', () => {
-    sessionStorage.setItem(STORAGE_KEY, '1');
-  });
-
   // ── Announcement bar ──
   const ANNOUNCE_KEY = 'nas_announce_closed';
   const announce = document.getElementById('nas-announce');
