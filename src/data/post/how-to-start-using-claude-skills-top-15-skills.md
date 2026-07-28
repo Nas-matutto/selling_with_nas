@@ -11,8 +11,8 @@ tags:
   - productivity
 metadata:
   canonical: https://www.sellingwithnas.com/how-to-start-using-claude-skills-top-15-skills
-  title: "How to Start Using Claude Skills - Top 15 Skills to Copy (2026 Guide)"
-  description: "Claude Skills are custom slash commands that extend Claude Code's capabilities. Learn how to install them from GitHub in the terminal or Claude.ai, understand the skill.md structure, and explore 15 powerful skills for video, PDFs, spreadsheets, web apps, and more."
+  title: "Claude Skills for Beginners: 15 to Install First (2026)"
+  description: "New to Claude Skills? Install them from GitHub or Claude.ai in minutes, plus 15 beginner-friendly skills for video, docs, testing, and more."
   keywords: "Claude Skills, Claude Code skills, Claude slash commands, how to install Claude skills, Claude custom commands, Anthropic skills, Claude AI productivity, Claude Code tutorial, GitHub Claude skills, skill.md"
 ---
 

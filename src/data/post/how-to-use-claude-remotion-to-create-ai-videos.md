@@ -11,8 +11,8 @@ tags:
   - productivity
 metadata:
   canonical: https://www.sellingwithnas.com/how-to-use-claude-remotion-to-create-ai-videos
-  title: "How to Use Claude + Remotion to Create AI Videos - Step-by-Step Guide"
-  description: "Create AI-powered videos with Claude and Remotion. Step-by-step beginner guide to making product demos, social media videos, and animations - no code needed."
+  title: "Create AI Videos in Minutes with Claude + Remotion"
+  description: "Turn a prompt into finished videos with Claude + Remotion - product demos, social clips, and animations, no editing skills or code required."
   keywords: "Claude Remotion, AI video maker, Claude skills, Remotion tutorial, create videos with AI, Claude Desktop Remotion, AI product demo, social media video AI"
 ---
 

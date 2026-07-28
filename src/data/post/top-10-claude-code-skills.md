@@ -11,8 +11,8 @@ tags:
   - productivity
 metadata:
   canonical: https://www.sellingwithnas.com/top-10-claude-code-skills
-  title: "Top 10 Claude Code Skills - How to Start Using Them (2026)"
-  description: "Discover the 10 best Claude Code Skills you can install right now to automate your work. Covers presentation decks, website building, AI video creation, LinkedIn posts, brand guidelines, and more."
+  title: "10 Claude Code Skills That Save You Hours (2026)"
+  description: "The 10 Claude Code Skills I install first - build websites, make AI videos, write LinkedIn posts, and automate busywork, each from one prompt."
   keywords: "Claude Code skills, best Claude skills, Claude skills list, Claude Code plugins, top Claude skills, Claude AI skills, how to use Claude skills, Claude Code tutorial, install Claude skills"
 ---
 

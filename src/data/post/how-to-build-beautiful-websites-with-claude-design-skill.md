@@ -11,8 +11,8 @@ tags:
   - productivity
 metadata:
   canonical: https://www.sellingwithnas.com/how-to-build-beautiful-websites-with-claude-design-skill
-  title: "How to Build Beautiful Websites with Claude Frontend Design Skill - Beginner's Guide"
-  description: "Build professional, fully responsive websites with Claude's Frontend Design Skill - no coding needed. Step-by-step guide covering design inspiration, Puppeteer, 21st.dev, and more."
+  title: "Claude Frontend Design Skill: Build Pro Websites (2026)"
+  description: "Build responsive, professional websites with Claude's Frontend Design Skill - no code. Copy designs you love and add polished 21st.dev components."
   keywords: "Claude frontend design skill, build website with Claude, Claude Code frontend design, AI website builder, Claude Code tutorial, frontend design skill, build website without coding, 21st.dev Claude"
 ---
 
