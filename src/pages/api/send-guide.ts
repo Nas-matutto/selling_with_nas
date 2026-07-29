@@ -28,6 +28,7 @@ const GUIDES: Record<string, Guide> = {
     subject: 'Your Claude Code Setup Guide 💻',
     title: 'Claude Code Setup Guide',
     emoji: '💻',
+    showAbout: true,
   },
 };
 
