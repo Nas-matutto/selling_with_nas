@@ -12,22 +12,21 @@ const metadata = {
   canonical: 'https://www.sellingwithnas.com/live-session',
 };
 
-// TODO: Replace with the Cal.com registration link when ready.
-const REGISTER_LINK = '#register-placeholder';
+const REGISTER_LINK = 'https://cal.com/nas-mansurali/website-building-live-session?overlayCalendar=true&month=2026-08&date=2026-08-20';
 
 // Two live slots - same session, pick whichever time works.
 const SLOTS = [
   {
     label: 'Option 1',
     day: 'Thursday, August 20',
-    madrid: '7:00 PM Madrid',
-    others: '1:00 PM New York · 10:00 AM San Francisco',
+    primary: '1:00 PM New York',
+    others: '7:00 PM Madrid · 10:00 AM San Francisco',
   },
   {
     label: 'Option 2',
     day: 'Saturday, August 22',
-    madrid: '5:00 PM Madrid',
-    others: '11:00 AM New York · 8:00 AM San Francisco',
+    primary: '11:00 AM New York',
+    others: '5:00 PM Madrid · 8:00 AM San Francisco',
   },
 ];
 const WEBINAR_PLATFORM = 'Live on Google Meet';
@@ -71,7 +70,7 @@ const WEBINAR_LENGTH = '60 minutes + live Q&A';
             <div class="ls-pill">💬 Live Q&amp;A</div>
           </div>
           <a href={REGISTER_LINK} target="_blank" rel="noopener noreferrer" class="ls-btn-book ls-btn-hero">
-            Secure My Place Now →
+            Reserve Your Spot →
           </a>
           <p class="ls-hero-note">Two dates to choose from · limited seats · no experience required</p>
         </div>
@@ -88,7 +87,7 @@ const WEBINAR_LENGTH = '60 minutes + live Q&A';
                 <div class="ls-slot">
                   <span class="ls-slot-badge">{slot.label}</span>
                   <div class="ls-slot-day">{slot.day}</div>
-                  <div class="ls-slot-madrid">{slot.madrid}</div>
+                  <div class="ls-slot-primary">{slot.primary}</div>
                   <div class="ls-slot-others">{slot.others}</div>
                 </div>
               ))}
@@ -99,7 +98,7 @@ const WEBINAR_LENGTH = '60 minutes + live Q&A';
             </div>
 
             <a href={REGISTER_LINK} target="_blank" rel="noopener noreferrer" class="ls-btn-book ls-btn-book-full" id="register">
-              Secure My Place Now →
+              Reserve Your Spot →
             </a>
             <p class="ls-hrc-note">Free to attend · both slots cover the same session · a replay link is sent to everyone who registers.</p>
           </div>
@@ -296,7 +295,7 @@ const WEBINAR_LENGTH = '60 minutes + live Q&A';
           Seats are limited and it's completely free. Register now, show up, and leave with a real website you
           built yourself - plus the exact workflow to do it again.
         </p>
-        <a href={REGISTER_LINK} target="_blank" rel="noopener noreferrer" class="ls-btn-book ls-btn-book-lg">Secure My Place Now →</a>
+        <a href={REGISTER_LINK} target="_blank" rel="noopener noreferrer" class="ls-btn-book ls-btn-book-lg">Reserve Your Spot →</a>
         <p class="ls-guarantee" style="margin-top:20px;">✓ 100% free · ✓ Beginner friendly · ✓ Replay for everyone who registers</p>
       </div>
     </div>
@@ -502,7 +501,7 @@ const WEBINAR_LENGTH = '60 minutes + live Q&A';
   }
   .ls-slot-day { font-size: 0.98rem; font-weight: 800; color: #0f172a; letter-spacing: -0.01em; }
   :global(.dark) .ls-slot-day { color: #f8fafc; }
-  .ls-slot-madrid {
+  .ls-slot-primary {
     font-size: 0.88rem;
     font-weight: 700;
     margin-top: 3px;
