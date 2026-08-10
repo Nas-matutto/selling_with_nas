@@ -23,7 +23,10 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
   hasExternalScripts ? (Array.isArray(items) ? items.map((item) => item()) : [items()]) : [];
 
 export default defineConfig({
-  output: 'server',
+  // Static by default: every page is prerendered to HTML on the CDN. The only
+  // on-demand routes are the API endpoints (src/pages/api/*), which opt out with
+  // `export const prerender = false` and run as Vercel serverless functions.
+  output: 'static',
   adapter: vercel(),
 
   integrations: [
