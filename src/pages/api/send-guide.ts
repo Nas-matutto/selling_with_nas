@@ -30,6 +30,14 @@ const GUIDES: Record<string, Guide> = {
     emoji: '💻',
     showAbout: true,
   },
+  'claude-website-design': {
+    pdfUrl: `${SITE}/guides/Claude-website-design.pdf`,
+    subject: 'Your Website Design Skills Guide 🎨',
+    title: 'Website Design Skills Guide',
+    emoji: '🎨',
+    preheader: 'The skills that stop Claude from building AI slop.',
+    showAbout: true,
+  },
 };
 
 const DEFAULT_GUIDE = 'claude-skills';
