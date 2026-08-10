@@ -76,9 +76,8 @@ const WEBINAR_LENGTH = '60 minutes + live Q&A';
             <span class="ls-gradient">Claude Code - from scratch</span>
           </h1>
           <p class="ls-hero-sub">
-            Join me live and watch a real website come together from a blank screen - no code, no prior
-            experience needed. I'll show you exactly how I use Claude Code to design, build and launch a
-            site, and you'll be able to follow along and ask me anything in real time.
+            Join me live as I build a real website from scratch using Claude Code (without writing a single
+            line of code). Follow along &amp; ask anything in real time.
           </p>
           <div class="ls-session-pills">
             <div class="ls-pill">🎟 100% free</div>
@@ -184,6 +183,9 @@ const WEBINAR_LENGTH = '60 minutes + live Q&A';
         <div class="ls-marquee-fade ls-marquee-fade-l" aria-hidden="true"></div>
         <div class="ls-marquee-fade ls-marquee-fade-r" aria-hidden="true"></div>
       </div>
+      <div class="ls-container ls-section-cta">
+        <a href={REGISTER_LINK} target="_blank" rel="noopener noreferrer" class="ls-btn-book ls-btn-book-lg">Reserve Your Spot →</a>
+      </div>
     </section>
   )}
 
@@ -282,6 +284,9 @@ const WEBINAR_LENGTH = '60 minutes + live Q&A';
           <p>You want the fast, practical version - a real build in one sitting, not a 10-hour course.</p>
         </div>
       </div>
+      <div class="ls-section-cta">
+        <a href={REGISTER_LINK} target="_blank" rel="noopener noreferrer" class="ls-btn-book ls-btn-book-lg">Reserve Your Spot →</a>
+      </div>
     </div>
   </section>
 
@@ -294,18 +299,45 @@ const WEBINAR_LENGTH = '60 minutes + live Q&A';
           <span class="ls-tag" style="margin-bottom:12px;">Your host</span>
           <h2 class="ls-about-name">Nas</h2>
           <p class="ls-about-bio">
-            I've built and shipped over 50 AI-powered products - from landing page generators and e-commerce tools to full AI agent platforms. I run a YouTube channel
-            where I teach practical AI skills to tens of thousands of founders and builders, and I consult with businesses on embedding AI into their real workflows.
+            I've built and shipped over 50 AI-powered products, from landing page generators and e-commerce tools to full AI agent platforms. I teach practical AI
+            skills to tens of thousands of founders and builders on YouTube, and I consult with businesses on embedding AI into their workflows.
           </p>
           <p class="ls-about-bio">
-            I'm running this free session because building a website used to be one of the biggest blockers for people starting out - and with Claude Code, it just
-            isn't anymore. I want to show you, live, exactly how simple it can be.
+            Building a website used to be one of the biggest blockers for people starting out. With Claude Code, it just isn't anymore, and I want to show you, live,
+            exactly how simple it can be.
           </p>
+          <div class="ls-about-tags">
+            <span class="ls-about-tag">Ex-Amazon</span>
+            <span class="ls-about-tag">Backed by Techstars</span>
+            <span class="ls-about-tag">Exited VC-backed Founder</span>
+          </div>
           <div class="ls-about-links">
             <a href="https://www.youtube.com/@sellingwithnas" target="_blank" rel="noopener noreferrer" class="ls-about-link">YouTube →</a>
             <a href="https://www.linkedin.com/in/nasser-mansurali-659145102/" target="_blank" rel="noopener noreferrer" class="ls-about-link">LinkedIn →</a>
             <a href="https://www.tiktok.com/@sellingwithnas" target="_blank" rel="noopener noreferrer" class="ls-about-link">TikTok →</a>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── YOUTUBE TUTORIALS ── -->
+  <section class="ls-section ls-section-alt" id="tutorials">
+    <div class="ls-container">
+      <div class="ls-section-header">
+        <span class="ls-tag">Free Tutorials</span>
+        <h2 class="ls-section-title">Watch my YouTube tutorials</h2>
+        <p class="ls-section-sub">Want a taste before the live session? Here are a few of my most popular walkthroughs.</p>
+      </div>
+      <div class="ls-videos">
+        <div class="ls-video">
+          <iframe src="https://www.youtube.com/embed/W1_jBBhl3V0" title="YouTube tutorial" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <div class="ls-video">
+          <iframe src="https://www.youtube.com/embed/Y8ITX0-jcvw" title="YouTube tutorial" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <div class="ls-video">
+          <iframe src="https://www.youtube.com/embed/onATqcFhpX0" title="YouTube tutorial" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
       </div>
     </div>
@@ -840,25 +872,55 @@ const WEBINAR_LENGTH = '60 minutes + live Q&A';
   /* ════ WHO IT'S FOR ════ */
   .ls-who-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 20px;
-    max-width: 900px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    max-width: 1000px;
     margin: 0 auto;
   }
   .ls-who-card {
-    padding: 32px 28px;
-    border-radius: 20px;
+    padding: 24px 20px;
+    border-radius: 18px;
     background: #fff;
     border: 1px solid #e2e8f0;
     transition: all 0.22s ease;
   }
   :global(.dark) .ls-who-card { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.07); }
   .ls-who-card:hover { transform: translateY(-3px); border-color: rgba(168,85,247,0.35); }
-  .ls-who-icon { font-size: 1.9rem; margin-bottom: 14px; }
-  .ls-who-card h3 { font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 10px; }
+  .ls-who-icon { font-size: 1.7rem; margin-bottom: 12px; }
+  .ls-who-card h3 { font-size: 0.95rem; font-weight: 700; color: #0f172a; margin: 0 0 8px; }
   :global(.dark) .ls-who-card h3 { color: #f1f5f9; }
-  .ls-who-card p { font-size: 0.9rem; color: #64748b; line-height: 1.65; margin: 0; }
+  .ls-who-card p { font-size: 0.84rem; color: #64748b; line-height: 1.6; margin: 0; }
   :global(.dark) .ls-who-card p { color: #94a3b8; }
+  @media (max-width: 780px) {
+    .ls-who-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 440px) {
+    .ls-who-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ════ SECTION CTA ════ */
+  .ls-section-cta { text-align: center; margin-top: 44px; }
+
+  /* ════ YOUTUBE TUTORIALS ════ */
+  .ls-videos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .ls-video {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+    background: #000;
+  }
+  :global(.dark) .ls-video { border-color: rgba(255,255,255,0.08); box-shadow: none; }
+  .ls-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  @media (max-width: 780px) {
+    .ls-videos { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+  }
 
   /* ════ ABOUT ════ */
   .ls-about-card {
@@ -884,7 +946,18 @@ const WEBINAR_LENGTH = '60 minutes + live Q&A';
   :global(.dark) .ls-about-name { color: #f8fafc; }
   .ls-about-bio { font-size: 0.97rem; color: #475569; line-height: 1.8; margin: 0 0 14px; }
   :global(.dark) .ls-about-bio { color: #94a3b8; }
-  .ls-about-links { display: flex; gap: 16px; margin-top: 8px; }
+  .ls-about-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 4px; }
+  .ls-about-tag {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #a855f7;
+    background: rgba(168,85,247,0.1);
+    border: 1px solid rgba(168,85,247,0.22);
+    padding: 5px 12px;
+    border-radius: 999px;
+  }
+  :global(.dark) .ls-about-tag { background: rgba(168,85,247,0.14); }
+  .ls-about-links { display: flex; gap: 16px; margin-top: 16px; }
   .ls-about-link { font-size: 0.88rem; font-weight: 700; color: #a855f7; text-decoration: none; }
   .ls-about-link:hover { text-decoration: underline; }
 
