@@ -175,4 +175,44 @@ import '@fontsource-variable/inter';
       color: snow;
     }
   }
+
+  /* ==========================================================================
+     MOBILE GPU PERFORMANCE OVERRIDES
+     Large filter:blur() and backdrop-filter:blur() layers overwhelm mobile GPUs
+     - they cause janky scroll, delayed paint of below-the-fold content, and
+     unresponsive taps (the "first screen loads then nothing works" symptom).
+     These effects are purely decorative here, so we strip them on phones and
+     tablets. Desktops (>900px) keep the frosted look.
+     ========================================================================== */
+  @media (max-width: 900px) {
+    *,
+    *::before,
+    *::after {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+    /* Fixed, full-screen blurred ambient gradient layers - remove on mobile. */
+    .aurora,
+    .ls-ambient,
+    .mc-ambient,
+    .im-ambient {
+      display: none !important;
+    }
+    /* Belt-and-suspenders: neutralize any remaining heavy blur layers. */
+    .aurora-blob,
+    .ls-blob,
+    .mc-blob,
+    .im-blob {
+      filter: none !important;
+      animation: none !important;
+    }
+    /* The header relied on backdrop-blur; its bg is already ~opaque, so make it
+       fully solid now that the blur is gone (keeps nav readable on scroll). */
+    header#header > div.relative {
+      background: rgb(250, 251, 255) !important;
+    }
+    .dark header#header > div.relative {
+      background: rgb(9, 10, 20) !important;
+    }
+  }
 </style>
