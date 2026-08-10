@@ -9,7 +9,6 @@ import CustomStyles from '~/components/CustomStyles.astro';
 import ApplyColorMode from '~/components/common/ApplyColorMode.astro';
 import Metadata from '~/components/common/Metadata.astro';
 import SiteVerification from '~/components/common/SiteVerification.astro';
-import Analytics from '~/components/common/Analytics.astro';
 import BasicScripts from '~/components/common/BasicScripts.astro';
 
 // Comment the line below to disable View Transitions
@@ -35,16 +34,36 @@ const { language, textDirection } = I18N;
     <Metadata {...metadata} />
     <SiteVerification />
     
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N49NK79QS7"></script>
-    <script>
+    <!-- Google Analytics - deferred so the ~485KB gtag.js never competes with
+         page content on slow mobile connections. It loads after the page is
+         interactive, or on the first user interaction (whichever comes first). -->
+    <script is:inline define:vars={{ gaId: 'G-N49NK79QS7' }}>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function gtag() { dataLayer.push(arguments); }
+      window.gtag = gtag;
       gtag('js', new Date());
-      gtag('config', 'G-N49NK79QS7');
+      gtag('config', gaId, { transport_type: 'beacon' });
+
+      let gaLoaded = false;
+      function loadGA() {
+        if (gaLoaded) return;
+        gaLoaded = true;
+        const s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + gaId;
+        document.head.appendChild(s);
+      }
+
+      // Whichever fires first: 3s after full load, or the first real interaction.
+      window.addEventListener('load', () => setTimeout(loadGA, 3000), { once: true });
+      ['scroll', 'pointerdown', 'keydown', 'touchstart'].forEach((evt) =>
+        window.addEventListener(evt, loadGA, { once: true, passive: true })
+      );
+      // Keep counting page views across client-side (view-transition) navigations.
+      document.addEventListener('astro:after-swap', () => {
+        if (window.gtag) gtag('event', 'page_view', { page_location: location.href, page_title: document.title });
+      });
     </script>
-    
-    <Analytics />
 
     <!-- Comment the line below to disable View Transitions -->
     <ClientRouter fallback="swap" />
