@@ -1,4 +1,6 @@
 ---
+export const prerender = true;
+
 import Layout from '~/layouts/PageLayout.astro';
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
@@ -450,6 +452,14 @@ const WEBINAR_LENGTH = '60 minutes + live Q&A';
   @keyframes lsDrift {
     from { transform: translate(0, 0) scale(1); }
     to   { transform: translate(30px, 20px) scale(1.06); }
+  }
+  /* Big animated blur layers are very expensive to composite on mobile GPUs -
+     drop the animation on phones and for reduced-motion users. */
+  @media (max-width: 860px) {
+    .ls-blob { animation: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ls-blob { animation: none; }
   }
   .ls-hero, .ls-section, .ls-proof-strip, .ls-back-row { position: relative; z-index: 1; }
 

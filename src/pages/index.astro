@@ -1,4 +1,6 @@
 ---
+export const prerender = true;
+
 import Layout from '~/layouts/PageLayout.astro';
 import YouTubeEmbed from '~/components/common/YouTubeEmbed.astro';
 
@@ -109,6 +111,14 @@ const metadata = {
   @keyframes hpDrift4 {
     0%, 100% { transform: translate(0,0); }
     50%       { transform: translate(60px,-35px) scale(1.05); }
+  }
+  /* Large animated blur layers thrash mobile GPUs - freeze them on phones
+     and for reduced-motion users (keeps the look, drops the per-frame cost). */
+  @media (max-width: 860px) {
+    .aurora-blob { animation: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .aurora-blob { animation: none; }
   }
 
   /* ─── LAYOUT HELPERS ─── */
