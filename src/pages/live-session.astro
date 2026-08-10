@@ -75,6 +75,13 @@ const WEBINAR_LENGTH = '60 minutes + live Q&A';
             Build a Website with<br />
             <span class="ls-gradient">Claude Code - from scratch</span>
           </h1>
+          <Image
+            src={buildingWebsiteDesign}
+            alt="Building a website with Claude Code, live"
+            class="ls-hero-img"
+            widths={[320, 480, 760]}
+            sizes="(max-width: 860px) 90vw, 400px"
+          />
           <p class="ls-hero-sub">
             Join me live as I build a real website from scratch using Claude Code (without writing a single
             line of code). Follow along &amp; ask anything in real time.
@@ -236,20 +243,6 @@ const WEBINAR_LENGTH = '60 minutes + live Q&A';
           <p>You'll walk away with the exact process you can reuse to build your next website, project or landing page on your own.</p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ── SHOWCASE IMAGE + CTA ── -->
-  <section class="ls-showcase">
-    <div class="ls-container">
-      <Image
-        src={buildingWebsiteDesign}
-        alt="Building a website with Claude Code, live"
-        class="ls-showcase-img"
-        widths={[480, 800, 1280]}
-        sizes="(max-width: 820px) 100vw, 780px"
-      />
-      <a href={REGISTER_LINK} target="_blank" rel="noopener noreferrer" class="ls-btn-book ls-btn-book-lg ls-showcase-cta">Claim Your Spot Today →</a>
     </div>
   </section>
 
@@ -784,31 +777,20 @@ const WEBINAR_LENGTH = '60 minutes + live Q&A';
     .ls-review-card { width: 340px; }
   }
 
-  /* ════ SHOWCASE IMAGE + CTA ════ */
-  .ls-showcase {
-    position: relative;
-    z-index: 1;
-    padding: 40px 0 96px;
-    text-align: center;
-  }
-  .ls-showcase-img {
+  /* ════ HERO IMAGE ════ */
+  .ls-hero-img {
     display: block;
     width: 100%;
-    max-width: 780px;
+    max-width: 400px;
     height: auto;
-    margin: 0 auto;
-    border-radius: 22px;
+    margin: 6px 0 22px;
+    border-radius: 16px;
     border: 1px solid #e2e8f0;
-    box-shadow: 0 20px 60px rgba(15,23,42,0.12);
+    box-shadow: 0 12px 40px rgba(15,23,42,0.12);
   }
-  :global(.dark) .ls-showcase-img {
+  :global(.dark) .ls-hero-img {
     border-color: rgba(255,255,255,0.08);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-  }
-  .ls-showcase-cta { margin-top: 32px; }
-  @media (max-width: 640px) {
-    .ls-showcase { padding: 24px 0 64px; }
-    .ls-showcase-cta { margin-top: 24px; }
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
   }
 
   /* ════ SECTIONS ════ */
