@@ -1,5 +1,6 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+import YouTubeEmbed from '~/components/common/YouTubeEmbed.astro';
 
 const metadata = {
   title: 'Selling with Nas - AI Builder · Founder · GTM Strategist',
@@ -836,12 +837,7 @@ const metadata = {
         <div class="hp-container">
           <div class="hp-yt-grid hp-reveal">
             <div class="hp-yt-video-wrap">
-              <iframe
-                src="https://www.youtube.com/embed/fFKQb1RacLI"
-                title="Selling with Nas - YouTube"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              ></iframe>
+              <YouTubeEmbed id="fFKQb1RacLI" title="Selling with Nas - YouTube" />
             </div>
             <div class="hp-yt-text">
               <span class="hp-label">On YouTube</span>

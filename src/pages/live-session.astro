@@ -2,6 +2,7 @@
 import Layout from '~/layouts/PageLayout.astro';
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
+import YouTubeEmbed from '~/components/common/YouTubeEmbed.astro';
 import nasProfile from '~/assets/images/nas-profile.jpg';
 import buildingWebsiteDesign from '~/assets/images/Building a website Design.png';
 
@@ -81,6 +82,8 @@ const WEBINAR_LENGTH = '60 minutes + live Q&A';
             class="ls-hero-img"
             widths={[320, 480, 760]}
             sizes="(max-width: 860px) 90vw, 400px"
+            loading="eager"
+            fetchpriority="high"
           />
           <p class="ls-hero-sub">
             Join me live as I build a real website from scratch using Claude Code (without writing a single
@@ -174,7 +177,7 @@ const WEBINAR_LENGTH = '60 minutes + live Q&A';
         <div class="ls-marquee-row ls-marquee-fwd">
           {[...reviewsRow1, ...reviewsRow1].map((img, i) => (
             <div class="ls-review-card" aria-hidden={i >= reviewsRow1.length ? 'true' : undefined}>
-              <img src={img.src} width={img.width} height={img.height} alt="Customer review" loading="lazy" />
+              <Image src={img} widths={[340, 440, 600]} sizes="(max-width: 640px) 340px, 440px" alt="Customer review" loading="lazy" />
             </div>
           ))}
         </div>
@@ -182,7 +185,7 @@ const WEBINAR_LENGTH = '60 minutes + live Q&A';
           <div class="ls-marquee-row ls-marquee-rev">
             {[...reviewsRow2, ...reviewsRow2].map((img, i) => (
               <div class="ls-review-card" aria-hidden={i >= reviewsRow2.length ? 'true' : undefined}>
-                <img src={img.src} width={img.width} height={img.height} alt="Customer review" loading="lazy" />
+                <Image src={img} widths={[340, 440, 600]} sizes="(max-width: 640px) 340px, 440px" alt="Customer review" loading="lazy" />
               </div>
             ))}
           </div>
@@ -324,13 +327,13 @@ const WEBINAR_LENGTH = '60 minutes + live Q&A';
       </div>
       <div class="ls-videos">
         <div class="ls-video">
-          <iframe src="https://www.youtube.com/embed/W1_jBBhl3V0" title="YouTube tutorial" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <YouTubeEmbed id="W1_jBBhl3V0" title="How to build a website with Claude Code" />
         </div>
         <div class="ls-video">
-          <iframe src="https://www.youtube.com/embed/Y8ITX0-jcvw" title="YouTube tutorial" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <YouTubeEmbed id="Y8ITX0-jcvw" title="How to deploy a website with Vercel" />
         </div>
         <div class="ls-video">
-          <iframe src="https://www.youtube.com/embed/onATqcFhpX0" title="YouTube tutorial" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <YouTubeEmbed id="onATqcFhpX0" title="Build a website with Claude Code" />
         </div>
       </div>
     </div>
