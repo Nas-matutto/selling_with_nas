@@ -1,7 +1,22 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import nasProfile from '~/assets/images/nas-profile.jpg';
+
+// Auto-imports every review screenshot dropped into src/assets/images/reviews/.
+// Add or remove image files there and they appear/disappear automatically -
+// filenames are sorted, so name them review-01.png, review-02.png, ... to order them.
+const reviewModules = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/images/reviews/*.{png,jpg,jpeg,webp,avif}',
+  { eager: true }
+);
+const reviewImages = Object.entries(reviewModules)
+  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+  .map(([, mod]) => mod.default);
+const reviewHalf = Math.ceil(reviewImages.length / 2);
+const reviewsRow1 = reviewImages.slice(0, reviewHalf);
+const reviewsRow2 = reviewImages.slice(reviewHalf);
 
 const metadata = {
   title: 'Free Live Webinar: Build a Website with Claude Code from Scratch',
@@ -132,6 +147,40 @@ const WEBINAR_LENGTH = '60 minutes + live Q&A';
       </div>
     </div>
   </div>
+
+  <!-- ── REVIEWS ── -->
+  {reviewImages.length > 0 && (
+    <section class="ls-section" id="reviews">
+      <div class="ls-container">
+        <div class="ls-section-header">
+          <span class="ls-tag">Reviews</span>
+          <h2 class="ls-section-title">Thousands have built their first website with me</h2>
+          <p class="ls-section-sub">Real people who showed up and built a real website live with Claude Code. Here's what many of them had to say:</p>
+        </div>
+      </div>
+
+      <div class="ls-reviews-marquee">
+        <div class="ls-marquee-row ls-marquee-fwd">
+          {[...reviewsRow1, ...reviewsRow1].map((img, i) => (
+            <div class="ls-review-card" aria-hidden={i >= reviewsRow1.length ? 'true' : undefined}>
+              <img src={img.src} width={img.width} height={img.height} alt="Customer review" loading="lazy" />
+            </div>
+          ))}
+        </div>
+        {reviewsRow2.length > 0 && (
+          <div class="ls-marquee-row ls-marquee-rev">
+            {[...reviewsRow2, ...reviewsRow2].map((img, i) => (
+              <div class="ls-review-card" aria-hidden={i >= reviewsRow2.length ? 'true' : undefined}>
+                <img src={img.src} width={img.width} height={img.height} alt="Customer review" loading="lazy" />
+              </div>
+            ))}
+          </div>
+        )}
+        <div class="ls-marquee-fade ls-marquee-fade-l" aria-hidden="true"></div>
+        <div class="ls-marquee-fade ls-marquee-fade-r" aria-hidden="true"></div>
+      </div>
+    </section>
+  )}
 
   <!-- ── WHAT YOU'LL LEARN ── -->
   <section class="ls-section" id="what-youll-learn">
@@ -601,6 +650,68 @@ const WEBINAR_LENGTH = '60 minutes + live Q&A';
   .ls-proof-label { font-size: 0.78rem; color: #64748b; margin-top: 2px; display: block; }
   .ls-proof-div { width: 1px; height: 36px; background: #e2e8f0; }
   :global(.dark) .ls-proof-div { background: rgba(255,255,255,0.08); }
+
+  /* ════ REVIEWS MARQUEE ════ */
+  .ls-reviews-marquee {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow: hidden;
+    padding: 4px 0;
+  }
+  .ls-marquee-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: max-content;
+    will-change: transform;
+  }
+  .ls-marquee-fwd { animation: lsMarquee 48s linear infinite; }
+  .ls-marquee-rev { animation: lsMarqueeRev 48s linear infinite; }
+  .ls-reviews-marquee:hover .ls-marquee-row { animation-play-state: paused; }
+  @keyframes lsMarquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  @keyframes lsMarqueeRev {
+    from { transform: translateX(-50%); }
+    to   { transform: translateX(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ls-marquee-row { animation: none; }
+    .ls-reviews-marquee { overflow-x: auto; }
+  }
+  .ls-review-card {
+    flex: 0 0 auto;
+    width: 300px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+  }
+  :global(.dark) .ls-review-card {
+    border-color: rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.03);
+    box-shadow: none;
+  }
+  .ls-review-card img { display: block; width: 100%; height: auto; }
+  .ls-marquee-fade {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 12%;
+    max-width: 160px;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .ls-marquee-fade-l { left: 0; background: linear-gradient(to right, #ffffff, transparent); }
+  .ls-marquee-fade-r { right: 0; background: linear-gradient(to left, #ffffff, transparent); }
+  :global(.dark) .ls-marquee-fade-l { background: linear-gradient(to right, #05050f, transparent); }
+  :global(.dark) .ls-marquee-fade-r { background: linear-gradient(to left, #05050f, transparent); }
+  @media (max-width: 640px) {
+    .ls-review-card { width: 240px; }
+  }
 
   /* ════ SECTIONS ════ */
   .ls-section { padding: 96px 0; }
