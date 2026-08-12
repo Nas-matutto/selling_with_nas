@@ -6,12 +6,14 @@ import type { MetaData } from '~/types';
 
 export interface Props {
   metadata?: MetaData;
+  /** Meta (Facebook) Pixel ID. Pass one to enable the pixel on this page only. */
+  metaPixelId?: string;
 }
 
-const { metadata } = Astro.props;
+const { metadata, metaPixelId } = Astro.props;
 ---
 
-<Layout metadata={metadata}>
+<Layout metadata={metadata} metaPixelId={metaPixelId}>
   <!-- ── ANNOUNCEMENT BAR ── -->
   <div id="nas-announce" role="region" aria-label="Site announcement">
     <div id="nas-announce-track">

@@ -10,14 +10,17 @@ import ApplyColorMode from '~/components/common/ApplyColorMode.astro';
 import Metadata from '~/components/common/Metadata.astro';
 import SiteVerification from '~/components/common/SiteVerification.astro';
 import BasicScripts from '~/components/common/BasicScripts.astro';
+import MetaPixel from '~/components/common/MetaPixel.astro';
 
 import type { MetaData as MetaDataType } from '~/types';
 
 export interface Props {
   metadata?: MetaDataType;
+  /** Meta (Facebook) Pixel ID. Pass one to enable the pixel on this page only. */
+  metaPixelId?: string;
 }
 
-const { metadata = {} } = Astro.props;
+const { metadata = {}, metaPixelId } = Astro.props;
 const { language, textDirection } = I18N;
 ---
 
@@ -57,9 +60,26 @@ const { language, textDirection } = I18N;
         window.addEventListener(evt, loadGA, { once: true, passive: true })
       );
     </script>
+
+    {metaPixelId && <MetaPixel id={metaPixelId} />}
   </head>
 
   <body class="antialiased text-default bg-page tracking-tight">
+    {
+      /* Meta's no-JS fallback. Lives at the top of <body> rather than in <head>,
+         where the HTML spec doesn't allow <img> inside <noscript>. */
+      metaPixelId && (
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style="display:none"
+            alt=""
+            src={`https://www.facebook.com/tr?id=${metaPixelId}&ev=PageView&noscript=1`}
+          />
+        </noscript>
+      )
+    }
     <slot />
 
     <BasicScripts />

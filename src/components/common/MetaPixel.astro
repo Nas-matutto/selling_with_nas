@@ -1,0 +1,50 @@
+---
+// Meta (Facebook) Pixel - opt-in per page via PageLayout's `metaPixelId` prop.
+// Only pages that pass an ID get the pixel; nothing else on the site is affected.
+//
+// Meta's official snippet, with one change: `fbevents.js` (~110 KB) is fetched
+// after the page is interactive instead of during load, matching how gtag.js is
+// deferred in Layout.astro. This is safe because the `fbq` stub below is defined
+// immediately and queues calls - the queued PageView replays the moment the real
+// script arrives, so no event is lost.
+interface Props {
+  id: string;
+}
+const { id } = Astro.props;
+---
+
+<script is:inline define:vars={{ pixelId: id }}>
+  /* eslint-disable */
+  // Meta's stub: defines window.fbq and queues calls until fbevents.js loads.
+  !(function (f, b, e, v, n, t, s) {
+    if (f.fbq) return;
+    n = f.fbq = function () {
+      n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+    };
+    if (!f._fbq) f._fbq = n;
+    n.push = n;
+    n.loaded = !0;
+    n.version = '2.0';
+    n.queue = [];
+  })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+
+  fbq('init', pixelId);
+  fbq('track', 'PageView');
+
+  // Fetch the real pixel script once the page is out of the way. Whichever comes
+  // first: 1.5s after load, or the first genuine user interaction.
+  let fbLoaded = false;
+  function loadFbEvents() {
+    if (fbLoaded) return;
+    fbLoaded = true;
+    const t = document.createElement('script');
+    t.async = true;
+    t.src = 'https://connect.facebook.net/en_US/fbevents.js';
+    document.head.appendChild(t);
+  }
+
+  window.addEventListener('load', () => setTimeout(loadFbEvents, 1500), { once: true });
+  ['scroll', 'pointerdown', 'keydown', 'touchstart'].forEach((evt) =>
+    window.addEventListener(evt, loadFbEvents, { once: true, passive: true })
+  );
+</script>
