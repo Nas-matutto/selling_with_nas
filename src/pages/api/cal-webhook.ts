@@ -141,6 +141,21 @@ export async function POST({ request }: { request: Request }) {
   }
 
   const payload = body?.payload ?? {};
+
+  // Only the live-session event type should count as an ad conversion. If the
+  // webhook is registered account-wide in Cal.com it also fires for mentorship
+  // calls, contact bookings, etc. - reporting those as Schedule conversions
+  // would teach Meta to optimise towards the wrong audience.
+  //
+  // Left unset this filter is inactive (every booking is reported). The observed
+  // event type is always logged, so you can read the exact value to filter on.
+  const eventTypeSlug = payload?.eventType?.slug ?? payload?.type ?? '';
+  const wantedSlug = import.meta.env.CAL_EVENT_TYPE_SLUG;
+  console.log(`Cal webhook: booking on eventType="${eventTypeSlug}" (filter=${wantedSlug || 'none'}).`);
+
+  if (wantedSlug && eventTypeSlug !== wantedSlug) {
+    return json({ ok: true, sent: false, skipped: 'other-event-type', eventType: eventTypeSlug }, 200);
+  }
   const { userData, hasEmail } = await buildUserData(payload);
 
   if (!hasEmail) {
