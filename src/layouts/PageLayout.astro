@@ -20,8 +20,8 @@ const { metadata, metaPixelId } = Astro.props;
       <a href="/ai-intensive-mentorship" class="nas-announce-msg nas-announce-active">
         Apply to join my 1-month AI Mentorship Program <span class="nas-announce-arrow">→</span>
       </a>
-      <a href="/guides" class="nas-announce-msg">
-        Download a free AI guide <span class="nas-announce-arrow">→</span>
+      <a href="/live-session" class="nas-announce-msg">
+        Join my Free Live Webinar - Build a Website with Claude Code <span class="nas-announce-arrow">→</span>
       </a>
     </div>
     <button id="nas-announce-close" aria-label="Close announcement">&times;</button>
@@ -173,8 +173,13 @@ const { metadata, metaPixelId } = Astro.props;
     transition: opacity 0.2s ease;
   }
   #nas-announce-close:hover { opacity: 1; }
-  @media (max-width: 480px) {
+  /* Below ~600px the longest message ("Join my Free Live Webinar...") no longer
+     fits on one line, so let it wrap and give the bar room for two lines - the
+     messages are absolutely positioned, so the track can't grow on its own. */
+  @media (max-width: 600px) {
     .nas-announce-msg { font-size: 0.76rem; white-space: normal; }
+    #nas-announce-track { min-height: 40px; }
+    #nas-announce { min-height: 54px; }
   }
 
   /* ══════════════════════════════════

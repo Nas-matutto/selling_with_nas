@@ -1040,4 +1040,46 @@ const WEBINAR_LENGTH = '60 minutes + live Q&A';
     .ls-proof-inner { gap: 8px; }
   }
 </style>
+
+<script is:inline>
+  // Carries Meta's click identifiers across to Cal.com so the booking webhook can
+  // report them back to the Conversions API. Without these, Meta matches the
+  // conversion on the hashed email alone; with them it can tie the booking to the
+  // exact ad click, which is what makes campaign optimisation accurate.
+  //
+  // These land in the webhook only if Cal.com has hidden booking questions with
+  // the identifiers `fbp` and `fbc`. If they don't exist, Cal.com ignores the
+  // extra query params and everything still works - just with weaker matching.
+  (function () {
+    function cookie(name) {
+      var m = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+      return m ? m.pop() : '';
+    }
+
+    var fbp = cookie('_fbp');
+    var fbc = cookie('_fbc');
+
+    // If the visitor arrived from an ad, the click id is in the URL. Build fbc
+    // ourselves in Meta's documented `fb.1.<timestamp>.<fbclid>` format rather
+    // than waiting on the pixel script, which loads deferred and may not have
+    // written the _fbc cookie yet when someone clicks through quickly.
+    if (!fbc) {
+      var fbclid = new URLSearchParams(window.location.search).get('fbclid');
+      if (fbclid) fbc = 'fb.1.' + Date.now() + '.' + fbclid;
+    }
+
+    if (!fbp && !fbc) return;
+
+    document.querySelectorAll('a[href*="cal.com"]').forEach(function (a) {
+      try {
+        var url = new URL(a.href);
+        if (fbp) url.searchParams.set('fbp', fbp);
+        if (fbc) url.searchParams.set('fbc', fbc);
+        a.href = url.toString();
+      } catch (e) {
+        /* leave the link untouched if it isn't parseable */
+      }
+    });
+  })();
+</script>
 </Layout>
