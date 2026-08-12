@@ -160,8 +160,15 @@ export async function POST({ request }: { request: Request }) {
 
   if (!hasEmail) {
     // Without at least one identifier Meta cannot attribute the conversion.
-    console.error('Cal webhook: booking had no attendee email - skipping CAPI send.');
-    return json({ ok: true, sent: false, error: 'no-identifier' }, 200);
+    // Report the payload's shape (keys only, never values) so a mismatch with a
+    // future Cal.com format is diagnosable straight from its delivery log.
+    const shape = {
+      payloadKeys: Object.keys(payload),
+      attendeeKeys: Array.isArray(payload?.attendees) ? Object.keys(payload.attendees[0] ?? {}) : null,
+      responseKeys: payload?.responses ? Object.keys(payload.responses) : null,
+    };
+    console.error('Cal webhook: no attendee email - skipping CAPI send.', JSON.stringify(shape));
+    return json({ ok: true, sent: false, error: 'no-identifier', shape }, 200);
   }
 
   // Deduplication key. Cal.com retries failed webhooks, and Meta collapses
