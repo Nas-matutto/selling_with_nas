@@ -66,12 +66,26 @@ function readResponse(responses: Record<string, unknown> | undefined, key: strin
 
 /** Meta wants email lowercased and trimmed, phone digits-only, names lowercased. */
 async function buildUserData(payload: Record<string, any>) {
-  const attendee = Array.isArray(payload?.attendees) ? payload.attendees[0] : undefined;
+  const attendees: Record<string, any>[] = Array.isArray(payload?.attendees) ? payload.attendees : [];
   const responses = payload?.responses as Record<string, unknown> | undefined;
 
-  const email = (attendee?.email ?? readResponse(responses, 'email'))?.toString().trim().toLowerCase();
-  const name = (attendee?.name ?? readResponse(responses, 'name'))?.toString().trim();
-  const phoneRaw = (attendee?.phoneNumber ?? readResponse(responses, 'attendeePhoneNumber'))?.toString();
+  // Seated events (a webinar with many seats) keep ONE Cal.com booking and append
+  // every registrant to `attendees` - so attendees[0] is the first person ever to
+  // book, not whoever just signed up. `responses` is the form that was submitted
+  // for THIS registration, so it is the reliable source. Fall back to the newest
+  // attendee, then the only attendee, for non-seated event types.
+  const newest = attendees[attendees.length - 1];
+
+  const email = (readResponse(responses, 'email') ?? newest?.email ?? attendees[0]?.email)
+    ?.toString()
+    .trim()
+    .toLowerCase();
+  const name = (readResponse(responses, 'name') ?? newest?.name ?? attendees[0]?.name)?.toString().trim();
+  const phoneRaw = (
+    readResponse(responses, 'attendeePhoneNumber') ??
+    newest?.phoneNumber ??
+    attendees[0]?.phoneNumber
+  )?.toString();
 
   const userData: Record<string, unknown> = {};
 
@@ -95,7 +109,7 @@ async function buildUserData(payload: Record<string, any>) {
   if (fbp) userData.fbp = fbp;
   if (fbc) userData.fbc = fbc;
 
-  return { userData, hasEmail: Boolean(email) };
+  return { userData, hasEmail: Boolean(email), email, attendeeCount: attendees.length };
 }
 
 export async function POST({ request }: { request: Request }) {
@@ -156,7 +170,7 @@ export async function POST({ request }: { request: Request }) {
   if (wantedSlug && eventTypeSlug !== wantedSlug) {
     return json({ ok: true, sent: false, skipped: 'other-event-type', eventType: eventTypeSlug }, 200);
   }
-  const { userData, hasEmail } = await buildUserData(payload);
+  const { userData, hasEmail, email, attendeeCount } = await buildUserData(payload);
 
   if (!hasEmail) {
     // Without at least one identifier Meta cannot attribute the conversion.
@@ -171,9 +185,21 @@ export async function POST({ request }: { request: Request }) {
     return json({ ok: true, sent: false, error: 'no-identifier', shape }, 200);
   }
 
-  // Deduplication key. Cal.com retries failed webhooks, and Meta collapses
-  // repeats of the same event_id + event_name, so a retry can't double-count.
-  const eventId = `cal-${payload?.uid ?? payload?.bookingId ?? Date.now()}`;
+  // Deduplication key. Meta collapses repeats of the same event_id + event_name
+  // for 48h, which is what stops Cal.com's webhook retries double-counting.
+  //
+  // It must therefore be unique PER REGISTRATION, not per booking: on a seated
+  // event every seat shares one booking uid, so keying on uid alone silently
+  // deduped every registrant after the first. Cal.com's own per-seat id is used
+  // when present, otherwise the registrant's email - both keep genuine retries
+  // (same person, same booking) collapsing correctly.
+  const seatRef = payload?.seatReferenceUid ?? payload?.seatUid ?? payload?.bookingSeat?.referenceUid;
+  const seatKey = seatRef ?? (email ? (await sha256(email)).slice(0, 16) : Date.now());
+  const eventId = `cal-${payload?.uid ?? payload?.bookingId ?? 'unknown'}-${seatKey}`;
+
+  console.log(
+    `Cal webhook: attendees=${attendeeCount} seatRef=${seatRef ?? 'none'} eventId=${eventId} (uid=${payload?.uid}).`
+  );
 
   const createdAt = Date.parse(body?.createdAt ?? '');
   const eventTime = Math.floor((Number.isFinite(createdAt) ? createdAt : Date.now()) / 1000);

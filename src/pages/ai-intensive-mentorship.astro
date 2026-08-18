@@ -4,13 +4,14 @@ export const prerender = true;
 import Layout from '~/layouts/PageLayout.astro';
 import { Image } from 'astro:assets';
 import nasProfile from '~/assets/images/nas-profile.jpg';
+import intensiveImage from '~/assets/images/ai-intensive-image.png';
 
 const metadata = {
-  title: 'AI Intensive Mentorship with Nas - Master AI in One Month, 1-on-1',
+  title: 'Website & App Building Intensive with Nas - Build Real Projects in One Month, 1-on-1',
   description:
-    'A high-touch, one-month 1-on-1 mentorship to master AI. Weekly private sessions, hands-on assignments and a structured curriculum that takes you from AI 101 to building multi-layered AI agents for your business.',
+    'A high-touch, one-month 1-on-1 mentorship to build a real website or app. Weekly private sessions, hands-on assignments, and a structured curriculum that takes you from AI 101 to a live, working project.',
   keywords:
-    'AI mentorship, 1-on-1 AI mentor, AI intensive, master AI in a month, AI agents, learn AI with Nas, AI for business owners, monetize with AI, AI coaching program',
+    'website building mentorship, app building mentorship, 1-on-1 mentor, build a website with AI, build an app with AI, no code website, learn to build with Nas, one month intensive, beginner website course',
   canonical: 'https://www.sellingwithnas.com/ai-intensive-mentorship',
 };
 
@@ -35,37 +36,48 @@ const APPLY_LINK = 'https://tally.so/r/QKaM67';
 
         <!-- Left: copy -->
         <div class="im-hero-left">
-          <div class="im-eyebrow">Private 1-on-1 · 30-Day Intensive</div>
+          <div class="im-eyebrow">Private 1-on-1 · One-Month Intensive</div>
           <h1 class="im-hero-title">
-            Work with me for a month<br />
-            <span class="im-gradient">and truly master AI</span>
+            Build a real website or app<br />
+            <span class="im-gradient">from scratch, in one month</span>
           </h1>
+          <Image
+            src={intensiveImage}
+            alt="Website & App Building Intensive with Nas"
+            class="im-hero-img"
+            widths={[320, 480, 760]}
+            sizes="(max-width: 860px) 90vw, 400px"
+            loading="eager"
+            fetchpriority="high"
+          />
           <p class="im-hero-sub">
-            This isn't a course you watch alone. For four weeks, you get me in your corner - weekly
-            1-on-1 sessions, hands-on assignments, and a clear path that takes you from AI fundamentals
-            all the way to building multi-layered AI agents that work inside your business.
+            Fast-track your learning and finish the month with a live, working product you built yourself.
+            No coding experience needed - AI does the heavy lifting, and I teach you how to direct it.
           </p>
+          <a href={APPLY_LINK} target="_blank" rel="noopener noreferrer" class="im-btn-book im-btn-hero">
+            Register Now →
+          </a>
           <a href="#curriculum" class="im-btn-ghost im-ghost-inline im-ghost-center">See the curriculum ↓</a>
         </div>
 
         <!-- Right: offer card -->
         <div class="im-hero-right">
           <div class="im-hero-offer-card">
-            <div class="im-hoc-tag">Apply to Work With Me</div>
-            <div class="im-hoc-title">AI Intensive Mentorship</div>
+            <div class="im-hoc-tag">Register for the Intensive</div>
+            <div class="im-hoc-title">Website &amp; App Building Intensive</div>
             <div class="im-hoc-detail-row">
               <div class="im-hoc-detail-primary">A full month of 1-on-1 mentorship</div>
-              <div class="im-hoc-detail-secondary">One private session every week for four weeks, built around your goals.</div>
-              <div class="im-hoc-detail-secondary">Personalised curriculum, real assignments and direct access to me between sessions.</div>
+              <div class="im-hoc-detail-secondary">One private session every week for four weeks, built entirely around the website or app you want to build.</div>
+              <div class="im-hoc-detail-secondary">Hands-on assignments I review personally, plus direct access to me between calls.</div>
             </div>
             <ul class="im-hoc-list">
-              <li>4× weekly 1-on-1 mentorship calls</li>
-              <li>Structured curriculum from beginner to advanced</li>
+              <li>4× weekly 1-on-1 sessions</li>
+              <li>No coding experience needed</li>
               <li>Assignments reviewed personally by me</li>
-              <li>Leave with real AI systems built for you</li>
+              <li>Leave with a live, working product</li>
             </ul>
             <a href={APPLY_LINK} target="_blank" rel="noopener noreferrer" class="im-btn-book im-btn-book-full" id="apply">
-              Apply for the Mentorship →
+              Register Now →
             </a>
             <p class="im-hoc-note">Limited to a small number of mentees each month so every session stays fully hands-on.</p>
           </div>
@@ -85,7 +97,7 @@ const APPLY_LINK = 'https://tally.so/r/QKaM67';
       <div class="im-proof-div"></div>
       <div class="im-proof-item">
         <span class="im-proof-num">50+</span>
-        <span class="im-proof-label">AI builds shipped</span>
+        <span class="im-proof-label">Websites &amp; apps shipped</span>
       </div>
       <div class="im-proof-div"></div>
       <div class="im-proof-item">
@@ -94,8 +106,8 @@ const APPLY_LINK = 'https://tally.so/r/QKaM67';
       </div>
       <div class="im-proof-div"></div>
       <div class="im-proof-item">
-        <span class="im-proof-num">AI 101 → Agents</span>
-        <span class="im-proof-label">A complete journey</span>
+        <span class="im-proof-num">0 Coding</span>
+        <span class="im-proof-label">Experience required</span>
       </div>
     </div>
   </div>
@@ -106,7 +118,7 @@ const APPLY_LINK = 'https://tally.so/r/QKaM67';
       <div class="im-section-header">
         <span class="im-tag">The Program</span>
         <h2 class="im-section-title">Everything you get in your month with me</h2>
-        <p class="im-section-sub">This is a high-touch, done-with-you experience. You're not buying content - you're getting a month of my time, structure and accountability.</p>
+        <p class="im-section-sub">This is a high-touch, done-with-you experience. You're not buying content - you're getting a month of my time, structure and accountability while you build.</p>
       </div>
 
       <div class="im-learn-grid">
@@ -114,41 +126,41 @@ const APPLY_LINK = 'https://tally.so/r/QKaM67';
           <div class="im-learn-num">01</div>
           <div class="im-learn-icon">🎥</div>
           <h3>Weekly 1-on-1 Sessions</h3>
-          <p>One private call with me every week for four weeks. We work through your curriculum live, solve your real problems and adapt the plan to where you're going.</p>
+          <p>One private call with me every week for four weeks. We build live, solve whatever is blocking you, and adapt the plan to where your project is going.</p>
         </div>
         <div class="im-learn-card">
           <div class="im-learn-num">02</div>
           <div class="im-learn-icon">📝</div>
           <h3>Tasks &amp; Assignments</h3>
-          <p>Between sessions you'll get focused assignments that turn theory into skill. I review your work personally so every week builds on the last.</p>
+          <p>Between sessions you'll get focused assignments that move your project forward. I review your work personally so every week builds on the last.</p>
         </div>
         <div class="im-learn-card">
           <div class="im-learn-num">03</div>
           <div class="im-learn-icon">🧭</div>
-          <h3>A Clear Learning Curriculum</h3>
-          <p>A structured path from AI 101 to building multi-layered AI agents - no guessing what to learn next, just a proven progression tailored to your goals.</p>
+          <h3>A Curriculum Built Around You</h3>
+          <p>Not a generic syllabus. The whole month is shaped around the website or app you want to exist - so everything you learn goes straight into your build.</p>
         </div>
         <div class="im-learn-card">
           <div class="im-learn-num">04</div>
-          <div class="im-learn-icon">🤖</div>
-          <h3>Real Systems You Keep</h3>
-          <p>By the end of the month you'll have built working AI tools and agents for your own business or projects - not demos, but systems you actually use.</p>
+          <div class="im-learn-icon">🚀</div>
+          <h3>A Live, Working Product</h3>
+          <p>By the end of the month your project is real and online - not a demo or a folder of half-finished tutorials, but a working product you can show people.</p>
         </div>
         <div class="im-learn-card">
           <div class="im-learn-num">05</div>
           <div class="im-learn-icon">💬</div>
-          <h3>Direct Access to Me</h3>
-          <p>Stuck between calls? You have a direct line to me for questions, feedback and quick unblocks throughout the whole month.</p>
+          <h3>Direct Access Between Calls</h3>
+          <p>Stuck at 11pm on something small? You have a direct line to me for questions, feedback and quick unblocks throughout the whole month.</p>
         </div>
         <div class="im-learn-card">
           <div class="im-learn-num">06</div>
-          <div class="im-learn-icon">💰</div>
-          <h3>A Focus on Monetisation</h3>
-          <p>Everything is oriented around outcomes: implementing AI in your business, scaling with it, or building something new you can actually make money from.</p>
+          <div class="im-learn-icon">🧠</div>
+          <h3>Skills That Outlast the Month</h3>
+          <p>No coding experience needed - AI does the heavy lifting. You learn how to direct it, so you can keep building new things long after we finish.</p>
         </div>
       </div>
       <div class="im-section-cta">
-        <a href={APPLY_LINK} target="_blank" rel="noopener noreferrer" class="im-btn-book im-btn-book-lg">Apply for the Mentorship →</a>
+        <a href={APPLY_LINK} target="_blank" rel="noopener noreferrer" class="im-btn-book im-btn-book-lg">Register Now →</a>
       </div>
     </div>
   </section>
@@ -158,39 +170,42 @@ const APPLY_LINK = 'https://tally.so/r/QKaM67';
     <div class="im-container">
       <div class="im-section-header">
         <span class="im-tag">Your 4-Week Journey</span>
-        <h2 class="im-section-title">From AI 101 to multi-layered agents</h2>
-        <p class="im-section-sub">A clear, guided progression. Each week builds on the last so nothing feels overwhelming - and by week four you're building things most people think require a developer.</p>
+        <h2 class="im-section-title">From AI 101 to a live website or app</h2>
+        <p class="im-section-sub">A clear, guided progression built around your project. Each week builds on the last so nothing feels overwhelming - and by week four you've built something most people assume needs a developer.</p>
       </div>
 
       <div class="im-timeline">
         <div class="im-week">
           <div class="im-week-marker"><span>W1</span></div>
           <div class="im-week-body">
-            <h3>Week 1 — AI 101 &amp; Foundations</h3>
-            <p>We start with the fundamentals: how modern AI actually works, the tools that matter, and how to prompt like a pro. You'll get comfortable using AI confidently for real tasks in your work.</p>
+            <h3>Week 1 — AI 101 &amp; Your Project Plan</h3>
+            <p>We start with the fundamentals: how modern AI actually works, the tools that matter, and how to direct it properly. Then we decide exactly what you're building and scope it so it's finishable in a month.</p>
           </div>
         </div>
         <div class="im-week">
           <div class="im-week-marker"><span>W2</span></div>
           <div class="im-week-body">
-            <h3>Week 2 — Workflows &amp; Automation</h3>
-            <p>Now we turn AI into leverage. We map the repetitive work in your business and build AI-powered workflows, custom instructions and skills that save you hours every week.</p>
+            <h3>Week 2 — Your First Working Version</h3>
+            <p>We go from blank screen to something real: pages, design and structure that look the way you want. This is where the "I can actually make this" moment happens - with no code written by you.</p>
           </div>
         </div>
         <div class="im-week">
           <div class="im-week-marker"><span>W3</span></div>
           <div class="im-week-body">
-            <h3>Week 3 — Building With AI</h3>
-            <p>You'll build real things - apps, tools and assets - using AI to do the heavy lifting, even with no coding background. This is where the "I can actually make this" moment happens.</p>
+            <h3>Week 3 — Making It Do Real Things</h3>
+            <p>Features, data, forms, payments, logins - whatever your project needs to actually work. You learn how to direct AI through the harder parts instead of getting stuck on them.</p>
           </div>
         </div>
         <div class="im-week">
           <div class="im-week-marker im-week-marker-final"><span>W4</span></div>
           <div class="im-week-body">
-            <h3>Week 4 — Multi-Layered AI Agents</h3>
-            <p>We bring it all together and build multi-layered AI agents that can plan, use tools and take action - deployed inside your business or project so you leave with a real, working system.</p>
+            <h3>Week 4 — Launch &amp; Keep Building</h3>
+            <p>We polish, test and put your project live on the internet for real people to use. You finish with a working product plus a clear way of working so you can keep shipping on your own.</p>
           </div>
         </div>
+      </div>
+      <div class="im-section-cta">
+        <a href={APPLY_LINK} target="_blank" rel="noopener noreferrer" class="im-btn-book im-btn-book-lg">Register Now →</a>
       </div>
     </div>
   </section>
@@ -201,30 +216,33 @@ const APPLY_LINK = 'https://tally.so/r/QKaM67';
       <div class="im-section-header">
         <span class="im-tag">Who Is This For</span>
         <h2 class="im-section-title">Is the intensive right for you?</h2>
-        <p class="im-section-sub">This mentorship is a serious investment of time and money - it's built for people who are ready to act on AI, not just learn about it.</p>
+        <p class="im-section-sub">This mentorship is a serious investment of time and money - it's built for people who want something built by the end of the month, not just a new set of notes.</p>
       </div>
 
       <div class="im-who-grid">
         <div class="im-who-card">
           <div class="im-who-icon">🏢</div>
           <h3>Business Owners</h3>
-          <p>You want to implement AI inside your business and scale with it - cutting costs, moving faster and staying ahead of competitors.</p>
+          <p>You need a proper website or app for your business and you'd rather build it yourself than wait months and pay an agency for every small change.</p>
         </div>
         <div class="im-who-card">
           <div class="im-who-icon">🚀</div>
           <h3>Entrepreneurs Upskilling</h3>
-          <p>You're an entrepreneur who knows AI is the edge, and you want to seriously upskill so you're never dependent on anyone else to build.</p>
+          <p>You want to seriously upskill so you're never dependent on a developer again - able to build and change your own projects whenever you want.</p>
         </div>
         <div class="im-who-card">
           <div class="im-who-icon">💡</div>
-          <h3>Future Founders</h3>
-          <p>You're looking to start your business and want to build your new projects with AI from day one - fast, lean and without a big team.</p>
+          <h3>Anyone With an Idea</h3>
+          <p>You've had a website or app idea sitting in your head for months. In four weeks it exists, it's live, and people can actually use it.</p>
         </div>
         <div class="im-who-card">
-          <div class="im-who-icon">💸</div>
-          <h3>Monetisers</h3>
-          <p>You want to learn how to actually monetise with AI - turning new skills into products, services and income streams.</p>
+          <div class="im-who-icon">🌱</div>
+          <h3>Complete Beginners</h3>
+          <p>You've never written a line of code and don't intend to. AI does the heavy lifting - I teach you how to direct it, step by step, from zero.</p>
         </div>
+      </div>
+      <div class="im-section-cta">
+        <a href={APPLY_LINK} target="_blank" rel="noopener noreferrer" class="im-btn-book im-btn-book-lg">Register Now →</a>
       </div>
     </div>
   </section>
@@ -238,12 +256,12 @@ const APPLY_LINK = 'https://tally.so/r/QKaM67';
           <span class="im-tag" style="margin-bottom:12px;">Your mentor</span>
           <h2 class="im-about-name">Nas</h2>
           <p class="im-about-bio">
-            I've built and shipped over 50 AI-powered products - from landing page generators and e-commerce tools to full AI agent platforms. I run a YouTube channel
-            where I teach practical AI skills to tens of thousands of founders and builders, and I consult with businesses on embedding AI into their real workflows.
+            I've built and shipped over 50 websites and apps - from landing page generators and e-commerce tools to full products with logins, payments and data behind them.
+            I run a YouTube channel where I teach practical building skills to tens of thousands of founders, and I help businesses ship their own projects.
           </p>
           <p class="im-about-bio">
-            I created this intensive because a single session is rarely enough to truly change how someone works. Over a full month, with weekly guidance and real
-            accountability, I can take you from curious to genuinely capable - using the exact tools and systems I use every day to build faster than most teams.
+            I created this intensive because a single session is rarely enough to actually finish something. Over a full month, with weekly guidance and real
+            accountability, I can take you from complete beginner to having a live product online - using the exact tools I use every day to build faster than most teams.
           </p>
           <div class="im-about-links">
             <a href="https://www.youtube.com/@sellingwithnas" target="_blank" rel="noopener noreferrer" class="im-about-link">YouTube →</a>
@@ -251,6 +269,9 @@ const APPLY_LINK = 'https://tally.so/r/QKaM67';
             <a href="https://www.tiktok.com/@sellingwithnas" target="_blank" rel="noopener noreferrer" class="im-about-link">TikTok →</a>
           </div>
         </div>
+      </div>
+      <div class="im-section-cta">
+        <a href={APPLY_LINK} target="_blank" rel="noopener noreferrer" class="im-btn-book im-btn-book-lg">Register Now →</a>
       </div>
     </div>
   </section>
@@ -266,29 +287,32 @@ const APPLY_LINK = 'https://tally.so/r/QKaM67';
 
         <div class="im-faq-item">
           <h3>How much time will I need each week?</h3>
-          <p>Plan for your weekly 1-on-1 session plus a few hours for assignments. The more you put in, the more you'll walk away with - this is designed for people ready to do the work.</p>
+          <p>Plan for your weekly 1-on-1 session plus a few hours building between calls. The more you put in, the further your project gets - this is designed for people ready to do the work.</p>
         </div>
         <div class="im-faq-item">
           <h3>Do I need any technical experience?</h3>
-          <p>No. We start at AI 101 and build up. You don't need to code - I'll show you how to build real tools and agents using AI to do the heavy lifting.</p>
+          <p>No. We start at AI 101 and build up from there. You don't need to code - AI does the heavy lifting, and my job is to teach you how to direct it.</p>
         </div>
         <div class="im-faq-item">
           <h3>Is the curriculum fixed?</h3>
-          <p>There's a proven structure from fundamentals to agents, but it's tailored to you. We adapt each week to your business, your goals and what you most want to build.</p>
+          <p>There's a proven structure, but it's built entirely around your project rather than a generic syllabus. We adapt every week to what you're building and where you're stuck.</p>
         </div>
         <div class="im-faq-item">
           <h3>How is this different from the 1-on-1 masterclass?</h3>
-          <p>The masterclass is a single focused hour on one topic. The intensive is a full month of weekly mentorship, assignments and accountability that takes you from beginner to building advanced AI agents.</p>
+          <p>The masterclass is a single focused hour on one topic. The intensive is a full month of weekly mentorship, assignments and accountability that ends with a real, live website or app.</p>
         </div>
         <div class="im-faq-item">
           <h3>What will I actually have at the end?</h3>
-          <p>Real, working AI systems built for your business or projects - plus the skills and confidence to keep building on your own long after the month is over.</p>
+          <p>A working product that's live on the internet - plus the skills and confidence to keep building and changing it on your own long after the month is over.</p>
         </div>
         <div class="im-faq-item">
-          <h3>How do I get started?</h3>
-          <p>Because spots are limited, it starts with a short application so I can make sure it's the right fit. Click apply and we'll take it from there.</p>
+          <h3>What if I don't know what to build yet?</h3>
+          <p>That's fine. Week one includes shaping the idea and scoping it so it's genuinely finishable in four weeks - most people arrive with a rough idea, not a plan.</p>
         </div>
 
+      </div>
+      <div class="im-section-cta">
+        <a href={APPLY_LINK} target="_blank" rel="noopener noreferrer" class="im-btn-book im-btn-book-lg">Register Now →</a>
       </div>
     </div>
   </section>
@@ -298,17 +322,17 @@ const APPLY_LINK = 'https://tally.so/r/QKaM67';
     <div class="im-container">
       <div class="im-final-cta">
         <div class="im-final-glow" aria-hidden="true"></div>
-        <div class="im-final-badge">Apply to Work With Me</div>
+        <div class="im-final-badge">Work With Me 1-on-1</div>
         <h2 class="im-final-title">
-          One month from now, you could be<br />
-          <span class="im-gradient">the person who builds with AI.</span>
+          One month from now, your website<br />
+          <span class="im-gradient">or app could be live.</span>
         </h2>
         <p class="im-final-sub">
-          Stop collecting tutorials and start building. Spend a month working directly with me and walk away
-          able to implement, scale and monetise with AI - with real systems already running.
+          Stop collecting tutorials and start building. Spend a month working directly with me and walk away with
+          a real, working product - and the skills to keep building on your own.
         </p>
-        <a href={APPLY_LINK} target="_blank" rel="noopener noreferrer" class="im-btn-book im-btn-book-lg">Apply for the Mentorship →</a>
-        <p class="im-guarantee" style="margin-top:20px;">✓ Just you &amp; Nas · ✓ Only a few mentees per month · ✓ Built entirely around your goals</p>
+        <a href={APPLY_LINK} target="_blank" rel="noopener noreferrer" class="im-btn-book im-btn-book-lg">Register Now →</a>
+        <p class="im-guarantee" style="margin-top:20px;">✓ Just you &amp; Nas · ✓ Only a few mentees per month · ✓ Built entirely around your project</p>
       </div>
     </div>
   </section>
@@ -380,9 +404,26 @@ const APPLY_LINK = 'https://tally.so/r/QKaM67';
     margin-top: 32px;
   }
   .im-hero-left { display: flex; flex-direction: column; align-items: flex-start; }
-  .im-ghost-inline { margin-top: 24px; }
+  .im-ghost-inline { margin-top: 16px; }
   .im-ghost-center { align-self: center; }
+  .im-btn-hero { align-self: flex-start; }
   .im-section-cta { text-align: center; margin-top: 48px; }
+
+  /* ── Hero image ── */
+  .im-hero-img {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    margin: 6px 0 22px;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 12px 40px rgba(15,23,42,0.12);
+  }
+  :global(.dark) .im-hero-img {
+    border-color: rgba(255,255,255,0.08);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  }
 
   /* ── Hero offer card ── */
   .im-hero-offer-card {
@@ -462,6 +503,8 @@ const APPLY_LINK = 'https://tally.so/r/QKaM67';
     .im-hero-left { align-items: center; text-align: center; }
     .im-hero-offer-card { max-width: 480px; margin: 0 auto; width: 100%; }
     .im-ghost-inline { align-self: center; }
+    .im-btn-hero { align-self: center; }
+    .im-hero-img { margin-left: auto; margin-right: auto; }
   }
   .im-eyebrow {
     font-size: 0.78rem;
