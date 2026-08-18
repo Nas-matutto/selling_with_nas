@@ -3,8 +3,23 @@ export const prerender = true;
 
 import Layout from '~/layouts/PageLayout.astro';
 import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import nasProfile from '~/assets/images/nas-profile.jpg';
 import intensiveImage from '~/assets/images/ai-intensive-image.png';
+
+// Auto-imports every review screenshot dropped into src/assets/images/reviews/.
+// Add or remove image files there and they appear/disappear automatically -
+// filenames are sorted, so name them review-01.png, review-02.png, ... to order them.
+const reviewModules = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/images/reviews/*.{png,jpg,jpeg,webp,avif}',
+  { eager: true }
+);
+const reviewImages = Object.entries(reviewModules)
+  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+  .map(([, mod]) => mod.default);
+const reviewHalf = Math.ceil(reviewImages.length / 2);
+const reviewsRow1 = reviewImages.slice(0, reviewHalf);
+const reviewsRow2 = reviewImages.slice(reviewHalf);
 
 const metadata = {
   title: 'Website & App Building Intensive with Nas - Build Real Projects in One Month, 1-on-1',
@@ -54,10 +69,12 @@ const APPLY_LINK = 'https://tally.so/r/QKaM67';
             Fast-track your learning and finish the month with a live, working product you built yourself.
             No coding experience needed - AI does the heavy lifting, and I teach you how to direct it.
           </p>
-          <a href={APPLY_LINK} target="_blank" rel="noopener noreferrer" class="im-btn-book im-btn-hero">
-            Register Now →
-          </a>
-          <a href="#curriculum" class="im-btn-ghost im-ghost-inline im-ghost-center">See the curriculum ↓</a>
+          <div class="im-hero-actions">
+            <a href={APPLY_LINK} target="_blank" rel="noopener noreferrer" class="im-btn-book">
+              Register Now →
+            </a>
+            <a href="#curriculum" class="im-btn-ghost">See the curriculum ↓</a>
+          </div>
         </div>
 
         <!-- Right: offer card -->
@@ -111,6 +128,47 @@ const APPLY_LINK = 'https://tally.so/r/QKaM67';
       </div>
     </div>
   </div>
+
+  <!-- ── REVIEWS ── -->
+  {reviewImages.length > 0 && (
+    <section class="im-section" id="reviews">
+      <div class="im-container">
+        <div class="im-section-header">
+          <span class="im-tag">Reviews</span>
+          <h2 class="im-section-title">Thousands have built their first website with me</h2>
+          <p class="im-section-sub">Real people who learned to build with me and shipped something real. Here's what many of them had to say:</p>
+          <div class="im-rating">
+            <span class="im-stars" aria-hidden="true">★★★★★</span>
+            <span class="im-rating-text">From 1000+ people</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="im-reviews-marquee">
+        <div class="im-marquee-row im-marquee-fwd">
+          {[...reviewsRow1, ...reviewsRow1].map((img, i) => (
+            <div class="im-review-card" aria-hidden={i >= reviewsRow1.length ? 'true' : undefined}>
+              <Image src={img} widths={[340, 440, 600]} sizes="(max-width: 640px) 340px, 440px" alt="Customer review" loading="lazy" />
+            </div>
+          ))}
+        </div>
+        {reviewsRow2.length > 0 && (
+          <div class="im-marquee-row im-marquee-rev">
+            {[...reviewsRow2, ...reviewsRow2].map((img, i) => (
+              <div class="im-review-card" aria-hidden={i >= reviewsRow2.length ? 'true' : undefined}>
+                <Image src={img} widths={[340, 440, 600]} sizes="(max-width: 640px) 340px, 440px" alt="Customer review" loading="lazy" />
+              </div>
+            ))}
+          </div>
+        )}
+        <div class="im-marquee-fade im-marquee-fade-l" aria-hidden="true"></div>
+        <div class="im-marquee-fade im-marquee-fade-r" aria-hidden="true"></div>
+      </div>
+      <div class="im-container im-section-cta">
+        <a href={APPLY_LINK} target="_blank" rel="noopener noreferrer" class="im-btn-book im-btn-book-lg">Register Now →</a>
+      </div>
+    </section>
+  )}
 
   <!-- ── WHAT'S INCLUDED ── -->
   <section class="im-section" id="whats-included">
@@ -404,9 +462,13 @@ const APPLY_LINK = 'https://tally.so/r/QKaM67';
     margin-top: 32px;
   }
   .im-hero-left { display: flex; flex-direction: column; align-items: flex-start; }
-  .im-ghost-inline { margin-top: 16px; }
-  .im-ghost-center { align-self: center; }
-  .im-btn-hero { align-self: flex-start; }
+  .im-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+  }
   .im-section-cta { text-align: center; margin-top: 48px; }
 
   /* ── Hero image ── */
@@ -502,8 +564,7 @@ const APPLY_LINK = 'https://tally.so/r/QKaM67';
     .im-hero-split { grid-template-columns: 1fr; gap: 36px; }
     .im-hero-left { align-items: center; text-align: center; }
     .im-hero-offer-card { max-width: 480px; margin: 0 auto; width: 100%; }
-    .im-ghost-inline { align-self: center; }
-    .im-btn-hero { align-self: center; }
+    .im-hero-actions { justify-content: center; }
     .im-hero-img { margin-left: auto; margin-right: auto; }
   }
   .im-eyebrow {
@@ -645,6 +706,88 @@ const APPLY_LINK = 'https://tally.so/r/QKaM67';
   }
   :global(.dark) .im-section-title { color: #f8fafc; }
   .im-section-sub { font-size: 1.02rem; color: #64748b; max-width: 560px; margin: 0 auto; line-height: 1.65; }
+
+  /* ════ REVIEWS MARQUEE ════ */
+  .im-rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .im-stars {
+    color: #f59e0b;
+    font-size: 1.25rem;
+    letter-spacing: 2px;
+    line-height: 1;
+  }
+  .im-rating-text {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #0f172a;
+  }
+  :global(.dark) .im-rating-text { color: #f1f5f9; }
+
+  .im-reviews-marquee {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow: hidden;
+    padding: 4px 0;
+  }
+  .im-marquee-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: max-content;
+    will-change: transform;
+  }
+  .im-marquee-fwd { animation: imMarquee 48s linear infinite; }
+  .im-marquee-rev { animation: imMarqueeRev 48s linear infinite; }
+  .im-reviews-marquee:hover .im-marquee-row { animation-play-state: paused; }
+  @keyframes imMarquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  @keyframes imMarqueeRev {
+    from { transform: translateX(-50%); }
+    to   { transform: translateX(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .im-marquee-row { animation: none; }
+    .im-reviews-marquee { overflow-x: auto; }
+  }
+  .im-review-card {
+    flex: 0 0 auto;
+    width: 440px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+  }
+  :global(.dark) .im-review-card {
+    border-color: rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.03);
+    box-shadow: none;
+  }
+  .im-review-card img { display: block; width: 100%; height: auto; }
+  .im-marquee-fade {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 12%;
+    max-width: 160px;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .im-marquee-fade-l { left: 0; background: linear-gradient(to right, #ffffff, transparent); }
+  .im-marquee-fade-r { right: 0; background: linear-gradient(to left, #ffffff, transparent); }
+  :global(.dark) .im-marquee-fade-l { background: linear-gradient(to right, #05050f, transparent); }
+  :global(.dark) .im-marquee-fade-r { background: linear-gradient(to left, #05050f, transparent); }
+  @media (max-width: 640px) {
+    .im-review-card { width: 340px; }
+  }
 
   /* ════ WHAT'S INCLUDED ════ */
   .im-learn-grid {
