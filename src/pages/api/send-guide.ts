@@ -38,6 +38,14 @@ const GUIDES: Record<string, Guide> = {
     preheader: 'The skills that stop Claude from building AI slop.',
     showAbout: true,
   },
+  'claude-signup-button': {
+    pdfUrl: `${SITE}/guides/Claude-signup-button.pdf`,
+    subject: 'Your Sign Up Button Guide 🔐',
+    title: 'Sign Up Button Guide',
+    emoji: '🔐',
+    preheader: 'Add signup, login and Google auth to your Claude Code site.',
+    showAbout: true,
+  },
 };
 
 const DEFAULT_GUIDE = 'claude-skills';
