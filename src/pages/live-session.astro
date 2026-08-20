@@ -41,6 +41,7 @@ const SLOTS = [
   {
     label: 'Option 1',
     day: 'Thursday, August 20',
+    soldOut: true,
     primary: '1:00 PM New York',
     others: '7:00 PM Madrid · 10:00 AM San Francisco',
   },
@@ -116,7 +117,10 @@ const WEBINAR_LENGTH = '60 minutes + live Q&A';
               {SLOTS.map((slot) => (
                 <div class="ls-slot">
                   <span class="ls-slot-badge">{slot.label}</span>
-                  <div class="ls-slot-day">{slot.day}</div>
+                  <div class="ls-slot-day">
+                    {slot.day}
+                    {slot.soldOut && <span class="ls-slot-full">Fully Booked</span>}
+                  </div>
                   <div class="ls-slot-primary">{slot.primary}</div>
                   <div class="ls-slot-others">{slot.others}</div>
                 </div>
@@ -608,8 +612,30 @@ const WEBINAR_LENGTH = '60 minutes + live Q&A';
     border-radius: 999px;
     margin-bottom: 8px;
   }
-  .ls-slot-day { font-size: 0.98rem; font-weight: 800; color: #0f172a; letter-spacing: -0.01em; }
+  .ls-slot-day {
+    font-size: 0.98rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
   :global(.dark) .ls-slot-day { color: #f8fafc; }
+  .ls-slot-full {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: #dc2626;
+    background: rgba(220,38,38,0.1);
+    border: 1px solid rgba(220,38,38,0.25);
+    padding: 2px 8px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  :global(.dark) .ls-slot-full { color: #fca5a5; background: rgba(248,113,113,0.12); border-color: rgba(248,113,113,0.3); }
   .ls-slot-primary {
     font-size: 0.88rem;
     font-weight: 700;
