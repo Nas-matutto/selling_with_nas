@@ -34,25 +34,7 @@ const metadata = {
   },
 };
 
-const REGISTER_LINK = 'https://cal.com/nas-mansurali/website-building-live-session?overlayCalendar=true&month=2026-08&date=2026-08-20';
-const MASTERCLASS_LINK = 'https://cal.com/nas-mansurali/1-on-1-masterclass';
-
-// Two live slots - same session, pick whichever time works.
-const SLOTS = [
-  {
-    label: 'Option 1',
-    day: 'New dates to be announced soon',
-    soldOut: true,
-    primary: '1:00 PM New York',
-    others: '7:00 PM Madrid · 10:00 AM San Francisco',
-  },
-  {
-    label: 'Option 2',
-    day: 'New dates to be announced soon',
-    primary: '11:00 AM New York',
-    others: '5:00 PM Madrid · 8:00 AM San Francisco',
-  },
-];
+const REGISTER_LINK = 'https://cal.com/nas-mansurali/1-on-1-masterclass';
 const WEBINAR_PLATFORM = 'Live on Google Meet';
 const WEBINAR_LENGTH = '60 minutes + live Q&A';
 ---
@@ -103,7 +85,7 @@ const WEBINAR_LENGTH = '60 minutes + live Q&A';
           <a href={REGISTER_LINK} target="_blank" rel="noopener noreferrer" class="ls-btn-book ls-btn-hero">
             Reserve Your Spot →
           </a>
-          <p class="ls-hero-note">Two dates to choose from · limited seats · no experience required</p>
+          <p class="ls-hero-note">Dates announced soon · limited seats · no experience required</p>
         </div>
 
         <!-- Right: registration card -->
@@ -112,29 +94,20 @@ const WEBINAR_LENGTH = '60 minutes + live Q&A';
             <div class="ls-hrc-tag">Save Your Seat</div>
             <div class="ls-hrc-title">Build a Website with Claude Code</div>
 
-            <div class="ls-hrc-pick">Pick a time that works for you:</div>
             <div class="ls-hrc-slots">
-              {SLOTS.map((slot) => (
-                <div class="ls-slot">
-                  <span class="ls-slot-badge">{slot.label}</span>
-                  <div class="ls-slot-day">
-                    {slot.day}
-                    {slot.soldOut && <span class="ls-slot-full">Fully Booked</span>}
-                  </div>
-                  <div class="ls-slot-primary">{slot.primary}</div>
-                  <div class="ls-slot-others">{slot.others}</div>
-                </div>
-              ))}
+              <div class="ls-slot ls-slot-tbd">
+                <div class="ls-slot-day">Dates to be announced</div>
+              </div>
             </div>
             <div class="ls-hrc-meta">
               <span>📹 {WEBINAR_PLATFORM}</span>
               <span>⏱ {WEBINAR_LENGTH}</span>
             </div>
 
-            <a href={MASTERCLASS_LINK} target="_blank" rel="noopener noreferrer" class="ls-btn-book ls-btn-book-full" id="register">
+            <a href={REGISTER_LINK} target="_blank" rel="noopener noreferrer" class="ls-btn-book ls-btn-book-full" id="register">
               Reserve Your Spot →
             </a>
-            <p class="ls-hrc-note">Free to attend · both slots cover the same session · a replay link is sent to everyone who registers.</p>
+            <p class="ls-hrc-note">Free to attend · a replay link is sent to everyone who registers.</p>
           </div>
         </div>
 
@@ -587,13 +560,6 @@ const WEBINAR_LENGTH = '60 minutes + live Q&A';
     line-height: 1.15;
   }
   :global(.dark) .ls-hrc-title { color: #f8fafc; }
-  .ls-hrc-pick {
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: #64748b;
-    margin: -4px 0 -4px;
-  }
-  :global(.dark) .ls-hrc-pick { color: #94a3b8; }
   .ls-hrc-slots { display: flex; flex-direction: column; gap: 10px; }
   .ls-slot {
     padding: 14px 16px;
@@ -604,18 +570,6 @@ const WEBINAR_LENGTH = '60 minutes + live Q&A';
   }
   :global(.dark) .ls-slot { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); }
   .ls-slot:hover { border-color: rgba(168,85,247,0.45); background: rgba(168,85,247,0.05); }
-  .ls-slot-badge {
-    display: inline-block;
-    font-size: 0.64rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #a855f7;
-    background: rgba(168,85,247,0.1);
-    padding: 3px 9px;
-    border-radius: 999px;
-    margin-bottom: 8px;
-  }
   .ls-slot-day {
     font-size: 0.98rem;
     font-weight: 800;
@@ -627,30 +581,14 @@ const WEBINAR_LENGTH = '60 minutes + live Q&A';
     gap: 8px;
   }
   :global(.dark) .ls-slot-day { color: #f8fafc; }
-  .ls-slot-full {
-    font-size: 0.62rem;
-    font-weight: 700;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    color: #dc2626;
-    background: rgba(220,38,38,0.1);
-    border: 1px solid rgba(220,38,38,0.25);
-    padding: 2px 8px;
-    border-radius: 999px;
-    white-space: nowrap;
+  .ls-slot-tbd {
+    padding: 28px 16px;
+    text-align: center;
   }
-  :global(.dark) .ls-slot-full { color: #fca5a5; background: rgba(248,113,113,0.12); border-color: rgba(248,113,113,0.3); }
-  .ls-slot-primary {
-    font-size: 0.88rem;
-    font-weight: 700;
-    margin-top: 3px;
-    background: linear-gradient(to right, #f97316, #a855f7);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  .ls-slot-tbd .ls-slot-day {
+    justify-content: center;
+    font-size: 1.15rem;
   }
-  .ls-slot-others { font-size: 0.76rem; color: #64748b; margin-top: 3px; line-height: 1.5; }
-  :global(.dark) .ls-slot-others { color: #94a3b8; }
   .ls-hrc-meta {
     display: flex;
     flex-wrap: wrap;
