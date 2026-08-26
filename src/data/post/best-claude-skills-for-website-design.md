@@ -43,6 +43,19 @@ If you're building something you genuinely want to look good, switch to Opus bef
 
 ---
 
+## Watch the video tutorial: The Best Claude Skills for Web Design in Action
+
+<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:16px;margin:32px 0;background:#000;">
+  <button type="button" aria-label="Play video: Best Claude Skills for Web Design" onclick="var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/yyZ7cFgLhU0?autoplay=1&amp;rel=0';f.title='Best Claude Skills for Web Design';f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';f.allowFullscreen=true;f.style.cssText='position:absolute;top:0;left:0;width:100%;height:100%;border:0;';this.replaceWith(f);f.focus();" style="position:absolute;inset:0;width:100%;height:100%;padding:0;margin:0;border:0;display:block;cursor:pointer;background:#000;">
+    <img src="/images/claude-design-skills-video.webp" alt="Best Claude Skills for web design - video walkthrough" loading="lazy" decoding="async" width="1120" height="630" style="width:100%;height:100%;object-fit:cover;display:block;margin:0;border-radius:0;box-shadow:none;max-width:none;" />
+    <span aria-hidden="true" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);filter:drop-shadow(0 2px 6px rgba(0,0,0,0.4));">
+      <svg viewBox="0 0 68 48" width="68" height="48" focusable="false"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.64 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#f00"></path><path d="M45 24 27 14v20z" fill="#fff"></path></svg>
+    </span>
+  </button>
+</div>
+
+---
+
 ### 1. Frontend Design
 
 **What it does:** This is the foundational skill for any serious web design project. Before writing a single line of code, it forces Claude to commit to a specific aesthetic direction (brutalist, editorial, retro-futuristic, and so on) and define its visual language upfront: typography, spacing, colour philosophy, and motion treatment.
@@ -102,18 +115,6 @@ If you're building something you genuinely want to look good, switch to Opus bef
 <a href="https://github.com/jezweb/claude-skills/blob/main/plugins/frontend/skills/design-loop/SKILL.md" target="_blank" rel="noopener noreferrer">→ Install the Design Loop Skill on GitHub</a>
 
 ---
-
-
-## Watch: The Best Claude Skills for Web Design in Action
-
-<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:16px;margin:32px 0;background:#000;">
-  <button type="button" aria-label="Play video: Best Claude Skills for Web Design" onclick="var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/yyZ7cFgLhU0?autoplay=1&amp;rel=0';f.title='Best Claude Skills for Web Design';f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';f.allowFullscreen=true;f.style.cssText='position:absolute;top:0;left:0;width:100%;height:100%;border:0;';this.replaceWith(f);f.focus();" style="position:absolute;inset:0;width:100%;height:100%;padding:0;margin:0;border:0;display:block;cursor:pointer;background:#000;">
-    <img src="/images/claude-design-skills-video.webp" alt="Best Claude Skills for web design - video walkthrough" loading="lazy" decoding="async" width="1120" height="630" style="width:100%;height:100%;object-fit:cover;display:block;margin:0;border-radius:0;box-shadow:none;max-width:none;" />
-    <span aria-hidden="true" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);filter:drop-shadow(0 2px 6px rgba(0,0,0,0.4));">
-      <svg viewBox="0 0 68 48" width="68" height="48" focusable="false"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.64 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#f00"></path><path d="M45 24 27 14v20z" fill="#fff"></path></svg>
-    </span>
-  </button>
-</div>
 
 
 ## How to Stack These Skills for Best Results
