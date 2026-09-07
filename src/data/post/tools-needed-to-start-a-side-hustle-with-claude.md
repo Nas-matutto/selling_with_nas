@@ -126,9 +126,9 @@ Claude Code is very good at building the checkout page and pricing UI around Str
                 Want help putting this whole stack together?
             </h3>
             <p style="margin: 0 0 16px 0; color: rgba(255,255,255,0.9); font-size: 15px;">
-                I run a free live session where I build with this exact stack, step by step, Q&amp;A included.
+                I run a hands-on mentorship where I build with this exact stack, step by step, alongside you.
             </p>
-            <a href="/live-session" style="
+            <a href="https://www.sellingwithnas.com/ai-intensive-mentorship" target="_blank" rel="noopener noreferrer" style="
                 display: inline-block;
                 background: rgba(255,255,255,0.2);
                 color: white;
@@ -141,7 +141,7 @@ Claude Code is very good at building the checkout page and pricing UI around Str
             "
             onmouseover="this.style.background='rgba(255,255,255,0.3)'; this.style.transform='translateY(-2px)'"
             onmouseout="this.style.background='rgba(255,255,255,0.2)'; this.style.transform='translateY(0px)'">
-                Join the Free Live Session →
+                Build Your Project with Me →
             </a>
 </div>
 
@@ -162,7 +162,7 @@ Claude Code is very good at building the checkout page and pricing UI around Str
 
 What used to take a founding team and months of runway now costs less than a nice dinner out and a weekend of focused work. Claude writes the code, Namecheap gives you an address, Supabase and Stripe handle the plumbing, Quizzings builds your credibility, and Vercel puts it all live for free.
 
-The tools are no longer the bottleneck. The only thing left standing between you and a live side hustle is deciding to start. If you want to go through this whole stack with me live, step by step, I run a free live session where I build with these exact tools, Q&A included. You can grab a spot through the [live session page](/live-session).
+The tools are no longer the bottleneck. The only thing left standing between you and a live side hustle is deciding to start. If you want to go through this whole stack with me directly, I run a hands-on mentorship where I build with these exact tools alongside you. You can learn more on the <a href="https://www.sellingwithnas.com/ai-intensive-mentorship" target="_blank" rel="noopener noreferrer">AI Intensive Mentorship page</a>.
 
 
 ---
