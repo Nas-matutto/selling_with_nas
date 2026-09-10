@@ -67,6 +67,7 @@ export const footerData = {
       links: [
         { text: 'Talk to Me Data', href: '/tools/talk-to-me-data' },
         { text: 'LeadLanding', href: '/tools/leadlanding' },
+        { text: 'Quizzings', href: '/tools/quizzings' },
       ],
     },
   ],
