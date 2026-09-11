@@ -2,7 +2,7 @@
 publishDate: 2026-09-07T00:00:00Z
 author: Nas
 title: "All the Tools You Need to Start a Side Hustle with Claude"
-excerpt: You don't need a team or a big budget to launch a side hustle in 2026. Here are the six tools I actually use to build, launch, and get paid, all with Claude doing most of the heavy lifting.
+excerpt: You don't need a team or a big budget to launch a side hustle in 2026. Here are the nine tools I actually use to build, launch, and get paid, all with Claude doing most of the heavy lifting.
 image: ~/assets/images/Tools_needed_quizzings.png
 category: Technology
 tags:
@@ -12,8 +12,8 @@ tags:
 metadata:
   canonical: https://www.sellingwithnas.com/tools-needed-to-start-a-side-hustle-with-claude
   title: "All the Tools You Need to Start a Side Hustle with Claude (2026)"
-  description: "The complete, low-cost toolkit for launching a side hustle with Claude: Claude Code, Namecheap, Supabase, Quizzings, Vercel, and Stripe, with prices and setup difficulty for each."
-  keywords: "side hustle with Claude, tools to start a side hustle, Claude Code side hustle, Namecheap domain, Supabase signup, Quizzings testimonials, Vercel free hosting, Stripe payments, how to launch a startup for free, AI side hustle stack"
+  description: "The complete, low-cost toolkit for launching a side hustle with Claude: Claude Code, Namecheap, Supabase, Quizzings, Vercel, Stripe, GitHub, Resend, and Brevo, with prices and setup difficulty for each."
+  keywords: "side hustle with Claude, tools to start a side hustle, Claude Code side hustle, Namecheap domain, Supabase signup, Quizzings testimonials, Vercel free hosting, Stripe payments, GitHub for beginners, Resend transactional email, Brevo newsletter, how to launch a startup for free, AI side hustle stack"
 ---
 
 
@@ -21,7 +21,7 @@ metadata:
 
 A few years ago, starting a side hustle meant hiring a developer, paying a designer, and waiting weeks before you had anything to show for it. Today, one person with Claude and a handful of free or near-free tools can go from idea to a live, working product with real payments in a weekend.
 
-I've built and shipped several small products this way, and the stack barely changes each time. In this post, I'm breaking down the exact six tools I use, what each one does, what it costs, how hard it is to set up, and how important it actually is so you can decide where to spend your time first.
+I've built and shipped several small products this way, and the stack barely changes each time. In this post, I'm breaking down the exact nine tools I use, what each one does, what it costs, how hard it is to set up, and how important it actually is so you can decide where to spend your time first.
 
 Here's what we're covering:
 
@@ -31,6 +31,9 @@ Here's what we're covering:
 4. [Quizzings - to collect customer testimonials](#4-quizzings---to-collect-customer-testimonials)
 5. [Vercel - to host your website for free](#5-vercel---to-host-your-website-for-free)
 6. [Stripe - to add payments](#6-stripe---to-add-payments)
+7. [GitHub - to store and back up your code](#7-github---to-store-and-back-up-your-code)
+8. [Resend - to send transactional emails](#8-resend---to-send-transactional-emails)
+9. [Brevo - to send newsletters and marketing emails](#9-brevo---to-send-newsletters-and-marketing-emails)
 
 
 ## 1. Claude Code - to actually build the thing
@@ -113,6 +116,42 @@ Stripe handles the part that turns your project into an actual business: accepti
 Claude Code is very good at building the checkout page and pricing UI around Stripe's tools, but just like Supabase, the account creation, business verification, and live API keys are things you have to set up yourself on Stripe's side before real customers can pay you.
 
 
+## 7. GitHub - to store and back up your code
+
+**Link:** <a href="https://github.com" target="_blank" rel="noopener noreferrer">github.com</a>
+**Price:** Free for unlimited public and private repositories. Paid plans (from around $4/month) only matter once you need advanced team features.
+**Ease of integration:** Easy. Create an account, and Claude Code can create the repository, save your changes, and push them for you with a single request.
+**How important it is:** Essential. It's your backup, your version history, and the bridge between Claude Code and Vercel.
+
+GitHub is where your code lives online. Every time Claude makes changes, you can save a snapshot of your project (called a "commit"), so if something breaks you can roll back to the last working version instead of starting over. It's also what makes the Vercel setup so smooth: connect your repository once, and every change you push goes live automatically.
+
+You don't need to learn Git commands to use it. Just ask Claude Code to "commit these changes and push them to GitHub" and it handles the rest. The only thing you need to do yourself is create a GitHub account and sign in from your terminal the first time.
+
+
+## 8. Resend - to send transactional emails
+
+**Link:** <a href="https://resend.com" target="_blank" rel="noopener noreferrer">resend.com</a>
+**Price:** Free for up to 3,000 emails a month (capped at 100 per day), with paid plans starting around $20/month once you outgrow that.
+**Ease of integration:** Medium. Claude can write the email code and templates for you, but you'll need to verify your domain by adding a few DNS records in Namecheap before you can send from your own address.
+**How important it is:** Important as soon as people start signing up. Welcome emails, password resets, and receipts all need to actually reach the inbox.
+
+Resend handles transactional emails, the automatic, one-to-one messages your product sends when someone does something: signs up, resets their password, or makes a purchase. It's built for developers, so Claude Code already knows exactly how to use it, and once your domain is verified your emails land in the inbox instead of the spam folder.
+
+It also pairs perfectly with Supabase. Supabase's built-in email service is heavily rate-limited and really only meant for testing, so before you launch you'll want to plug Resend in as Supabase's custom SMTP provider. That way your signup confirmation emails come from your own domain and actually arrive.
+
+
+## 9. Brevo - to send newsletters and marketing emails
+
+**Link:** <a href="https://www.brevo.com" target="_blank" rel="noopener noreferrer">brevo.com</a>
+**Price:** Free for up to 300 emails a day, with paid plans starting around $9/month if you need to send more.
+**Ease of integration:** Easy. Import your contacts, pick a template, and write your email in a drag-and-drop editor, no code required.
+**How important it is:** Not needed on day one, but it becomes one of your best sales channels once you've started building a list.
+
+Where Resend sends the automatic emails your product triggers, Brevo is for the emails you send on purpose: newsletters, launch announcements, discount codes, and follow-ups to people who signed up but never bought. It gives you a visual email editor, contact lists, and simple automations, so you can stay in touch with your audience without writing a line of code.
+
+If you want to go a step further, Claude Code can connect your site's signup form to Brevo through its API, so every new user is automatically added to your mailing list. Your email list is the one audience you actually own. Social platforms can change their algorithms overnight, but your list stays yours.
+
+
 <div style="
             background: linear-gradient(135deg, #f97316, #ef4444);
             color: white;
@@ -156,11 +195,14 @@ Claude Code is very good at building the checkout page and pricing UI around Str
 | <a href="https://quizzings.com" target="_blank" rel="noopener noreferrer">Quizzings</a> | Customer testimonials | Free to start | Easy |
 | <a href="https://vercel.com" target="_blank" rel="noopener noreferrer">Vercel</a> | Free hosting | Free | Easy |
 | <a href="https://stripe.com" target="_blank" rel="noopener noreferrer">Stripe</a> | Accepting payments | Free + ~2.9% per transaction | Medium |
+| <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a> | Storing & backing up your code | Free | Easy |
+| <a href="https://resend.com" target="_blank" rel="noopener noreferrer">Resend</a> | Transactional emails | Free up to 3,000 emails/mo | Medium |
+| <a href="https://www.brevo.com" target="_blank" rel="noopener noreferrer">Brevo</a> | Newsletters & marketing emails | Free up to 300 emails/day | Easy |
 
 
 ## Nas' Note: the tools aren't the hard part anymore
 
-What used to take a founding team and months of runway now costs less than a nice dinner out and a weekend of focused work. Claude writes the code, Namecheap gives you an address, Supabase and Stripe handle the plumbing, Quizzings builds your credibility, and Vercel puts it all live for free.
+What used to take a founding team and months of runway now costs less than a nice dinner out and a weekend of focused work. Claude writes the code, GitHub keeps it safe, Namecheap gives you an address, Supabase and Stripe handle the plumbing, Resend and Brevo get your emails into inboxes, Quizzings builds your credibility, and Vercel puts it all live for free.
 
 The tools are no longer the bottleneck. The only thing left standing between you and a live side hustle is deciding to start. If you want to go through this whole stack with me directly, I run a hands-on mentorship where I build with these exact tools alongside you. You can learn more on the <a href="https://www.sellingwithnas.com/ai-intensive-mentorship" target="_blank" rel="noopener noreferrer">AI Intensive Mentorship page</a>.
 
