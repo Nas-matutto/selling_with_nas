@@ -59,6 +59,17 @@ Your domain is your side hustle's actual address on the internet, and having you
 
 Don't overthink the name. Buy it once you're reasonably confident in the idea, and let Claude help you build the site around it.
 
+**Prefer to watch instead?** I walk through this entire stack, tool by tool, in the video below:
+
+<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:16px;margin:32px 0;background:#000;">
+  <button type="button" aria-label="Play video: ALL you need to start your side-hustle with Claude (Tech Stack breakdown)" onclick="var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/jPZPYQSrti0?autoplay=1&amp;rel=0';f.title='ALL you need to start your side-hustle with Claude (Tech Stack breakdown)';f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';f.allowFullscreen=true;f.style.cssText='position:absolute;top:0;left:0;width:100%;height:100%;border:0;';this.replaceWith(f);f.focus();" style="position:absolute;inset:0;width:100%;height:100%;padding:0;margin:0;border:0;display:block;cursor:pointer;background:#000;">
+    <img src="/images/side-hustle-tech-stack-video.webp" alt="ALL you need to start your side-hustle with Claude - tech stack breakdown video" loading="lazy" decoding="async" width="1120" height="630" style="width:100%;height:100%;object-fit:cover;display:block;margin:0;border-radius:0;box-shadow:none;max-width:none;" />
+    <span aria-hidden="true" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);filter:drop-shadow(0 2px 6px rgba(0,0,0,0.4));">
+      <svg viewBox="0 0 68 48" width="68" height="48" focusable="false"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.64 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#f00"></path><path d="M45 24 27 14v20z" fill="#fff"></path></svg>
+    </span>
+  </button>
+</div>
+
 
 ## 3. Supabase - to add a signup button
 
