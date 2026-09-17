@@ -49,10 +49,6 @@ const faqs = [
     a: "This is the launch price while I gather the first wave of results and testimonials. It goes back to $150 once that is done. Buy now and you keep every future update to the pack at no extra cost.",
   },
   {
-    q: 'What if it is not for me?',
-    a: "Then you should not pay for it. Email me within 14 days, show me you gave it an honest go, and I refund you in full - you keep the guides. The risk is entirely mine.",
-  },
-  {
     q: 'Is this a subscription?',
     a: "No. One payment, lifetime access, including every update I make to the guides. No upsells, no recurring anything.",
   },
@@ -107,7 +103,7 @@ const productSchema = {
         <div class="mc-hero-left">
           <h1 class="mc-hero-title">
             Launch your side-hustle this weekend
-            <span class="mc-gradient">using nothing but Claude.</span>
+            <span class="mc-gradient">with Claude</span>
           </h1>
 
           <ul class="mc-hero-bullets">
@@ -150,7 +146,7 @@ const productSchema = {
 
             <p class="mc-hbc-guarantee">
               🔒 Secure checkout · Instant delivery<br />
-              14-day no-questions refund guarantee
+              Lifetime access · all future updates free
             </p>
           </div>
         </div>
@@ -272,9 +268,7 @@ const productSchema = {
       <div class="mc-bonus-card">
         <div class="mc-bonus-badge">Included bonus</div>
         <div class="mc-bonus-body">
-          <div class="mc-bonus-left">
-            <Image src={nasProfile} alt="Nas" class="mc-bonus-avatar" width={288} height={384} />
-          </div>
+          <Image src={nasProfile} alt="Nas" class="mc-bonus-avatar" width={288} height={384} />
           <div class="mc-bonus-right">
             <h3>A private 1-on-1 call with me</h3>
             <p>
@@ -290,7 +284,7 @@ const productSchema = {
 
       <div class="mc-mid-cta">
         <a href={CHECKOUT_LINK} class="mc-btn-book mc-btn-book-lg" data-cta="inside">Get Everything — ${PRICE_NOW} →</a>
-        <p class="mc-guarantee">✓ Instant access · ✓ Lifetime updates · ✓ 14-day refund guarantee</p>
+        <p class="mc-guarantee">✓ Instant access · ✓ Lifetime updates · ✓ 1-on-1 call included</p>
       </div>
     </div>
   </section>
@@ -490,7 +484,7 @@ const productSchema = {
 
         <a href={CHECKOUT_LINK} class="mc-btn-book mc-btn-book-lg" data-cta="final">Get Instant Access — ${PRICE_NOW} →</a>
         <p class="mc-guarantee" style="margin-top:20px;">
-          ✓ Instant access · ✓ 1-on-1 call included · ✓ 14-day refund guarantee
+          ✓ Instant access · ✓ 1-on-1 call included · ✓ Lifetime access
         </p>
       </div>
     </div>
@@ -620,7 +614,7 @@ const productSchema = {
   .mc-ghost-inline { margin-top: 8px; }
 
   .mc-hero-title {
-    font-size: clamp(1.75rem, 3.2vw, 2.45rem);
+    font-size: clamp(1.75rem, 3.4vw, 2.6rem);
     font-weight: 800;
     line-height: 1.18;
     letter-spacing: -0.03em;
@@ -985,7 +979,10 @@ const productSchema = {
   }
   .mc-bonus-body { display: flex; gap: 26px; align-items: flex-start; }
   .mc-bonus-avatar {
-    width: 72px; height: 72px; flex-shrink: 0;
+    width: 72px; height: 72px;
+    flex: 0 0 72px;
+    min-width: 72px;
+    max-width: 72px;
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid rgba(249,115,22,0.35);
