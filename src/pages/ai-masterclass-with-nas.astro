@@ -6,16 +6,89 @@ import { Image } from 'astro:assets';
 import nasProfile from '~/assets/images/nas-profile.jpg';
 
 const metadata = {
-  title: '1-on-1 AI Masterclass with Nas - Claude Skills, Claude Code & AI Agents',
-  description: 'Book a private 1-on-1 AI masterclass with Nas. In one focused hour you\'ll learn Claude Skills, how to build apps with Claude Code, and how to build AI agents - tailored entirely to you.',
-  keywords: 'AI masterclass, 1-on-1 AI coaching, Claude masterclass, Claude skills, Claude Code, AI agent coaching, learn AI with Nas, private AI session, AI for business',
+  title: 'Build Your Side-Hustle with Claude - Step-by-Step Pack + 1-on-1 Call',
+  description:
+    'The complete step-by-step pack for launching your side-hustle with Claude: build the website, deploy it on a live domain, add a signup button - plus a private 1-on-1 call with Nas. Was $150, now $97.',
+  keywords:
+    'build a business with Claude, Claude Code side hustle, build a website with AI, deploy website live domain, add signup button, Claude Code guide, AI side hustle, start online business with AI',
   canonical: 'https://www.sellingwithnas.com/ai-masterclass-with-nas',
 };
 
-const BOOKING_LINK = 'https://cal.com/nas-mansurali/1-on-1-masterclass';
+// ─────────────────────────────────────────────────────────────
+// TODO: paste the real checkout URL here (Stripe / Gumroad / Whop).
+// Every CTA on this page reads from this one constant.
+const CHECKOUT_LINK = '#';
+// ─────────────────────────────────────────────────────────────
+
+const PRICE_NOW = '97';
+const PRICE_WAS = '150';
+
+const faqs = [
+  {
+    q: 'Do I need to know how to code?',
+    a: "No. Not a single line. Every step is done by talking to Claude in plain English - I show you exactly what to type and exactly what to click. If you can write an email, you can finish this pack.",
+  },
+  {
+    q: 'What do I actually end up with?',
+    a: "A real website, live on the internet, on your own domain, with a working signup button that collects real users into a real database. Not a mockup. Not a localhost demo. Something you can send to a customer today.",
+  },
+  {
+    q: 'How long does it take?',
+    a: "Most people get their site live in an afternoon. The full pack - website, domain, signup - is comfortably a weekend. You go at your own pace, and the guides do not expire.",
+  },
+  {
+    q: 'What does the 1-on-1 call cover?',
+    a: "Whatever is blocking you. Stuck on the deploy? Domain not pointing correctly? Not sure what to build in the first place? We get on a call, screen-share, and clear it. Your booking link is sent the moment you buy.",
+  },
+  {
+    q: 'Do I need a paid Claude account?',
+    a: "You can start on the free plan, but Claude Pro makes this dramatically smoother and is what I use throughout the guides. You will also need a domain (about $10/year) - hosting on the setup I teach is free.",
+  },
+  {
+    q: 'Why is it $97 and not $150?',
+    a: "This is the launch price while I gather the first wave of results and testimonials. It goes back to $150 once that is done. Buy now and you keep every future update to the pack at no extra cost.",
+  },
+  {
+    q: 'What if it is not for me?',
+    a: "Then you should not pay for it. Email me within 14 days, show me you gave it an honest go, and I refund you in full - you keep the guides. The risk is entirely mine.",
+  },
+  {
+    q: 'Is this a subscription?',
+    a: "No. One payment, lifetime access, including every update I make to the guides. No upsells, no recurring anything.",
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Build Your Side-Hustle with Claude - Step-by-Step Pack',
+  description:
+    'Step-by-step guides to build a website with Claude, deploy it on a live domain, and add a working signup button - plus a private 1-on-1 call with Nas.',
+  brand: { '@type': 'Brand', name: 'Selling with Nas' },
+  offers: {
+    '@type': 'Offer',
+    price: PRICE_NOW,
+    priceCurrency: 'USD',
+    availability: 'https://schema.org/InStock',
+    url: metadata.canonical,
+  },
+};
 ---
 
 <Layout metadata={metadata}>
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+
 <div class="mc-page">
 
   <!-- ambient -->
@@ -26,44 +99,71 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/1-on-1-masterclass';
   </div>
 
   <!-- ── HERO ── -->
-  <section class="mc-hero">
+  <section class="mc-hero" id="top">
     <div class="mc-container">
-
       <div class="mc-hero-split">
 
         <!-- Left: copy -->
         <div class="mc-hero-left">
-          <div class="mc-eyebrow">Private 1-on-1 Masterclass</div>
-          <h1 class="mc-hero-title">
-            Master AI with me<br />
-            <span class="mc-gradient">in a 1-Hour 1-on-1</span>
-          </h1>
-          <p class="mc-hero-sub">
-            Stop watching tutorials that teach theory. In this private 1-on-1 session we'll go deep on the
-            one topic you choose - Claude Skills, building apps with Claude Code, or building AI agents - and
-            you'll leave with working systems you can use the same day.
-
-          </p>
-          <div class="mc-session-pills">
-            <div class="mc-pill">⏱ 1-hour 1-on-1 session</div>
-            <div class="mc-pill">🎯 Book your spot</div>
+          <div class="mc-urgency-bar">
+            <span class="mc-urgency-dot"></span>
+            Launch price - ${PRICE_NOW} instead of ${PRICE_WAS}
           </div>
-          <a href="#what-youll-learn" class="mc-btn-ghost mc-ghost-inline">See what's covered ↓</a>
+
+          <h1 class="mc-hero-title">
+            Launch your side-hustle this weekend<br />
+            <span class="mc-gradient">using nothing but Claude.</span>
+          </h1>
+
+          <p class="mc-hero-sub">
+            A step-by-step pack that takes you from a blank screen to a real business online:
+            <strong>build the website</strong>, <strong>put it live on your own domain</strong>, and
+            <strong>add a signup button</strong> that collects real customers. No code. No developer.
+            And if you get stuck, you get me on a call.
+          </p>
+
+          <ul class="mc-hero-bullets">
+            <li>Follow along click-by-click - nothing is skipped or assumed</li>
+            <li>Live on a real domain, not a localhost demo</li>
+            <li>A private 1-on-1 call with me included</li>
+          </ul>
+
+          <div class="mc-session-pills">
+            <div class="mc-pill">📘 3 step-by-step guides</div>
+            <div class="mc-pill">🎧 1-on-1 call included</div>
+            <div class="mc-pill">♾️ Lifetime access</div>
+          </div>
+
+          <a href="#whats-inside" class="mc-btn-ghost mc-ghost-inline">See exactly what's inside ↓</a>
         </div>
 
-        <!-- Right: booking card -->
+        <!-- Right: offer card -->
         <div class="mc-hero-right">
           <div class="mc-hero-booking-card">
-            <div class="mc-hbc-tag">Learn With Me</div>
-            <div class="mc-hbc-date">1-on-1 Masterclass</div>
-            <div class="mc-hbc-time-row">
-              <div class="mc-hbc-time-primary">A private 1-hour session</div>
-              <div class="mc-hbc-time-secondary">Booked at a time that works for you</div>
-              <div class="mc-hbc-time-secondary">Select the topic you would like to cover when making the booking. You can choose between Claude Skills, Claude Code and AI Agents.</div>
+            <div class="mc-hbc-tag">The Build-It Pack</div>
+
+            <div class="mc-price-row">
+              <span class="mc-price-old">${PRICE_WAS}</span>
+              <span class="mc-price-new">${PRICE_NOW}</span>
+              <span class="mc-price-save">Save ${Number(PRICE_WAS) - Number(PRICE_NOW)}</span>
             </div>
-            <a href={BOOKING_LINK} target="_blank" rel="noopener noreferrer" class="mc-btn-book mc-btn-book-full" id="book">
-              Book a 1-on-1 Session →
+            <div class="mc-price-note">One payment · lifetime access · all future updates free</div>
+
+            <ul class="mc-hbc-list">
+              <li><span>✓</span> Guide 1 — Build your website with Claude</li>
+              <li><span>✓</span> Guide 2 — Deploy it live on your own domain</li>
+              <li><span>✓</span> Guide 3 — Add a working signup button</li>
+              <li class="mc-hbc-bonus"><span>★</span> Bonus — 1-on-1 call with Nas</li>
+            </ul>
+
+            <a href={CHECKOUT_LINK} class="mc-btn-book mc-btn-book-full" id="buy" data-cta="hero">
+              Get Instant Access — ${PRICE_NOW} →
             </a>
+
+            <p class="mc-hbc-guarantee">
+              🔒 Secure checkout · Instant delivery<br />
+              14-day no-questions refund guarantee
+            </p>
           </div>
         </div>
 
@@ -76,7 +176,7 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/1-on-1-masterclass';
     <div class="mc-container mc-proof-inner">
       <div class="mc-proof-item">
         <span class="mc-proof-num">100k+</span>
-        <span class="mc-proof-label">YouTube Viewers</span>
+        <span class="mc-proof-label">YouTube viewers taught</span>
       </div>
       <div class="mc-proof-div"></div>
       <div class="mc-proof-item">
@@ -85,64 +185,245 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/1-on-1-masterclass';
       </div>
       <div class="mc-proof-div"></div>
       <div class="mc-proof-item">
-        <span class="mc-proof-num">5+</span>
-        <span class="mc-proof-label">Products launched</span>
+        <span class="mc-proof-num">0</span>
+        <span class="mc-proof-label">Lines of code needed</span>
       </div>
       <div class="mc-proof-div"></div>
       <div class="mc-proof-item">
-        <span class="mc-proof-num">1-on-1</span>
-        <span class="mc-proof-label">Zero filler, all action</span>
+        <span class="mc-proof-num">1 weekend</span>
+        <span class="mc-proof-label">From idea to live site</span>
       </div>
     </div>
   </div>
 
-  <!-- ── WHAT YOU'LL LEARN ── -->
-  <section class="mc-section" id="what-youll-learn">
+  <!-- ── PROBLEM ── -->
+  <section class="mc-section">
     <div class="mc-container">
       <div class="mc-section-header">
-        <span class="mc-tag">The Curriculum</span>
-        <h2 class="mc-section-title">Pick one topic, go deep</h2>
-        <p class="mc-section-sub">Each 1-on-1 covers <strong>one</strong> of the three topics below - we don't rush through all three in a single session. Choose the one you need most when you book, and we'll go deep on it together.</p>
+        <span class="mc-tag">Sound familiar?</span>
+        <h2 class="mc-section-title">You don't have an idea problem.<br />You have a "how do I actually ship it" problem.</h2>
+        <p class="mc-section-sub">Everyone tells you AI can build your business for you. Nobody shows you the boring middle bit — the part where it has to go live.</p>
       </div>
 
-      <div class="mc-learn-grid">
-        <div class="mc-learn-card">
-          <div class="mc-learn-num">01</div>
-          <div class="mc-learn-icon">🧩</div>
-          <h3>Claude Skills</h3>
-          <p>Learn what Claude Skills are, how to create your own, and how to use them to get reliable, repeatable results tailored to the way you work.</p>
+      <div class="mc-pain-grid">
+        <div class="mc-pain-card">
+          <div class="mc-pain-icon">😵‍💫</div>
+          <h3>Claude builds you something… and then what?</h3>
+          <p>You get a beautiful site running on your laptop. It works. But it lives at <code>localhost:3000</code> and nobody on earth can visit it.</p>
         </div>
-        <div class="mc-learn-card">
-          <div class="mc-learn-num">02</div>
-          <div class="mc-learn-icon">💻</div>
-          <h3>Build Apps with Claude Code</h3>
-          <p>I'll show you how to set up Claude Code and use it to build real, working apps - without writing a single line of code yourself.</p>
+        <div class="mc-pain-card">
+          <div class="mc-pain-icon">💸</div>
+          <h3>Quotes of $3,000+ to "just put it online"</h3>
+          <p>Developers quote thousands for a landing page with a signup form. You know it shouldn't cost that. You just don't know how to do it yourself.</p>
         </div>
+        <div class="mc-pain-card">
+          <div class="mc-pain-icon">🌀</div>
+          <h3>47 tutorials, zero launches</h3>
+          <p>Every video covers a different tool, stops before the hard part, or was recorded before the thing changed. You've learned a lot and shipped nothing.</p>
+        </div>
+        <div class="mc-pain-card">
+          <div class="mc-pain-icon">🚪</div>
+          <h3>No way to capture anyone</h3>
+          <p>Even if it were live — there's no signup, no login, no list. Traffic shows up, looks around, and leaves without a trace.</p>
+        </div>
+      </div>
+
+      <div class="mc-bridge">
+        <p>This pack is the bridge. Three guides that take you all the way to <strong>a live site on your own domain with real people signing up</strong> — and a call with me for the moment you get stuck.</p>
+        <a href={CHECKOUT_LINK} class="mc-btn-book" data-cta="problem">Get the Pack — ${PRICE_NOW} →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WHAT'S INSIDE ── -->
+  <section class="mc-section mc-section-alt" id="whats-inside">
+    <div class="mc-container">
+      <div class="mc-section-header">
+        <span class="mc-tag">What's inside</span>
+        <h2 class="mc-section-title">Three guides. One live business.</h2>
+        <p class="mc-section-sub">Follow them in order. Each one picks up exactly where the last one left off — no gaps, no "figure this bit out yourself".</p>
+      </div>
+
+      <div class="mc-learn-grid mc-learn-grid-3">
         <div class="mc-learn-card">
-          <div class="mc-learn-num">03</div>
-          <div class="mc-learn-icon">🤖</div>
-          <h3>Build AI Agents</h3>
-          <p>We'll create a working AI agent step by step - using Projects, custom instructions, and MCP connectors - so you leave with one running in your business.</p>
+          <div class="mc-learn-num">Guide 01</div>
+          <div class="mc-learn-icon">🎨</div>
+          <h3>Build your website with Claude</h3>
+          <p>Set up Claude Code from scratch, then prompt your way to a real, good-looking website — pages, copy, images, mobile layout, the lot.</p>
+          <ul class="mc-learn-list">
+            <li>Installing and setting up Claude Code, step by step</li>
+            <li>The exact prompts that produce a designer-grade site</li>
+            <li>How to make edits without breaking what already works</li>
+            <li>Mobile-responsive and fast by default</li>
+          </ul>
+        </div>
+
+        <div class="mc-learn-card">
+          <div class="mc-learn-num">Guide 02</div>
+          <div class="mc-learn-icon">🚀</div>
+          <h3>Deploy it live on your own domain</h3>
+          <p>The part every tutorial skips. Take the site off your laptop and put it on the internet, at <em>yourbusiness.com</em>, with a padlock in the browser bar.</p>
+          <ul class="mc-learn-list">
+            <li>Buying the right domain without overpaying</li>
+            <li>Free hosting that scales with you</li>
+            <li>Pointing your domain and getting HTTPS working</li>
+            <li>Pushing updates live in under a minute</li>
+          </ul>
+        </div>
+
+        <div class="mc-learn-card">
+          <div class="mc-learn-num">Guide 03</div>
+          <div class="mc-learn-icon">🔐</div>
+          <h3>Add a signup button that works</h3>
+          <p>Turn visitors into users. Real signup, real login, "Sign in with Google" — backed by a free database you actually own.</p>
+          <ul class="mc-learn-list">
+            <li>Wiring up a free database in minutes</li>
+            <li>Email signup, login, and Sign in with Google</li>
+            <li>Seeing and exporting the users who sign up</li>
+            <li>Keeping it secure without being a developer</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bonus call -->
+      <div class="mc-bonus-card">
+        <div class="mc-bonus-badge">Included bonus</div>
+        <div class="mc-bonus-body">
+          <div class="mc-bonus-left">
+            <Image src={nasProfile} alt="Nas" class="mc-bonus-avatar" width={72} height={72} />
+          </div>
+          <div class="mc-bonus-right">
+            <h3>A private 1-on-1 call with me</h3>
+            <p>
+              Guides are great until something goes sideways at 11pm. That's what the call is for. Bring
+              whatever is blocking you — a deploy that won't cooperate, a domain that won't point, a signup
+              flow that won't save, or just "I don't know what to build" — and we clear it together on a
+              screen-share.
+            </p>
+            <p class="mc-bonus-note">Your booking link is emailed to you the moment you buy. Use it whenever you're ready.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mc-mid-cta">
+        <a href={CHECKOUT_LINK} class="mc-btn-book mc-btn-book-lg" data-cta="inside">Get Everything — ${PRICE_NOW} →</a>
+        <p class="mc-guarantee">✓ Instant access · ✓ Lifetime updates · ✓ 14-day refund guarantee</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── OUTCOME / TIMELINE ── -->
+  <section class="mc-section">
+    <div class="mc-container">
+      <div class="mc-section-header">
+        <span class="mc-tag">The outcome</span>
+        <h2 class="mc-section-title">What your weekend looks like</h2>
+      </div>
+
+      <div class="mc-timeline">
+        <div class="mc-tl-item">
+          <div class="mc-tl-dot">1</div>
+          <div class="mc-tl-body">
+            <h3>Friday night — you buy the pack</h3>
+            <p>Instant access to all three guides plus your booking link for the call. You set up Claude Code in about twenty minutes.</p>
+          </div>
+        </div>
+        <div class="mc-tl-item">
+          <div class="mc-tl-dot">2</div>
+          <div class="mc-tl-body">
+            <h3>Saturday morning — the site exists</h3>
+            <p>You follow Guide 1 and Claude builds your website. Real pages, real copy, looks like you paid someone for it.</p>
+          </div>
+        </div>
+        <div class="mc-tl-item">
+          <div class="mc-tl-dot">3</div>
+          <div class="mc-tl-body">
+            <h3>Saturday afternoon — it's live</h3>
+            <p>Guide 2 takes it online. You buy your domain, point it, and send the link to a friend. It loads on their phone.</p>
+          </div>
+        </div>
+        <div class="mc-tl-item">
+          <div class="mc-tl-dot">4</div>
+          <div class="mc-tl-body">
+            <h3>Sunday — people can sign up</h3>
+            <p>Guide 3 adds signup and login. Your first user hits the button and appears in your database. You now have a business, not an idea.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── ABOUT NAS ── -->
+  <!-- ── VALUE STACK ── -->
   <section class="mc-section mc-section-alt">
+    <div class="mc-container">
+      <div class="mc-section-header">
+        <span class="mc-tag">The maths</span>
+        <h2 class="mc-section-title">Here's everything you get</h2>
+      </div>
+
+      <div class="mc-stack">
+        <div class="mc-stack-row">
+          <div class="mc-stack-name">Guide 1 — Build your website with Claude</div>
+          <div class="mc-stack-val">$59</div>
+        </div>
+        <div class="mc-stack-row">
+          <div class="mc-stack-name">Guide 2 — Deploy it live on your own domain</div>
+          <div class="mc-stack-val">$49</div>
+        </div>
+        <div class="mc-stack-row">
+          <div class="mc-stack-name">Guide 3 — Add a working signup button</div>
+          <div class="mc-stack-val">$49</div>
+        </div>
+        <div class="mc-stack-row mc-stack-row-bonus">
+          <div class="mc-stack-name">Bonus — Private 1-on-1 call with Nas</div>
+          <div class="mc-stack-val">$140</div>
+        </div>
+        <div class="mc-stack-row">
+          <div class="mc-stack-name">Lifetime updates as the tools change</div>
+          <div class="mc-stack-val">Priceless</div>
+        </div>
+
+        <div class="mc-stack-total">
+          <div class="mc-stack-total-line">
+            <span>Total value</span>
+            <span class="mc-strike">$297</span>
+          </div>
+          <div class="mc-stack-total-line">
+            <span>Regular price</span>
+            <span class="mc-strike">${PRICE_WAS}</span>
+          </div>
+          <div class="mc-stack-total-line mc-stack-today">
+            <span>Today</span>
+            <span class="mc-gradient mc-stack-today-num">${PRICE_NOW}</span>
+          </div>
+        </div>
+
+        <a href={CHECKOUT_LINK} class="mc-btn-book mc-btn-book-full mc-btn-book-lg" data-cta="stack">
+          Claim It For ${PRICE_NOW} →
+        </a>
+        <p class="mc-stack-foot">Less than one hour of a developer's time. And it's yours forever.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT NAS ── -->
+  <section class="mc-section">
     <div class="mc-container">
       <div class="mc-about-card">
         <Image src={nasProfile} alt="Nas" class="mc-about-avatar" width={80} height={80} />
         <div class="mc-about-body">
-          <span class="mc-tag" style="margin-bottom:12px;">Your host</span>
+          <span class="mc-tag" style="margin-bottom:12px;">Who's teaching this</span>
           <h2 class="mc-about-name">Nas</h2>
           <p class="mc-about-bio">
-            I've built and shipped over 50 AI-powered products - from landing page generators and e-commerce tools to full AI agent platforms. I run a YouTube channel
-            where I teach practical AI skills to tens of thousands of founders and builders, and I consult with businesses on embedding AI into their real workflows.
+            I've built and shipped over 50 AI-powered products — landing page generators, e-commerce tools,
+            full AI agent platforms — almost all of them with Claude doing the heavy lifting. I run a YouTube
+            channel where I teach practical AI to tens of thousands of founders and builders, and I consult
+            with businesses on putting AI into workflows that actually earn money.
           </p>
           <p class="mc-about-bio">
-            I started these 1-on-1 masterclasses because most AI education is either too theoretical or too technical. This private session is built around what actually
-            works for you — the tools and systems I use every day to build faster than most teams.
+            I built this pack because I kept getting the same message: <em>"Nas, I made the thing — how do I
+            put it online?"</em> The building part is solved. The shipping part isn't. So I wrote down exactly
+            what I do, step by step, and put a call on the end of it so nobody gets stuck alone.
           </p>
           <div class="mc-about-links">
             <a href="https://www.youtube.com/@sellingwithnas" target="_blank" rel="noopener noreferrer" class="mc-about-link">YouTube →</a>
@@ -155,70 +436,66 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/1-on-1-masterclass';
   </section>
 
   <!-- ── WHO IT'S FOR ── -->
-  <section class="mc-section">
+  <section class="mc-section mc-section-alt">
     <div class="mc-container">
       <div class="mc-section-header">
-        <span class="mc-tag">Who Should Join</span>
-        <h2 class="mc-section-title">This is for you if…</h2>
+        <span class="mc-tag">Honest fit check</span>
+        <h2 class="mc-section-title">Should you buy this?</h2>
       </div>
       <div class="mc-for-grid">
         <div class="mc-for-card mc-for-yes">
-          <h3>✅ Perfect fit</h3>
+          <h3>✅ Yes, if…</h3>
           <ul>
-            <li>You're a founder or business owner who wants to move faster with AI</li>
-            <li>You've tried Claude but haven't yet used it to automate anything real</li>
-            <li>You want to build AI agents without hiring a developer</li>
-            <li>You're a marketer or operator looking to cut repetitive work</li>
-            <li>You learn better by doing than by watching pre-recorded content</li>
+            <li>You have a side-hustle idea and no idea how to put it online</li>
+            <li>You've played with Claude but never shipped anything real with it</li>
+            <li>You've been quoted hundreds or thousands for a simple website</li>
+            <li>You want to own the whole thing — site, domain, users, data</li>
+            <li>You'd rather follow exact steps than piece together ten tutorials</li>
+            <li>You want someone to call when you hit a wall</li>
           </ul>
         </div>
         <div class="mc-for-card mc-for-no">
-          <h3>❌ Not the right fit</h3>
+          <h3>❌ No, if…</h3>
           <ul>
-            <li>You're a senior ML engineer looking for model architecture depth</li>
-            <li>You need Python or API-level implementation guidance</li>
-            <li>You're looking for a passive course you can watch on 2× speed</li>
-            <li>You're not ready to follow along and actually build during the session</li>
+            <li>You're already a developer who deploys sites regularly</li>
+            <li>You want someone to build the business <em>for</em> you</li>
+            <li>You're looking for a get-rich-quick scheme — this is real work, just finally doable</li>
+            <li>You won't open the guides and actually follow them</li>
           </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── FAQ ── -->
+  <!-- ── GUARANTEE ── -->
   <section class="mc-section">
+    <div class="mc-container">
+      <div class="mc-guarantee-card">
+        <div class="mc-guarantee-seal">🛡️</div>
+        <h2>Ship it, or don't pay for it</h2>
+        <p>
+          Go through the guides. Get on the call. If after 14 days you genuinely can't get your site live —
+          email me, show me you gave it a real go, and I'll refund every penny. You keep the guides either way.
+          I'd rather carry the risk than have you sit on the fence.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section class="mc-section mc-section-alt">
     <div class="mc-container">
       <div class="mc-section-header">
         <span class="mc-tag">Questions</span>
-        <h2 class="mc-section-title">Frequently asked</h2>
+        <h2 class="mc-section-title">Before you buy</h2>
       </div>
       <div class="mc-faq-grid">
-
-        <div class="mc-faq-item">
-          <h3>Do I need any technical experience?</h3>
-          <p>None at all. The whole point of this 1-on-1 is showing you what's possible without writing code. If you can use Claude, you can follow along.</p>
-        </div>
-        <div class="mc-faq-item">
-          <h3>What do I need to have ready before the session?</h3>
-          <p>Just a Claude account (free or paid) and a laptop. We'll set everything else up together during the session. A Claude Pro subscription will let you follow along with the full demos.</p>
-        </div>
-        <div class="mc-faq-item">
-          <h3>Is this really just me and you?</h3>
-          <p>Yes - it's a private 1-on-1 session. The full hour is yours, so we focus entirely on your goals, your tools, and the things you want to build.</p>
-        </div>
-        <div class="mc-faq-item">
-          <h3>How long is the session?</h3>
-          <p>One hour, fully focused on you. We go deep on Claude Skills, building apps with Claude Code, and building AI agents - and adapt to whatever matters most for your business.</p>
-        </div>
-        <div class="mc-faq-item">
-          <h3>Is there a refund policy?</h3>
-          <p>Full refund if you can't make it and notify me 48 hours ahead. No questions asked. The goal is for you to learn something valuable - if that doesn't happen, you shouldn't pay for it.</p>
-        </div>
-        <div class="mc-faq-item">
-          <h3>Can we tailor the session to my needs?</h3>
-          <p>Absolutely - that's the whole point of going 1-on-1. We cover the three core topics, but how deep we go on each one is entirely up to you and what you're trying to build.</p>
-        </div>
-
+        {faqs.map((f) => (
+          <div class="mc-faq-item">
+            <h3>{f.q}</h3>
+            <p>{f.a}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -228,16 +505,25 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/1-on-1-masterclass';
     <div class="mc-container">
       <div class="mc-final-cta">
         <div class="mc-final-glow" aria-hidden="true"></div>
-        <div class="mc-final-badge">Learn With Me</div>
+        <div class="mc-final-badge">Launch price — ${PRICE_NOW}</div>
         <h2 class="mc-final-title">
-          One hour from now you could have<br />
-          <span class="mc-gradient">a working AI agent in your business.</span>
+          By Sunday night you could have<br />
+          <span class="mc-gradient">a live business with real signups.</span>
         </h2>
         <p class="mc-final-sub">
-          Stop saving tutorials for later. Book a private 1-on-1, follow along, and build something real - with me guiding you every step of the way.
+          Or you could bookmark another tutorial. Three guides, one call, one payment — and the thing in your
+          head finally exists at an address you can send to people.
         </p>
-        <a href={BOOKING_LINK} target="_blank" rel="noopener noreferrer" class="mc-btn-book mc-btn-book-lg">Book a 1-on-1 Session →</a>
-        <p class="mc-guarantee" style="margin-top:20px;">✓ Just you &amp; Nas · ✓ Tailored entirely to your goals</p>
+
+        <div class="mc-final-price">
+          <span class="mc-price-old">${PRICE_WAS}</span>
+          <span class="mc-price-new">${PRICE_NOW}</span>
+        </div>
+
+        <a href={CHECKOUT_LINK} class="mc-btn-book mc-btn-book-lg" data-cta="final">Get Instant Access — ${PRICE_NOW} →</a>
+        <p class="mc-guarantee" style="margin-top:20px;">
+          ✓ Instant access · ✓ 1-on-1 call included · ✓ 14-day refund guarantee
+        </p>
       </div>
     </div>
   </section>
@@ -247,23 +533,58 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/1-on-1-masterclass';
     <a href="/" class="mc-btn-ghost">← Back to Home</a>
   </div>
 
+  <!-- ── STICKY BUY BAR ── -->
+  <div class="mc-sticky" id="mc-sticky" aria-hidden="true">
+    <div class="mc-sticky-inner">
+      <div class="mc-sticky-copy">
+        <div class="mc-sticky-title">Build Your Side-Hustle with Claude</div>
+        <div class="mc-sticky-sub">3 guides + a 1-on-1 call · lifetime access</div>
+      </div>
+      <div class="mc-sticky-price">
+        <span class="mc-price-old">${PRICE_WAS}</span>
+        <span class="mc-sticky-now">${PRICE_NOW}</span>
+      </div>
+      <a href={CHECKOUT_LINK} class="mc-btn-book mc-sticky-btn" data-cta="sticky">Get Access →</a>
+    </div>
+  </div>
+
 </div>
 
 <script>
-  // Highlight the selected slot
-  const slots = document.querySelectorAll('.mc-slot input[type="radio"]');
-  const slotEls = document.querySelectorAll('.mc-slot');
+  // Reveal the sticky buy bar once the hero offer card has scrolled out of view,
+  // and hide it again over the final CTA so the two don't fight each other.
+  const bar = document.getElementById('mc-sticky');
+  const hero = document.querySelector('.mc-hero-booking-card');
+  const final = document.querySelector('.mc-final-cta');
 
-  function updateSlots() {
-    slotEls.forEach(el => el.classList.remove('mc-slot-selected'));
-    slots.forEach(radio => {
-      if ((radio as HTMLInputElement).checked) {
-        radio.closest('.mc-slot')?.classList.add('mc-slot-selected');
-      }
-    });
+  if (bar && hero) {
+    let pastHero = false;
+    let atFinal = false;
+
+    const sync = () => {
+      const show = pastHero && !atFinal;
+      bar.classList.toggle('mc-sticky-on', show);
+      bar.setAttribute('aria-hidden', show ? 'false' : 'true');
+    };
+
+    new IntersectionObserver(
+      ([e]) => {
+        pastHero = !e.isIntersecting && e.boundingClientRect.top < 0;
+        sync();
+      },
+      { threshold: 0 }
+    ).observe(hero);
+
+    if (final) {
+      new IntersectionObserver(
+        ([e]) => {
+          atFinal = e.isIntersecting;
+          sync();
+        },
+        { threshold: 0.2 }
+      ).observe(final);
+    }
   }
-  slots.forEach(r => r.addEventListener('change', updateSlots));
-  updateSlots();
 </script>
 
 <style>
@@ -313,6 +634,9 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/1-on-1-masterclass';
     from { transform: translate(0, 0) scale(1); }
     to   { transform: translate(30px, 20px) scale(1.06); }
   }
+  @media (prefers-reduced-motion: reduce) {
+    .mc-blob, .mc-urgency-dot { animation: none; }
+  }
   .mc-hero, .mc-section, .mc-proof-strip, .mc-back-row { position: relative; z-index: 1; }
 
   /* ════ URGENCY BAR ════ */
@@ -326,8 +650,8 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/1-on-1-masterclass';
     padding: 7px 18px;
     font-size: 0.85rem;
     color: #c2410c;
-    margin-bottom: 28px;
-    font-weight: 500;
+    margin-bottom: 20px;
+    font-weight: 600;
   }
   :global(.dark) .mc-urgency-bar { background: rgba(249,115,22,0.12); color: #fb923c; }
   .mc-urgency-dot {
@@ -344,29 +668,72 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/1-on-1-masterclass';
   }
 
   /* ════ HERO ════ */
-  .mc-hero { padding: 100px 0 80px; }
+  .mc-hero { padding: 80px 0 72px; }
 
-  /* ── Hero split layout ── */
   .mc-hero-split {
     display: grid;
     grid-template-columns: 1fr 400px;
     gap: 56px;
     align-items: center;
-    margin-top: 32px;
   }
   .mc-hero-left { display: flex; flex-direction: column; align-items: flex-start; }
-  .mc-ghost-inline { margin-top: 24px; }
+  .mc-ghost-inline { margin-top: 8px; }
 
-  /* ── Hero booking card ── */
+  .mc-hero-title {
+    font-size: clamp(1.75rem, 3.4vw, 2.6rem);
+    font-weight: 800;
+    line-height: 1.18;
+    letter-spacing: -0.03em;
+    color: #0f172a;
+    margin: 0 0 16px;
+  }
+  :global(.dark) .mc-hero-title { color: #f8fafc; }
+  .mc-hero-sub {
+    font-size: 1rem;
+    color: #475569;
+    max-width: 520px;
+    margin: 0 0 20px;
+    line-height: 1.7;
+  }
+  :global(.dark) .mc-hero-sub { color: #94a3b8; }
+  .mc-hero-sub strong { color: #0f172a; font-weight: 700; }
+  :global(.dark) .mc-hero-sub strong { color: #e2e8f0; }
+
+  .mc-hero-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+  }
+  .mc-hero-bullets li {
+    font-size: 0.93rem;
+    color: #475569;
+    line-height: 1.5;
+    padding-left: 26px;
+    position: relative;
+  }
+  .mc-hero-bullets li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #a855f7;
+    font-weight: 800;
+  }
+  :global(.dark) .mc-hero-bullets li { color: #94a3b8; }
+
+  /* ── Hero offer card ── */
   .mc-hero-booking-card {
     background: #ffffff;
     border: 1.5px solid rgba(168,85,247,0.25);
     border-radius: 20px;
-    padding: 32px 28px;
+    padding: 28px 26px;
     box-shadow: 0 8px 40px rgba(168,85,247,0.1), 0 2px 12px rgba(0,0,0,0.05);
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
   }
   :global(.dark) .mc-hero-booking-card {
     background: rgba(255,255,255,0.04);
@@ -380,64 +747,79 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/1-on-1-masterclass';
     text-transform: uppercase;
     color: #a855f7;
   }
-  .mc-hbc-date {
-    font-size: 1.5rem;
+
+  /* price */
+  .mc-price-row { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .mc-price-old {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #94a3b8;
+    text-decoration: line-through;
+  }
+  .mc-price-new {
+    font-size: 2.6rem;
     font-weight: 800;
+    letter-spacing: -0.04em;
     color: #0f172a;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
+    line-height: 1;
   }
-  :global(.dark) .mc-hbc-date { color: #f8fafc; }
-  .mc-hbc-time-row {
-    padding: 14px 16px;
+  :global(.dark) .mc-price-new { color: #f8fafc; }
+  .mc-price-save {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #15803d;
+    background: rgba(34,197,94,0.12);
+    border: 1px solid rgba(34,197,94,0.25);
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+  :global(.dark) .mc-price-save { color: #4ade80; background: rgba(34,197,94,0.14); }
+  .mc-price-note { font-size: 0.8rem; color: #64748b; margin-top: -6px; }
+
+  .mc-hbc-list {
+    list-style: none;
+    padding: 16px;
+    margin: 0;
     background: #f8fafc;
-    border-radius: 12px;
     border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
-  :global(.dark) .mc-hbc-time-row { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.08); }
-  .mc-hbc-time-primary { font-size: 1rem; font-weight: 700; color: #0f172a; }
-  :global(.dark) .mc-hbc-time-primary { color: #f1f5f9; }
-  .mc-hbc-time-secondary { font-size: 0.78rem; color: #64748b; margin-top: 4px; line-height: 1.5; }
+  :global(.dark) .mc-hbc-list { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.08); }
+  .mc-hbc-list li {
+    font-size: 0.86rem;
+    color: #334155;
+    line-height: 1.45;
+    display: flex;
+    gap: 9px;
+    align-items: flex-start;
+  }
+  :global(.dark) .mc-hbc-list li { color: #cbd5e1; }
+  .mc-hbc-list li span { color: #a855f7; font-weight: 800; flex-shrink: 0; }
+  .mc-hbc-bonus { font-weight: 700; color: #0f172a !important; }
+  :global(.dark) .mc-hbc-bonus { color: #f1f5f9 !important; }
+  .mc-hbc-bonus span { color: #f97316 !important; }
+
   .mc-btn-book-full { width: 100%; text-align: center; box-sizing: border-box; }
   .mc-hbc-guarantee {
-    font-size: 0.78rem;
+    font-size: 0.76rem;
     color: #64748b;
     text-align: center;
     line-height: 1.6;
     margin: 0;
   }
 
-  @media (max-width: 860px) {
+  @media (max-width: 900px) {
     .mc-hero-split { grid-template-columns: 1fr; gap: 36px; }
     .mc-hero-left { align-items: center; text-align: center; }
+    .mc-hero-bullets { align-self: center; }
     .mc-hero-booking-card { max-width: 480px; margin: 0 auto; width: 100%; }
     .mc-ghost-inline { align-self: center; }
   }
-  .mc-eyebrow {
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #a855f7;
-    margin-bottom: 18px;
-  }
-  .mc-hero-title {
-    font-size: clamp(1.6rem, 3vw, 2.4rem);
-    font-weight: 800;
-    line-height: 1.2;
-    letter-spacing: -0.025em;
-    color: #0f172a;
-    margin: 0 0 16px;
-  }
-  :global(.dark) .mc-hero-title { color: #f8fafc; }
-  .mc-hero-sub {
-    font-size: 0.97rem;
-    color: #475569;
-    max-width: 480px;
-    margin: 0 0 24px;
-    line-height: 1.7;
-  }
-  :global(.dark) .mc-hero-sub { color: #94a3b8; }
 
   /* session pills */
   .mc-session-pills {
@@ -445,7 +827,7 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/1-on-1-masterclass';
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
-    margin-bottom: 40px;
+    margin-bottom: 18px;
   }
   .mc-pill {
     padding: 8px 16px;
@@ -459,13 +841,6 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/1-on-1-masterclass';
   :global(.dark) .mc-pill { background: rgba(255,255,255,0.06); color: #cbd5e1; border-color: rgba(255,255,255,0.1); }
 
   /* ════ BUTTONS ════ */
-  .mc-hero-cta-row {
-    display: flex;
-    gap: 14px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-  }
   .mc-btn-book {
     display: inline-block;
     padding: 15px 36px;
@@ -496,12 +871,7 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/1-on-1-masterclass';
   .mc-btn-ghost:hover { color: #0f172a; border-color: #94a3b8; background: #f8fafc; }
   :global(.dark) .mc-btn-ghost:hover { color: #f8fafc; background: rgba(255,255,255,0.06); }
 
-  .mc-guarantee {
-    font-size: 0.83rem;
-    color: #64748b;
-    margin: 0;
-  }
-  :global(.dark) .mc-guarantee { color: #475569; }
+  .mc-guarantee { font-size: 0.83rem; color: #64748b; margin: 0; }
 
   /* ════ PROOF STRIP ════ */
   .mc-proof-strip {
@@ -533,14 +903,14 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/1-on-1-masterclass';
   :global(.dark) .mc-proof-div { background: rgba(255,255,255,0.08); }
 
   /* ════ SECTIONS ════ */
-  .mc-section { padding: 96px 0; }
+  .mc-section { padding: 88px 0; }
   .mc-section-alt {
     background: #f8fafc;
     border-top: 1px solid #e2e8f0;
     border-bottom: 1px solid #e2e8f0;
   }
   :global(.dark) .mc-section-alt { background: rgba(255,255,255,0.025); border-color: rgba(255,255,255,0.06); }
-  .mc-section-header { text-align: center; margin-bottom: 56px; }
+  .mc-section-header { text-align: center; margin-bottom: 52px; }
   .mc-tag {
     display: inline-block;
     font-size: 0.73rem;
@@ -551,21 +921,64 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/1-on-1-masterclass';
     margin-bottom: 12px;
   }
   .mc-section-title {
-    font-size: clamp(1.6rem, 3.5vw, 2.3rem);
+    font-size: clamp(1.55rem, 3.4vw, 2.2rem);
     font-weight: 800;
     color: #0f172a;
     margin: 0 0 14px;
-    letter-spacing: -0.025em;
+    letter-spacing: -0.03em;
+    line-height: 1.25;
   }
   :global(.dark) .mc-section-title { color: #f8fafc; }
-  .mc-section-sub { font-size: 1.02rem; color: #64748b; max-width: 500px; margin: 0 auto; line-height: 1.65; }
+  .mc-section-sub { font-size: 1.02rem; color: #64748b; max-width: 560px; margin: 0 auto; line-height: 1.65; }
 
-  /* ════ WHAT YOU'LL LEARN ════ */
+  /* ════ PAIN GRID ════ */
+  .mc-pain-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .mc-pain-card {
+    padding: 28px 26px;
+    border-radius: 18px;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  :global(.dark) .mc-pain-card { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.07); box-shadow: none; }
+  .mc-pain-icon { font-size: 1.7rem; margin-bottom: 12px; }
+  .mc-pain-card h3 { font-size: 1rem; font-weight: 700; color: #0f172a; margin: 0 0 8px; line-height: 1.4; }
+  :global(.dark) .mc-pain-card h3 { color: #f1f5f9; }
+  .mc-pain-card p { font-size: 0.9rem; color: #64748b; line-height: 1.65; margin: 0; }
+  .mc-pain-card code {
+    font-size: 0.85em;
+    background: #f1f5f9;
+    padding: 1px 6px;
+    border-radius: 5px;
+    color: #475569;
+  }
+  :global(.dark) .mc-pain-card code { background: rgba(255,255,255,0.07); color: #cbd5e1; }
+
+  .mc-bridge { text-align: center; margin-top: 48px; }
+  .mc-bridge p {
+    font-size: 1.05rem;
+    color: #475569;
+    max-width: 620px;
+    margin: 0 auto 28px;
+    line-height: 1.7;
+  }
+  :global(.dark) .mc-bridge p { color: #94a3b8; }
+  .mc-bridge strong { color: #0f172a; }
+  :global(.dark) .mc-bridge strong { color: #e2e8f0; }
+
+  /* ════ WHAT'S INSIDE ════ */
   .mc-learn-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
     gap: 20px;
   }
+  .mc-learn-grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
   .mc-learn-card {
     padding: 32px 28px;
     border-radius: 18px;
@@ -582,13 +995,165 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/1-on-1-masterclass';
     font-size: 0.72rem;
     font-weight: 800;
     letter-spacing: 0.08em;
+    text-transform: uppercase;
     color: #a855f7;
     margin-bottom: 10px;
   }
   .mc-learn-icon { font-size: 1.9rem; margin-bottom: 14px; }
-  .mc-learn-card h3 { font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 0 0 10px; }
+  .mc-learn-card h3 { font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0 0 10px; line-height: 1.35; }
   :global(.dark) .mc-learn-card h3 { color: #f1f5f9; }
-  .mc-learn-card p { font-size: 0.9rem; color: #64748b; line-height: 1.65; margin: 0; }
+  .mc-learn-card > p { font-size: 0.9rem; color: #64748b; line-height: 1.65; margin: 0 0 16px; }
+  .mc-learn-list {
+    list-style: none;
+    padding: 16px 0 0;
+    margin: 0;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+  :global(.dark) .mc-learn-list { border-color: rgba(255,255,255,0.07); }
+  .mc-learn-list li {
+    font-size: 0.85rem;
+    color: #475569;
+    line-height: 1.5;
+    padding-left: 20px;
+    position: relative;
+  }
+  .mc-learn-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #f97316;
+    font-weight: 700;
+  }
+  :global(.dark) .mc-learn-list li { color: #94a3b8; }
+
+  /* ── Bonus call card ── */
+  .mc-bonus-card {
+    margin-top: 24px;
+    padding: 34px 32px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(249,115,22,0.07), rgba(168,85,247,0.07));
+    border: 1.5px solid rgba(249,115,22,0.28);
+    position: relative;
+  }
+  :global(.dark) .mc-bonus-card {
+    background: linear-gradient(135deg, rgba(249,115,22,0.1), rgba(168,85,247,0.1));
+    border-color: rgba(249,115,22,0.3);
+  }
+  .mc-bonus-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #fff;
+    background: linear-gradient(135deg, #f97316, #a855f7);
+    padding: 5px 14px;
+    border-radius: 999px;
+    margin-bottom: 18px;
+  }
+  .mc-bonus-body { display: flex; gap: 26px; align-items: flex-start; }
+  .mc-bonus-avatar {
+    width: 72px; height: 72px; flex-shrink: 0;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(249,115,22,0.35);
+  }
+  .mc-bonus-right h3 { font-size: 1.2rem; font-weight: 800; color: #0f172a; margin: 0 0 10px; letter-spacing: -0.02em; }
+  :global(.dark) .mc-bonus-right h3 { color: #f8fafc; }
+  .mc-bonus-right p { font-size: 0.95rem; color: #475569; line-height: 1.7; margin: 0 0 10px; }
+  :global(.dark) .mc-bonus-right p { color: #94a3b8; }
+  .mc-bonus-note { font-size: 0.85rem !important; font-weight: 600; color: #c2410c !important; margin: 0 !important; }
+  :global(.dark) .mc-bonus-note { color: #fb923c !important; }
+
+  .mc-mid-cta { text-align: center; margin-top: 48px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+
+  @media (max-width: 640px) {
+    .mc-bonus-body { flex-direction: column; gap: 18px; align-items: center; text-align: center; }
+  }
+
+  /* ════ TIMELINE ════ */
+  .mc-timeline {
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .mc-tl-item { display: flex; gap: 22px; align-items: flex-start; }
+  .mc-tl-dot {
+    width: 40px; height: 40px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f97316, #a855f7);
+    color: #fff;
+    font-weight: 800;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .mc-tl-item:not(:last-child) .mc-tl-dot::after {
+    content: '';
+    position: absolute;
+    top: 46px;
+    left: 50%;
+    width: 2px;
+    height: calc(100% + 24px);
+    background: linear-gradient(to bottom, rgba(168,85,247,0.35), rgba(168,85,247,0.08));
+    transform: translateX(-50%);
+  }
+  .mc-tl-body { padding-bottom: 32px; }
+  .mc-tl-body h3 { font-size: 1.02rem; font-weight: 700; color: #0f172a; margin: 8px 0 8px; }
+  :global(.dark) .mc-tl-body h3 { color: #f1f5f9; }
+  .mc-tl-body p { font-size: 0.93rem; color: #64748b; line-height: 1.7; margin: 0; }
+
+  /* ════ VALUE STACK ════ */
+  .mc-stack {
+    max-width: 620px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 22px;
+    padding: 36px 34px;
+    box-shadow: 0 4px 28px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+  }
+  :global(.dark) .mc-stack { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.08); box-shadow: none; }
+  .mc-stack-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px dashed #e2e8f0;
+  }
+  :global(.dark) .mc-stack-row { border-color: rgba(255,255,255,0.08); }
+  .mc-stack-name { font-size: 0.93rem; color: #334155; line-height: 1.5; }
+  :global(.dark) .mc-stack-name { color: #cbd5e1; }
+  .mc-stack-val { font-size: 0.93rem; font-weight: 700; color: #64748b; white-space: nowrap; }
+  .mc-stack-row-bonus .mc-stack-name { font-weight: 700; color: #0f172a; }
+  :global(.dark) .mc-stack-row-bonus .mc-stack-name { color: #f1f5f9; }
+  .mc-stack-row-bonus .mc-stack-val { color: #f97316; }
+
+  .mc-stack-total { padding: 22px 0 24px; display: flex; flex-direction: column; gap: 8px; }
+  .mc-stack-total-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 0.95rem;
+    color: #64748b;
+  }
+  .mc-strike { text-decoration: line-through; color: #94a3b8; font-weight: 600; }
+  .mc-stack-today { margin-top: 6px; align-items: center; }
+  .mc-stack-today span:first-child { font-size: 1.05rem; font-weight: 800; color: #0f172a; }
+  :global(.dark) .mc-stack-today span:first-child { color: #f8fafc; }
+  .mc-stack-today-num { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
+  .mc-stack-foot { font-size: 0.85rem; color: #64748b; text-align: center; margin: 14px 0 0; }
 
   /* ════ WHO IT'S FOR ════ */
   .mc-for-grid {
@@ -599,13 +1164,13 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/1-on-1-masterclass';
     margin: 0 auto;
   }
   .mc-for-card { padding: 36px 32px; border-radius: 20px; }
-  .mc-for-yes { background: linear-gradient(135deg, rgba(168,85,247,0.06), rgba(249,115,22,0.04)); border: 1px solid rgba(168,85,247,0.2); }
-  .mc-for-no  { background: #f8fafc; border: 1px solid #e2e8f0; }
+  .mc-for-yes { background: linear-gradient(135deg, rgba(168,85,247,0.07), rgba(249,115,22,0.05)); border: 1px solid rgba(168,85,247,0.2); }
+  .mc-for-no  { background: #fff; border: 1px solid #e2e8f0; }
   :global(.dark) .mc-for-no { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.07); }
   .mc-for-card h3 { font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0 0 20px; }
   :global(.dark) .mc-for-card h3 { color: #f1f5f9; }
   .mc-for-card ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
-  .mc-for-card li { font-size: 0.92rem; color: #475569; line-height: 1.5; }
+  .mc-for-card li { font-size: 0.92rem; color: #475569; line-height: 1.55; }
   :global(.dark) .mc-for-card li { color: #94a3b8; }
 
   /* ════ ABOUT ════ */
@@ -632,71 +1197,26 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/1-on-1-masterclass';
   :global(.dark) .mc-about-name { color: #f8fafc; }
   .mc-about-bio { font-size: 0.97rem; color: #475569; line-height: 1.8; margin: 0 0 14px; }
   :global(.dark) .mc-about-bio { color: #94a3b8; }
-  .mc-about-links { display: flex; gap: 16px; margin-top: 8px; }
+  .mc-about-links { display: flex; gap: 16px; margin-top: 8px; flex-wrap: wrap; }
   .mc-about-link { font-size: 0.88rem; font-weight: 700; color: #a855f7; text-decoration: none; }
   .mc-about-link:hover { text-decoration: underline; }
 
-  /* ════ BOOKING ════ */
-  .mc-slots-wrap { max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
-  .mc-slot { display: block; cursor: pointer; }
-  .mc-slot input { display: none; }
-  .mc-slot-inner {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 20px 24px;
-    border-radius: 16px;
-    border: 2px solid #e2e8f0;
-    background: #fff;
-    transition: all 0.18s ease;
+  /* ════ GUARANTEE ════ */
+  .mc-guarantee-card {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 48px 40px;
+    border-radius: 22px;
+    background: linear-gradient(135deg, rgba(34,197,94,0.05), rgba(168,85,247,0.05));
+    border: 1.5px dashed rgba(34,197,94,0.35);
   }
-  :global(.dark) .mc-slot-inner { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.1); }
-  .mc-slot:hover .mc-slot-inner { border-color: #a855f7; }
-  .mc-slot-selected .mc-slot-inner {
-    border-color: #a855f7;
-    background: linear-gradient(135deg, rgba(168,85,247,0.06), rgba(249,115,22,0.04));
-    box-shadow: 0 4px 20px rgba(168,85,247,0.12);
-  }
-  :global(.dark) .mc-slot-selected .mc-slot-inner { background: rgba(168,85,247,0.1); }
-  .mc-slot-check {
-    width: 24px; height: 24px; flex-shrink: 0;
-    border-radius: 50%;
-    border: 2px solid #e2e8f0;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.7rem;
-    color: transparent;
-    background: transparent;
-    transition: all 0.18s ease;
-  }
-  .mc-slot-selected .mc-slot-check { border-color: #a855f7; background: #a855f7; color: white; }
-  .mc-slot-times { flex: 1; }
-  .mc-slot-primary { font-size: 1rem; font-weight: 700; color: #0f172a; }
-  :global(.dark) .mc-slot-primary { color: #f1f5f9; }
-  .mc-slot-secondary { font-size: 0.8rem; color: #64748b; margin-top: 3px; }
-  .mc-slot-badge {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: #a855f7;
-    background: rgba(168,85,247,0.1);
-    padding: 4px 10px;
-    border-radius: 999px;
-    white-space: nowrap;
-  }
-  .mc-booking-cta-wrap { margin-top: 8px; text-align: center; }
-  .mc-booking-note { font-size: 0.82rem; color: #64748b; margin-top: 14px; line-height: 1.6; }
-  .mc-spots-warning {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    font-size: 0.88rem;
-    color: #c2410c;
-    font-weight: 500;
-    margin-top: 4px;
-  }
-  :global(.dark) .mc-spots-warning { color: #fb923c; }
+  :global(.dark) .mc-guarantee-card { background: rgba(34,197,94,0.06); border-color: rgba(34,197,94,0.3); }
+  .mc-guarantee-seal { font-size: 2.6rem; margin-bottom: 14px; }
+  .mc-guarantee-card h2 { font-size: 1.5rem; font-weight: 800; color: #0f172a; margin: 0 0 14px; letter-spacing: -0.02em; }
+  :global(.dark) .mc-guarantee-card h2 { color: #f8fafc; }
+  .mc-guarantee-card p { font-size: 0.97rem; color: #475569; line-height: 1.75; margin: 0; }
+  :global(.dark) .mc-guarantee-card p { color: #94a3b8; }
 
   /* ════ FAQ ════ */
   .mc-faq-grid {
@@ -715,12 +1235,12 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/1-on-1-masterclass';
   :global(.dark) .mc-faq-item { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.07); }
   .mc-faq-item h3 { font-size: 0.97rem; font-weight: 700; color: #0f172a; margin: 0 0 10px; }
   :global(.dark) .mc-faq-item h3 { color: #f1f5f9; }
-  .mc-faq-item p { font-size: 0.88rem; color: #64748b; line-height: 1.65; margin: 0; }
+  .mc-faq-item p { font-size: 0.88rem; color: #64748b; line-height: 1.7; margin: 0; }
 
   /* ════ FINAL CTA ════ */
   .mc-final-cta {
     text-align: center;
-    padding: 88px 40px;
+    padding: 84px 40px;
     background: #f8fafc;
     border: 1px solid #e2e8f0;
     border-radius: 28px;
@@ -739,7 +1259,7 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/1-on-1-masterclass';
   .mc-final-badge {
     display: inline-block;
     font-size: 0.75rem;
-    font-weight: 700;
+    font-weight: 800;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: #a855f7;
@@ -747,7 +1267,7 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/1-on-1-masterclass';
     position: relative;
   }
   .mc-final-title {
-    font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+    font-size: clamp(1.7rem, 3.5vw, 2.5rem);
     font-weight: 800;
     color: #0f172a;
     margin: 0 0 20px;
@@ -759,27 +1279,88 @@ const BOOKING_LINK = 'https://cal.com/nas-mansurali/1-on-1-masterclass';
   .mc-final-sub {
     font-size: 1.02rem;
     color: #64748b;
-    max-width: 500px;
-    margin: 0 auto 36px;
+    max-width: 520px;
+    margin: 0 auto 28px;
     line-height: 1.7;
     position: relative;
   }
+  .mc-final-price {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    position: relative;
+  }
+
+  /* ════ STICKY BUY BAR ════ */
+  .mc-sticky {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 60;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(14px);
+    border-top: 1px solid #e2e8f0;
+    box-shadow: 0 -4px 30px rgba(0,0,0,0.08);
+    transform: translateY(110%);
+    transition: transform 0.28s ease;
+    padding: 12px 0 max(12px, env(safe-area-inset-bottom));
+  }
+  :global(.dark) .mc-sticky { background: rgba(5,5,15,0.92); border-color: rgba(255,255,255,0.08); }
+  .mc-sticky-on { transform: translateY(0); }
+  .mc-sticky-inner {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .mc-sticky-copy { flex: 1; min-width: 0; }
+  .mc-sticky-title {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  :global(.dark) .mc-sticky-title { color: #f8fafc; }
+  .mc-sticky-sub { font-size: 0.78rem; color: #64748b; margin-top: 2px; }
+  .mc-sticky-price { display: flex; align-items: baseline; gap: 8px; flex-shrink: 0; }
+  .mc-sticky-price .mc-price-old { font-size: 0.9rem; }
+  .mc-sticky-now { font-size: 1.5rem; font-weight: 800; color: #0f172a; letter-spacing: -0.03em; }
+  :global(.dark) .mc-sticky-now { color: #f8fafc; }
+  .mc-sticky-btn { padding: 12px 26px; font-size: 0.93rem; flex-shrink: 0; box-shadow: 0 2px 16px rgba(249,115,22,0.3); }
+
+  @media (max-width: 720px) {
+    .mc-sticky-copy { display: none; }
+    .mc-sticky-inner { gap: 12px; justify-content: space-between; padding: 0 16px; }
+    .mc-sticky-btn { flex: 1; text-align: center; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .mc-sticky { transition: none; }
+  }
 
   /* ════ BACK ROW ════ */
-  .mc-back-row { text-align: center; padding: 40px 0 80px; }
+  .mc-back-row { text-align: center; padding: 40px 0 100px; }
 
   /* ════ RESPONSIVE ════ */
   @media (max-width: 640px) {
-    .mc-hero { padding: 72px 0 56px; }
-    .mc-section { padding: 64px 0; }
-    .mc-about-card { flex-direction: column; gap: 24px; padding: 32px 24px; }
-    .mc-about-avatar { width: 60px; height: 60px; font-size: 1.5rem; }
-    .mc-final-cta { padding: 56px 24px; }
+    .mc-hero { padding: 60px 0 48px; }
+    .mc-section { padding: 60px 0; }
+    .mc-about-card { flex-direction: column; gap: 24px; padding: 32px 24px; align-items: center; text-align: center; }
+    .mc-about-links { justify-content: center; }
+    .mc-final-cta { padding: 52px 24px; }
+    .mc-guarantee-card { padding: 36px 24px; }
+    .mc-stack { padding: 28px 22px; }
+    .mc-stack-today-num { font-size: 2.1rem; }
     .mc-proof-div { display: none; }
     .mc-proof-inner { gap: 8px; }
-    .mc-slot-secondary { display: none; }
-    .mc-hero-cta-row { flex-direction: column; align-items: center; }
-    .mc-btn-book-lg { width: 100%; text-align: center; }
+    .mc-proof-item { padding: 0 10px; }
+    .mc-btn-book-lg { width: 100%; text-align: center; box-sizing: border-box; }
+    .mc-tl-item { gap: 16px; }
   }
 </style>
 </Layout>

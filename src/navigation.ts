@@ -57,7 +57,7 @@ export const footerData = {
       links: [
         { text: 'Services', href: '/#hp-services' },
         { text: 'AI Mentorship', href: '/ai-intensive-mentorship' },
-        { text: 'AI Masterclass', href: '/ai-masterclass-with-nas' },
+        { text: 'Build with Claude', href: '/ai-masterclass-with-nas' },
         { text: 'Live Session', href: '/live-session' },
         { text: 'Contact', href: '/contact' },
       ],
