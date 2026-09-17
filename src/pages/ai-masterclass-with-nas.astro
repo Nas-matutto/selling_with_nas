@@ -105,22 +105,10 @@ const productSchema = {
 
         <!-- Left: copy -->
         <div class="mc-hero-left">
-          <div class="mc-urgency-bar">
-            <span class="mc-urgency-dot"></span>
-            Launch price - ${PRICE_NOW} instead of ${PRICE_WAS}
-          </div>
-
           <h1 class="mc-hero-title">
-            Launch your side-hustle this weekend<br />
+            Launch your side-hustle this weekend
             <span class="mc-gradient">using nothing but Claude.</span>
           </h1>
-
-          <p class="mc-hero-sub">
-            A step-by-step pack that takes you from a blank screen to a real business online:
-            <strong>build the website</strong>, <strong>put it live on your own domain</strong>, and
-            <strong>add a signup button</strong> that collects real customers. No code. No developer.
-            And if you get stuck, you get me on a call.
-          </p>
 
           <ul class="mc-hero-bullets">
             <li>Follow along click-by-click - nothing is skipped or assumed</li>
@@ -221,11 +209,6 @@ const productSchema = {
           <h3>47 tutorials, zero launches</h3>
           <p>Every video covers a different tool, stops before the hard part, or was recorded before the thing changed. You've learned a lot and shipped nothing.</p>
         </div>
-        <div class="mc-pain-card">
-          <div class="mc-pain-icon">🚪</div>
-          <h3>No way to capture anyone</h3>
-          <p>Even if it were live — there's no signup, no login, no list. Traffic shows up, looks around, and leaves without a trace.</p>
-        </div>
       </div>
 
       <div class="mc-bridge">
@@ -290,7 +273,7 @@ const productSchema = {
         <div class="mc-bonus-badge">Included bonus</div>
         <div class="mc-bonus-body">
           <div class="mc-bonus-left">
-            <Image src={nasProfile} alt="Nas" class="mc-bonus-avatar" width={72} height={72} />
+            <Image src={nasProfile} alt="Nas" class="mc-bonus-avatar" width={288} height={384} />
           </div>
           <div class="mc-bonus-right">
             <h3>A private 1-on-1 call with me</h3>
@@ -410,7 +393,7 @@ const productSchema = {
   <section class="mc-section">
     <div class="mc-container">
       <div class="mc-about-card">
-        <Image src={nasProfile} alt="Nas" class="mc-about-avatar" width={80} height={80} />
+        <Image src={nasProfile} alt="Nas" class="mc-about-avatar" width={320} height={427} />
         <div class="mc-about-body">
           <span class="mc-tag" style="margin-bottom:12px;">Who's teaching this</span>
           <h2 class="mc-about-name">Nas</h2>
@@ -467,23 +450,8 @@ const productSchema = {
     </div>
   </section>
 
-  <!-- ── GUARANTEE ── -->
-  <section class="mc-section">
-    <div class="mc-container">
-      <div class="mc-guarantee-card">
-        <div class="mc-guarantee-seal">🛡️</div>
-        <h2>Ship it, or don't pay for it</h2>
-        <p>
-          Go through the guides. Get on the call. If after 14 days you genuinely can't get your site live —
-          email me, show me you gave it a real go, and I'll refund every penny. You keep the guides either way.
-          I'd rather carry the risk than have you sit on the fence.
-        </p>
-      </div>
-    </div>
-  </section>
-
   <!-- ── FAQ ── -->
-  <section class="mc-section mc-section-alt">
+  <section class="mc-section">
     <div class="mc-container">
       <div class="mc-section-header">
         <span class="mc-tag">Questions</span>
@@ -635,37 +603,9 @@ const productSchema = {
     to   { transform: translate(30px, 20px) scale(1.06); }
   }
   @media (prefers-reduced-motion: reduce) {
-    .mc-blob, .mc-urgency-dot { animation: none; }
+    .mc-blob { animation: none; }
   }
   .mc-hero, .mc-section, .mc-proof-strip, .mc-back-row { position: relative; z-index: 1; }
-
-  /* ════ URGENCY BAR ════ */
-  .mc-urgency-bar {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(249,115,22,0.08);
-    border: 1px solid rgba(249,115,22,0.25);
-    border-radius: 999px;
-    padding: 7px 18px;
-    font-size: 0.85rem;
-    color: #c2410c;
-    margin-bottom: 20px;
-    font-weight: 600;
-  }
-  :global(.dark) .mc-urgency-bar { background: rgba(249,115,22,0.12); color: #fb923c; }
-  .mc-urgency-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: #f97316;
-    display: inline-block;
-    animation: mcPulse 1.6s ease-in-out infinite;
-    flex-shrink: 0;
-  }
-  @keyframes mcPulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50%       { opacity: 0.5; transform: scale(0.8); }
-  }
 
   /* ════ HERO ════ */
   .mc-hero { padding: 80px 0 72px; }
@@ -680,7 +620,7 @@ const productSchema = {
   .mc-ghost-inline { margin-top: 8px; }
 
   .mc-hero-title {
-    font-size: clamp(1.75rem, 3.4vw, 2.6rem);
+    font-size: clamp(1.75rem, 3.2vw, 2.45rem);
     font-weight: 800;
     line-height: 1.18;
     letter-spacing: -0.03em;
@@ -688,17 +628,6 @@ const productSchema = {
     margin: 0 0 16px;
   }
   :global(.dark) .mc-hero-title { color: #f8fafc; }
-  .mc-hero-sub {
-    font-size: 1rem;
-    color: #475569;
-    max-width: 520px;
-    margin: 0 0 20px;
-    line-height: 1.7;
-  }
-  :global(.dark) .mc-hero-sub { color: #94a3b8; }
-  .mc-hero-sub strong { color: #0f172a; font-weight: 700; }
-  :global(.dark) .mc-hero-sub strong { color: #e2e8f0; }
-
   .mc-hero-bullets {
     list-style: none;
     padding: 0;
@@ -1201,23 +1130,6 @@ const productSchema = {
   .mc-about-link { font-size: 0.88rem; font-weight: 700; color: #a855f7; text-decoration: none; }
   .mc-about-link:hover { text-decoration: underline; }
 
-  /* ════ GUARANTEE ════ */
-  .mc-guarantee-card {
-    max-width: 680px;
-    margin: 0 auto;
-    text-align: center;
-    padding: 48px 40px;
-    border-radius: 22px;
-    background: linear-gradient(135deg, rgba(34,197,94,0.05), rgba(168,85,247,0.05));
-    border: 1.5px dashed rgba(34,197,94,0.35);
-  }
-  :global(.dark) .mc-guarantee-card { background: rgba(34,197,94,0.06); border-color: rgba(34,197,94,0.3); }
-  .mc-guarantee-seal { font-size: 2.6rem; margin-bottom: 14px; }
-  .mc-guarantee-card h2 { font-size: 1.5rem; font-weight: 800; color: #0f172a; margin: 0 0 14px; letter-spacing: -0.02em; }
-  :global(.dark) .mc-guarantee-card h2 { color: #f8fafc; }
-  .mc-guarantee-card p { font-size: 0.97rem; color: #475569; line-height: 1.75; margin: 0; }
-  :global(.dark) .mc-guarantee-card p { color: #94a3b8; }
-
   /* ════ FAQ ════ */
   .mc-faq-grid {
     display: grid;
@@ -1353,7 +1265,6 @@ const productSchema = {
     .mc-about-card { flex-direction: column; gap: 24px; padding: 32px 24px; align-items: center; text-align: center; }
     .mc-about-links { justify-content: center; }
     .mc-final-cta { padding: 52px 24px; }
-    .mc-guarantee-card { padding: 36px 24px; }
     .mc-stack { padding: 28px 22px; }
     .mc-stack-today-num { font-size: 2.1rem; }
     .mc-proof-div { display: none; }
