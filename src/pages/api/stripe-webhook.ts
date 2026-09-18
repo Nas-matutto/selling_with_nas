@@ -242,9 +242,12 @@ export async function POST({ request }: { request: Request }) {
     customer_details?: { email?: string | null } | null;
   };
 
-  // A session can complete unpaid (e.g. delayed bank debits) - only fulfil paid ones.
-  if (session.payment_status !== 'paid') {
-    console.log(`Session ${session.id} completed but unpaid (${session.payment_status}) - not fulfilling.`);
+  // Fulfil paid orders, and $0 orders from a 100%-off promotion code - Stripe
+  // reports those as `no_payment_required`, not `paid`. Anything else (notably
+  // `unpaid`, e.g. a delayed bank debit still clearing) is not yet a sale.
+  const FULFILLABLE = ['paid', 'no_payment_required'];
+  if (!FULFILLABLE.includes(session.payment_status ?? '')) {
+    console.log(`Session ${session.id} completed but not payable yet (${session.payment_status}) - not fulfilling.`);
     return json({ ok: true, unpaid: true }, 200);
   }
 

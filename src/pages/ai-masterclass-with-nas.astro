@@ -3,7 +3,22 @@ export const prerender = true;
 
 import Layout from '~/layouts/PageLayout.astro';
 import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import nasProfile from '~/assets/images/nas-profile.jpg';
+
+// Auto-imports every review screenshot dropped into src/assets/images/reviews/.
+// Add or remove image files there and they appear/disappear automatically -
+// filenames are sorted, so name them review-01.png, review-02.png, ... to order them.
+const reviewModules = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/images/reviews/*.{png,jpg,jpeg,webp,avif}',
+  { eager: true }
+);
+const reviewImages = Object.entries(reviewModules)
+  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+  .map(([, mod]) => mod.default);
+const reviewHalf = Math.ceil(reviewImages.length / 2);
+const reviewsRow1 = reviewImages.slice(0, reviewHalf);
+const reviewsRow2 = reviewImages.slice(reviewHalf);
 
 const metadata = {
   title: 'Build Your Side-Hustle with Claude - Step-by-Step Pack + 1-on-1 Call',
@@ -101,7 +116,7 @@ const productSchema = {
         <!-- Left: copy -->
         <div class="mc-hero-left">
           <h1 class="mc-hero-title">
-            Launch your side-hustle this weekend
+            Launch your website this weekend
             <span class="mc-gradient">with Claude</span>
           </h1>
 
@@ -147,30 +162,46 @@ const productSchema = {
     </div>
   </section>
 
-  <!-- ── SOCIAL PROOF STRIP ── -->
-  <div class="mc-proof-strip">
-    <div class="mc-container mc-proof-inner">
-      <div class="mc-proof-item">
-        <span class="mc-proof-num">100k+</span>
-        <span class="mc-proof-label">YouTube viewers taught</span>
+  <!-- ── REVIEWS ── -->
+  {reviewImages.length > 0 && (
+    <section class="mc-section" id="reviews">
+      <div class="mc-container">
+        <div class="mc-section-header">
+          <span class="mc-tag">Reviews</span>
+          <h2 class="mc-section-title">Thousands have built their first website with me</h2>
+          <p class="mc-section-sub">Real people who followed the exact same steps and put a real website online with Claude. Here's what many of them had to say:</p>
+          <div class="mc-rating">
+            <span class="mc-stars" aria-hidden="true">★★★★★</span>
+            <span class="mc-rating-text">From 1000+ people</span>
+          </div>
+        </div>
       </div>
-      <div class="mc-proof-div"></div>
-      <div class="mc-proof-item">
-        <span class="mc-proof-num">50+</span>
-        <span class="mc-proof-label">AI builds shipped</span>
+
+      <div class="mc-reviews-marquee">
+        <div class="mc-marquee-row mc-marquee-fwd">
+          {[...reviewsRow1, ...reviewsRow1].map((img, i) => (
+            <div class="mc-review-card" aria-hidden={i >= reviewsRow1.length ? 'true' : undefined}>
+              <Image src={img} widths={[340, 440, 600]} sizes="(max-width: 640px) 340px, 440px" alt="Customer review" loading="lazy" />
+            </div>
+          ))}
+        </div>
+        {reviewsRow2.length > 0 && (
+          <div class="mc-marquee-row mc-marquee-rev">
+            {[...reviewsRow2, ...reviewsRow2].map((img, i) => (
+              <div class="mc-review-card" aria-hidden={i >= reviewsRow2.length ? 'true' : undefined}>
+                <Image src={img} widths={[340, 440, 600]} sizes="(max-width: 640px) 340px, 440px" alt="Customer review" loading="lazy" />
+              </div>
+            ))}
+          </div>
+        )}
+        <div class="mc-marquee-fade mc-marquee-fade-l" aria-hidden="true"></div>
+        <div class="mc-marquee-fade mc-marquee-fade-r" aria-hidden="true"></div>
       </div>
-      <div class="mc-proof-div"></div>
-      <div class="mc-proof-item">
-        <span class="mc-proof-num">0</span>
-        <span class="mc-proof-label">Lines of code needed</span>
+      <div class="mc-container mc-reviews-cta">
+        <a href={CHECKOUT_LINK} class="mc-btn-book mc-btn-book-lg" data-cta="reviews">Get Instant Access — ${PRICE_NOW} →</a>
       </div>
-      <div class="mc-proof-div"></div>
-      <div class="mc-proof-item">
-        <span class="mc-proof-num">1 weekend</span>
-        <span class="mc-proof-label">From idea to live site</span>
-      </div>
-    </div>
-  </div>
+    </section>
+  )}
 
   <!-- ── PROBLEM ── -->
   <section class="mc-section">
@@ -589,7 +620,7 @@ const productSchema = {
   @media (prefers-reduced-motion: reduce) {
     .mc-blob { animation: none; }
   }
-  .mc-hero, .mc-section, .mc-proof-strip, .mc-back-row { position: relative; z-index: 1; }
+  .mc-hero, .mc-section, .mc-back-row { position: relative; z-index: 1; }
 
   /* ════ HERO ════ */
   .mc-hero { padding: 80px 0 72px; }
@@ -767,34 +798,85 @@ const productSchema = {
 
   .mc-guarantee { font-size: 0.83rem; color: #64748b; margin: 0; }
 
-  /* ════ PROOF STRIP ════ */
-  .mc-proof-strip {
-    background: #f8fafc;
-    border-top: 1px solid #e2e8f0;
-    border-bottom: 1px solid #e2e8f0;
-    padding: 28px 0;
-  }
-  :global(.dark) .mc-proof-strip { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.06); }
-  .mc-proof-inner {
+  /* ════ REVIEWS MARQUEE ════ */
+  .mc-rating {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
-    gap: 16px;
+    gap: 10px;
+    margin-top: 20px;
   }
-  .mc-proof-item { text-align: center; padding: 0 16px; }
-  .mc-proof-num {
-    display: block;
-    font-size: 1.5rem;
-    font-weight: 800;
-    background: linear-gradient(to right, #f97316, #a855f7);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  .mc-stars {
+    color: #f59e0b;
+    font-size: 1.25rem;
+    letter-spacing: 2px;
+    line-height: 1;
   }
-  .mc-proof-label { font-size: 0.78rem; color: #64748b; margin-top: 2px; display: block; }
-  .mc-proof-div { width: 1px; height: 36px; background: #e2e8f0; }
-  :global(.dark) .mc-proof-div { background: rgba(255,255,255,0.08); }
+  .mc-rating-text {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #0f172a;
+  }
+  :global(.dark) .mc-rating-text { color: #f1f5f9; }
+
+  .mc-reviews-marquee {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow: hidden;
+    padding: 4px 0;
+  }
+  .mc-marquee-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: max-content;
+    will-change: transform;
+  }
+  .mc-marquee-fwd { animation: mcMarquee 48s linear infinite; }
+  .mc-marquee-rev { animation: mcMarqueeRev 48s linear infinite; }
+  .mc-reviews-marquee:hover .mc-marquee-row { animation-play-state: paused; }
+  @keyframes mcMarquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  @keyframes mcMarqueeRev {
+    from { transform: translateX(-50%); }
+    to   { transform: translateX(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .mc-marquee-row { animation: none; }
+    .mc-reviews-marquee { overflow-x: auto; }
+  }
+  .mc-review-card {
+    flex: 0 0 auto;
+    width: 440px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+  }
+  :global(.dark) .mc-review-card {
+    border-color: rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.03);
+    box-shadow: none;
+  }
+  .mc-review-card img { display: block; width: 100%; height: auto; }
+  .mc-marquee-fade {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 12%;
+    max-width: 160px;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .mc-marquee-fade-l { left: 0; background: linear-gradient(to right, #ffffff, transparent); }
+  .mc-marquee-fade-r { right: 0; background: linear-gradient(to left, #ffffff, transparent); }
+  :global(.dark) .mc-marquee-fade-l { background: linear-gradient(to right, #05050f, transparent); }
+  :global(.dark) .mc-marquee-fade-r { background: linear-gradient(to left, #05050f, transparent); }
+  .mc-reviews-cta { text-align: center; margin-top: 40px; }
 
   /* ════ SECTIONS ════ */
   .mc-section { padding: 88px 0; }
@@ -1235,9 +1317,7 @@ const productSchema = {
     .mc-final-cta { padding: 52px 24px; }
     .mc-stack { padding: 28px 22px; }
     .mc-stack-today-num { font-size: 2.1rem; }
-    .mc-proof-div { display: none; }
-    .mc-proof-inner { gap: 8px; }
-    .mc-proof-item { padding: 0 10px; }
+    .mc-review-card { width: 340px; }
     .mc-btn-book-lg { width: 100%; text-align: center; box-sizing: border-box; }
     .mc-tl-item { gap: 16px; }
   }
