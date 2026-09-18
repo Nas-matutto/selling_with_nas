@@ -70,6 +70,8 @@ Claude Opus, Anthropic's most capable model, consistently produces better aesthe
 
 If you're building something you genuinely want to look good, switch to Opus before you start, because the quality difference on design-heavy tasks is noticeable. You can access it on the Pro plan at [claude.ai](https://claude.ai), or through Claude Code if you're building locally.
 
+If you want the full breakdown of how the current models compare on design work, and when the more expensive ones are actually worth it, I covered it in [the best Claude model for website design](/best-claude-model-for-website-design).
+
 
 ## The 5 Best Claude Skills for Web Design
 
