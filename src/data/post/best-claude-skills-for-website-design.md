@@ -31,19 +31,17 @@ Before I do, if you want to understand how to install skills in the first place,
 
 
 <div style="
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(135deg, #1a0b2e 0%, #2d1055 45%, #7c2d12 100%);
-  border: 2px solid #f97316;
+  background: #FDF6F1;
+  border: 2px solid #E8CDBD;
   border-radius: 22px;
   padding: 44px 40px;
   margin: 44px 0;
   text-align: center;
-  box-shadow: 0 18px 60px rgba(249,115,22,0.28);
+  box-shadow: 0 10px 40px rgba(199,91,58,0.12);
 ">
-  <p style="font-size: 0.74rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #fdba74; margin: 0 0 14px;">Skip the guesswork</p>
-  <h3 style="font-size: 2rem; line-height: 1.15; font-weight: 900; color: #ffffff; margin: 0 0 16px; letter-spacing: -0.03em;">Build your beautiful website today</h3>
-  <p style="font-size: 1.05rem; color: #e2d5f5; line-height: 1.7; max-width: 520px; margin: 0 auto 28px;">
+  <p style="font-size: 0.74rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #C75B3A; margin: 0 0 14px;">Skip the guesswork</p>
+  <h3 style="font-size: 2rem; line-height: 1.15; font-weight: 900; color: #1C1917; margin: 0 0 16px; letter-spacing: -0.03em;">Build your beautiful website today</h3>
+  <p style="font-size: 1.05rem; color: #57534E; line-height: 1.7; max-width: 520px; margin: 0 auto 28px;">
     Skills make Claude a better designer. This pack makes you the one shipping - the exact step-by-step build, live on your own domain, plus a private 1-on-1 call with me.
   </p>
   <a href="/ai-masterclass-with-nas" style="
@@ -51,16 +49,16 @@ Before I do, if you want to understand how to install skills in the first place,
     padding: 18px 44px;
     border-radius: 14px;
     font-size: 1.1rem;
-    font-weight: 900;
+    font-weight: 800;
     text-decoration: none;
-    background: linear-gradient(135deg, #fb923c, #f97316);
-    color: #1a0b2e;
-    box-shadow: 0 8px 34px rgba(249,115,22,0.55);
+    background: #DA7756;
+    color: #ffffff;
+    box-shadow: 0 6px 22px rgba(218,119,86,0.35);
     letter-spacing: -0.01em;
   ">
     Build My Website With Claude →
   </a>
-  <p style="font-size: 0.8rem; color: #c4b5fd; margin: 18px 0 0;">Lifetime access · Beginner friendly · No code needed</p>
+  <p style="font-size: 0.8rem; color: #A8A29E; margin: 18px 0 0;">Lifetime access · Beginner friendly · No code needed</p>
 </div>
 
 
@@ -165,19 +163,17 @@ You don't need all five on every project, because a single landing page probably
 
 
 <div style="
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(135deg, #1a0b2e 0%, #2d1055 45%, #7c2d12 100%);
-  border: 2px solid #f97316;
+  background: #FDF6F1;
+  border: 2px solid #E8CDBD;
   border-radius: 22px;
   padding: 44px 40px;
   margin: 44px 0;
   text-align: center;
-  box-shadow: 0 18px 60px rgba(249,115,22,0.28);
+  box-shadow: 0 10px 40px rgba(199,91,58,0.12);
 ">
-  <p style="font-size: 0.74rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #fdba74; margin: 0 0 14px;">Your turn to build</p>
-  <h3 style="font-size: 2rem; line-height: 1.15; font-weight: 900; color: #ffffff; margin: 0 0 16px; letter-spacing: -0.03em;">Build your beautiful website today</h3>
-  <p style="font-size: 1.05rem; color: #e2d5f5; line-height: 1.7; max-width: 520px; margin: 0 auto 28px;">
+  <p style="font-size: 0.74rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #C75B3A; margin: 0 0 14px;">Your turn to build</p>
+  <h3 style="font-size: 2rem; line-height: 1.15; font-weight: 900; color: #1C1917; margin: 0 0 16px; letter-spacing: -0.03em;">Build your beautiful website today</h3>
+  <p style="font-size: 1.05rem; color: #57534E; line-height: 1.7; max-width: 520px; margin: 0 auto 28px;">
     You've got the skills list. Now get the build: my complete step-by-step pack takes you from a blank screen to a real website, live on your own domain - with a private 1-on-1 call with me included.
   </p>
   <a href="/ai-masterclass-with-nas" style="
@@ -185,16 +181,16 @@ You don't need all five on every project, because a single landing page probably
     padding: 18px 44px;
     border-radius: 14px;
     font-size: 1.1rem;
-    font-weight: 900;
+    font-weight: 800;
     text-decoration: none;
-    background: linear-gradient(135deg, #fb923c, #f97316);
-    color: #1a0b2e;
-    box-shadow: 0 8px 34px rgba(249,115,22,0.55);
+    background: #DA7756;
+    color: #ffffff;
+    box-shadow: 0 6px 22px rgba(218,119,86,0.35);
     letter-spacing: -0.01em;
   ">
     Build My Website With Claude →
   </a>
-  <p style="font-size: 0.8rem; color: #c4b5fd; margin: 18px 0 0;">Lifetime access · Beginner friendly · No code needed</p>
+  <p style="font-size: 0.8rem; color: #A8A29E; margin: 18px 0 0;">Lifetime access · Beginner friendly · No code needed</p>
 </div>
 
 
