@@ -168,8 +168,6 @@ Delete any placeholder records the registrar added for you (Namecheap creates a 
 
 Save, and you're done. That's the entire connection.
 
-![Connecting a custom domain to a Vercel project through your DNS settings](~/assets/images/Domain_connect.png)
-
 
 ## Step 6: Wait for DNS and Check Your SSL
 

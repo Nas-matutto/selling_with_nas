@@ -15,9 +15,8 @@ const metadata = {
 };
 
 // ─────────────────────────────────────────────────────────────
-// TODO: paste the real checkout URL here (Stripe / Gumroad / Whop).
 // Every CTA on this page reads from this one constant.
-const CHECKOUT_LINK = '#';
+const CHECKOUT_LINK = 'https://buy.stripe.com/5kQdR865m1fiaO25fpeEo1c';
 // ─────────────────────────────────────────────────────────────
 
 const PRICE_NOW = '97';
@@ -81,7 +80,7 @@ const productSchema = {
 };
 ---
 
-<Layout metadata={metadata}>
+<Layout metadata={metadata} metaPixelId="1700269051050500">
 <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 <script type="application/ld+json" set:html={JSON.stringify(productSchema)} />
 
@@ -489,6 +488,21 @@ const productSchema = {
 </div>
 
 <script>
+  // Report checkout intent to Meta, and tag which section drove it. fbq's stub
+  // queues calls, so this is safe even before fbevents.js has finished loading.
+  document.querySelectorAll('a[data-cta]').forEach((el) => {
+    el.addEventListener('click', () => {
+      const fbq = (window as unknown as { fbq?: (...args: unknown[]) => void }).fbq;
+      if (typeof fbq !== 'function') return;
+      fbq('track', 'InitiateCheckout', {
+        content_name: 'Build Your Side-Hustle with Claude',
+        value: 97,
+        currency: 'USD',
+        source_section: el.getAttribute('data-cta'),
+      });
+    });
+  });
+
   // Reveal the sticky buy bar once the hero offer card has scrolled out of view,
   // and hide it again over the final CTA so the two don't fight each other.
   const bar = document.getElementById('mc-sticky');

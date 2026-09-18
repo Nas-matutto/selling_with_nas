@@ -1,0 +1,184 @@
+---
+/**
+ * Post-purchase landing page. Stripe redirects here after a successful payment.
+ *
+ * Rendered on demand (not prerendered) so the Drive URL is read from the server
+ * environment and never baked into the static build. The guide link is only
+ * rendered when Stripe appended a session_id, which keeps /thank-you from
+ * working as a free bypass URL.
+ */
+export const prerender = false;
+
+import Layout from '~/layouts/PageLayout.astro';
+
+const driveUrl = (import.meta.env as Record<string, string | undefined>).DRIVE_FOLDER_URL ?? process.env.DRIVE_FOLDER_URL;
+
+// Stripe appends this via {CHECKOUT_SESSION_ID} on the payment link redirect.
+// It doubles as the Meta event id, so the browser Purchase below and the
+// server-side CAPI Purchase in stripe-webhook.ts collapse into one event
+// instead of double-counting.
+const sessionId = Astro.url.searchParams.get('session_id');
+const showLink = Boolean(sessionId) && Boolean(driveUrl);
+
+const metadata = {
+  title: "You're in - your guides are ready",
+  description: 'Your Build Your Side-Hustle with Claude guides and your 1-on-1 booking link.',
+  robots: { index: false, follow: false },
+};
+
+const BOOKING_LINK = 'https://cal.com/nas-mansurali/1-on-1-masterclass';
+const PRICE = 97;
+---
+
+<Layout metadata={metadata} metaPixelId="1700269051050500">
+  {/* define:vars injects eventId and value as consts at the top of this script. */}
+  {
+    sessionId && (
+      <script is:inline define:vars={{ eventId: sessionId, value: PRICE }}>
+        (function fire() {
+          // fbevents.js is loaded after interactive, so poll briefly for the real fbq.
+          if (typeof window.fbq !== 'function') {
+            setTimeout(fire, 200);
+            return;
+          }
+          window.fbq(
+            'track',
+            'Purchase',
+            { value: value, currency: 'USD', content_name: 'Build Your Side-Hustle with Claude' },
+            { eventID: eventId }
+          );
+        })();
+      </script>
+    )
+  }
+
+  <div class="ty-page">
+    <section class="ty-wrap">
+      <div class="ty-emoji">🚀</div>
+      <h1 class="ty-title">You're in.</h1>
+      <p class="ty-sub">
+        I've emailed your guides and your 1-on-1 booking link to the address you paid with. Can't wait? Jump
+        straight in below.
+      </p>
+
+      {
+        showLink && (
+          <a href={driveUrl} target="_blank" rel="noopener noreferrer" class="ty-btn">
+            Open Your Guides →
+          </a>
+        )
+      }
+
+      {
+        !showLink && (
+          <p class="ty-fallback">
+            Check your inbox for the download link. If it hasn't arrived in a few minutes, email me and I'll
+            send it straight over.
+          </p>
+        )
+      }
+
+      <div class="ty-next">
+        <h2>Next step: book your call</h2>
+        <p>
+          Your 1-on-1 is included. Use it whenever you hit a wall — a deploy that won't cooperate, a domain
+          that won't point, or just deciding what to build.
+        </p>
+        <a href={BOOKING_LINK} target="_blank" rel="noopener noreferrer" class="ty-link">Book your session →</a>
+      </div>
+
+      <p class="ty-help">
+        Email not arrived in 5 minutes? Check your spam folder, then write to
+        <a href="mailto:nas@talktomedata.com">nas@talktomedata.com</a> and I'll sort it out personally.
+      </p>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .ty-page {
+    background: #ffffff;
+    color: #0f172a;
+    min-height: 100vh;
+  }
+  :global(.dark) .ty-page { background: #05050f; color: #e2e8f0; }
+
+  .ty-wrap {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 96px 24px 120px;
+    text-align: center;
+  }
+
+  .ty-emoji { font-size: 3rem; margin-bottom: 16px; }
+
+  .ty-title {
+    font-size: clamp(2rem, 5vw, 2.6rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin: 0 0 16px;
+    color: #0f172a;
+  }
+  :global(.dark) .ty-title { color: #f8fafc; }
+
+  .ty-sub {
+    font-size: 1.05rem;
+    color: #64748b;
+    line-height: 1.7;
+    margin: 0 auto 36px;
+    max-width: 480px;
+  }
+
+  .ty-btn {
+    display: inline-block;
+    padding: 17px 42px;
+    border-radius: 14px;
+    font-size: 1.05rem;
+    font-weight: 800;
+    text-decoration: none;
+    color: #fff;
+    background: linear-gradient(135deg, #f97316, #a855f7);
+    box-shadow: 0 4px 28px rgba(249, 115, 22, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .ty-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 40px rgba(249, 115, 22, 0.4); }
+
+  .ty-fallback {
+    font-size: 0.95rem;
+    color: #64748b;
+    line-height: 1.7;
+    margin: 0 auto;
+    max-width: 440px;
+  }
+
+  .ty-next {
+    margin-top: 56px;
+    padding: 32px 28px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(249, 115, 22, 0.06), rgba(168, 85, 247, 0.06));
+    border: 1px solid rgba(168, 85, 247, 0.22);
+  }
+  :global(.dark) .ty-next {
+    background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(168, 85, 247, 0.1));
+    border-color: rgba(168, 85, 247, 0.28);
+  }
+  .ty-next h2 { font-size: 1.15rem; font-weight: 800; margin: 0 0 10px; color: #0f172a; }
+  :global(.dark) .ty-next h2 { color: #f8fafc; }
+  .ty-next p { font-size: 0.93rem; color: #64748b; line-height: 1.7; margin: 0 0 16px; }
+
+  .ty-link { font-size: 0.95rem; font-weight: 700; color: #a855f7; text-decoration: none; }
+  .ty-link:hover { text-decoration: underline; }
+
+  .ty-help {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    line-height: 1.7;
+    margin: 40px 0 0;
+  }
+  .ty-help a { color: #a855f7; font-weight: 600; }
+
+  @media (max-width: 640px) {
+    .ty-wrap { padding: 64px 20px 80px; }
+    .ty-btn { width: 100%; box-sizing: border-box; }
+  }
+</style>
