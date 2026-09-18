@@ -150,6 +150,40 @@ You can follow up naturally: "What if I moved the return to July 30th?" or "Can 
 
 
 <div style="
+  background: #FDF6F1;
+  border: 2px solid #E8CDBD;
+  border-radius: 22px;
+  padding: 44px 40px;
+  margin: 44px 0;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(199,91,58,0.12);
+">
+  <p style="font-size: 0.74rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #C75B3A; margin: 0 0 14px;">Give your agent a home</p>
+  <h3 style="font-size: 2rem; line-height: 1.15; font-weight: 900; color: #1C1917; margin: 0 0 16px; letter-spacing: -0.03em;">Build your beautiful website today</h3>
+  <p style="font-size: 1.05rem; color: #57534E; line-height: 1.7; max-width: 520px; margin: 0 auto 28px;">
+    Your agent needs a front door - a real site people can find and trust. My complete step-by-step pack takes you from a blank screen to a real website, live on your own domain - plus a private 1-on-1 call with me.
+  </p>
+  <a href="https://www.sellingwithnas.com/ai-masterclass-with-nas" style="
+    display: inline-block;
+    padding: 18px 44px;
+    border-radius: 14px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-decoration: none;
+    background: #DA7756;
+    color: #ffffff;
+    box-shadow: 0 6px 22px rgba(218,119,86,0.35);
+    letter-spacing: -0.01em;
+  ">
+    Build My Website With Claude →
+  </a>
+  <p style="font-size: 0.8rem; color: #A8A29E; margin: 18px 0 0;">Lifetime access · Beginner friendly · No code needed</p>
+  <p style="font-size: 0.85rem; color: #78716C; line-height: 1.6; margin: 20px 0 0; padding-top: 18px; border-top: 1px solid #EADDD3;">
+    Prefer it done for you? <a href="/contact" style="color: #C75B3A; font-weight: 700; text-decoration: underline;">Get in touch →</a>
+  </p>
+</div>
+
+<div style="
   background: linear-gradient(135deg, #f97316, #ef4444);
   color: white;
   padding: 24px;

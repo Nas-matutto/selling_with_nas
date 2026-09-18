@@ -194,35 +194,34 @@ If no git history is available, ask the user to describe their recent work in on
 Save this as `~/.claude/commands/standup.md` and type `/standup` in Claude Code. That's all it takes.
 
 <div style="
-    background: linear-gradient(135deg, #f97316, #ef4444);
-    color: white;
-    padding: 28px;
-    border-radius: 18px;
-    text-align: center;
-    margin: 40px 0;
-    box-shadow: 0 8px 25px rgba(249, 115, 22, 0.3);
+  background: #FDF6F1;
+  border: 2px solid #E8CDBD;
+  border-radius: 22px;
+  padding: 44px 40px;
+  margin: 44px 0;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(199,91,58,0.12);
 ">
-  <h3 style="margin: 0 0 10px 0; font-size: 20px; color: white; font-weight: 700;">
-    Want a custom skill built for your workflow?
-  </h3>
-  <p style="margin: 0 0 18px 0; color: rgba(255,255,255,0.92); font-size: 0.95rem;">
-    I build custom Claude Skills and AI automation workflows for founders and teams. Get in touch and let's figure out what we can automate for you.
+  <p style="font-size: 0.74rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #C75B3A; margin: 0 0 14px;">Skills installed. Now build</p>
+  <h3 style="font-size: 2rem; line-height: 1.15; font-weight: 900; color: #1C1917; margin: 0 0 16px; letter-spacing: -0.03em;">Build your beautiful website today</h3>
+  <p style="font-size: 1.05rem; color: #57534E; line-height: 1.7; max-width: 520px; margin: 0 auto 28px;">
+    Skills are the toolkit. This is the project to point them at. My complete step-by-step pack takes you from a blank screen to a real website, live on your own domain - plus a private 1-on-1 call with me.
   </p>
-  <a href="/contact" style="
-      display: inline-block;
-      background: rgba(255,255,255,0.2);
-      color: white;
-      padding: 10px 28px;
-      border-radius: 18px;
-      text-decoration: none;
-      font-weight: 600;
-      border: 2px solid rgba(255,255,255,0.3);
-      transition: all 0.3s ease;
-  "
-  onmouseover="this.style.background='rgba(255,255,255,0.3)'; this.style.transform='translateY(-2px)'"
-  onmouseout="this.style.background='rgba(255,255,255,0.2)'; this.style.transform='translateY(0px)'">
-      Work With Me →
+  <a href="https://www.sellingwithnas.com/ai-masterclass-with-nas" style="
+    display: inline-block;
+    padding: 18px 44px;
+    border-radius: 14px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-decoration: none;
+    background: #DA7756;
+    color: #ffffff;
+    box-shadow: 0 6px 22px rgba(218,119,86,0.35);
+    letter-spacing: -0.01em;
+  ">
+    Build My Website With Claude →
   </a>
+  <p style="font-size: 0.8rem; color: #A8A29E; margin: 18px 0 0;">Lifetime access · Beginner friendly · No code needed</p>
 </div>
 
 ---
@@ -367,35 +366,37 @@ The process is simple:
 The more specific and opinionated your skill, the more useful it becomes. Generic instructions produce generic output. Skills that know your exact workflow produce output that actually fits.
 
 <div style="
-    background: linear-gradient(135deg, #f97316, #ef4444);
-    color: white;
-    padding: 28px;
-    border-radius: 18px;
-    text-align: center;
-    margin: 40px 0;
-    box-shadow: 0 8px 25px rgba(249, 115, 22, 0.3);
+  background: #FDF6F1;
+  border: 2px solid #E8CDBD;
+  border-radius: 22px;
+  padding: 44px 40px;
+  margin: 44px 0;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(199,91,58,0.12);
 ">
-  <h3 style="margin: 0 0 10px 0; font-size: 20px; color: white; font-weight: 700;">
-    Need help building a custom skill for your business?
-  </h3>
-  <p style="margin: 0 0 18px 0; color: rgba(255,255,255,0.92); font-size: 0.95rem;">
-    I design and build custom Claude Skills, AI pipelines, and automation workflows for founders and teams. If you've got a repetitive workflow that should be automated, let's talk.
+  <p style="font-size: 0.74rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #C75B3A; margin: 0 0 14px;">Ready when you are</p>
+  <h3 style="font-size: 2rem; line-height: 1.15; font-weight: 900; color: #1C1917; margin: 0 0 16px; letter-spacing: -0.03em;">Build your beautiful website today</h3>
+  <p style="font-size: 1.05rem; color: #57534E; line-height: 1.7; max-width: 520px; margin: 0 auto 28px;">
+    One last thing before you go: if you want the whole build handed to you step by step, this is it. My complete step-by-step pack takes you from a blank screen to a real website, live on your own domain - plus a private 1-on-1 call with me.
   </p>
-  <a href="/contact" style="
-      display: inline-block;
-      background: rgba(255,255,255,0.2);
-      color: white;
-      padding: 10px 28px;
-      border-radius: 18px;
-      text-decoration: none;
-      font-weight: 600;
-      border: 2px solid rgba(255,255,255,0.3);
-      transition: all 0.3s ease;
-  "
-  onmouseover="this.style.background='rgba(255,255,255,0.3)'; this.style.transform='translateY(-2px)'"
-  onmouseout="this.style.background='rgba(255,255,255,0.2)'; this.style.transform='translateY(0px)'">
-      Get in Touch →
+  <a href="https://www.sellingwithnas.com/ai-masterclass-with-nas" style="
+    display: inline-block;
+    padding: 18px 44px;
+    border-radius: 14px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-decoration: none;
+    background: #DA7756;
+    color: #ffffff;
+    box-shadow: 0 6px 22px rgba(218,119,86,0.35);
+    letter-spacing: -0.01em;
+  ">
+    Build My Website With Claude →
   </a>
+  <p style="font-size: 0.8rem; color: #A8A29E; margin: 18px 0 0;">Lifetime access · Beginner friendly · No code needed</p>
+  <p style="font-size: 0.85rem; color: #78716C; line-height: 1.6; margin: 20px 0 0; padding-top: 18px; border-top: 1px solid #EADDD3;">
+    Prefer it done for you? <a href="/contact" style="color: #C75B3A; font-weight: 700; text-decoration: underline;">Get in touch →</a>
+  </p>
 </div>
 
 ---

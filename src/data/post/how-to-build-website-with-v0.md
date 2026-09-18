@@ -126,32 +126,37 @@ The good news? v0 automatically creates responsive designs. But you MUST check t
 
 
 <div style="
-            background: linear-gradient(135deg, #f97316, #ef4444); 
-            color: white; 
-            padding: 24px; 
-            border-radius: 18px; 
-            text-align: center; 
-            margin: 32px 0; 
-            box-shadow: 0 8px 25px rgba(249, 115, 22, 0.3);
-        ">
-            <h3 style="margin: 0 0 12px 0; font-size: 20px; color: white; font-weight: 600;">
-                Need help building your landing page?
-            </h3>
-            <a href="/contact" style="
-                display: inline-block; 
-                background: rgba(255,255,255,0.2); 
-                color: white; 
-                padding: 2px 24px; 
-                border-radius: 18px; 
-                text-decoration: none; 
-                font-weight: 600; 
-                border: 2px solid rgba(255,255,255,0.3);
-                transition: all 0.3s ease;
-            " 
-            onmouseover="this.style.background='rgba(255,255,255,0.3)'; this.style.transform='translateY(-2px)'"
-            onmouseout="this.style.background='rgba(255,255,255,0.2)'; this.style.transform='translateY(0px)'">
-                Get in Touch Today →
-            </a>
+  background: #FDF6F1;
+  border: 2px solid #E8CDBD;
+  border-radius: 22px;
+  padding: 44px 40px;
+  margin: 44px 0;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(199,91,58,0.12);
+">
+  <p style="font-size: 0.74rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #C75B3A; margin: 0 0 14px;">Build it with Claude instead</p>
+  <h3 style="font-size: 2rem; line-height: 1.15; font-weight: 900; color: #1C1917; margin: 0 0 16px; letter-spacing: -0.03em;">Build your beautiful website today</h3>
+  <p style="font-size: 1.05rem; color: #57534E; line-height: 1.7; max-width: 520px; margin: 0 auto 28px;">
+    Prototypes are easy. Getting one live on your own domain is the hard part. My complete step-by-step pack takes you from a blank screen to a real website, live on your own domain - plus a private 1-on-1 call with me.
+  </p>
+  <a href="https://www.sellingwithnas.com/ai-masterclass-with-nas" style="
+    display: inline-block;
+    padding: 18px 44px;
+    border-radius: 14px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-decoration: none;
+    background: #DA7756;
+    color: #ffffff;
+    box-shadow: 0 6px 22px rgba(218,119,86,0.35);
+    letter-spacing: -0.01em;
+  ">
+    Build My Website With Claude →
+  </a>
+  <p style="font-size: 0.8rem; color: #A8A29E; margin: 18px 0 0;">Lifetime access · Beginner friendly · No code needed</p>
+  <p style="font-size: 0.85rem; color: #78716C; line-height: 1.6; margin: 20px 0 0; padding-top: 18px; border-top: 1px solid #EADDD3;">
+    Prefer it done for you? <a href="/contact" style="color: #C75B3A; font-weight: 700; text-decoration: underline;">Get in touch →</a>
+  </p>
 </div>
 
 

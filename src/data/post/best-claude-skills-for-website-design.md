@@ -191,6 +191,9 @@ You don't need all five on every project, because a single landing page probably
     Build My Website With Claude →
   </a>
   <p style="font-size: 0.8rem; color: #A8A29E; margin: 18px 0 0;">Lifetime access · Beginner friendly · No code needed</p>
+  <p style="font-size: 0.85rem; color: #78716C; line-height: 1.6; margin: 20px 0 0; padding-top: 18px; border-top: 1px solid #EADDD3;">
+    Want my full Claude Skills list? <a href="/best-claude-skills" style="color: #C75B3A; font-weight: 700; text-decoration: underline;">Get the free guide →</a> &nbsp;·&nbsp; Prefer it done for you? <a href="/contact" style="color: #C75B3A; font-weight: 700; text-decoration: underline;">Get in touch →</a>
+  </p>
 </div>
 
 
