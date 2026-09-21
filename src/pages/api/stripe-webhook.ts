@@ -67,6 +67,49 @@ async function verifyStripe(rawBody: string, header: string, secret: string): Pr
   return sigs.some((s) => safeEqual(s, expected));
 }
 
+/**
+ * A Stripe webhook endpoint receives `checkout.session.completed` for EVERY
+ * Checkout session on the account - including products that have nothing to do
+ * with this site. Without this gate an unrelated buyer is emailed the Selling
+ * with Nas guides, added to the buyers list, and counted as a Purchase on the
+ * pixel.
+ *
+ * STRIPE_PAYMENT_LINK_IDS: comma-separated `plink_...` ids behind the buy
+ * buttons (Stripe > Payment links > open the link > the id is in the dashboard
+ * URL, and in the `payment_link` field of any event this endpoint logs).
+ *
+ * STRIPE_PRODUCT_TAG: optional second route for sessions not created from a
+ * payment link - set the same value as `product` in the session metadata.
+ *
+ * Neither configured means nothing is fulfilled. Failing closed is the point:
+ * a missed delivery is one apologetic reply, a wrong delivery is a stranger
+ * holding a product they never bought.
+ */
+function isThisProduct(session: {
+  payment_link?: string | { id?: string } | null;
+  metadata?: Record<string, string> | null;
+}): boolean {
+  const list = (key: string) =>
+    (env(key) ?? '')
+      .split(',')
+      .map((v) => v.trim())
+      .filter(Boolean);
+
+  const links = list('STRIPE_PAYMENT_LINK_IDS');
+  const tags = list('STRIPE_PRODUCT_TAG');
+
+  if (!links.length && !tags.length) {
+    console.error('STRIPE_PAYMENT_LINK_IDS / STRIPE_PRODUCT_TAG unset - refusing to fulfil any session.');
+    return false;
+  }
+
+  const link = typeof session.payment_link === 'string' ? session.payment_link : (session.payment_link?.id ?? '');
+  if (link && links.includes(link)) return true;
+
+  const tag = session.metadata?.product ?? '';
+  return Boolean(tag) && tags.includes(tag);
+}
+
 const deliveryEmail = (driveUrl: string) => `<!DOCTYPE html>
 <html lang="en">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
@@ -240,7 +283,16 @@ export async function POST({ request }: { request: Request }) {
     currency?: string | null;
     customer_email?: string | null;
     customer_details?: { email?: string | null } | null;
+    payment_link?: string | { id?: string } | null;
+    metadata?: Record<string, string> | null;
   };
+
+  // Which product was bought - checked before anything else, because every
+  // side effect below (email, buyers list, pixel) is wrong for a foreign sale.
+  if (!isThisProduct(session)) {
+    console.log(`Session ${session.id} is not this product (payment_link=${JSON.stringify(session.payment_link)}) - skipping.`);
+    return json({ ok: true, skipped: 'other-product' }, 200);
+  }
 
   // Fulfil paid orders, and $0 orders from a 100%-off promotion code - Stripe
   // reports those as `no_payment_required`, not `paid`. Anything else (notably
