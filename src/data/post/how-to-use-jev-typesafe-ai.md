@@ -40,6 +40,17 @@ Here's what we'll cover:
 7. [Jev vs an LLM: Which for What](#jev-vs-an-llm-which-for-what)
 8. [Frequently Asked Questions](#frequently-asked-questions)
 
+**Prefer to watch instead?** I break down everything you need to know about Jev in the video below:
+
+<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:16px;margin:32px 0;background:#000;">
+  <button type="button" aria-label="Play video: Everything you need to know about JEV AI - TypeSafe's new AI model" onclick="var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/CNCTIy7vAx0?autoplay=1&amp;rel=0';f.title='Everything you need to know about JEV AI - TypeSafe&#39;s new AI model';f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';f.allowFullscreen=true;f.style.cssText='position:absolute;top:0;left:0;width:100%;height:100%;border:0;';this.replaceWith(f);f.focus();" style="position:absolute;inset:0;width:100%;height:100%;padding:0;margin:0;border:0;display:block;cursor:pointer;background:#000;">
+    <img src="/images/jev-typesafe-video.webp" alt="Everything you need to know about JEV AI - TypeSafe's new AI model - video walkthrough" loading="lazy" decoding="async" width="1120" height="630" style="width:100%;height:100%;object-fit:cover;display:block;margin:0;border-radius:0;box-shadow:none;max-width:none;" />
+    <span aria-hidden="true" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);filter:drop-shadow(0 2px 6px rgba(0,0,0,0.4));">
+      <svg viewBox="0 0 68 48" width="68" height="48" focusable="false"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.64 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#f00"></path><path d="M45 24 27 14v20z" fill="#fff"></path></svg>
+    </span>
+  </button>
+</div>
+
 
 ## What Is a System One Model?
 
