@@ -1,0 +1,487 @@
+/* ═══════════════════════════════════════════════════════════
+   Learn AI 101 - shared primitives.
+
+   This is a PLAIN CSS file, not an Astro <style> block, and that is deliberate:
+   Astro scopes component styles per-component, so a <style> in learn-ai-101.astro
+   would not reach markup inside JargonDecoder.astro et al. Anything used by more
+   than one component lives here and is imported from the page frontmatter - the
+   same mechanic Layout.astro uses for tailwind.css.
+
+   Consequence: no :global() here (that is scoped-style syntax). Dark mode is
+   written directly as `.dark .l101-x`, which is what :global(.dark) compiles to.
+
+   Module-specific styling stays in each component's own scoped <style>.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ════ TOKENS ════ */
+.l101 {
+  --l101-bg: #ffffff;
+  --l101-bg-alt: #f8fafc;
+  --l101-card: #ffffff;
+  --l101-border: #e2e8f0;
+  --l101-border-hover: rgba(168, 85, 247, 0.3);
+
+  --l101-text: #0f172a;
+  --l101-body: #475569;
+  --l101-muted: #64748b;
+  --l101-subtle: #94a3b8;
+
+  --l101-orange: #f97316;
+  --l101-purple: #a855f7;
+
+  --l101-ok-fg: #15803d;
+  --l101-ok-bg: rgba(34, 197, 94, 0.12);
+  --l101-ok-border: rgba(34, 197, 94, 0.25);
+  --l101-no-fg: #b91c1c;
+  --l101-no-bg: rgba(239, 68, 68, 0.1);
+  --l101-no-border: rgba(239, 68, 68, 0.25);
+
+  --l101-max-w: 1060px;
+  --l101-radius: 18px;
+  --l101-radius-sm: 12px;
+  --l101-radius-pill: 999px;
+  --l101-t: 0.22s;
+  --l101-ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+  background: var(--l101-bg);
+  color: var(--l101-text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  font-family:
+    'Inter Variable',
+    'Inter',
+    -apple-system,
+    'Segoe UI',
+    sans-serif;
+}
+
+.dark .l101 {
+  --l101-bg: #05050f;
+  --l101-bg-alt: rgba(255, 255, 255, 0.02);
+  --l101-card: rgba(255, 255, 255, 0.04);
+  --l101-border: rgba(255, 255, 255, 0.08);
+
+  --l101-text: #f1f5f9;
+  --l101-body: #cbd5e1;
+  --l101-muted: #94a3b8;
+  --l101-subtle: #64748b;
+
+  --l101-ok-fg: #4ade80;
+  --l101-ok-bg: rgba(34, 197, 94, 0.14);
+  --l101-no-fg: #f87171;
+  --l101-no-bg: rgba(239, 68, 68, 0.14);
+}
+
+/* ════ LAYOUT ════ */
+.l101-container {
+  max-width: var(--l101-max-w);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.l101-section {
+  padding: 80px 0;
+  position: relative;
+  z-index: 1;
+}
+.l101-section-alt {
+  background: var(--l101-bg-alt);
+  border-top: 1px solid var(--l101-border);
+  border-bottom: 1px solid var(--l101-border);
+}
+.l101-section-tight {
+  padding: 56px 0;
+}
+
+.l101-head {
+  max-width: 720px;
+  margin: 0 auto 44px;
+  text-align: center;
+}
+.l101-head-left {
+  text-align: left;
+  margin-left: 0;
+}
+
+.l101-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--l101-purple);
+  margin-bottom: 12px;
+}
+
+.l101-title {
+  font-size: clamp(1.55rem, 3.4vw, 2.2rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: var(--l101-text);
+  margin: 0 0 14px;
+}
+
+.l101-sub {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--l101-muted);
+  margin: 0;
+}
+
+.l101-gradient {
+  background: linear-gradient(to right, var(--l101-orange), var(--l101-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ════ BUTTONS ════ */
+.l101-btn,
+.l101-btn-ghost {
+  display: inline-block;
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-decoration: none;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  transition:
+    transform var(--l101-t) var(--l101-ease),
+    box-shadow var(--l101-t) var(--l101-ease),
+    border-color var(--l101-t) var(--l101-ease);
+  font-family: inherit;
+}
+
+.l101-btn {
+  padding: 15px 36px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--l101-orange), var(--l101-purple));
+  box-shadow: 0 4px 28px rgba(249, 115, 22, 0.3);
+}
+.l101-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 34px rgba(249, 115, 22, 0.4);
+}
+.l101-btn-lg {
+  padding: 18px 44px;
+  font-size: 1.05rem;
+}
+.l101-btn-sm {
+  padding: 11px 22px;
+  font-size: 0.86rem;
+}
+.l101-btn-full {
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.l101-btn-ghost {
+  padding: 15px 28px;
+  color: var(--l101-muted);
+  background: transparent;
+  border: 1px solid var(--l101-border);
+}
+.l101-btn-ghost:hover {
+  color: var(--l101-text);
+  border-color: var(--l101-purple);
+  transform: translateY(-2px);
+}
+
+/* ════ CARDS ════ */
+.l101-card {
+  background: var(--l101-card);
+  border: 1px solid var(--l101-border);
+  border-radius: var(--l101-radius);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition:
+    transform var(--l101-t) var(--l101-ease),
+    border-color var(--l101-t) var(--l101-ease),
+    box-shadow var(--l101-t) var(--l101-ease);
+}
+.dark .l101-card {
+  box-shadow: none;
+}
+.l101-card-hover:hover {
+  transform: translateY(-3px);
+  border-color: var(--l101-border-hover);
+  box-shadow: 0 12px 34px rgba(168, 85, 247, 0.12);
+}
+
+/* ════ FEEDBACK ════
+   Never colour alone: every state also carries a glyph and a text label. */
+.l101-fb {
+  display: block;
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: var(--l101-radius-sm);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  border: 1px solid transparent;
+}
+.l101-fb:empty {
+  display: none;
+}
+.l101-fb-ok {
+  color: var(--l101-ok-fg);
+  background: var(--l101-ok-bg);
+  border-color: var(--l101-ok-border);
+}
+.l101-fb-no {
+  color: var(--l101-no-fg);
+  background: var(--l101-no-bg);
+  border-color: var(--l101-no-border);
+}
+.l101-fb-label {
+  display: block;
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.l101-fb-body {
+  display: block;
+  color: var(--l101-body);
+}
+.l101-fb-ok .l101-fb-body,
+.l101-fb-no .l101-fb-body {
+  color: inherit;
+  opacity: 0.92;
+}
+
+/* ════ OPTIONS (native radios, restyled) ════
+   Built from <fieldset>/<label>/<input type=radio> so keyboard navigation,
+   grouping and screen-reader semantics come for free. */
+.l101-fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+.l101-legend {
+  font-size: 1.02rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--l101-text);
+  margin: 0 0 16px;
+  padding: 0;
+}
+
+.l101-opts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.l101-opt {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--l101-card);
+  border: 1.5px solid var(--l101-border);
+  border-radius: var(--l101-radius-sm);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--l101-body);
+  cursor: pointer;
+  transition:
+    border-color var(--l101-t) var(--l101-ease),
+    background var(--l101-t) var(--l101-ease);
+}
+.l101-opt:hover {
+  border-color: var(--l101-purple);
+}
+.l101-opt input {
+  flex-shrink: 0;
+  margin: 3px 0 0;
+  accent-color: var(--l101-purple);
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
+}
+.l101-opt-mark {
+  flex-shrink: 0;
+  font-weight: 800;
+  margin-left: auto;
+  padding-left: 10px;
+}
+
+/* Locked in once answered - pointer-events off, but focus still works. */
+.l101-opts[data-answered='1'] .l101-opt {
+  cursor: default;
+}
+.l101-opts[data-answered='1'] .l101-opt:hover {
+  border-color: var(--l101-border);
+}
+.l101-opt[data-state='ok'] {
+  border-color: var(--l101-ok-border);
+  background: var(--l101-ok-bg);
+  color: var(--l101-ok-fg);
+}
+.l101-opt[data-state='no'] {
+  border-color: var(--l101-no-border);
+  background: var(--l101-no-bg);
+  color: var(--l101-no-fg);
+}
+.l101-opt[data-state='dim'] {
+  opacity: 0.55;
+}
+
+/* ════ CODE PILL ════ */
+.l101-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.1em;
+  padding: 8px 14px;
+  border-radius: 10px;
+  background: #f1f5f9;
+  color: #0f172a;
+  border: 1px dashed var(--l101-subtle);
+}
+.dark .l101-code {
+  background: rgba(255, 255, 255, 0.08);
+  color: #f1f5f9;
+}
+
+/* ════ PROSE HELPERS ════ */
+.l101-p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--l101-body);
+  margin: 0 0 14px;
+}
+.l101-p:last-child {
+  margin-bottom: 0;
+}
+.l101-strike {
+  text-decoration: line-through;
+  color: var(--l101-subtle);
+}
+
+.l101-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ════ FOCUS ════
+   Tailwind base styles are off (applyBaseStyles: false), so these are ours. */
+.l101 a:focus-visible,
+.l101 button:focus-visible,
+.l101 input:focus-visible,
+.l101 summary:focus-visible,
+.l101 [tabindex]:focus-visible {
+  outline: 2px solid var(--l101-purple);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* ════ AMBIENT ════
+   Mirrors .mc-ambient. Also listed in CustomStyles.astro's 900px block, which
+   strips these on mobile for GPU reasons - see the note there. */
+.l101-ambient {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.l101-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(130px);
+  opacity: 0.06;
+  animation: l101Drift 16s ease-in-out infinite alternate;
+}
+.dark .l101-blob {
+  opacity: 0.15;
+}
+.l101-blob-1 {
+  width: 600px;
+  height: 600px;
+  background: #f97316;
+  top: -120px;
+  left: -100px;
+}
+.l101-blob-2 {
+  width: 520px;
+  height: 520px;
+  background: #a855f7;
+  top: 38%;
+  right: -120px;
+  animation-delay: 5s;
+}
+.l101-blob-3 {
+  width: 420px;
+  height: 420px;
+  background: #22d3ee;
+  bottom: 4%;
+  left: 28%;
+  animation-delay: 10s;
+}
+@keyframes l101Drift {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(30px, 20px) scale(1.06);
+  }
+}
+
+/* ════ RESPONSIVE ════ */
+@media (max-width: 900px) {
+  .l101-section {
+    padding: 64px 0;
+  }
+  .l101-section-tight {
+    padding: 44px 0;
+  }
+}
+@media (max-width: 640px) {
+  .l101-container {
+    padding: 0 18px;
+  }
+  .l101-section {
+    padding: 52px 0;
+  }
+  .l101-btn,
+  .l101-btn-ghost {
+    padding: 14px 24px;
+    font-size: 0.9rem;
+  }
+  .l101-btn-lg {
+    padding: 16px 28px;
+    font-size: 0.98rem;
+  }
+  .l101-head {
+    margin-bottom: 32px;
+  }
+}
+
+/* ════ REDUCED MOTION ════ */
+@media (prefers-reduced-motion: reduce) {
+  .l101-blob {
+    animation: none;
+  }
+  .l101-btn,
+  .l101-btn-ghost,
+  .l101-card,
+  .l101-opt {
+    transition: none;
+  }
+  .l101-btn:hover,
+  .l101-btn-ghost:hover,
+  .l101-card-hover:hover {
+    transform: none;
+  }
+}

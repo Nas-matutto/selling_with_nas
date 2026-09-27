@@ -14,6 +14,10 @@ export const headerData = {
       text: 'Building Area',
       links: [
         {
+          text: '🎓 Learn AI 101',
+          href: getPermalink('/learn-ai-101'),
+        },
+        {
           text: '🌱 LeadLanding',
           href: getPermalink('/tools/leadlanding'),
         },
@@ -48,6 +52,7 @@ export const footerData = {
     {
       title: 'Content',
       links: [
+        { text: 'Learn AI 101', href: '/learn-ai-101' },
         { text: 'Blog Posts', href: '/blog' },
         { text: 'Guides', href: '/guides' },
       ],
@@ -73,7 +78,11 @@ export const footerData = {
   ],
   secondaryLinks: [],
   socialLinks: [
-    { ariaLabel: 'LinkedIn', icon: 'tabler:brand-linkedin', href: 'https://www.linkedin.com/in/nasser-mansurali-659145102/' },
+    {
+      ariaLabel: 'LinkedIn',
+      icon: 'tabler:brand-linkedin',
+      href: 'https://www.linkedin.com/in/nasser-mansurali-659145102/',
+    },
     { ariaLabel: 'YouTube', icon: 'tabler:brand-youtube', href: 'https://www.youtube.com/@sellingwithnas' },
   ],
   footNote: `© 2026 Selling with Nas. All rights reserved.`,

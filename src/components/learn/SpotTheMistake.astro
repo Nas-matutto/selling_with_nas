@@ -1,0 +1,332 @@
+---
+// Module 3 - judge five realistic AI answers: trust, verify, or wrong.
+//
+// One item is genuinely fine and one genuinely needs only verification, so all
+// three verdicts are live answers. If "wrong" were always right the module would
+// teach blanket suspicion, which is the opposite of useful judgement.
+import { mistakes, VERDICTS } from '~/data/learn-ai-101';
+import RewardCard from './RewardCard.astro';
+---
+
+<section class="l101-section" id="m-mistakes">
+  <div class="l101-container">
+    <div class="l101-head">
+      <span class="l101-tag">Module 03 · 5 minutes</span>
+      <h2 class="l101-title">Spot the AI mistake</h2>
+      <p class="l101-sub">
+        Five answers that all look completely reasonable. Some are fine. Some are quietly wrong. Learning to feel the
+        difference is the single habit that separates people who use AI well from people who get caught out by it.
+      </p>
+    </div>
+
+    <div class="sm" data-l101-module="mistakes">
+      <div class="sm-progress">
+        <span data-sm-count>0</span> of {mistakes.length} judged
+      </div>
+
+      <div class="sm-list">
+        {
+          mistakes.map((m, i) => (
+            <article class="sm-item l101-card" data-sm-item={m.id} data-correct={m.correct}>
+              <span class="sm-n">{String(i + 1).padStart(2, '0')}</span>
+
+              <div class="sm-chat">
+                <p class="sm-you">
+                  <span class="sm-who">You asked</span>
+                  {m.question}
+                </p>
+                <p class="sm-ai">
+                  <span class="sm-who">AI answered</span>
+                  {m.answer}
+                </p>
+              </div>
+
+              <fieldset class="l101-fieldset">
+                <legend class="l101-legend">What should you do with this answer?</legend>
+                <div class="l101-opts sm-opts" data-sm-opts>
+                  {VERDICTS.map((v) => (
+                    <label class="l101-opt sm-opt" data-sm-opt={v.id}>
+                      <input type="radio" name={`sm-${m.id}`} value={v.id} />
+                      <span class="sm-opt-body">
+                        <span class="sm-opt-label">{v.label}</span>
+                        <span class="sm-opt-hint">{v.hint}</span>
+                      </span>
+                      <span class="l101-opt-mark" data-sm-mark aria-hidden="true" />
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+
+              <div class="l101-fb" role="status" aria-live="polite" data-sm-fb />
+              <p class="sm-explain" data-sm-explain hidden>
+                {m.explain}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+
+      <p class="sm-done" data-sm-done hidden>
+        <span aria-hidden="true">✓</span> Notice what you're doing now — not distrusting everything, just knowing which bucket
+        you're in. That's the whole skill.
+      </p>
+
+      <RewardCard after="mistakes" nextUp="Module 04 is the check — eight questions to see how much of this stuck." />
+    </div>
+  </div>
+</section>
+
+<script>
+  import { loadState, patchModule, type ModuleId } from '~/data/learn-ai-101';
+
+  const ID: ModuleId = 'mistakes';
+
+  function initSpotTheMistake() {
+    const root = document.querySelector<HTMLElement>(`[data-l101-module="${ID}"]`);
+    if (!root || root.dataset.l101Ready === '1') return;
+    root.dataset.l101Ready = '1';
+
+    const items = Array.from(root.querySelectorAll<HTMLElement>('[data-sm-item]'));
+    const countEl = root.querySelector<HTMLElement>('[data-sm-count]');
+    const doneEl = root.querySelector<HTMLElement>('[data-sm-done]');
+    if (!items.length) return;
+
+    const answers: Record<string, string> = { ...loadState().modules[ID].answers };
+    let startSent = false;
+
+    function paintItem(item: HTMLElement, chosen: string) {
+      const correct = item.dataset.correct ?? '';
+      const ok = chosen === correct;
+      item.querySelector<HTMLElement>('[data-sm-opts]')?.setAttribute('data-answered', '1');
+
+      for (const label of item.querySelectorAll<HTMLElement>('[data-sm-opt]')) {
+        const id = label.dataset.smOpt ?? '';
+        const input = label.querySelector<HTMLInputElement>('input');
+        if (input) {
+          input.checked = id === chosen;
+          input.disabled = true;
+        }
+        const mark = label.querySelector<HTMLElement>('[data-sm-mark]');
+        if (id === correct) {
+          label.dataset.state = 'ok';
+          if (mark) mark.textContent = '✓';
+        } else if (id === chosen) {
+          label.dataset.state = 'no';
+          if (mark) mark.textContent = '✗';
+        } else {
+          label.dataset.state = 'dim';
+          if (mark) mark.textContent = '';
+        }
+      }
+
+      const fb = item.querySelector<HTMLElement>('[data-sm-fb]');
+      if (fb) {
+        fb.className = `l101-fb ${ok ? 'l101-fb-ok' : 'l101-fb-no'}`;
+        fb.innerHTML = ok
+          ? '<span class="l101-fb-label">✓ Right call</span>'
+          : '<span class="l101-fb-label">✗ Worth a closer look</span>';
+      }
+
+      const explain = item.querySelector<HTMLElement>('[data-sm-explain]');
+      if (explain) explain.hidden = false;
+    }
+
+    function sync(persist: boolean) {
+      const count = Object.keys(answers).length;
+      if (countEl) countEl.textContent = String(count);
+
+      const done = count >= items.length;
+      if (doneEl) doneEl.hidden = !done;
+
+      if (!persist) return;
+
+      const score = items.filter((it) => answers[it.dataset.smItem ?? ''] === it.dataset.correct).length;
+      patchModule(ID, { done, score, total: items.length, answers });
+      document.dispatchEvent(
+        new CustomEvent('l101:progress', { detail: { module: ID, done, score, total: items.length } })
+      );
+    }
+
+    root.addEventListener('change', (e) => {
+      const input = e.target as HTMLInputElement | null;
+      if (!input || input.type !== 'radio') return;
+
+      const item = input.closest<HTMLElement>('[data-sm-item]');
+      const key = item?.dataset.smItem;
+      if (!item || !key || answers[key]) return;
+
+      answers[key] = input.value;
+
+      if (!startSent) {
+        startSent = true;
+        document.dispatchEvent(new CustomEvent('l101:started', { detail: { module: ID } }));
+      }
+
+      paintItem(item, input.value);
+      sync(true);
+    });
+
+    for (const item of items) {
+      const chosen = answers[item.dataset.smItem ?? ''];
+      if (chosen) paintItem(item, chosen);
+    }
+    sync(false);
+  }
+
+  initSpotTheMistake();
+  document.addEventListener('astro:page-load', initSpotTheMistake);
+  document.addEventListener('astro:after-swap', initSpotTheMistake);
+</script>
+
+<style>
+  .sm-progress {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--l101-subtle);
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .sm-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .sm-item {
+    position: relative;
+    padding: 24px 24px 22px;
+  }
+  .sm-n {
+    position: absolute;
+    top: 22px;
+    right: 24px;
+    font-size: 0.76rem;
+    font-weight: 800;
+    color: var(--l101-subtle);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ── chat bubbles ── */
+  .sm-chat {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 22px;
+    padding-right: 34px;
+  }
+  .sm-who {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .sm-you,
+  .sm-ai {
+    margin: 0;
+    padding: 13px 16px;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    border-radius: 14px;
+  }
+  .sm-you {
+    background: var(--l101-bg-alt);
+    border: 1px solid var(--l101-border);
+    color: var(--l101-body);
+    align-self: flex-start;
+    max-width: 92%;
+  }
+  .sm-you .sm-who {
+    color: var(--l101-subtle);
+  }
+  .sm-ai {
+    background: rgba(168, 85, 247, 0.07);
+    border: 1px solid rgba(168, 85, 247, 0.22);
+    color: var(--l101-text);
+    align-self: flex-end;
+    max-width: 96%;
+  }
+  .sm-ai .sm-who {
+    color: var(--l101-purple);
+  }
+
+  /* ── verdict options: three across ── */
+  .sm-opts {
+    flex-direction: row;
+    gap: 10px;
+  }
+  .sm-opt {
+    flex: 1;
+    align-items: flex-start;
+  }
+  .sm-opt-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+  }
+  .sm-opt-label {
+    font-weight: 700;
+    color: var(--l101-text);
+    font-size: 0.9rem;
+  }
+  .sm-opt[data-state='ok'] .sm-opt-label,
+  .sm-opt[data-state='no'] .sm-opt-label {
+    color: inherit;
+  }
+  .sm-opt-hint {
+    font-size: 0.76rem;
+    color: var(--l101-subtle);
+  }
+  .sm-opt[data-state] .sm-opt-hint {
+    color: inherit;
+    opacity: 0.8;
+  }
+
+  .sm-explain {
+    margin: 14px 0 0;
+    padding: 14px 16px;
+    background: var(--l101-bg-alt);
+    border-radius: 10px;
+    font-size: 0.89rem;
+    line-height: 1.7;
+    color: var(--l101-body);
+  }
+
+  .sm-done {
+    margin: 22px 0 0;
+    padding: 14px 18px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--l101-ok-fg);
+    background: var(--l101-ok-bg);
+    border: 1px solid var(--l101-ok-border);
+  }
+
+  @media (max-width: 720px) {
+    .sm-opts {
+      flex-direction: column;
+    }
+  }
+  @media (max-width: 640px) {
+    .sm-item {
+      padding: 18px 16px;
+    }
+    .sm-chat {
+      padding-right: 0;
+    }
+    .sm-n {
+      top: 16px;
+      right: 16px;
+    }
+    .sm-you,
+    .sm-ai {
+      max-width: 100%;
+    }
+  }
+</style>

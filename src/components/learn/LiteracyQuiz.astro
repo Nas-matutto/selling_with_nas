@@ -1,0 +1,749 @@
+---
+// Module 4 - the eight-question check, plus the result screen.
+//
+// All three result tiers are server-rendered and revealed by score, so the tier
+// copy never ships to the client bundle. Every tier is written warmly and the
+// reward is already unlocked by this point regardless of score: completion is
+// the gate, never performance.
+import { quiz, tiers, recap } from '~/data/learn-ai-101';
+import RewardCard from './RewardCard.astro';
+---
+
+<section class="l101-section" id="m-quiz">
+  <div class="l101-container">
+    <div class="l101-head">
+      <span class="l101-tag">Module 04 · 5 minutes</span>
+      <h2 class="l101-title">The check</h2>
+      <p class="l101-sub">
+        Eight questions, one at a time. You'll get an explanation for every single one — that's the actual point, the
+        score is just scaffolding.
+      </p>
+    </div>
+
+    <div class="lq" data-l101-module="quiz">
+      <!-- ════ QUESTIONS ════ -->
+      <div class="lq-quiz" data-lq-quiz>
+        <div class="lq-bar-row">
+          <div
+            class="lq-bar"
+            role="progressbar"
+            aria-valuemin="0"
+            aria-valuemax={quiz.length}
+            aria-valuenow="0"
+            data-lq-bar
+          >
+            <span class="lq-bar-fill" data-lq-fill></span>
+          </div>
+          <span class="lq-bar-text">
+            <span data-lq-pos>1</span> / {quiz.length}
+          </span>
+        </div>
+
+        {
+          quiz.map((q, i) => (
+            <article class="lq-q l101-card" data-lq-q={q.id} data-correct={q.correct} data-index={i} hidden>
+              <fieldset class="l101-fieldset">
+                <legend class="l101-legend">{q.q}</legend>
+                <div class="l101-opts" data-lq-opts>
+                  {q.choices.map((c) => (
+                    <label class="l101-opt" data-lq-opt={c.id}>
+                      <input type="radio" name={`lq-${q.id}`} value={c.id} />
+                      <span class="lq-opt-text">{c.text}</span>
+                      <span class="l101-opt-mark" data-lq-mark aria-hidden="true" />
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+
+              <div class="l101-fb" role="status" aria-live="polite" data-lq-fb />
+              <p class="lq-explain" data-lq-explain hidden>
+                {q.explain}
+              </p>
+
+              <div class="lq-nav" data-lq-nav hidden>
+                <button type="button" class="l101-btn l101-btn-sm" data-lq-next>
+                  {i === quiz.length - 1 ? 'See my result →' : 'Next question →'}
+                </button>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      <!-- ════ RESULT ════ -->
+      <div class="lq-result" data-lq-result hidden>
+        <div class="lq-score-card">
+          <p class="lq-score-eyebrow">Your result</p>
+          <p class="lq-score">
+            <span data-lq-score>0</span><span class="lq-score-of">/{quiz.length}</span>
+          </p>
+          <p class="lq-badge" data-lq-badge></p>
+        </div>
+
+        {/* All three tiers ship; the script reveals the one that matches. */}
+        {
+          tiers.map((t) => (
+            <div class="lq-tier" data-lq-tier={t.id} data-min={t.min} data-badge={t.badge} hidden>
+              <h2 class="lq-tier-h" tabindex="-1">
+                {t.headline}
+              </h2>
+              <p class="lq-tier-b">{t.body}</p>
+            </div>
+          ))
+        }
+
+        <div class="lq-recap">
+          <h3 class="lq-recap-h">Here's what you now know</h3>
+          <ul class="lq-recap-list">
+            {recap.map((r) => <li>{r}</li>)}
+          </ul>
+        </div>
+
+        <RewardCard after="quiz" />
+
+        <!-- ════ EMAIL (offered, never gating) ════ -->
+        <div class="lq-email" data-lq-email>
+          <h3 class="lq-email-h">Want your results and the code in your inbox?</h3>
+          <p class="lq-email-p">
+            Optional, obviously — you've already got the code above. But it's handy if you're not buying today, and I'll
+            send the occasional genuinely useful thing. Unsubscribe whenever.
+          </p>
+          <form class="lq-form" data-lq-form>
+            <label class="l101-sr" for="lq-email-input">Your email address</label>
+            <input
+              type="email"
+              id="lq-email-input"
+              name="email"
+              class="lq-input"
+              placeholder="you@example.com"
+              required
+              autocomplete="email"
+            />
+            <button type="submit" class="l101-btn l101-btn-sm" data-lq-submit>Send it over</button>
+          </form>
+          <p class="lq-form-msg" data-lq-form-msg role="status" aria-live="polite"></p>
+        </div>
+
+        <div class="lq-share">
+          <p class="lq-share-p">Know someone who'd score worse than you?</p>
+          <div class="lq-share-row">
+            <a href="#" target="_blank" rel="noopener noreferrer" class="l101-btn-ghost l101-btn-sm" data-lq-share="x">
+              Share on X
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="l101-btn-ghost l101-btn-sm" data-lq-share="li">
+              Share on LinkedIn
+            </a>
+            <button type="button" class="l101-btn-ghost l101-btn-sm" data-lq-share="copy">Copy link</button>
+          </div>
+        </div>
+
+        <div class="lq-redo">
+          <button type="button" class="lq-redo-btn" data-lq-redo>Retake the check</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { loadState, patchModule, markEmailed, type ModuleId } from '~/data/learn-ai-101';
+
+  const ID: ModuleId = 'quiz';
+
+  function initQuiz() {
+    const root = document.querySelector<HTMLElement>(`[data-l101-module="${ID}"]`);
+    if (!root || root.dataset.l101Ready === '1') return;
+    root.dataset.l101Ready = '1';
+
+    const questions = Array.from(root.querySelectorAll<HTMLElement>('[data-lq-q]'));
+    const quizPaneEl = root.querySelector<HTMLElement>('[data-lq-quiz]');
+    const resultPaneEl = root.querySelector<HTMLElement>('[data-lq-result]');
+    const fill = root.querySelector<HTMLElement>('[data-lq-fill]');
+    const bar = root.querySelector<HTMLElement>('[data-lq-bar]');
+    const posEl = root.querySelector<HTMLElement>('[data-lq-pos]');
+    if (!questions.length || !quizPaneEl || !resultPaneEl) return;
+
+    // Explicitly non-null aliases: TS resets narrowing for consts captured by
+    // hoisted function declarations, and every helper below is one.
+    const quizPane: HTMLElement = quizPaneEl;
+    const resultPane: HTMLElement = resultPaneEl;
+
+    const total = questions.length;
+    const answers: Record<string, string> = { ...loadState().modules[ID].answers };
+    let cursor = 0;
+    let startSent = false;
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const scoreOf = () => questions.filter((q) => answers[q.dataset.lqQ ?? ''] === q.dataset.correct).length;
+
+    function showQuestion(i: number) {
+      cursor = Math.max(0, Math.min(i, total - 1));
+      questions.forEach((q, idx) => {
+        q.hidden = idx !== cursor;
+      });
+      if (posEl) posEl.textContent = String(cursor + 1);
+      updateBar(Object.keys(answers).length);
+    }
+
+    function updateBar(answered: number) {
+      if (fill) fill.style.width = `${(answered / total) * 100}%`;
+      bar?.setAttribute('aria-valuenow', String(answered));
+      bar?.setAttribute('aria-valuetext', `${answered} of ${total} questions answered`);
+    }
+
+    function paintQuestion(q: HTMLElement, chosen: string) {
+      const correct = q.dataset.correct ?? '';
+      const ok = chosen === correct;
+      q.querySelector<HTMLElement>('[data-lq-opts]')?.setAttribute('data-answered', '1');
+
+      for (const label of q.querySelectorAll<HTMLElement>('[data-lq-opt]')) {
+        const id = label.dataset.lqOpt ?? '';
+        const input = label.querySelector<HTMLInputElement>('input');
+        if (input) {
+          input.checked = id === chosen;
+          input.disabled = true;
+        }
+        const mark = label.querySelector<HTMLElement>('[data-lq-mark]');
+        if (id === correct) {
+          label.dataset.state = 'ok';
+          if (mark) mark.textContent = '✓';
+        } else if (id === chosen) {
+          label.dataset.state = 'no';
+          if (mark) mark.textContent = '✗';
+        } else {
+          label.dataset.state = 'dim';
+          if (mark) mark.textContent = '';
+        }
+      }
+
+      const fb = q.querySelector<HTMLElement>('[data-lq-fb]');
+      if (fb) {
+        fb.className = `l101-fb ${ok ? 'l101-fb-ok' : 'l101-fb-no'}`;
+        fb.innerHTML = ok
+          ? '<span class="l101-fb-label">✓ Correct</span>'
+          : '<span class="l101-fb-label">✗ Not this time — here\'s why</span>';
+      }
+
+      const explain = q.querySelector<HTMLElement>('[data-lq-explain]');
+      if (explain) explain.hidden = false;
+      const nav = q.querySelector<HTMLElement>('[data-lq-nav]');
+      if (nav) nav.hidden = false;
+    }
+
+    function showResult(announce: boolean) {
+      const score = scoreOf();
+
+      quizPane.hidden = true;
+      resultPane.hidden = false;
+
+      const scoreEl = resultPane.querySelector<HTMLElement>('[data-lq-score]');
+      if (scoreEl) scoreEl.textContent = String(score);
+
+      // Highest matching threshold wins; tiers are rendered high-to-low.
+      const allTiers = Array.from(resultPane.querySelectorAll<HTMLElement>('[data-lq-tier]'));
+      let matched: HTMLElement | undefined;
+      for (const t of allTiers) {
+        const min = Number(t.dataset.min ?? '0');
+        if (!matched && score >= min) matched = t;
+        t.hidden = true;
+      }
+      if (!matched) matched = allTiers[allTiers.length - 1];
+      if (matched) matched.hidden = false;
+
+      const badgeEl = resultPane.querySelector<HTMLElement>('[data-lq-badge]');
+      if (badgeEl && matched) badgeEl.textContent = matched.dataset.badge ?? '';
+
+      buildShareLinks(score);
+
+      if (announce) {
+        const heading = matched?.querySelector<HTMLElement>('.lq-tier-h');
+        heading?.focus();
+        resultPane.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+
+        document.dispatchEvent(
+          new CustomEvent('l101:quiz-submitted', {
+            detail: { score, total, tier: matched?.dataset.lqTier ?? '' },
+          })
+        );
+      }
+
+      // Hide the email form if they already used it.
+      if (loadState().emailed) {
+        const emailBox = resultPane.querySelector<HTMLElement>('[data-lq-email]');
+        if (emailBox) emailBox.hidden = true;
+      }
+    }
+
+    function buildShareLinks(score: number) {
+      const url = 'https://www.sellingwithnas.com/learn-ai-101';
+      const text = `I scored ${score}/${total} on this free AI literacy check. How well do you actually understand AI?`;
+      const x = resultPane.querySelector<HTMLAnchorElement>('[data-lq-share="x"]');
+      const li = resultPane.querySelector<HTMLAnchorElement>('[data-lq-share="li"]');
+      if (x)
+        x.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+      if (li) li.href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+    }
+
+    function persist() {
+      const answered = Object.keys(answers).length;
+      const done = answered >= total;
+      patchModule(ID, { done, score: scoreOf(), total, answers });
+      document.dispatchEvent(
+        new CustomEvent('l101:progress', { detail: { module: ID, done, score: scoreOf(), total } })
+      );
+    }
+
+    // ── answering ──
+    root.addEventListener('change', (e) => {
+      const input = e.target as HTMLInputElement | null;
+      if (!input || input.type !== 'radio') return;
+
+      const q = input.closest<HTMLElement>('[data-lq-q]');
+      const key = q?.dataset.lqQ;
+      if (!q || !key || answers[key]) return;
+
+      answers[key] = input.value;
+
+      if (!startSent) {
+        startSent = true;
+        document.dispatchEvent(new CustomEvent('l101:started', { detail: { module: ID } }));
+      }
+
+      paintQuestion(q, input.value);
+      updateBar(Object.keys(answers).length);
+      persist();
+    });
+
+    // ── next / finish ──
+    root.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement | null;
+
+      if (target?.closest('[data-lq-next]')) {
+        if (cursor >= total - 1) showResult(true);
+        else {
+          showQuestion(cursor + 1);
+          // Move focus to the new question so keyboard users aren't stranded.
+          questions[cursor].querySelector<HTMLElement>('.l101-legend')?.scrollIntoView({
+            behavior: prefersReduced ? 'auto' : 'smooth',
+            block: 'center',
+          });
+          questions[cursor].querySelector<HTMLInputElement>('input')?.focus();
+        }
+        return;
+      }
+
+      if (target?.closest('[data-lq-redo]')) {
+        for (const k of Object.keys(answers)) delete answers[k];
+        for (const q of questions) {
+          q.querySelector<HTMLElement>('[data-lq-opts]')?.removeAttribute('data-answered');
+          for (const label of q.querySelectorAll<HTMLElement>('[data-lq-opt]')) {
+            delete label.dataset.state;
+            const input = label.querySelector<HTMLInputElement>('input');
+            if (input) {
+              input.disabled = false;
+              input.checked = false;
+            }
+            const mark = label.querySelector<HTMLElement>('[data-lq-mark]');
+            if (mark) mark.textContent = '';
+          }
+          const fb = q.querySelector<HTMLElement>('[data-lq-fb]');
+          if (fb) {
+            fb.className = 'l101-fb';
+            fb.innerHTML = '';
+          }
+          const ex = q.querySelector<HTMLElement>('[data-lq-explain]');
+          if (ex) ex.hidden = true;
+          const nav = q.querySelector<HTMLElement>('[data-lq-nav]');
+          if (nav) nav.hidden = true;
+        }
+        // The module stays "done" - retaking must never revoke the discount.
+        persist();
+        resultPane.hidden = true;
+        quizPane.hidden = false;
+        showQuestion(0);
+        quizPane.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+        return;
+      }
+
+      if (target?.closest('[data-lq-share="copy"]')) {
+        const btn = target.closest<HTMLButtonElement>('[data-lq-share="copy"]')!;
+        const label = btn.textContent;
+        navigator.clipboard
+          ?.writeText('https://www.sellingwithnas.com/learn-ai-101')
+          .then(() => {
+            btn.textContent = 'Copied ✓';
+            window.setTimeout(() => (btn.textContent = label), 2000);
+          })
+          .catch(() => {
+            btn.textContent = 'Copy failed';
+            window.setTimeout(() => (btn.textContent = label), 2000);
+          });
+      }
+    });
+
+    // ── email capture ──
+    const form = root.querySelector<HTMLFormElement>('[data-lq-form]');
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const submit = form.querySelector<HTMLButtonElement>('[data-lq-submit]');
+      const msg = root.querySelector<HTMLElement>('[data-lq-form-msg]');
+      const input = form.querySelector<HTMLInputElement>('input[type="email"]');
+      const email = input?.value.trim() ?? '';
+      if (!email) return;
+
+      if (submit) {
+        submit.disabled = true;
+        submit.textContent = 'Sending…';
+      }
+      if (msg) {
+        msg.textContent = '';
+        msg.className = 'lq-form-msg';
+      }
+
+      const badge = root.querySelector<HTMLElement>('[data-lq-badge]')?.textContent ?? '';
+
+      try {
+        const res = await fetch('/api/learn-capture', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, score: scoreOf(), total, tier: badge }),
+        });
+        const json = (await res.json()) as { ok?: boolean };
+
+        if (json?.ok) {
+          form.hidden = true;
+          if (msg) {
+            msg.className = 'lq-form-msg lq-form-ok';
+            msg.textContent = `Sent. Check ${email} — it should land in a minute or two.`;
+          }
+          markEmailed();
+          (window as unknown as { gtag?: (...a: unknown[]) => void }).gtag?.('event', 'ai101_email_capture', {
+            score: scoreOf(),
+          });
+          (window as unknown as { fbq?: (...a: unknown[]) => void }).fbq?.('track', 'Lead', {
+            content_name: 'Learn AI 101',
+          });
+        } else {
+          throw new Error('not ok');
+        }
+      } catch {
+        if (submit) {
+          submit.disabled = false;
+          submit.textContent = 'Send it over';
+        }
+        if (msg) {
+          msg.className = 'lq-form-msg lq-form-no';
+          msg.textContent = "That didn't go through. Try again, or just copy the code above — it works either way.";
+        }
+      }
+    });
+
+    // ── resume ──
+    const answeredKeys = Object.keys(answers);
+    for (const q of questions) {
+      const chosen = answers[q.dataset.lqQ ?? ''];
+      if (chosen) paintQuestion(q, chosen);
+    }
+
+    if (answeredKeys.length >= total) {
+      showResult(false); // already finished: land straight on the result, silently
+    } else {
+      // Resume on the first unanswered question.
+      const firstOpen = questions.findIndex((q) => !answers[q.dataset.lqQ ?? '']);
+      showQuestion(firstOpen === -1 ? 0 : firstOpen);
+    }
+  }
+
+  initQuiz();
+  document.addEventListener('astro:page-load', initQuiz);
+  document.addEventListener('astro:after-swap', initQuiz);
+</script>
+
+<style>
+  /* ════ PROGRESS ════ */
+  .lq-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .lq-bar {
+    flex: 1;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--l101-border);
+    overflow: hidden;
+  }
+  .lq-bar-fill {
+    display: block;
+    height: 100%;
+    width: 0;
+    border-radius: 999px;
+    background: linear-gradient(to right, var(--l101-orange), var(--l101-purple));
+    transition: width 0.35s var(--l101-ease);
+  }
+  .lq-bar-text {
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--l101-subtle);
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+  }
+
+  /* ════ QUESTION ════ */
+  .lq-q {
+    padding: 26px 26px 24px;
+  }
+  .lq-q .l101-legend {
+    font-size: 1.08rem;
+  }
+  .lq-opt-text {
+    flex: 1;
+  }
+  .lq-explain {
+    margin: 14px 0 0;
+    padding: 14px 16px;
+    background: var(--l101-bg-alt);
+    border-radius: 10px;
+    font-size: 0.89rem;
+    line-height: 1.7;
+    color: var(--l101-body);
+  }
+  .lq-nav {
+    margin-top: 18px;
+    text-align: right;
+  }
+
+  /* ════ RESULT ════ */
+  .lq-score-card {
+    text-align: center;
+    padding: 30px 24px 26px;
+    background: var(--l101-card);
+    border: 1px solid var(--l101-border);
+    border-radius: 20px;
+    margin-bottom: 24px;
+  }
+  .lq-score-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--l101-subtle);
+    margin: 0 0 10px;
+  }
+  .lq-score {
+    margin: 0 0 12px;
+    font-size: 3.4rem;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    line-height: 1;
+    background: linear-gradient(to right, var(--l101-orange), var(--l101-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .lq-score-of {
+    font-size: 1.5rem;
+    opacity: 0.55;
+  }
+  .lq-badge {
+    display: inline-block;
+    margin: 0;
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--l101-purple);
+    background: rgba(168, 85, 247, 0.1);
+    border: 1px solid rgba(168, 85, 247, 0.25);
+  }
+
+  .lq-tier {
+    max-width: 640px;
+    margin: 0 auto 28px;
+    text-align: center;
+  }
+  .lq-tier-h {
+    font-size: clamp(1.35rem, 3vw, 1.8rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--l101-text);
+    margin: 0 0 14px;
+  }
+  .lq-tier-h:focus {
+    outline: none;
+  }
+  .lq-tier-h:focus-visible {
+    outline: 2px solid var(--l101-purple);
+    outline-offset: 4px;
+  }
+  .lq-tier-b {
+    font-size: 0.98rem;
+    line-height: 1.75;
+    color: var(--l101-muted);
+    margin: 0;
+  }
+
+  .lq-recap {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 24px 26px;
+    background: var(--l101-bg-alt);
+    border: 1px solid var(--l101-border);
+    border-radius: 16px;
+  }
+  .lq-recap-h {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--l101-text);
+    margin: 0 0 14px;
+  }
+  .lq-recap-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+  }
+  .lq-recap-list li {
+    position: relative;
+    padding-left: 26px;
+    font-size: 0.89rem;
+    line-height: 1.6;
+    color: var(--l101-body);
+  }
+  .lq-recap-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--l101-purple);
+    font-weight: 800;
+  }
+
+  /* ════ EMAIL ════ */
+  .lq-email {
+    max-width: 560px;
+    margin: 34px auto 0;
+    padding: 24px 26px;
+    background: var(--l101-card);
+    border: 1px solid var(--l101-border);
+    border-radius: 16px;
+    text-align: center;
+  }
+  .lq-email-h {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--l101-text);
+    margin: 0 0 8px;
+  }
+  .lq-email-p {
+    font-size: 0.86rem;
+    line-height: 1.6;
+    color: var(--l101-muted);
+    margin: 0 0 18px;
+  }
+  .lq-form {
+    display: flex;
+    gap: 10px;
+  }
+  .lq-input {
+    flex: 1;
+    min-width: 0;
+    font-family: inherit;
+    font-size: 0.92rem;
+    padding: 12px 15px;
+    border-radius: 12px;
+    border: 1.5px solid var(--l101-border);
+    background: var(--l101-bg);
+    color: var(--l101-text);
+  }
+  .lq-input::placeholder {
+    color: var(--l101-subtle);
+  }
+  .lq-input:focus {
+    outline: none;
+    border-color: var(--l101-purple);
+  }
+  .lq-form-msg {
+    margin: 12px 0 0;
+    font-size: 0.85rem;
+    line-height: 1.55;
+  }
+  .lq-form-msg:empty {
+    display: none;
+  }
+  .lq-form-ok {
+    color: var(--l101-ok-fg);
+  }
+  .lq-form-no {
+    color: var(--l101-no-fg);
+  }
+
+  /* ════ SHARE / REDO ════ */
+  .lq-share {
+    margin-top: 30px;
+    text-align: center;
+  }
+  .lq-share-p {
+    font-size: 0.88rem;
+    color: var(--l101-muted);
+    margin: 0 0 12px;
+  }
+  .lq-share-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .lq-redo {
+    margin-top: 26px;
+    text-align: center;
+  }
+  .lq-redo-btn {
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    background: none;
+    border: none;
+    color: var(--l101-subtle);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .lq-redo-btn:hover {
+    color: var(--l101-text);
+  }
+
+  @media (max-width: 640px) {
+    .lq-q {
+      padding: 18px 16px;
+    }
+    .lq-q .l101-legend {
+      font-size: 1rem;
+    }
+    .lq-nav {
+      text-align: center;
+    }
+    .lq-nav button {
+      width: 100%;
+    }
+    .lq-score {
+      font-size: 2.8rem;
+    }
+    .lq-email,
+    .lq-recap {
+      padding: 18px 16px;
+    }
+    .lq-form {
+      flex-direction: column;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lq-bar-fill {
+      transition: none;
+    }
+  }
+</style>

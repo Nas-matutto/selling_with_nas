@@ -1,0 +1,397 @@
+---
+// The discount, shown at the end of EVERY module.
+//
+// Finishing any one module unlocks it - the reward is not gated on completing
+// the course or on scoring well. Both variants ship in the HTML and the script
+// reveals one, so the fourth appearance reads as a quiet reminder rather than
+// the same celebration four times over.
+import { CHECKOUT_LINK_PROMO, PRICE_NOW, REWARD, REWARD_SAVING } from '~/data/pricing';
+import type { ModuleId } from '~/data/learn-ai-101';
+
+interface Props {
+  /** The module that unlocks this card. Stays hidden until that one is done. */
+  after: ModuleId;
+  /** What comes next, named - this is what pulls people past module 1. */
+  nextUp?: string;
+}
+
+const { after, nextUp } = Astro.props;
+---
+
+<div class="rc" data-rc-after={after} hidden>
+  <!-- First unlock only: the celebration. -->
+  <div class="rc-box rc-unlock" data-rc-variant="unlock" hidden>
+    <div class="rc-burst" aria-hidden="true">🎉</div>
+    <p class="rc-eyebrow">You just unlocked it</p>
+    <h3 class="rc-title">${REWARD_SAVING} off the Build-It Pack</h3>
+    <p class="rc-body">
+      You did the work, so here it is. The pack is two step-by-step guides that take you from nothing to a real website
+      live on your own domain — plus a 1-on-1 call with me for the moment you get stuck.
+    </p>
+
+    <div class="rc-price">
+      <span class="l101-strike">${PRICE_NOW}</span>
+      <span class="rc-price-now">${REWARD.price}</span>
+    </div>
+
+    <div class="rc-code-row">
+      <span class="rc-code-label">Your code</span>
+      <span class="l101-code">{REWARD.code}</span>
+      <button type="button" class="rc-copy" data-l101-copy={REWARD.code}>Copy</button>
+    </div>
+
+    <a href={CHECKOUT_LINK_PROMO} class="l101-btn rc-cta" data-cta="ai101-reward">Use it on the pack →</a>
+    <p class="rc-note">Already applied when you click through — nothing to paste.</p>
+
+    {
+      nextUp && (
+        <p class="rc-next">
+          Keep going though — <strong>{nextUp}</strong>
+        </p>
+      )
+    }
+  </div>
+
+  <!-- Every appearance after the first: quiet, collapsed, out of the way. -->
+  <details class="rc-box rc-reminder" data-rc-variant="reminder" hidden>
+    <summary class="rc-rem-summary">
+      <span class="rc-rem-dot" aria-hidden="true">✓</span>
+      Your ${REWARD_SAVING} code is still waiting — <code>{REWARD.code}</code>
+    </summary>
+    <div class="rc-rem-body">
+      <div class="rc-code-row">
+        <span class="l101-code">{REWARD.code}</span>
+        <button type="button" class="rc-copy" data-l101-copy={REWARD.code}>Copy</button>
+      </div>
+      <a href={CHECKOUT_LINK_PROMO} class="l101-btn l101-btn-sm" data-cta="ai101-reward-reminder">
+        Use it on the pack →
+      </a>
+    </div>
+    {
+      nextUp && (
+        <p class="rc-next">
+          Next up — <strong>{nextUp}</strong>
+        </p>
+      )
+    }
+  </details>
+
+  <!-- Copy confirmations are announced here rather than only shown. -->
+  <p class="l101-sr" role="status" aria-live="polite" data-rc-live></p>
+</div>
+
+<script>
+  import { loadState, saveState, MODULE_IDS, type ModuleId } from '~/data/learn-ai-101';
+
+  // Runs once per page even though the component renders several times, so
+  // everything below queries ALL instances rather than a single root.
+  function syncRewardCards() {
+    const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-rc-after]'));
+    if (!cards.length) return;
+
+    const state = loadState();
+
+    // The celebration belongs to whichever module was finished first, and stays
+    // there - so scrolling back up after finishing a second module still shows
+    // the moment it was earned, not a downgraded reminder.
+    const owner = state.rewardShownFor;
+    let claimedBy: ModuleId | undefined;
+
+    for (const card of cards) {
+      const after = card.dataset.rcAfter as ModuleId | undefined;
+      if (!after || !MODULE_IDS.includes(after)) continue;
+      if (!state.modules[after]?.done) continue;
+
+      const celebrate = owner ? owner === after : !claimedBy;
+      if (!owner && !claimedBy) claimedBy = after;
+
+      const unlock = card.querySelector<HTMLElement>('[data-rc-variant="unlock"]');
+      const reminder = card.querySelector<HTMLElement>('[data-rc-variant="reminder"]');
+      if (unlock) unlock.hidden = !celebrate;
+      if (reminder) reminder.hidden = celebrate;
+
+      const wasHidden = card.hidden;
+      card.hidden = false;
+
+      if (wasHidden && celebrate) {
+        document.dispatchEvent(new CustomEvent('l101:unlock', { detail: { module: after } }));
+      }
+    }
+
+    if (!owner && claimedBy) {
+      state.rewardShown = true;
+      state.rewardShownFor = claimedBy;
+      saveState(state);
+    }
+  }
+
+  /** Clipboard with an execCommand fallback - the async API needs a secure
+   *  context, and some embedded browsers still refuse it. */
+  async function copyText(text: string): Promise<boolean> {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch {
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        const ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+        return ok;
+      } catch {
+        return false;
+      }
+    }
+  }
+
+  // Delegated at document level so the sticky bar's copy button works too,
+  // without that bar needing its own handler.
+  function initCopyButtons() {
+    if (document.documentElement.dataset.l101Copy === '1') return;
+    document.documentElement.dataset.l101Copy = '1';
+
+    document.addEventListener('click', async (e) => {
+      const btn = (e.target as HTMLElement | null)?.closest<HTMLButtonElement>('[data-l101-copy]');
+      if (!btn) return;
+
+      const code = btn.dataset.l101Copy ?? '';
+      const ok = await copyText(code);
+      const label = btn.textContent;
+
+      btn.textContent = ok ? 'Copied ✓' : 'Press ⌘C';
+      btn.classList.add('rc-copied');
+
+      // Announce it, don't just show it.
+      const live = btn.closest('[data-rc-after]')?.querySelector<HTMLElement>('[data-rc-live]');
+      if (live) live.textContent = ok ? `Code ${code} copied to your clipboard.` : `Copy failed - the code is ${code}.`;
+
+      if (ok) {
+        (window as unknown as { gtag?: (...a: unknown[]) => void }).gtag?.('event', 'ai101_code_copied', {
+          source: btn.closest('[data-rc-after]')?.getAttribute('data-rc-after') ?? 'sticky',
+        });
+      }
+
+      window.setTimeout(() => {
+        btn.textContent = label;
+        btn.classList.remove('rc-copied');
+      }, 2000);
+    });
+  }
+
+  function init() {
+    initCopyButtons();
+    syncRewardCards();
+  }
+
+  init();
+  document.addEventListener('l101:progress', syncRewardCards);
+  // No ClientRouter on this site today, so these never fire - registered to
+  // match the convention in index.astro and the calculators.
+  document.addEventListener('astro:page-load', init);
+  document.addEventListener('astro:after-swap', init);
+</script>
+
+<style>
+  .rc {
+    margin-top: 36px;
+  }
+
+  /* ── unlock variant ── */
+  .rc-unlock {
+    position: relative;
+    padding: 30px 28px 28px;
+    text-align: center;
+    background: var(--l101-card);
+    border: 1.5px solid rgba(34, 197, 94, 0.3);
+    border-radius: 20px;
+    box-shadow: 0 8px 40px rgba(34, 197, 94, 0.1);
+  }
+  .rc-burst {
+    font-size: 1.9rem;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  .rc-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--l101-ok-fg);
+    margin: 0 0 8px;
+  }
+  .rc-title {
+    font-size: clamp(1.3rem, 2.6vw, 1.65rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--l101-text);
+    margin: 0 0 12px;
+  }
+  .rc-body {
+    font-size: 0.93rem;
+    line-height: 1.65;
+    color: var(--l101-muted);
+    max-width: 480px;
+    margin: 0 auto 20px;
+  }
+
+  .rc-price {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .rc-price .l101-strike {
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+  .rc-price-now {
+    font-size: 2.4rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--l101-text);
+  }
+
+  .rc-code-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .rc-code-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--l101-subtle);
+  }
+  .rc-copy {
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--l101-border);
+    background: transparent;
+    color: var(--l101-muted);
+    cursor: pointer;
+    transition:
+      color 0.18s,
+      border-color 0.18s;
+    min-width: 76px;
+  }
+  .rc-copy:hover {
+    color: var(--l101-text);
+    border-color: var(--l101-purple);
+  }
+  .rc-copy.rc-copied {
+    color: var(--l101-ok-fg);
+    border-color: var(--l101-ok-border);
+  }
+
+  .rc-cta {
+    display: inline-block;
+  }
+  .rc-note {
+    font-size: 0.78rem;
+    color: var(--l101-subtle);
+    margin: 12px 0 0;
+  }
+  .rc-next {
+    font-size: 0.86rem;
+    color: var(--l101-muted);
+    margin: 18px 0 0;
+    padding-top: 16px;
+    border-top: 1px solid var(--l101-border);
+  }
+  .rc-next strong {
+    color: var(--l101-text);
+    font-weight: 700;
+  }
+
+  /* ── reminder variant ── */
+  .rc-reminder {
+    padding: 0;
+    background: var(--l101-bg-alt);
+    border: 1px solid var(--l101-border);
+    border-radius: 14px;
+  }
+  .rc-rem-summary {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 14px 18px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--l101-muted);
+    cursor: pointer;
+    list-style: none;
+  }
+  .rc-rem-summary::-webkit-details-marker {
+    display: none;
+  }
+  .rc-rem-summary::after {
+    content: '＋';
+    margin-left: auto;
+    font-weight: 700;
+    color: var(--l101-subtle);
+  }
+  .rc-reminder[open] .rc-rem-summary::after {
+    content: '−';
+  }
+  .rc-rem-dot {
+    color: var(--l101-ok-fg);
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .rc-rem-summary code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--l101-text);
+  }
+  .rc-rem-body {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 0 18px 18px;
+  }
+  .rc-rem-body .rc-code-row {
+    margin-bottom: 0;
+  }
+  .rc-reminder .rc-next {
+    margin: 0 18px 16px;
+    padding-top: 14px;
+  }
+
+  @media (max-width: 640px) {
+    .rc-unlock {
+      padding: 26px 18px 24px;
+    }
+    .rc-price-now {
+      font-size: 2rem;
+    }
+    .rc-rem-body {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .rc-rem-body .rc-code-row {
+      justify-content: flex-start;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rc-copy {
+      transition: none;
+    }
+  }
+</style>

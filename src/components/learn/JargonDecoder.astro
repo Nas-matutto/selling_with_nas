@@ -1,0 +1,270 @@
+---
+// Module 1 - ten terms, flipped to reveal a plain-English definition.
+//
+// The warm-up, on purpose: nothing is scored, nothing can be got wrong, and it
+// is the fastest route to the discount. Buttons with aria-expanded rather than
+// hover-reveal, because hover does not exist on a phone or a keyboard.
+import { terms } from '~/data/learn-ai-101';
+import RewardCard from './RewardCard.astro';
+---
+
+<section class="l101-section" id="m-jargon">
+  <div class="l101-container">
+    <div class="l101-head">
+      <span class="l101-tag">Module 01 · 3 minutes</span>
+      <h2 class="l101-title">The ten words that unlock every AI conversation</h2>
+      <p class="l101-sub">
+        Most AI writing is impenetrable for one silly reason: ten or so words are used constantly and explained never.
+        Tap each one. That is the whole module.
+      </p>
+    </div>
+
+    <div class="jd" data-l101-module="jargon">
+      <div class="jd-progress">
+        <span data-jd-count>0</span> of {terms.length} revealed
+      </div>
+
+      <div class="jd-grid">
+        {
+          terms.map((t) => (
+            <button
+              type="button"
+              class="jd-card"
+              data-jd-term={t.id}
+              aria-expanded="false"
+              aria-controls={`jd-def-${t.id}`}
+            >
+              <span class="jd-term">{t.term}</span>
+              <span class="jd-hint" aria-hidden="true">
+                Tap to reveal
+              </span>
+              <span class="jd-def" id={`jd-def-${t.id}`}>
+                <span class="jd-plain">{t.plain}</span>
+                <span class="jd-why">
+                  <strong>Why you care:</strong> {t.why}
+                </span>
+              </span>
+            </button>
+          ))
+        }
+      </div>
+
+      <p class="jd-done" data-jd-done hidden>
+        <span aria-hidden="true">✓</span> That is the vocabulary sorted. Everything after this gets easier.
+      </p>
+
+      <RewardCard
+        after="jargon"
+        nextUp="Module 02 is where you learn why most prompts fail - and it is not the model's fault."
+      />
+    </div>
+  </div>
+</section>
+
+<script>
+  import { loadState, patchModule, type ModuleId } from '~/data/learn-ai-101';
+
+  const ID: ModuleId = 'jargon';
+
+  function initJargon() {
+    const root = document.querySelector<HTMLElement>(`[data-l101-module="${ID}"]`);
+    if (!root || root.dataset.l101Ready === '1') return;
+    root.dataset.l101Ready = '1';
+
+    const cards = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-jd-term]'));
+    const countEl = root.querySelector<HTMLElement>('[data-jd-count]');
+    const doneEl = root.querySelector<HTMLElement>('[data-jd-done]');
+    if (!cards.length) return;
+
+    // Rehydrate straight from storage rather than waiting for a broadcast -
+    // script execution order across hoisted bundles is not a contract.
+    const flipped = new Set(Object.keys(loadState().modules[ID].answers));
+    let reported = false;
+
+    function render(persist: boolean) {
+      for (const card of cards) {
+        const open = flipped.has(card.dataset.jdTerm ?? '');
+        card.setAttribute('aria-expanded', String(open));
+      }
+
+      if (countEl) countEl.textContent = String(flipped.size);
+
+      const done = flipped.size >= cards.length;
+      if (doneEl) doneEl.hidden = !done;
+
+      if (!persist) return;
+
+      patchModule(ID, {
+        done,
+        score: flipped.size,
+        total: cards.length,
+        answers: Object.fromEntries([...flipped].map((k) => [k, '1'])),
+      });
+
+      // Events travel upward only, and always from a user interaction - long
+      // after every other script has initialised.
+      document.dispatchEvent(
+        new CustomEvent('l101:progress', {
+          detail: { module: ID, done, score: flipped.size, total: cards.length },
+        })
+      );
+    }
+
+    root.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement | null)?.closest<HTMLButtonElement>('[data-jd-term]');
+      if (!btn) return;
+
+      const key = btn.dataset.jdTerm;
+      if (!key) return;
+
+      if (flipped.has(key)) flipped.delete(key);
+      else flipped.add(key);
+
+      if (!reported) {
+        reported = true;
+        document.dispatchEvent(new CustomEvent('l101:started', { detail: { module: ID } }));
+      }
+
+      render(true);
+    });
+
+    render(false); // paint the resumed state without rewriting storage
+  }
+
+  initJargon();
+  document.addEventListener('astro:page-load', initJargon);
+  document.addEventListener('astro:after-swap', initJargon);
+</script>
+
+<style>
+  .jd-progress {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--l101-subtle);
+    text-align: center;
+    margin-bottom: 18px;
+  }
+
+  .jd-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(232px, 1fr));
+    gap: 14px;
+  }
+
+  .jd-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+    padding: 20px 20px 18px;
+    background: var(--l101-card);
+    border: 1.5px solid var(--l101-border);
+    border-radius: 16px;
+    cursor: pointer;
+    font-family: inherit;
+    transition:
+      border-color 0.22s var(--l101-ease),
+      transform 0.22s var(--l101-ease);
+  }
+  .jd-card:hover {
+    border-color: var(--l101-purple);
+    transform: translateY(-2px);
+  }
+  .jd-card[aria-expanded='true'] {
+    border-color: rgba(168, 85, 247, 0.4);
+    background: var(--l101-bg-alt);
+  }
+
+  .jd-term {
+    font-size: 1.02rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--l101-text);
+  }
+
+  .jd-hint {
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--l101-purple);
+  }
+  .jd-card[aria-expanded='true'] .jd-hint {
+    display: none;
+  }
+
+  /* Collapsed by default. A crossfade rather than a 3D flip: it survives
+     reduced-motion honestly and never clips text at small sizes. */
+  .jd-def {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .jd-card[aria-expanded='true'] .jd-def {
+    display: flex;
+    animation: jdIn 0.22s var(--l101-ease) both;
+  }
+  @keyframes jdIn {
+    from {
+      opacity: 0;
+      transform: translateY(-3px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .jd-plain {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--l101-body);
+  }
+  .jd-why {
+    font-size: 0.84rem;
+    line-height: 1.6;
+    color: var(--l101-muted);
+    padding-top: 10px;
+    border-top: 1px solid var(--l101-border);
+  }
+  .jd-why strong {
+    color: var(--l101-purple);
+    font-weight: 700;
+  }
+
+  .jd-done {
+    margin: 22px 0 0;
+    padding: 14px 18px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--l101-ok-fg);
+    background: var(--l101-ok-bg);
+    border: 1px solid var(--l101-ok-border);
+  }
+
+  @media (max-width: 640px) {
+    .jd-grid {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .jd-card {
+      padding: 16px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .jd-card {
+      transition: none;
+    }
+    .jd-card:hover {
+      transform: none;
+    }
+    .jd-card[aria-expanded='true'] .jd-def {
+      animation: none;
+    }
+  }
+</style>

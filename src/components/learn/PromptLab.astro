@@ -1,0 +1,320 @@
+---
+// Module 2 - pick the strongest rewrite of a weak prompt, five times.
+//
+// Native <fieldset>/<legend> + radio inputs so keyboard navigation, grouping
+// and screen-reader semantics come for free. Answer keys are server-rendered
+// into data-correct; the client script reads the DOM and never imports content.
+import { promptScenarios } from '~/data/learn-ai-101';
+import RewardCard from './RewardCard.astro';
+---
+
+<section class="l101-section" id="m-prompts">
+  <div class="l101-container">
+    <div class="l101-head">
+      <span class="l101-tag">Module 02 · 6 minutes</span>
+      <h2 class="l101-title">The prompt lab</h2>
+      <p class="l101-sub">
+        Five real jobs. For each one you'll see the prompt most people write, then three rewrites — pick the strongest.
+        You get told why either way, and getting it wrong teaches you more than getting it right.
+      </p>
+    </div>
+
+    <div class="pl" data-l101-module="prompts">
+      <div class="pl-progress">
+        <span data-pl-count>0</span> of {promptScenarios.length} answered
+      </div>
+
+      <div class="pl-list">
+        {
+          promptScenarios.map((s, i) => (
+            <article class="pl-item l101-card" data-pl-item={s.id} data-correct={s.correct}>
+              <header class="pl-item-head">
+                <span class="pl-item-n">{String(i + 1).padStart(2, '0')}</span>
+                <p class="pl-job">{s.job}</p>
+              </header>
+
+              <div class="pl-weak">
+                <span class="pl-weak-label">What most people write</span>
+                <p class="pl-weak-text">“{s.weak}”</p>
+              </div>
+
+              <fieldset class="l101-fieldset">
+                <legend class="l101-legend">Which rewrite gets the better result?</legend>
+                <div class="l101-opts" data-pl-opts>
+                  {s.options.map((o) => (
+                    <label class="l101-opt" data-pl-opt={o.id}>
+                      <input type="radio" name={`pl-${s.id}`} value={o.id} />
+                      <span class="pl-opt-text">“{o.text}”</span>
+                      <span class="l101-opt-mark" data-pl-mark aria-hidden="true" />
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+
+              {/* Explanations live in the markup, revealed on answer. */}
+              <div class="pl-verdicts" data-pl-verdicts hidden>
+                {s.options.map((o) => (
+                  <p class="pl-verdict" data-pl-verdict={o.id} hidden>
+                    {o.verdict}
+                  </p>
+                ))}
+                <p class="pl-principle">
+                  <strong>The principle:</strong> {s.principle}
+                </p>
+              </div>
+
+              <div class="l101-fb" role="status" aria-live="polite" data-pl-fb />
+            </article>
+          ))
+        }
+      </div>
+
+      <p class="pl-done" data-pl-done hidden>
+        <span aria-hidden="true">✓</span> That's prompting. Not a trick, not a secret list — just saying more of what you
+        actually meant.
+      </p>
+
+      <RewardCard after="prompts" nextUp="Module 03 is the one that stops you getting embarrassed by AI in public." />
+    </div>
+  </div>
+</section>
+
+<script>
+  import { loadState, patchModule, type ModuleId } from '~/data/learn-ai-101';
+
+  const ID: ModuleId = 'prompts';
+
+  function initPromptLab() {
+    const root = document.querySelector<HTMLElement>(`[data-l101-module="${ID}"]`);
+    if (!root || root.dataset.l101Ready === '1') return;
+    root.dataset.l101Ready = '1';
+
+    const items = Array.from(root.querySelectorAll<HTMLElement>('[data-pl-item]'));
+    const countEl = root.querySelector<HTMLElement>('[data-pl-count]');
+    const doneEl = root.querySelector<HTMLElement>('[data-pl-done]');
+    if (!items.length) return;
+
+    const answers: Record<string, string> = { ...loadState().modules[ID].answers };
+    let startSent = false;
+
+    function paintItem(item: HTMLElement, chosen: string, announce: boolean) {
+      const correct = item.dataset.correct ?? '';
+      const ok = chosen === correct;
+      const opts = item.querySelector<HTMLElement>('[data-pl-opts]');
+      opts?.setAttribute('data-answered', '1');
+
+      for (const label of item.querySelectorAll<HTMLElement>('[data-pl-opt]')) {
+        const id = label.dataset.plOpt ?? '';
+        const input = label.querySelector<HTMLInputElement>('input');
+        if (input) {
+          input.checked = id === chosen;
+          // Locked once answered. Disabling does drop these from the tab order,
+          // which is fine here - there is nothing left to operate, and the chosen
+          // answer plus the verdict are both still read out as text.
+          input.disabled = true;
+        }
+
+        const mark = label.querySelector<HTMLElement>('[data-pl-mark]');
+        if (id === correct) {
+          label.dataset.state = 'ok';
+          if (mark) mark.textContent = '✓';
+        } else if (id === chosen) {
+          label.dataset.state = 'no';
+          if (mark) mark.textContent = '✗';
+        } else {
+          label.dataset.state = 'dim';
+          if (mark) mark.textContent = '';
+        }
+      }
+
+      const verdicts = item.querySelector<HTMLElement>('[data-pl-verdicts]');
+      if (verdicts) {
+        verdicts.hidden = false;
+        for (const v of verdicts.querySelectorAll<HTMLElement>('[data-pl-verdict]')) {
+          // Show why their pick was what it was, plus the winning one.
+          v.hidden = !(v.dataset.plVerdict === chosen || v.dataset.plVerdict === correct);
+        }
+      }
+
+      const fb = item.querySelector<HTMLElement>('[data-pl-fb]');
+      if (fb) {
+        fb.className = `l101-fb ${ok ? 'l101-fb-ok' : 'l101-fb-no'}`;
+        // Written so a wrong answer still feels like progress, not a telling-off.
+        fb.innerHTML = ok
+          ? '<span class="l101-fb-label">✓ That\'s the one</span>'
+          : '<span class="l101-fb-label">✗ Not quite — and this is the useful bit</span>';
+        if (!announce) {
+          // Re-render on resume shouldn't re-announce to a screen reader.
+          fb.removeAttribute('aria-live');
+          window.setTimeout(() => fb.setAttribute('aria-live', 'polite'), 0);
+        }
+      }
+    }
+
+    function sync(persist: boolean) {
+      const count = Object.keys(answers).length;
+      if (countEl) countEl.textContent = String(count);
+
+      const done = count >= items.length;
+      if (doneEl) doneEl.hidden = !done;
+
+      if (!persist) return;
+
+      const score = items.filter((it) => answers[it.dataset.plItem ?? ''] === it.dataset.correct).length;
+      patchModule(ID, { done, score, total: items.length, answers });
+      document.dispatchEvent(
+        new CustomEvent('l101:progress', { detail: { module: ID, done, score, total: items.length } })
+      );
+    }
+
+    root.addEventListener('change', (e) => {
+      const input = e.target as HTMLInputElement | null;
+      if (!input || input.type !== 'radio') return;
+
+      const item = input.closest<HTMLElement>('[data-pl-item]');
+      const key = item?.dataset.plItem;
+      if (!item || !key || answers[key]) return; // one answer per item, no changing it
+
+      answers[key] = input.value;
+
+      if (!startSent) {
+        startSent = true;
+        document.dispatchEvent(new CustomEvent('l101:started', { detail: { module: ID } }));
+      }
+
+      paintItem(item, input.value, true);
+      sync(true);
+    });
+
+    // Repaint whatever was already answered in a previous visit.
+    for (const item of items) {
+      const chosen = answers[item.dataset.plItem ?? ''];
+      if (chosen) paintItem(item, chosen, false);
+    }
+    sync(false);
+  }
+
+  initPromptLab();
+  document.addEventListener('astro:page-load', initPromptLab);
+  document.addEventListener('astro:after-swap', initPromptLab);
+</script>
+
+<style>
+  .pl-progress {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--l101-subtle);
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .pl-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .pl-item {
+    padding: 24px 24px 22px;
+  }
+
+  .pl-item-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .pl-item-n {
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--l101-purple);
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+  }
+  .pl-job {
+    font-size: 1.02rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--l101-text);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .pl-weak {
+    padding: 13px 16px;
+    margin-bottom: 20px;
+    background: var(--l101-no-bg);
+    border-left: 2px solid var(--l101-no-border);
+    border-radius: 0 8px 8px 0;
+  }
+  .pl-weak-label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--l101-no-fg);
+    margin-bottom: 5px;
+  }
+  .pl-weak-text {
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: var(--l101-body);
+    margin: 0;
+    font-style: italic;
+  }
+
+  .pl-opt-text {
+    flex: 1;
+  }
+
+  .pl-verdicts {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--l101-border);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .pl-verdict {
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: var(--l101-muted);
+    margin: 0;
+  }
+  .pl-principle {
+    font-size: 0.89rem;
+    line-height: 1.65;
+    color: var(--l101-body);
+    margin: 4px 0 0;
+    padding: 13px 16px;
+    background: var(--l101-bg-alt);
+    border-radius: 10px;
+  }
+  .pl-principle strong {
+    color: var(--l101-purple);
+    font-weight: 800;
+  }
+
+  .pl-done {
+    margin: 22px 0 0;
+    padding: 14px 18px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--l101-ok-fg);
+    background: var(--l101-ok-bg);
+    border: 1px solid var(--l101-ok-border);
+  }
+
+  @media (max-width: 640px) {
+    .pl-item {
+      padding: 18px 16px;
+    }
+    .pl-job {
+      font-size: 0.96rem;
+    }
+  }
+</style>

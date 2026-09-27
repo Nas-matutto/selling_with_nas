@@ -5,6 +5,9 @@ import Layout from '~/layouts/PageLayout.astro';
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import nasProfile from '~/assets/images/nas-profile.jpg';
+import ogImage from '~/assets/images/Building a website Design.png';
+import Price from '~/components/pricing/Price.astro';
+import { CHECKOUT_LINK, CHECKOUT_LINK_PROMO, PRICE_NOW, REWARD, REWARD_SAVING } from '~/data/pricing';
 
 // Auto-imports every review screenshot dropped into src/assets/images/reviews/.
 // Add or remove image files there and they appear/disappear automatically -
@@ -27,15 +30,14 @@ const metadata = {
   keywords:
     'build a business with Claude, Claude Code side hustle, build a website with AI, deploy website live domain, Claude Code guide, AI side hustle, start online business with AI',
   canonical: 'https://www.sellingwithnas.com/ai-masterclass-with-nas',
+  openGraph: {
+    type: 'website',
+    images: [{ url: ogImage, width: 1280, height: 720 }],
+  },
 };
 
-// ─────────────────────────────────────────────────────────────
-// Every CTA on this page reads from this one constant.
-const CHECKOUT_LINK = 'https://buy.stripe.com/5kQdR865m1fiaO25fpeEo1c';
-// ─────────────────────────────────────────────────────────────
-
-const PRICE_NOW = '97';
-const PRICE_WAS = '150';
+// Price and checkout now live in ~/data/pricing.ts, shared with
+// src/pages/learn-ai-101.astro so the two pages can never quote different numbers.
 
 const faqs = [
   {
@@ -99,7 +101,30 @@ const productSchema = {
 <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 <script type="application/ld+json" set:html={JSON.stringify(productSchema)} />
 
+<!-- Runs before any price node is parsed, so a Learn AI 101 graduate never sees
+     $97 flash before $77. Fails open to full price, which is never wrong. -->
+<script is:inline define:vars={{ param: REWARD.param, key: REWARD.storageKey, flag: REWARD.flagClass }}>
+  (function () {
+    try {
+      if (new URLSearchParams(window.location.search).get('from') === param) {
+        localStorage.setItem(key, '1');
+      }
+      if (localStorage.getItem(key) === '1') {
+        document.documentElement.classList.add(flag);
+      }
+    } catch {
+      /* private mode or blocked storage - full price is the safe default */
+    }
+  })();
+</script>
+
 <div class="mc-page">
+
+  <!-- Only visible to someone arriving from Learn AI 101 (html.mc-promo). -->
+  <div class="mc-promo-note">
+    🎉 Your Learn AI 101 discount is applied — <strong>${REWARD_SAVING} off</strong> at checkout with code
+    <code>{REWARD.code}</code>. ✓
+  </div>
 
   <!-- ambient -->
   <div class="mc-ambient" aria-hidden="true">
@@ -135,9 +160,9 @@ const productSchema = {
             <div class="mc-hbc-tag">The Build-It Pack</div>
 
             <div class="mc-price-row">
-              <span class="mc-price-old">${PRICE_WAS}</span>
-              <span class="mc-price-new">${PRICE_NOW}</span>
-              <span class="mc-price-save">Save ${Number(PRICE_WAS) - Number(PRICE_NOW)}</span>
+              <span class="mc-price-old"><Price variant="was" /></span>
+              <span class="mc-price-new"><Price /></span>
+              <span class="mc-price-save">Save <Price variant="save" /></span>
             </div>
             <div class="mc-price-note">One payment · lifetime access · all future updates free</div>
 
@@ -147,8 +172,14 @@ const productSchema = {
               <li class="mc-hbc-bonus"><span>★</span> Bonus — 1-on-1 call with Nas</li>
             </ul>
 
-            <a href={CHECKOUT_LINK} class="mc-btn-book mc-btn-book-full" id="buy" data-cta="hero">
-              Get Instant Access — ${PRICE_NOW} →
+            <a
+              href={CHECKOUT_LINK}
+              data-promo-href={CHECKOUT_LINK_PROMO}
+              class="mc-btn-book mc-btn-book-full"
+              id="buy"
+              data-cta="hero"
+            >
+              Get Instant Access — <Price /> →
             </a>
 
             <p class="mc-hbc-guarantee">
@@ -198,7 +229,12 @@ const productSchema = {
         <div class="mc-marquee-fade mc-marquee-fade-r" aria-hidden="true"></div>
       </div>
       <div class="mc-container mc-reviews-cta">
-        <a href={CHECKOUT_LINK} class="mc-btn-book mc-btn-book-lg" data-cta="reviews">Get Instant Access — ${PRICE_NOW} →</a>
+        <a
+          href={CHECKOUT_LINK}
+          data-promo-href={CHECKOUT_LINK_PROMO}
+          class="mc-btn-book mc-btn-book-lg"
+          data-cta="reviews">Get Instant Access — <Price /> →</a
+        >
       </div>
     </section>
   )}
@@ -232,7 +268,9 @@ const productSchema = {
 
       <div class="mc-bridge">
         <p>This pack is the bridge. Two guides that take you all the way to <strong>a real website live on your own domain</strong> — and a call with me for the moment you get stuck.</p>
-        <a href={CHECKOUT_LINK} class="mc-btn-book" data-cta="problem">Get the Pack — ${PRICE_NOW} →</a>
+        <a href={CHECKOUT_LINK} data-promo-href={CHECKOUT_LINK_PROMO} class="mc-btn-book" data-cta="problem"
+          >Get the Pack — <Price /> →</a
+        >
       </div>
     </div>
   </section>
@@ -293,7 +331,12 @@ const productSchema = {
       </div>
 
       <div class="mc-mid-cta">
-        <a href={CHECKOUT_LINK} class="mc-btn-book mc-btn-book-lg" data-cta="inside">Get Everything — ${PRICE_NOW} →</a>
+        <a
+          href={CHECKOUT_LINK}
+          data-promo-href={CHECKOUT_LINK_PROMO}
+          class="mc-btn-book mc-btn-book-lg"
+          data-cta="inside">Get Everything — <Price /> →</a
+        >
         <p class="mc-guarantee">✓ Instant access · ✓ Lifetime updates · ✓ 1-on-1 call included</p>
       </div>
     </div>
@@ -373,16 +416,23 @@ const productSchema = {
           </div>
           <div class="mc-stack-total-line">
             <span>Regular price</span>
-            <span class="mc-strike">${PRICE_WAS}</span>
+            <span class="mc-strike"><Price variant="was" /></span>
           </div>
           <div class="mc-stack-total-line mc-stack-today">
             <span>Today</span>
-            <span class="mc-gradient mc-stack-today-num">${PRICE_NOW}</span>
+            {/* mc-gradient goes on the inner spans via `gradient`, not this wrapper -
+                background-clip:text clipping a child's glyphs is flaky in WebKit. */}
+            <span class="mc-stack-today-num"><Price gradient /></span>
           </div>
         </div>
 
-        <a href={CHECKOUT_LINK} class="mc-btn-book mc-btn-book-full mc-btn-book-lg" data-cta="stack">
-          Claim It For ${PRICE_NOW} →
+        <a
+          href={CHECKOUT_LINK}
+          data-promo-href={CHECKOUT_LINK_PROMO}
+          class="mc-btn-book mc-btn-book-full mc-btn-book-lg"
+          data-cta="stack"
+        >
+          Claim It For <Price /> →
         </a>
         <p class="mc-stack-foot">Less than one hour of a developer's time. And it's yours forever.</p>
       </div>
@@ -473,7 +523,7 @@ const productSchema = {
     <div class="mc-container">
       <div class="mc-final-cta">
         <div class="mc-final-glow" aria-hidden="true"></div>
-        <div class="mc-final-badge">Launch price — ${PRICE_NOW}</div>
+        <div class="mc-final-badge">Launch price — <Price /></div>
         <h2 class="mc-final-title">
           By Sunday night you could have<br />
           <span class="mc-gradient">a real website live on your own domain.</span>
@@ -484,11 +534,16 @@ const productSchema = {
         </p>
 
         <div class="mc-final-price">
-          <span class="mc-price-old">${PRICE_WAS}</span>
-          <span class="mc-price-new">${PRICE_NOW}</span>
+          <span class="mc-price-old"><Price variant="was" /></span>
+          <span class="mc-price-new"><Price /></span>
         </div>
 
-        <a href={CHECKOUT_LINK} class="mc-btn-book mc-btn-book-lg" data-cta="final">Get Instant Access — ${PRICE_NOW} →</a>
+        <a
+          href={CHECKOUT_LINK}
+          data-promo-href={CHECKOUT_LINK_PROMO}
+          class="mc-btn-book mc-btn-book-lg"
+          data-cta="final">Get Instant Access — <Price /> →</a
+        >
         <p class="mc-guarantee" style="margin-top:20px;">
           ✓ Instant access · ✓ 1-on-1 call included · ✓ Lifetime access
         </p>
@@ -509,16 +564,37 @@ const productSchema = {
         <div class="mc-sticky-sub">2 guides + a 1-on-1 call · lifetime access</div>
       </div>
       <div class="mc-sticky-price">
-        <span class="mc-price-old">${PRICE_WAS}</span>
-        <span class="mc-sticky-now">${PRICE_NOW}</span>
+        <span class="mc-price-old"><Price variant="was" /></span>
+        <span class="mc-sticky-now"><Price /></span>
       </div>
-      <a href={CHECKOUT_LINK} class="mc-btn-book mc-sticky-btn" data-cta="sticky">Get Access →</a>
+      <a
+        href={CHECKOUT_LINK}
+        data-promo-href={CHECKOUT_LINK_PROMO}
+        class="mc-btn-book mc-sticky-btn"
+        data-cta="sticky">Get Access →</a
+      >
     </div>
   </div>
 
 </div>
 
 <script>
+  // Did the is:inline script at the top flag this visitor as a Learn AI 101
+  // graduate? The class is already on <html> by the time this runs.
+  const onDeal = document.documentElement.classList.contains('mc-promo');
+
+  if (onDeal) {
+    // Prefill the Stripe promotion code so nobody has to paste anything. Same
+    // payment link either way, so src/pages/api/stripe-webhook.ts fulfilment is
+    // untouched - it matches on the payment_link id, never on amount_total.
+    document.querySelectorAll<HTMLAnchorElement>('a[data-promo-href]').forEach((a) => {
+      const promo = a.dataset.promoHref;
+      if (promo) a.href = promo;
+    });
+
+    (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag?.('event', 'mc_promo_arrival');
+  }
+
   // Report checkout intent to Meta, and tag which section drove it. fbq's stub
   // queues calls, so this is safe even before fbevents.js has finished loading.
   document.querySelectorAll('a[data-cta]').forEach((el) => {
@@ -527,7 +603,8 @@ const productSchema = {
       if (typeof fbq !== 'function') return;
       fbq('track', 'InitiateCheckout', {
         content_name: 'Build Your Side-Hustle with Claude',
-        value: 97,
+        // Must be the price actually charged, or ROAS maths is wrong.
+        value: onDeal ? 77 : 97,
         currency: 'USD',
         source_section: el.getAttribute('data-cta'),
       });
@@ -592,6 +669,38 @@ const productSchema = {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  /* ════ LEARN AI 101 DISCOUNT NOTE ════ */
+  /* Always in the HTML, revealed only for html.mc-promo. Without it the visitor
+     has no way to tell that a URL param actually did anything. */
+  .mc-promo-note { display: none; }
+  :global(html.mc-promo) .mc-promo-note {
+    display: block;
+    position: relative;
+    z-index: 2;
+    max-width: 1060px;
+    margin: 20px auto 0;
+    padding: 12px 20px;
+    background: rgba(34,197,94,0.10);
+    border: 1px solid rgba(34,197,94,0.28);
+    border-radius: 12px;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: #15803d;
+    text-align: center;
+  }
+  :global(.dark) .mc-promo-note { color: #4ade80; background: rgba(34,197,94,0.12); }
+  .mc-promo-note code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    background: rgba(34,197,94,0.16);
+    padding: 2px 8px;
+    border-radius: 6px;
+  }
+  @media (max-width: 720px) {
+    :global(html.mc-promo) .mc-promo-note { margin: 14px 16px 0; font-size: 0.82rem; }
   }
 
   /* ════ AMBIENT ════ */

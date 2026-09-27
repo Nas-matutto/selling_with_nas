@@ -1,0 +1,226 @@
+---
+// The course spine: four segments, a count, and the reward chip.
+//
+// Deliberately NOT sticky. The site header is `position: sticky; top: 0`
+// (Header.astro), so a sticky rail would collide with it - and two sticky
+// elements on a phone is a lot of screen. Persistent progress lives in the
+// bottom sticky bar on the page instead; this is the in-flow version.
+import { MODULE_IDS } from '~/data/learn-ai-101';
+import { REWARD_SAVING } from '~/data/pricing';
+
+const labels: Record<(typeof MODULE_IDS)[number], { n: string; name: string; href: string }> = {
+  jargon: { n: '01', name: 'The words', href: '#m-jargon' },
+  prompts: { n: '02', name: 'Prompting', href: '#m-prompts' },
+  mistakes: { n: '03', name: 'Spotting mistakes', href: '#m-mistakes' },
+  quiz: { n: '04', name: 'The check', href: '#m-quiz' },
+};
+---
+
+<div class="pr-rail" data-pr-rail>
+  <div class="pr-top">
+    <div class="pr-count">
+      <strong data-pr-done>0</strong> of {MODULE_IDS.length} done
+    </div>
+
+    <!-- Both states render; the script flips which is hidden. -->
+    <div class="pr-chip pr-chip-locked" data-pr-chip="locked">
+      🔒 Finish any one module to unlock ${REWARD_SAVING} off
+    </div>
+    <div class="pr-chip pr-chip-open" data-pr-chip="open" hidden>✓ ${REWARD_SAVING} discount unlocked</div>
+  </div>
+
+  <div
+    class="pr-bar"
+    role="progressbar"
+    aria-valuemin="0"
+    aria-valuemax={MODULE_IDS.length}
+    aria-valuenow="0"
+    aria-valuetext={`0 of ${MODULE_IDS.length} modules complete`}
+    data-pr-bar
+  >
+    {
+      MODULE_IDS.map((id) => (
+        <a class="pr-seg" href={labels[id].href} data-pr-seg={id} aria-hidden="true" tabindex="-1" />
+      ))
+    }
+  </div>
+
+  <ol class="pr-legend">
+    {
+      MODULE_IDS.map((id) => (
+        <li class="pr-item" data-pr-item={id}>
+          <a href={labels[id].href}>
+            <span class="pr-item-n">{labels[id].n}</span>
+            <span class="pr-item-name">{labels[id].name}</span>
+            <span class="pr-item-tick" aria-hidden="true">
+              ✓
+            </span>
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+</div>
+
+<script>
+  import { loadState, doneCount, MODULE_IDS } from '~/data/learn-ai-101';
+
+  function syncRail() {
+    const rail = document.querySelector<HTMLElement>('[data-pr-rail]');
+    if (!rail) return;
+
+    const state = loadState();
+    const done = doneCount(state);
+
+    const countEl = rail.querySelector<HTMLElement>('[data-pr-done]');
+    if (countEl) countEl.textContent = String(done);
+
+    const bar = rail.querySelector<HTMLElement>('[data-pr-bar]');
+    if (bar) {
+      bar.setAttribute('aria-valuenow', String(done));
+      bar.setAttribute('aria-valuetext', `${done} of ${MODULE_IDS.length} modules complete`);
+    }
+
+    for (const id of MODULE_IDS) {
+      const isDone = state.modules[id]?.done === true;
+      rail.querySelector(`[data-pr-seg="${id}"]`)?.toggleAttribute('data-done', isDone);
+      rail.querySelector(`[data-pr-item="${id}"]`)?.toggleAttribute('data-done', isDone);
+    }
+
+    const locked = rail.querySelector<HTMLElement>('[data-pr-chip="locked"]');
+    const open = rail.querySelector<HTMLElement>('[data-pr-chip="open"]');
+    if (locked) locked.hidden = state.unlocked;
+    if (open) open.hidden = !state.unlocked;
+  }
+
+  syncRail();
+  document.addEventListener('l101:progress', syncRail);
+  document.addEventListener('astro:page-load', syncRail);
+  document.addEventListener('astro:after-swap', syncRail);
+</script>
+
+<style>
+  .pr-rail {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 20px 22px 18px;
+    background: var(--l101-card);
+    border: 1px solid var(--l101-border);
+    border-radius: 16px;
+  }
+
+  .pr-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+  .pr-count {
+    font-size: 0.86rem;
+    color: var(--l101-muted);
+  }
+  .pr-count strong {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--l101-text);
+  }
+
+  .pr-chip {
+    font-size: 0.76rem;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--l101-border);
+    color: var(--l101-subtle);
+  }
+  .pr-chip-open {
+    color: var(--l101-ok-fg);
+    background: var(--l101-ok-bg);
+    border-color: var(--l101-ok-border);
+  }
+
+  /* ── segmented bar ── */
+  .pr-bar {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 16px;
+  }
+  .pr-seg {
+    flex: 1;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--l101-border);
+    transition: background 0.3s var(--l101-ease);
+  }
+  .pr-seg[data-done] {
+    background: linear-gradient(to right, var(--l101-orange), var(--l101-purple));
+  }
+
+  /* ── legend ── */
+  .pr-legend {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: none;
+  }
+  .pr-item a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    font-size: 0.78rem;
+    color: var(--l101-subtle);
+    transition: color 0.2s;
+  }
+  .pr-item a:hover {
+    color: var(--l101-text);
+  }
+  .pr-item-n {
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+  }
+  .pr-item-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .pr-item-tick {
+    display: none;
+    color: var(--l101-ok-fg);
+    font-weight: 800;
+  }
+  .pr-item[data-done] a {
+    color: var(--l101-text);
+  }
+  .pr-item[data-done] .pr-item-tick {
+    display: inline;
+  }
+  .pr-item[data-done] .pr-item-n {
+    color: var(--l101-purple);
+  }
+
+  @media (max-width: 720px) {
+    .pr-legend {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px 12px;
+    }
+    .pr-rail {
+      padding: 16px 16px 14px;
+    }
+    .pr-chip {
+      font-size: 0.72rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pr-seg,
+    .pr-item a {
+      transition: none;
+    }
+  }
+</style>

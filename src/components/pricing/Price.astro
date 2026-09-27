@@ -1,0 +1,63 @@
+---
+// Renders the pack's price, dual-rendered so a discount needs no JS text rewrite.
+//
+// Why both prices are in the HTML: this page is prerendered and CDN-cached, so a
+// query param cannot vary the markup. Rewriting price text on load would flash
+// $97 before $77 - worst on exactly the slow mobile connections the Learn AI 101
+// funnel targets. Instead both values ship, hidden with CSS, and an is:inline
+// script on the page sets `mc-promo` on <html> before the body is parsed. Zero
+// flash, no dependency on script timing. With JS off, everyone sees full price -
+// honest, never wrong.
+import { PRICE_NOW, PRICE_WAS, REWARD, SAVING_REGULAR, SAVING_PROMO } from '~/data/pricing';
+
+interface Props {
+  /** 'now' and 'save' dual-render; 'was' is the same either way. */
+  variant?: 'now' | 'was' | 'save';
+  /**
+   * Apply the orange -> purple gradient to the inner spans. Needed because
+   * background-clip:text on a PARENT clipping a child span's glyphs is flaky in
+   * WebKit, so the gradient has to sit on the span that holds the digits.
+   */
+  gradient?: boolean;
+}
+
+const { variant = 'now', gradient = false } = Astro.props;
+
+const full = variant === 'save' ? SAVING_REGULAR : PRICE_NOW;
+const deal = variant === 'save' ? SAVING_PROMO : REWARD.price;
+---
+
+{
+  variant === 'was' ? (
+    <span class:list={['pr-tok', gradient && 'mc-gradient']}>${PRICE_WAS}</span>
+  ) : (
+    <span class="pr-tok">
+      <>
+        <span class:list={['pr-full', gradient && 'mc-gradient']}>${full}</span>
+        <span class:list={['pr-deal', gradient && 'mc-gradient']}>${deal}</span>
+      </>
+    </span>
+  )
+}
+
+<style>
+  /* Inherit every bit of type styling from whatever wraps us. */
+  .pr-tok,
+  .pr-full,
+  .pr-deal {
+    font: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+  }
+
+  /* Full price is the default. The flag class on <html> swaps in the discount. */
+  .pr-deal {
+    display: none;
+  }
+  :global(html.mc-promo) .pr-full {
+    display: none;
+  }
+  :global(html.mc-promo) .pr-deal {
+    display: inline;
+  }
+</style>

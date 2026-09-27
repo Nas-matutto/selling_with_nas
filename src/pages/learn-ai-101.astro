@@ -1,0 +1,948 @@
+---
+export const prerender = true;
+
+// Free interactive crash course, and the landing spot for Nas's educational
+// social content. Finishing ANY one module unlocks $20 off the Build-It Pack.
+//
+// Split into components rather than the one-big-file pattern the other pages
+// use: four interactive modules each need their own DOM contract and feedback
+// styling, and Astro's scoped styles do that namespacing for free. Shared
+// primitives live in ~/components/learn/learn.css because scoped styles do NOT
+// cross component boundaries. Please don't "fix" this back into a single file.
+import Layout from '~/layouts/PageLayout.astro';
+import '~/components/learn/learn.css';
+
+import ProgressRail from '~/components/learn/ProgressRail.astro';
+import JargonDecoder from '~/components/learn/JargonDecoder.astro';
+import PromptLab from '~/components/learn/PromptLab.astro';
+import SpotTheMistake from '~/components/learn/SpotTheMistake.astro';
+import LiteracyQuiz from '~/components/learn/LiteracyQuiz.astro';
+
+import { lessonsA, levers, faqs, MODULE_IDS } from '~/data/learn-ai-101';
+import { CHECKOUT_LINK_PROMO, PRICE_NOW, REWARD, REWARD_SAVING } from '~/data/pricing';
+
+const metadata = {
+  title: 'Learn AI 101 — A Free, Hands-On Crash Course in How AI Actually Works',
+  description:
+    'Four interactive modules: what an LLM really does, how to prompt it properly, where it lies to you, and an 8-question literacy check. Free, no signup, about 20 minutes.',
+  keywords:
+    'learn AI, AI for beginners, AI basics explained, what is an LLM, how to prompt AI, AI literacy quiz, prompt engineering basics, free AI course, AI fundamentals',
+  canonical: 'https://www.sellingwithnas.com/learn-ai-101',
+};
+
+const courseSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Course',
+  name: 'Learn AI 101',
+  description:
+    'A free, hands-on crash course in how AI actually works: the vocabulary, prompting, spotting AI mistakes, and an 8-question literacy check.',
+  provider: { '@type': 'Organization', name: 'Selling with Nas', url: 'https://www.sellingwithnas.com' },
+  isAccessibleForFree: true,
+  inLanguage: 'en',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', category: 'Free' },
+  hasCourseInstance: {
+    '@type': 'CourseInstance',
+    courseMode: 'online',
+    courseWorkload: 'PT20M',
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<Layout metadata={metadata} metaPixelId="1700269051050500">
+  <script type="application/ld+json" set:html={JSON.stringify(courseSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <div class="l101">
+    <div class="l101-ambient" aria-hidden="true">
+      <div class="l101-blob l101-blob-1"></div>
+      <div class="l101-blob l101-blob-2"></div>
+      <div class="l101-blob l101-blob-3"></div>
+    </div>
+
+    <!-- ════ HERO ════ -->
+    <section class="lp-hero" id="top">
+      <div class="l101-container">
+        <span class="l101-tag">Free · No signup · 4 modules</span>
+        <h1 class="lp-h1">
+          Learn how AI<br />
+          <span class="l101-gradient">actually works</span>
+        </h1>
+        <p class="lp-lede">
+          Not the hype, not the doom, not a 40-minute video that tells you AI is "a game changer" and stops there. Four
+          short modules where you do something with your hands and come out understanding the thing — including why it
+          lies to you and how to stop it.
+        </p>
+
+        <div class="lp-cta-row">
+          <a href="#m-jargon" class="l101-btn l101-btn-lg" data-cta="ai101-hero">Start with the basics ↓</a>
+          <a href="/ai-masterclass-with-nas" class="l101-btn-ghost" data-cta="ai101-skip">
+            I already get it — show me the pack →
+          </a>
+        </div>
+
+        <p class="lp-trust">No account. Nothing to install. Works on your phone.</p>
+      </div>
+    </section>
+
+    <!-- ════ WHAT YOU WALK AWAY WITH ════ -->
+    <section class="l101-section-tight l101-section-alt">
+      <div class="l101-container">
+        <div class="lp-promise">
+          <div class="lp-promise-card">
+            <span class="lp-promise-icon" aria-hidden="true">🧠</span>
+            <h3>You'll understand what's really happening</h3>
+            <p>One idea explains nearly every strange thing AI does. You'll have it in about 60 seconds.</p>
+          </div>
+          <div class="lp-promise-card">
+            <span class="lp-promise-icon" aria-hidden="true">✍️</span>
+            <h3>You'll write prompts that work</h3>
+            <p>
+              The five levers, and the one almost nobody pulls. This is most of the gap between people who rate AI and
+              people who don't.
+            </p>
+          </div>
+          <div class="lp-promise-card">
+            <span class="lp-promise-icon" aria-hidden="true">🎯</span>
+            <h3>You'll know what to build first</h3>
+            <p>
+              Understanding AI and having built something with it are different things. By the end you'll know which one
+              you're missing.
+            </p>
+          </div>
+        </div>
+
+        <p class="lp-contract">
+          And finish <strong>any one module</strong> — not all four — and you've earned ${REWARD_SAVING} off my build-it
+          pack. That's the deal, stated up front.
+        </p>
+      </div>
+    </section>
+
+    <!-- ════ PROGRESS ════ -->
+    <section class="l101-section-tight">
+      <div class="l101-container">
+        <!-- Shown only when there's something to resume. -->
+        <div class="lp-resume" data-lp-resume hidden>
+          <p>
+            Welcome back — you're <strong><span data-lp-resume-n>0</span> of {MODULE_IDS.length}</strong> in.
+          </p>
+          <button type="button" class="lp-reset" data-lp-reset>Start over</button>
+        </div>
+
+        <ProgressRail />
+      </div>
+    </section>
+
+    <!-- ════ LESSON A ════ -->
+    <section class="l101-section l101-section-alt">
+      <div class="l101-container">
+        <div class="l101-head">
+          <span class="l101-tag">Before we start</span>
+          <h2 class="l101-title">The 60-second version</h2>
+          <p class="l101-sub">Three things. If you only read this far, you'll still be ahead of most people.</p>
+        </div>
+
+        <div class="lp-lessons">
+          {
+            lessonsA.map((l) => (
+              <article class="lp-lesson l101-card l101-card-hover">
+                <span class="lp-lesson-n">{l.n}</span>
+                <h3 class="lp-lesson-t">{l.title}</h3>
+                <p class="lp-lesson-b">{l.body}</p>
+              </article>
+            ))
+          }
+        </div>
+
+        <!-- How a model gets from your words to its answer. Theme-aware via currentColor. -->
+        <figure class="lp-flow">
+          <svg viewBox="0 0 680 92" role="img" aria-labelledby="lp-flow-t" class="lp-flow-svg">
+            <title id="lp-flow-t">
+              Your prompt is split into tokens, the model predicts the most likely next token, repeatedly, and those
+              predictions become the answer you read.
+            </title>
+            {
+              [
+                { x: 0, label: 'Your prompt', sub: 'words' },
+                { x: 176, label: 'Tokens', sub: 'chunks of text' },
+                { x: 352, label: 'Prediction', sub: 'what comes next' },
+                { x: 528, label: 'The answer', sub: 'one chunk at a time' },
+              ].map((s, i) => (
+                <>
+                  <rect x={s.x} y="14" width="152" height="52" rx="12" class="lp-flow-box" />
+                  <text x={s.x + 76} y="38" text-anchor="middle" class="lp-flow-label">
+                    {s.label}
+                  </text>
+                  <text x={s.x + 76} y="54" text-anchor="middle" class="lp-flow-sub">
+                    {s.sub}
+                  </text>
+                  {i < 3 && (
+                    <path d={`M${s.x + 156} 40 L${s.x + 172} 40`} class="lp-flow-arrow" marker-end="url(#lp-arrow)" />
+                  )}
+                </>
+              ))
+            }
+            <defs>
+              <marker id="lp-arrow" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1 L6 4 L0 7 z" class="lp-flow-head"></path>
+              </marker>
+            </defs>
+          </svg>
+          <figcaption class="lp-flow-cap">
+            No lookup step anywhere in that chain. That's the whole reason it can be wrong and sound certain.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ════ MODULE 1 ════ -->
+    <JargonDecoder />
+
+    <!-- ════ LESSON B ════ -->
+    <section class="l101-section l101-section-alt">
+      <div class="l101-container">
+        <div class="l101-head">
+          <span class="l101-tag">Before module 02</span>
+          <h2 class="l101-title">What makes a prompt actually work</h2>
+          <p class="l101-sub">
+            Five levers. Most people pull one — the task — and wonder why the output is generic. You're about to
+            practise all five.
+          </p>
+        </div>
+
+        <ol class="lp-levers">
+          {
+            levers.map((l, i) => (
+              <li class="lp-lever l101-card">
+                <div class="lp-lever-head">
+                  <span class="lp-lever-n">{String(i + 1).padStart(2, '0')}</span>
+                  <h3 class="lp-lever-name">{l.name}</h3>
+                </div>
+                <p class="lp-lever-what">{l.what}</p>
+                <p class="lp-lever-eg">“{l.example}”</p>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </section>
+
+    <!-- ════ MODULE 2 ════ -->
+    <PromptLab />
+
+    <!-- ════ MODULE 3 ════ -->
+    <SpotTheMistake />
+
+    <!-- ════ MODULE 4 ════ -->
+    <LiteracyQuiz />
+
+    <!-- ════ BRIDGE ════ -->
+    <section class="l101-section" id="whats-next">
+      <div class="l101-container">
+        <div class="lp-bridge">
+          <span class="l101-tag">So what now?</span>
+          <h2 class="l101-title">You understand it. You still haven't built anything with it.</h2>
+
+          <p class="l101-p">
+            That's not a criticism — it's just where almost everybody stops. And the honest truth is that the distance
+            between understanding AI and having something real, live on the internet, with your name on it, is much
+            shorter than it looks. It's a weekend.
+          </p>
+          <p class="l101-p">
+            The part nobody teaches is the boring middle bit: <strong>deploying</strong>. Every tutorial builds
+            something beautiful on your laptop and stops. That's the gap where most AI projects quietly die, and it's
+            the gap my pack exists to close — two step-by-step guides that get you from nothing to a real site on your
+            own domain, plus a call with me for the moment you get stuck.
+          </p>
+          <p class="l101-p">
+            On cost, so there's no mystery: a domain is about $10 a year and the hosting I teach is free. The pack is <span
+              class="l101-strike">${PRICE_NOW}</span
+            >
+            <strong>${REWARD.price}</strong> once you've finished a module here.
+          </p>
+
+          <div class="lp-bridge-cta" data-lp-bridge>
+            <a href={CHECKOUT_LINK_PROMO} class="l101-btn l101-btn-lg" data-cta="ai101-bridge">
+              See the pack — ${REWARD.price} →
+            </a>
+            <p class="lp-bridge-note">Your code <code>{REWARD.code}</code> is applied at checkout.</p>
+          </div>
+
+          <div class="lp-free">
+            <p class="lp-free-title">And if you'd rather keep going for free — genuinely, do:</p>
+            <ul class="lp-free-list">
+              <li><a href="/blog">Read the posts</a> — new ones most weeks, same no-fluff approach.</li>
+              <li><a href="/guides">Grab a free guide</a> — short PDFs on specific things.</li>
+              <li>
+                <a href="https://www.youtube.com/@sellingwithnas" target="_blank" rel="noopener noreferrer">
+                  Watch on YouTube
+                </a>
+                — I build real things on camera.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════ FAQ ════ -->
+    <section class="l101-section l101-section-alt">
+      <div class="l101-container">
+        <div class="l101-head">
+          <span class="l101-tag">Questions</span>
+          <h2 class="l101-title">Before you start</h2>
+        </div>
+
+        <div class="lp-faqs">
+          {
+            faqs.map((f) => (
+              <details class="lp-faq l101-card">
+                <summary class="lp-faq-q">{f.q}</summary>
+                <p class="lp-faq-a">{f.a}</p>
+              </details>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <div class="lp-back-row">
+      <a href="/" class="l101-btn-ghost">← Back to Home</a>
+    </div>
+
+    <!-- ════ STICKY BAR ════
+         One sticky element on the page, at the bottom - the header is already
+         `position: sticky; top: 0`, so nothing competes with it. -->
+    <div class="lp-sticky" id="lp-sticky" aria-hidden="true">
+      <div class="lp-sticky-inner">
+        <!-- Pre-unlock -->
+        <div class="lp-sticky-progress" data-lp-sticky="progress">
+          <div class="lp-sticky-copy">
+            <strong><span data-lp-sticky-n>0</span> of {MODULE_IDS.length} done</strong>
+            <span>Finish any one module for ${REWARD_SAVING} off</span>
+          </div>
+          <a href="#m-jargon" class="l101-btn l101-btn-sm" data-cta="ai101-sticky-resume">Keep going ↓</a>
+        </div>
+
+        <!-- Post-unlock -->
+        <div class="lp-sticky-reward" data-lp-sticky="reward" hidden>
+          <div class="lp-sticky-copy">
+            <strong>${REWARD_SAVING} off unlocked</strong>
+            <span class="lp-sticky-price">
+              <span class="l101-strike">${PRICE_NOW}</span> ${REWARD.price}
+            </span>
+          </div>
+          <span class="l101-code lp-sticky-code">{REWARD.code}</span>
+          <button type="button" class="lp-sticky-copybtn" data-l101-copy={REWARD.code}>Copy</button>
+          <a href={CHECKOUT_LINK_PROMO} class="l101-btn l101-btn-sm" data-cta="ai101-sticky">Use it →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  // ── Page controller ──
+  // Owns the sticky bar, the resume banner and every analytics call. Modules
+  // only ever emit events upward; nothing is broadcast down to them, because
+  // script execution order across hoisted bundles is not guaranteed.
+  import { loadState, doneCount, resetState, MODULE_IDS } from '~/data/learn-ai-101';
+
+  type Gtag = (...args: unknown[]) => void;
+  type Fbq = (...args: unknown[]) => void;
+  const gtag = () => (window as unknown as { gtag?: Gtag }).gtag;
+  const fbq = () => (window as unknown as { fbq?: Fbq }).fbq;
+
+  function track(event: string, params?: Record<string, unknown>) {
+    gtag()?.('event', event, params ?? {});
+  }
+
+  function initController() {
+    const root = document.querySelector<HTMLElement>('.l101');
+    if (!root || root.dataset.l101Controller === '1') return;
+    root.dataset.l101Controller = '1';
+
+    const bar = document.getElementById('lp-sticky');
+    const progressPane = document.querySelector<HTMLElement>('[data-lp-sticky="progress"]');
+    const rewardPane = document.querySelector<HTMLElement>('[data-lp-sticky="reward"]');
+    const stickyN = document.querySelector<HTMLElement>('[data-lp-sticky-n]');
+    const resume = document.querySelector<HTMLElement>('[data-lp-resume]');
+    const resumeN = document.querySelector<HTMLElement>('[data-lp-resume-n]');
+
+    function syncChrome() {
+      const state = loadState();
+      const done = doneCount(state);
+
+      if (stickyN) stickyN.textContent = String(done);
+      if (progressPane) progressPane.hidden = state.unlocked;
+      if (rewardPane) rewardPane.hidden = !state.unlocked;
+
+      // Only offer a resume when there is genuinely something to resume.
+      const midway = done > 0 && done < MODULE_IDS.length;
+      if (resume) resume.hidden = !midway;
+      if (resumeN) resumeN.textContent = String(done);
+    }
+
+    // ── analytics ──
+    let startedSent = false;
+    document.addEventListener('l101:started', () => {
+      if (startedSent) return;
+      startedSent = true;
+      track('ai101_start');
+      fbq()?.('trackCustom', 'AI101Start');
+    });
+
+    // Guard per module so a resume can never double-count a completion.
+    const counted = new Set<string>();
+    document.addEventListener('l101:progress', (e) => {
+      const d = (e as CustomEvent).detail as { module: string; done: boolean; score: number; total: number };
+      if (d?.done && !counted.has(d.module)) {
+        counted.add(d.module);
+        track('ai101_module_complete', { module_id: d.module, score: d.score, total: d.total });
+      }
+      syncChrome();
+    });
+
+    document.addEventListener('l101:unlock', (e) => {
+      const d = (e as CustomEvent).detail as { module: string };
+      track('ai101_reward_unlocked', { module_id: d?.module });
+      // The retargeting audience for the pack.
+      fbq()?.('trackCustom', 'AI101Unlock');
+      syncChrome();
+    });
+
+    document.addEventListener('l101:quiz-submitted', (e) => {
+      const d = (e as CustomEvent).detail as { score: number; total: number; tier: string };
+      track('ai101_quiz_complete', { value: d?.score, total: d?.total, tier: d?.tier });
+      fbq()?.('trackCustom', 'AI101Complete', { score: d?.score, tier: d?.tier });
+    });
+
+    document.addEventListener('click', (e) => {
+      const cta = (e.target as HTMLElement | null)?.closest<HTMLElement>('a[data-cta]');
+      if (!cta) return;
+      const name = cta.getAttribute('data-cta') ?? '';
+      track('ai101_cta_click', { cta: name });
+      // Only the checkout-bound CTAs are checkout intent.
+      if (cta.getAttribute('href')?.includes('buy.stripe.com')) {
+        fbq()?.('track', 'InitiateCheckout', { value: 77, currency: 'USD', source_section: name });
+      }
+    });
+
+    // ── start over ──
+    document.querySelector<HTMLButtonElement>('[data-lp-reset]')?.addEventListener('click', () => {
+      resetState();
+      window.location.reload();
+    });
+
+    // ── reveal the sticky bar between the hero and the bridge CTA ──
+    if (bar) {
+      const hero = document.querySelector('.lp-hero');
+      const bridge = document.querySelector('[data-lp-bridge]');
+      let pastHero = false;
+      let atBridge = false;
+
+      const apply = () => {
+        const show = pastHero && !atBridge;
+        bar.classList.toggle('lp-sticky-on', show);
+        bar.setAttribute('aria-hidden', show ? 'false' : 'true');
+      };
+
+      if (hero) {
+        new IntersectionObserver(
+          ([entry]) => {
+            pastHero = !entry.isIntersecting;
+            apply();
+          },
+          { threshold: 0 }
+        ).observe(hero);
+      }
+      if (bridge) {
+        new IntersectionObserver(
+          ([entry]) => {
+            atBridge = entry.isIntersecting;
+            apply();
+          },
+          { threshold: 0.2 }
+        ).observe(bridge);
+      }
+    }
+
+    syncChrome();
+
+    // Report a resumed session once, after the chrome is in sync.
+    const done = doneCount(loadState());
+    if (done > 0) track('ai101_resume', { modules_done: done });
+  }
+
+  initController();
+  document.addEventListener('astro:page-load', initController);
+  document.addEventListener('astro:after-swap', initController);
+</script>
+
+<style>
+  /* ════ HERO ════ */
+  .lp-hero {
+    position: relative;
+    z-index: 1;
+    padding: 76px 0 64px;
+    text-align: center;
+  }
+  .lp-h1 {
+    font-size: clamp(2.1rem, 6vw, 3.6rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+    margin: 0 0 20px;
+    color: var(--l101-text);
+  }
+  .lp-lede {
+    max-width: 640px;
+    margin: 0 auto 32px;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--l101-muted);
+  }
+  .lp-cta-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .lp-trust {
+    margin: 22px 0 0;
+    font-size: 0.82rem;
+    color: var(--l101-subtle);
+  }
+
+  /* ════ PROMISE ════ */
+  .lp-promise {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  .lp-promise-card {
+    padding: 24px 22px;
+    background: var(--l101-card);
+    border: 1px solid var(--l101-border);
+    border-radius: 16px;
+  }
+  .lp-promise-icon {
+    display: block;
+    font-size: 1.5rem;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .lp-promise-card h3 {
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--l101-text);
+    margin: 0 0 8px;
+  }
+  .lp-promise-card p {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--l101-muted);
+    margin: 0;
+  }
+  .lp-contract {
+    max-width: 620px;
+    margin: 26px auto 0;
+    padding: 15px 20px;
+    text-align: center;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--l101-body);
+    background: var(--l101-card);
+    border: 1px dashed var(--l101-subtle);
+    border-radius: 14px;
+  }
+  .lp-contract strong {
+    color: var(--l101-text);
+  }
+
+  /* ════ RESUME ════ */
+  .lp-resume {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+    max-width: 760px;
+    margin: 0 auto 16px;
+    padding: 12px 18px;
+    background: var(--l101-ok-bg);
+    border: 1px solid var(--l101-ok-border);
+    border-radius: 12px;
+  }
+  .lp-resume p {
+    margin: 0;
+    font-size: 0.88rem;
+    color: var(--l101-ok-fg);
+  }
+  .lp-reset {
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 600;
+    background: none;
+    border: none;
+    color: var(--l101-muted);
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+  }
+  .lp-reset:hover {
+    color: var(--l101-text);
+  }
+
+  /* ════ LESSON A ════ */
+  .lp-lessons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  .lp-lesson {
+    padding: 26px 24px;
+  }
+  .lp-lesson-n {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--l101-purple);
+    margin-bottom: 10px;
+  }
+  .lp-lesson-t {
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.35;
+    color: var(--l101-text);
+    margin: 0 0 12px;
+  }
+  .lp-lesson-b {
+    font-size: 0.9rem;
+    line-height: 1.68;
+    color: var(--l101-muted);
+    margin: 0;
+  }
+
+  /* ════ FLOW DIAGRAM ════ */
+  .lp-flow {
+    margin: 40px 0 0;
+    overflow-x: auto;
+  }
+  .lp-flow-svg {
+    display: block;
+    width: 100%;
+    min-width: 600px;
+    height: auto;
+    color: var(--l101-muted);
+  }
+  .lp-flow-box {
+    fill: var(--l101-card);
+    stroke: var(--l101-border);
+    stroke-width: 1.5;
+  }
+  .lp-flow-label {
+    fill: var(--l101-text);
+    font-size: 13px;
+    font-weight: 700;
+    font-family: inherit;
+  }
+  .lp-flow-sub {
+    fill: var(--l101-subtle);
+    font-size: 10px;
+    font-family: inherit;
+  }
+  .lp-flow-arrow {
+    stroke: var(--l101-subtle);
+    stroke-width: 1.5;
+    fill: none;
+  }
+  .lp-flow-head {
+    fill: var(--l101-subtle);
+  }
+  .lp-flow-cap {
+    margin: 14px 0 0;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--l101-muted);
+  }
+
+  /* ════ LEVERS ════ */
+  .lp-levers {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 14px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .lp-lever {
+    padding: 20px 22px;
+  }
+  .lp-lever-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .lp-lever-n {
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: var(--l101-purple);
+    font-variant-numeric: tabular-nums;
+  }
+  .lp-lever-name {
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--l101-text);
+    margin: 0;
+  }
+  .lp-lever-what {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--l101-muted);
+    margin: 0 0 12px;
+  }
+  .lp-lever-eg {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--l101-body);
+    margin: 0;
+    padding: 11px 14px;
+    background: var(--l101-bg-alt);
+    border-left: 2px solid var(--l101-purple);
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+  }
+
+  /* ════ BRIDGE ════ */
+  .lp-bridge {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .lp-bridge .l101-title {
+    margin-bottom: 20px;
+  }
+  .lp-bridge-cta {
+    margin: 30px 0;
+  }
+  .lp-bridge-note {
+    margin: 12px 0 0;
+    font-size: 0.82rem;
+    color: var(--l101-subtle);
+  }
+  .lp-bridge-note code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--l101-text);
+  }
+  .lp-free {
+    margin-top: 34px;
+    padding-top: 26px;
+    border-top: 1px solid var(--l101-border);
+  }
+  .lp-free-title {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--l101-text);
+    margin: 0 0 12px;
+  }
+  .lp-free-list {
+    margin: 0;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .lp-free-list li {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--l101-muted);
+  }
+  .lp-free-list a {
+    color: var(--l101-purple);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .lp-free-list a:hover {
+    text-decoration: underline;
+  }
+
+  /* ════ FAQ ════ */
+  .lp-faqs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+  .lp-faq {
+    padding: 0;
+  }
+  .lp-faq-q {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 17px 20px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--l101-text);
+    cursor: pointer;
+    list-style: none;
+  }
+  .lp-faq-q::-webkit-details-marker {
+    display: none;
+  }
+  .lp-faq-q::after {
+    content: '＋';
+    margin-left: auto;
+    color: var(--l101-purple);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .lp-faq[open] .lp-faq-q::after {
+    content: '−';
+  }
+  .lp-faq-a {
+    margin: 0;
+    padding: 0 20px 18px;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--l101-muted);
+  }
+
+  .lp-back-row {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 0 0 56px;
+  }
+
+  /* ════ STICKY BAR ════ */
+  .lp-sticky {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 40;
+    padding: 12px 0 max(12px, env(safe-area-inset-bottom));
+    background: rgba(255, 255, 255, 0.94);
+    border-top: 1px solid var(--l101-border);
+    transform: translateY(110%);
+    transition: transform 0.3s var(--l101-ease);
+  }
+  :global(.dark) .lp-sticky {
+    background: rgba(5, 5, 15, 0.94);
+  }
+  .lp-sticky-on {
+    transform: translateY(0);
+  }
+  .lp-sticky-inner {
+    max-width: var(--l101-max-w);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .lp-sticky-progress,
+  .lp-sticky-reward {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .lp-sticky-copy {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
+  }
+  .lp-sticky-copy strong {
+    font-size: 0.92rem;
+    font-weight: 800;
+    color: var(--l101-text);
+  }
+  .lp-sticky-copy span {
+    font-size: 0.78rem;
+    color: var(--l101-muted);
+  }
+  .lp-sticky-price .l101-strike {
+    font-size: 0.78rem;
+  }
+  .lp-sticky-code {
+    flex-shrink: 0;
+    font-size: 0.82rem;
+    padding: 6px 11px;
+  }
+  .lp-sticky-copybtn {
+    flex-shrink: 0;
+    font-family: inherit;
+    font-size: 0.76rem;
+    font-weight: 700;
+    padding: 7px 12px;
+    border-radius: 9px;
+    border: 1px solid var(--l101-border);
+    background: transparent;
+    color: var(--l101-muted);
+    cursor: pointer;
+    min-width: 66px;
+  }
+  .lp-sticky-copybtn:hover {
+    color: var(--l101-text);
+    border-color: var(--l101-purple);
+  }
+
+  /* ════ RESPONSIVE ════ */
+  @media (max-width: 900px) {
+    .lp-promise,
+    .lp-lessons {
+      grid-template-columns: 1fr;
+    }
+    .lp-hero {
+      padding: 56px 0 48px;
+    }
+  }
+  @media (max-width: 720px) {
+    .lp-sticky-code {
+      display: none;
+    }
+  }
+  @media (max-width: 640px) {
+    .lp-cta-row {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .lp-cta-row a {
+      text-align: center;
+    }
+    .lp-sticky-copy span {
+      display: none;
+    }
+    .lp-sticky-copybtn {
+      display: none;
+    }
+    .lp-flow-svg {
+      min-width: 560px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lp-sticky {
+      transition: none;
+    }
+  }
+</style>
