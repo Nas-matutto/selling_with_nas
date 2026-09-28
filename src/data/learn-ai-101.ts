@@ -8,34 +8,6 @@
 // ─────────────────────────────────────────────────────────────
 
 // ═══════════════════════════════════════════════════════════
-// LESSON A - "The 60-second version"
-// ═══════════════════════════════════════════════════════════
-
-export interface Lesson {
-  n: string;
-  title: string;
-  body: string;
-}
-
-export const lessonsA: Lesson[] = [
-  {
-    n: '01',
-    title: "It's autocomplete with a library card",
-    body: "When you ask an AI something, it isn't looking up an answer. It's predicting what text should come next, one chunk at a time, based on patterns it absorbed from an enormous amount of writing. That's it. That one sentence explains about 90% of everything weird you've seen AI do - and once you've got it, the rest of this page is easy.",
-  },
-  {
-    n: '02',
-    title: 'Which is why it can be confidently wrong',
-    body: "It has no idea whether it's right. It's producing the most plausible-looking next words, and plausible-looking is not the same as true. So when it invents a statistic or a source, that isn't a glitch they'll patch out - it's what prediction looks like when the pattern runs out and there's nothing solid underneath. Fluent does not mean correct.",
-  },
-  {
-    n: '03',
-    title: 'And why your wording changes everything',
-    body: 'If the output depends on patterns in your input, then your input is the steering wheel. Same model, same question, wildly different answers depending on how you frame it. Most people who think AI is underwhelming are writing three-word questions. The people getting remarkable results are writing briefs.',
-  },
-];
-
-// ═══════════════════════════════════════════════════════════
 // MODULE 1 - Jargon Decoder
 // ═══════════════════════════════════════════════════════════
 
@@ -117,50 +89,6 @@ export const terms: Term[] = [
     plain:
       'Retrieval-Augmented Generation. A fancy name for a simple trick: find the relevant documents first, then hand them to the model along with the question.',
     why: 'It is how you get answers grounded in YOUR documents - your notes, your policies, your product - rather than the internet in general.',
-  },
-];
-
-// ═══════════════════════════════════════════════════════════
-// LESSON B - the five levers of a prompt that works
-// ═══════════════════════════════════════════════════════════
-
-export interface Lever {
-  id: string;
-  name: string;
-  what: string;
-  example: string;
-}
-
-export const levers: Lever[] = [
-  {
-    id: 'role',
-    name: 'Role',
-    what: 'Tell it who to be. This quietly sets vocabulary, assumptions and depth.',
-    example: 'You are a conversion copywriter who writes for small e-commerce brands.',
-  },
-  {
-    id: 'task',
-    name: 'Task',
-    what: 'One concrete job, stated plainly. Not a topic - an instruction.',
-    example: 'Write three product description options for the item below.',
-  },
-  {
-    id: 'context',
-    name: 'Context',
-    what: 'Everything it cannot possibly know. This is the lever most people skip entirely.',
-    example: 'The product is a £40 refillable candle. Buyers are 30-45, care about waste, and have never heard of us.',
-  },
-  {
-    id: 'constraints',
-    name: 'Constraints',
-    what: 'The boundaries. Length, tone, what to avoid, what must appear.',
-    example: 'Under 60 words each. No exclamation marks, no "elevate", no "unleash". Mention the refill once.',
-  },
-  {
-    id: 'format',
-    name: 'Format',
-    what: 'The exact shape you want back, so you can use it without reformatting.',
-    example: 'Return a numbered list. After each option, one line on who it is aimed at.',
   },
 ];
 
@@ -577,7 +505,7 @@ export interface Faq {
 export const faqs: Faq[] = [
   {
     q: 'Is this actually free?',
-    a: 'Yes, all of it. No account, no email required, no trial. I wrote it because most "learn AI" content is either a sales pitch in disguise or so abstract you cannot do anything with it afterwards. If you finish and feel like building something with me, there is a paid pack - but you owe me nothing for this.',
+    a: 'Yes, all of it. No account, no email required, no trial.',
   },
   {
     q: 'Do I need to sign up or install anything?',
@@ -585,15 +513,11 @@ export const faqs: Faq[] = [
   },
   {
     q: 'How long does it take?',
-    a: 'About 15-20 minutes for all four modules, and you do not have to do them in order or all in one sitting. Finishing any single one already earns you the discount.',
+    a: 'About 15-20 minutes for all four games, and you do not have to do them in order or all in one sitting.',
   },
   {
     q: 'I scored badly. Am I too late to learn this?',
-    a: 'Not even slightly, and a low score is genuinely not a problem - most of the value here is in the explanations, not the number. Everyone confident about AI today was clueless about it recently; the field is about three years old in its current form. You are not behind, you are early. And the discount does not depend on your score.',
-  },
-  {
-    q: 'What is the $97 thing you keep mentioning?',
-    a: 'A two-guide pack that takes you from nothing to a real website, live on your own domain, plus a 1-on-1 call with me for when you get stuck. It is the practical follow-on from this page: you now understand AI, that teaches you to ship something with it. Finishing a module here takes $20 off.',
+    a: 'Not even slightly - most of the value here is in the explanations, not the number. Everyone confident about AI today was clueless about it recently. You are not behind, you are early.',
   },
 ];
 

@@ -11,12 +11,9 @@ import RewardCard from './RewardCard.astro';
 <section class="l101-section" id="m-prompts">
   <div class="l101-container">
     <div class="l101-head">
-      <span class="l101-tag">Module 02 · 6 minutes</span>
+      <span class="l101-tag">Game 02 · 6 min</span>
       <h2 class="l101-title">The prompt lab</h2>
-      <p class="l101-sub">
-        Five real jobs. For each one you'll see the prompt most people write, then three rewrites — pick the strongest.
-        You get told why either way, and getting it wrong teaches you more than getting it right.
-      </p>
+      <p class="l101-sub">Five weak prompts. Pick the strongest rewrite for each.</p>
     </div>
 
     <div class="pl" data-l101-module="prompts">
@@ -74,7 +71,7 @@ import RewardCard from './RewardCard.astro';
         actually meant.
       </p>
 
-      <RewardCard after="prompts" nextUp="Module 03 is the one that stops you getting embarrassed by AI in public." />
+      <RewardCard after="prompts" nextUp="Game 03 - spot the AI mistake." />
     </div>
   </div>
 </section>
@@ -276,6 +273,10 @@ import RewardCard from './RewardCard.astro';
     display: flex;
     flex-direction: column;
     gap: 10px;
+  }
+  /* Revealed on answer - without this, `display: flex` beats [hidden]. */
+  .pl-verdicts[hidden] {
+    display: none;
   }
   .pl-verdict {
     font-size: 0.88rem;

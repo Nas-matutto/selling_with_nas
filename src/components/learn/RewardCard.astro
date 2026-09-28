@@ -149,11 +149,16 @@ const { after, nextUp } = Astro.props;
     }
   }
 
-  // Delegated at document level so the sticky bar's copy button works too,
-  // without that bar needing its own handler.
+  // Delegated at document level so every card instance shares one handler.
+  //
+  // The once-only guard lives on `window`, NOT on <html>: a `data-l101-copy`
+  // attribute on the root element would match the `[data-l101-copy]` selector
+  // below, so every click anywhere on the page would overwrite the whole
+  // document's textContent with "Copied ✓".
   function initCopyButtons() {
-    if (document.documentElement.dataset.l101Copy === '1') return;
-    document.documentElement.dataset.l101Copy = '1';
+    const w = window as unknown as { __l101CopyReady?: boolean };
+    if (w.__l101CopyReady) return;
+    w.__l101CopyReady = true;
 
     document.addEventListener('click', async (e) => {
       const btn = (e.target as HTMLElement | null)?.closest<HTMLButtonElement>('[data-l101-copy]');
@@ -172,7 +177,7 @@ const { after, nextUp } = Astro.props;
 
       if (ok) {
         (window as unknown as { gtag?: (...a: unknown[]) => void }).gtag?.('event', 'ai101_code_copied', {
-          source: btn.closest('[data-rc-after]')?.getAttribute('data-rc-after') ?? 'sticky',
+          source: btn.closest('[data-rc-after]')?.getAttribute('data-rc-after') ?? 'unknown',
         });
       }
 

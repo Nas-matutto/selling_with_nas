@@ -2,11 +2,11 @@
 // The course spine: four segments, a count, and the reward chip.
 //
 // Deliberately NOT sticky. The site header is `position: sticky; top: 0`
-// (Header.astro), so a sticky rail would collide with it - and two sticky
-// elements on a phone is a lot of screen. Persistent progress lives in the
-// bottom sticky bar on the page instead; this is the in-flow version.
+// (Header.astro), so a sticky rail would collide with it.
+//
+// The chip only hints at "a surprise" - the discount itself is never named on
+// this page until a game is finished and the RewardCard reveals it.
 import { MODULE_IDS } from '~/data/learn-ai-101';
-import { REWARD_SAVING } from '~/data/pricing';
 
 const labels: Record<(typeof MODULE_IDS)[number], { n: string; name: string; href: string }> = {
   jargon: { n: '01', name: 'The words', href: '#m-jargon' },
@@ -19,14 +19,12 @@ const labels: Record<(typeof MODULE_IDS)[number], { n: string; name: string; hre
 <div class="pr-rail" data-pr-rail>
   <div class="pr-top">
     <div class="pr-count">
-      <strong data-pr-done>0</strong> of {MODULE_IDS.length} done
+      <strong data-pr-done>0</strong> of {MODULE_IDS.length} games done
     </div>
 
     <!-- Both states render; the script flips which is hidden. -->
-    <div class="pr-chip pr-chip-locked" data-pr-chip="locked">
-      🔒 Finish any one module to unlock ${REWARD_SAVING} off
-    </div>
-    <div class="pr-chip pr-chip-open" data-pr-chip="open" hidden>✓ ${REWARD_SAVING} discount unlocked</div>
+    <div class="pr-chip pr-chip-locked" data-pr-chip="locked">🎁 Complete a game and unlock a surprise</div>
+    <div class="pr-chip pr-chip-open" data-pr-chip="open" hidden>✓ Surprise unlocked</div>
   </div>
 
   <div
@@ -35,7 +33,7 @@ const labels: Record<(typeof MODULE_IDS)[number], { n: string; name: string; hre
     aria-valuemin="0"
     aria-valuemax={MODULE_IDS.length}
     aria-valuenow="0"
-    aria-valuetext={`0 of ${MODULE_IDS.length} modules complete`}
+    aria-valuetext={`0 of ${MODULE_IDS.length} games complete`}
     data-pr-bar
   >
     {
@@ -78,7 +76,7 @@ const labels: Record<(typeof MODULE_IDS)[number], { n: string; name: string; hre
     const bar = rail.querySelector<HTMLElement>('[data-pr-bar]');
     if (bar) {
       bar.setAttribute('aria-valuenow', String(done));
-      bar.setAttribute('aria-valuetext', `${done} of ${MODULE_IDS.length} modules complete`);
+      bar.setAttribute('aria-valuetext', `${done} of ${MODULE_IDS.length} games complete`);
     }
 
     for (const id of MODULE_IDS) {
