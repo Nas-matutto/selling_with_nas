@@ -30,6 +30,7 @@ Here's what we're covering:
 3. [Follow YouTube tutorials on AI workflows and automations](#3-follow-youtube-tutorials-on-ai-workflows-and-automations)
 4. [Play games that teach AI interactively](#4-play-games-that-teach-ai-interactively)
 5. [Get 1-on-1 mentorship](#5-get-1-on-1-mentorship)
+6. [Bonus: Learn the basics with free AI mini games](#bonus-learn-the-basics-with-free-ai-mini-games)
 
 
 ## 1. Watch short-form AI content from creators who teach it
@@ -154,6 +155,19 @@ It's application-based, so I can make sure it's the right fit for where you are 
 </div>
 
 
+## Bonus: Learn the basics with free AI mini games
+
+**Where to start:** [Learn AI 101](/learn-ai-101)
+**Cost:** Free, no signup
+**Best for:** Complete beginners who want the fundamentals in about 20 minutes
+
+If you want somewhere to start today, I built a page of four short mini games that teach you the AI basics by doing, not reading. You decode the ten words everyone uses and nobody explains, pick the strongest rewrite of a weak prompt, spot the answers where AI is confidently wrong, and finish with an eight-question check to see what stuck.
+
+Each game takes a few minutes, works on your phone, and saves your progress so you can come back to it later. It's a quick warm-up before a bigger game like AI Quest, and a good way to check you've got the fundamentals before you start building.
+
+[Play the Learn AI 101 mini games →](/learn-ai-101)
+
+
 ## How to become better at using AI (whichever way you learn)
 
 Learning AI and getting good at using it aren't quite the same thing. Whichever of the methods above you choose, these habits are what turn knowledge into skill:
@@ -174,6 +188,7 @@ Learning AI and getting good at using it aren't quite the same thing. Whichever 
 | YouTube tutorials | Implementing AI step by step | Free | <a href="https://www.youtube.com/@sellingwithnas" target="_blank" rel="noopener noreferrer">YouTube</a> |
 | AI learning games | Understanding how AI works | Free first area, $9.99 full game | <a href="https://talktomedataai.com" target="_blank" rel="noopener noreferrer">AI Quest</a> |
 | 1-on-1 mentorship | Getting results fast | Paid, application-based | <a href="https://tally.so/r/QKaM67" target="_blank" rel="noopener noreferrer">Apply here</a> |
+| Bonus: AI mini games | Learning the basics in 20 minutes | Free | [Learn AI 101](/learn-ai-101) |
 
 
 ## Nas' Note: you don't have to pick just one
