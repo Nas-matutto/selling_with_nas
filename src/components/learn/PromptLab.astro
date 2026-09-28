@@ -48,6 +48,12 @@ import RewardCard from './RewardCard.astro';
                 </div>
               </fieldset>
 
+              <div class="l101-check-row" data-pl-check-row>
+                <button type="button" class="l101-btn l101-btn-sm" data-pl-check disabled>
+                  Check answer
+                </button>
+              </div>
+
               {/* Explanations live in the markup, revealed on answer. */}
               <div class="pl-verdicts" data-pl-verdicts hidden>
                 {s.options.map((o) => (
@@ -99,6 +105,9 @@ import RewardCard from './RewardCard.astro';
       const ok = chosen === correct;
       const opts = item.querySelector<HTMLElement>('[data-pl-opts]');
       opts?.setAttribute('data-answered', '1');
+
+      const checkRow = item.querySelector<HTMLElement>('[data-pl-check-row]');
+      if (checkRow) checkRow.hidden = true;
 
       for (const label of item.querySelectorAll<HTMLElement>('[data-pl-opt]')) {
         const id = label.dataset.plOpt ?? '';
@@ -164,22 +173,36 @@ import RewardCard from './RewardCard.astro';
       );
     }
 
+    // Picking an option only selects it - they can still change their mind.
+    // Nothing is graded or saved until "Check answer", because on a phone the
+    // option cards fill the screen and a tap to stop a scroll would otherwise
+    // lock in an answer to the next question they never meant to give.
     root.addEventListener('change', (e) => {
       const input = e.target as HTMLInputElement | null;
       if (!input || input.type !== 'radio') return;
 
       const item = input.closest<HTMLElement>('[data-pl-item]');
-      const key = item?.dataset.plItem;
-      if (!item || !key || answers[key]) return; // one answer per item, no changing it
+      const check = item?.querySelector<HTMLButtonElement>('[data-pl-check]');
+      if (check) check.disabled = false;
+    });
 
-      answers[key] = input.value;
+    root.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement | null)?.closest<HTMLButtonElement>('[data-pl-check]');
+      if (!btn) return;
+
+      const item = btn.closest<HTMLElement>('[data-pl-item]');
+      const key = item?.dataset.plItem;
+      const chosen = item?.querySelector<HTMLInputElement>('input[type="radio"]:checked')?.value;
+      if (!item || !key || !chosen || answers[key]) return; // one answer per item, no changing it
+
+      answers[key] = chosen;
 
       if (!startSent) {
         startSent = true;
         document.dispatchEvent(new CustomEvent('l101:started', { detail: { module: ID } }));
       }
 
-      paintItem(item, input.value, true);
+      paintItem(item, chosen, true);
       sync(true);
     });
 

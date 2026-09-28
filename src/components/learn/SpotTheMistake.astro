@@ -54,6 +54,12 @@ import RewardCard from './RewardCard.astro';
                 </div>
               </fieldset>
 
+              <div class="l101-check-row" data-sm-check-row>
+                <button type="button" class="l101-btn l101-btn-sm" data-sm-check disabled>
+                  Check answer
+                </button>
+              </div>
+
               <div class="l101-fb" role="status" aria-live="polite" data-sm-fb />
               <p class="sm-explain" data-sm-explain hidden>
                 {m.explain}
@@ -116,6 +122,9 @@ import RewardCard from './RewardCard.astro';
         }
       }
 
+      const checkRow = item.querySelector<HTMLElement>('[data-sm-check-row]');
+      if (checkRow) checkRow.hidden = true;
+
       const fb = item.querySelector<HTMLElement>('[data-sm-fb]');
       if (fb) {
         fb.className = `l101-fb ${ok ? 'l101-fb-ok' : 'l101-fb-no'}`;
@@ -144,22 +153,34 @@ import RewardCard from './RewardCard.astro';
       );
     }
 
+    // Selecting only arms "Check answer" - see PromptLab for why a stray tap
+    // must never grade an item.
     root.addEventListener('change', (e) => {
       const input = e.target as HTMLInputElement | null;
       if (!input || input.type !== 'radio') return;
 
       const item = input.closest<HTMLElement>('[data-sm-item]');
-      const key = item?.dataset.smItem;
-      if (!item || !key || answers[key]) return;
+      const check = item?.querySelector<HTMLButtonElement>('[data-sm-check]');
+      if (check) check.disabled = false;
+    });
 
-      answers[key] = input.value;
+    root.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement | null)?.closest<HTMLButtonElement>('[data-sm-check]');
+      if (!btn) return;
+
+      const item = btn.closest<HTMLElement>('[data-sm-item]');
+      const key = item?.dataset.smItem;
+      const chosen = item?.querySelector<HTMLInputElement>('input[type="radio"]:checked')?.value;
+      if (!item || !key || !chosen || answers[key]) return;
+
+      answers[key] = chosen;
 
       if (!startSent) {
         startSent = true;
         document.dispatchEvent(new CustomEvent('l101:started', { detail: { module: ID } }));
       }
 
-      paintItem(item, input.value);
+      paintItem(item, chosen);
       sync(true);
     });
 

@@ -20,7 +20,7 @@ import PromptLab from '~/components/learn/PromptLab.astro';
 import SpotTheMistake from '~/components/learn/SpotTheMistake.astro';
 import LiteracyQuiz from '~/components/learn/LiteracyQuiz.astro';
 
-import { faqs, MODULE_IDS } from '~/data/learn-ai-101';
+import { faqs } from '~/data/learn-ai-101';
 
 const metadata = {
   title: 'Learn AI 101 — A Free, Hands-On Crash Course in How AI Actually Works',
@@ -77,9 +77,7 @@ const faqSchema = {
 
         <!-- Shown only when there's something to resume. -->
         <div class="lp-resume" data-lp-resume hidden>
-          <p>
-            Welcome back — you're <strong><span data-lp-resume-n>0</span> of {MODULE_IDS.length}</strong> in.
-          </p>
+          <p>Welcome back — your progress is saved.</p>
           <button type="button" class="lp-reset" data-lp-reset>Start over</button>
         </div>
 
@@ -147,16 +145,14 @@ const faqSchema = {
     root.dataset.l101Controller = '1';
 
     const resume = document.querySelector<HTMLElement>('[data-lp-resume]');
-    const resumeN = document.querySelector<HTMLElement>('[data-lp-resume-n]');
 
     function syncChrome() {
       const state = loadState();
-      const done = doneCount(state);
 
-      // Only offer a resume when there is genuinely something to resume.
-      const midway = done > 0 && done < MODULE_IDS.length;
-      if (resume) resume.hidden = !midway;
-      if (resumeN) resumeN.textContent = String(done);
+      // Offer "Start over" whenever anything is saved - including a game that
+      // is only partly answered, so a stale answer can always be cleared.
+      const started = MODULE_IDS.some((m) => Object.keys(state.modules[m].answers).length > 0);
+      if (resume) resume.hidden = !started;
     }
 
     // ── analytics ──

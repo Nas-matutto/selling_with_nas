@@ -172,6 +172,12 @@
   padding: 11px 22px;
   font-size: 0.86rem;
 }
+.l101-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
 .l101-btn-full {
   width: 100%;
   text-align: center;
@@ -307,6 +313,17 @@
   font-weight: 800;
   margin-left: auto;
   padding-left: 10px;
+}
+
+/* Picked but not yet checked - games 02 and 03 only grade on "Check answer",
+   so a stray tap while scrolling a phone can never lock in an answer. */
+.l101-opts:not([data-answered]) .l101-opt:has(input:checked) {
+  border-color: var(--l101-purple);
+  background: var(--l101-bg-alt);
+}
+.l101-check-row {
+  margin-top: 14px;
+  text-align: right;
 }
 
 /* Locked in once answered - pointer-events off, but focus still works. */
