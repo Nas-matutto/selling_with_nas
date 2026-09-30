@@ -7,6 +7,7 @@ import type { ImageMetadata } from 'astro';
 import nasProfile from '~/assets/images/nas-profile.jpg';
 import ogImage from '~/assets/images/Building a website Design.png';
 import Price from '~/components/pricing/Price.astro';
+import YouTubeEmbed from '~/components/common/YouTubeEmbed.astro';
 import { CHECKOUT_LINK, CHECKOUT_LINK_PROMO, PRICE_NOW, REWARD, REWARD_SAVING } from '~/data/pricing';
 
 // Auto-imports every review screenshot dropped into src/assets/images/reviews/.
@@ -120,9 +121,10 @@ const productSchema = {
 
 <div class="mc-page">
 
-  <!-- Only visible to someone arriving from Learn AI 101 (html.mc-promo). -->
+  <!-- Only visible once the discount is unlocked (html.mc-promo) - via Learn AI
+       101 or the email popup below. -->
   <div class="mc-promo-note">
-    🎉 Your Learn AI 101 discount is applied — <strong>${REWARD_SAVING} off</strong> at checkout with code
+    🎉 Your discount is applied — <strong>${REWARD_SAVING} off</strong> at checkout with code
     <code>{REWARD.code}</code>. ✓
   </div>
 
@@ -157,7 +159,7 @@ const productSchema = {
         <!-- Right: offer card -->
         <div class="mc-hero-right">
           <div class="mc-hero-booking-card">
-            <div class="mc-hbc-tag">The Build-It Pack</div>
+            <div class="mc-hbc-tag">Website Launch Pack</div>
 
             <div class="mc-price-row">
               <span class="mc-price-old"><Price variant="was" /></span>
@@ -189,6 +191,15 @@ const productSchema = {
           </div>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- ── VIDEO ── -->
+  <section class="mc-video-section">
+    <div class="mc-container">
+      <div class="mc-video">
+        <YouTubeEmbed id="8uCmQQ241G0" title="Launch your website with Claude" autoplay />
       </div>
     </div>
   </section>
@@ -576,22 +587,70 @@ const productSchema = {
     </div>
   </div>
 
+  <!-- ── DISCOUNT POPUP ── -->
+  <!-- Opened by the script below after 20s. The code is only shown once an
+       email has been sent to /api/discount-capture (which adds it to Brevo). -->
+  <dialog class="mc-popup" id="mc-popup" aria-labelledby="mc-popup-title">
+    <button type="button" class="mc-popup-close" data-popup-close aria-label="Close">×</button>
+
+    <div class="mc-popup-step" data-popup-step="form">
+      <p class="mc-popup-eyebrow">Before you go</p>
+      <h2 class="mc-popup-title" id="mc-popup-title">Get ${REWARD_SAVING} off the Website Launch Pack</h2>
+      <p class="mc-popup-body">
+        Pop your email in and I'll give you a code that takes it from <span class="mc-popup-strike">${PRICE_NOW}</span>
+        to <strong>${REWARD.price}</strong>.
+      </p>
+      <form class="mc-popup-form" id="mc-popup-form" novalidate>
+        <input
+          type="email"
+          name="email"
+          class="mc-popup-input"
+          placeholder="you@example.com"
+          autocomplete="email"
+          required
+          aria-label="Email address"
+        />
+        <button type="submit" class="mc-btn-book mc-popup-submit">Get my code →</button>
+        <p class="mc-popup-error" role="alert" hidden></p>
+      </form>
+      <p class="mc-popup-fine">No spam. Unsubscribe any time.</p>
+    </div>
+
+    <div class="mc-popup-step" data-popup-step="done" hidden>
+      <p class="mc-popup-eyebrow">🎉 It's yours</p>
+      <h2 class="mc-popup-title">Your ${REWARD_SAVING} discount code</h2>
+      <div class="mc-popup-code-row">
+        <code class="mc-popup-code">{REWARD.code}</code>
+        <button type="button" class="mc-popup-copy" data-popup-copy={REWARD.code}>Copy</button>
+      </div>
+      <p class="mc-popup-body">Already applied to every button on this page - nothing to paste.</p>
+      <a href={CHECKOUT_LINK_PROMO} class="mc-btn-book mc-btn-book-full" data-cta="popup">
+        Get Instant Access — ${REWARD.price} →
+      </a>
+    </div>
+  </dialog>
+
 </div>
 
 <script>
   // Did the is:inline script at the top flag this visitor as a Learn AI 101
   // graduate? The class is already on <html> by the time this runs.
-  const onDeal = document.documentElement.classList.contains('mc-promo');
+  // Re-read on every use: the discount popup can unlock it mid-visit.
+  const onDeal = () => document.documentElement.classList.contains('mc-promo');
 
-  if (onDeal) {
-    // Prefill the Stripe promotion code so nobody has to paste anything. Same
-    // payment link either way, so src/pages/api/stripe-webhook.ts fulfilment is
-    // untouched - it matches on the payment_link id, never on amount_total.
+  // Prefill the Stripe promotion code so nobody has to paste anything. Same
+  // payment link either way, so src/pages/api/stripe-webhook.ts fulfilment is
+  // untouched - it matches on the payment_link id, never on amount_total.
+  const applyDeal = () => {
+    document.documentElement.classList.add('mc-promo');
     document.querySelectorAll<HTMLAnchorElement>('a[data-promo-href]').forEach((a) => {
       const promo = a.dataset.promoHref;
       if (promo) a.href = promo;
     });
+  };
 
+  if (onDeal()) {
+    applyDeal();
     (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag?.('event', 'mc_promo_arrival');
   }
 
@@ -604,7 +663,7 @@ const productSchema = {
       fbq('track', 'InitiateCheckout', {
         content_name: 'Build Your Side-Hustle with Claude',
         // Must be the price actually charged, or ROAS maths is wrong.
-        value: onDeal ? 77 : 97,
+        value: onDeal() ? 77 : 97,
         currency: 'USD',
         source_section: el.getAttribute('data-cta'),
       });
@@ -644,6 +703,101 @@ const productSchema = {
         { threshold: 0.2 }
       ).observe(final);
     }
+  }
+
+  // Discount popup: opens 20s after load, once per visitor, and never for
+  // someone who already has the discount. Must match REWARD.storageKey in
+  // ~/data/pricing.ts - setting it is what keeps the discount on a later visit.
+  const REWARD_KEY = 'nas_ai101_reward';
+  const POPUP_SEEN_KEY = 'nas_mc_popup_seen';
+  const popup = document.getElementById('mc-popup') as HTMLDialogElement | null;
+
+  const store = (key: string) => {
+    try {
+      localStorage.setItem(key, '1');
+    } catch {
+      /* private mode - the popup may show again next visit, which is harmless */
+    }
+  };
+  const seen = () => {
+    try {
+      return localStorage.getItem(POPUP_SEEN_KEY) === '1';
+    } catch {
+      return false;
+    }
+  };
+
+  if (popup && typeof popup.showModal === 'function') {
+    const form = document.getElementById('mc-popup-form') as HTMLFormElement;
+    const input = form.querySelector<HTMLInputElement>('input[type="email"]')!;
+    const submit = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    const error = form.querySelector<HTMLElement>('.mc-popup-error')!;
+
+    setTimeout(() => {
+      if (onDeal() || seen() || document.querySelector('dialog[open]')) return;
+      popup.showModal();
+      store(POPUP_SEEN_KEY);
+    }, 20000);
+
+    popup.querySelectorAll('[data-popup-close]').forEach((b) => b.addEventListener('click', () => popup.close()));
+    // Click on the backdrop (the dialog element itself, outside its content) closes it.
+    popup.addEventListener('click', (e) => {
+      if (e.target === popup) popup.close();
+    });
+
+    const showError = (msg: string) => {
+      error.textContent = msg;
+      error.hidden = false;
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      error.hidden = true;
+      const email = input.value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showError('Please enter a valid email address.');
+        input.focus();
+        return;
+      }
+
+      submit.disabled = true;
+      submit.textContent = 'One sec…';
+      try {
+        const res = await fetch('/api/discount-capture', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+        if (!res.ok) throw new Error(String(res.status));
+      } catch {
+        showError('Something went wrong - please try again.');
+        submit.disabled = false;
+        submit.textContent = 'Get my code →';
+        return;
+      }
+
+      store(REWARD_KEY);
+      applyDeal();
+      popup.querySelector<HTMLElement>('[data-popup-step="form"]')!.hidden = true;
+      popup.querySelector<HTMLElement>('[data-popup-step="done"]')!.hidden = false;
+
+      const w = window as unknown as {
+        fbq?: (...args: unknown[]) => void;
+        gtag?: (...args: unknown[]) => void;
+      };
+      w.fbq?.('track', 'Lead', { content_name: 'Masterclass discount popup' });
+      w.gtag?.('event', 'mc_popup_claim');
+    });
+
+    popup.querySelector<HTMLButtonElement>('[data-popup-copy]')?.addEventListener('click', async (e) => {
+      const btn = e.currentTarget as HTMLButtonElement;
+      try {
+        await navigator.clipboard.writeText(btn.dataset.popupCopy || '');
+        btn.textContent = 'Copied ✓';
+      } catch {
+        /* clipboard blocked - the code is on screen anyway */
+      }
+    });
   }
 </script>
 
@@ -1363,6 +1517,132 @@ const productSchema = {
     margin-bottom: 28px;
     position: relative;
   }
+
+  /* ════ VIDEO ════ */
+  .mc-video-section { position: relative; z-index: 1; padding: 0 0 24px; }
+  .mc-video {
+    position: relative;
+    max-width: 860px;
+    margin: 0 auto;
+    aspect-ratio: 16 / 9;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #000;
+    border: 1.5px solid rgba(168,85,247,0.25);
+    box-shadow: 0 8px 40px rgba(168,85,247,0.12), 0 2px 12px rgba(0,0,0,0.05);
+  }
+  :global(.dark) .mc-video { border-color: rgba(168,85,247,0.3); }
+  /* :global because YouTubeEmbed injects the iframe at runtime, without this
+     page's scope attribute. */
+  .mc-video :global(iframe) { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  @media (max-width: 640px) {
+    .mc-video { border-radius: 14px; }
+  }
+
+  /* ════ DISCOUNT POPUP ════ */
+  .mc-popup {
+    width: min(440px, calc(100vw - 32px));
+    padding: 32px 28px 26px;
+    border: 1.5px solid rgba(168,85,247,0.25);
+    border-radius: 20px;
+    background: #ffffff;
+    color: #0f172a;
+    box-shadow: 0 20px 60px rgba(15,23,42,0.25);
+    text-align: center;
+  }
+  :global(.dark) .mc-popup { background: #0c0c1a; color: #e2e8f0; border-color: rgba(168,85,247,0.35); }
+  .mc-popup::backdrop { background: rgba(5,5,15,0.6); backdrop-filter: blur(3px); }
+  .mc-popup[open] { animation: mcPopIn 0.25s ease-out; }
+  @keyframes mcPopIn {
+    from { opacity: 0; transform: translateY(12px) scale(0.98); }
+    to   { opacity: 1; transform: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .mc-popup[open] { animation: none; }
+  }
+  .mc-popup-close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    width: 34px;
+    height: 34px;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: #94a3b8;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .mc-popup-close:hover { background: rgba(148,163,184,0.15); color: #64748b; }
+  .mc-popup-eyebrow {
+    margin: 0 0 8px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #a855f7;
+  }
+  .mc-popup-title {
+    margin: 0 0 10px;
+    font-size: 1.45rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.25;
+    color: #0f172a;
+  }
+  :global(.dark) .mc-popup-title { color: #f8fafc; }
+  .mc-popup-body { margin: 0 0 18px; font-size: 0.93rem; line-height: 1.6; color: #64748b; }
+  .mc-popup-body strong { color: #15803d; font-size: 1.05rem; }
+  :global(.dark) .mc-popup-body strong { color: #4ade80; }
+  .mc-popup-strike { text-decoration: line-through; color: #94a3b8; }
+  .mc-popup-form { display: flex; flex-direction: column; gap: 10px; }
+  .mc-popup-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px 16px;
+    font-size: 1rem;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 12px;
+    background: #ffffff;
+    color: #0f172a;
+  }
+  .mc-popup-input:focus { outline: none; border-color: #a855f7; box-shadow: 0 0 0 3px rgba(168,85,247,0.18); }
+  :global(.dark) .mc-popup-input { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.12); color: #f8fafc; }
+  .mc-popup-submit { width: 100%; border: 0; cursor: pointer; font-family: inherit; }
+  .mc-popup-submit:disabled { opacity: 0.7; cursor: wait; transform: none; }
+  .mc-popup-error { margin: 0; font-size: 0.84rem; color: #dc2626; }
+  .mc-popup-fine { margin: 12px 0 0; font-size: 0.76rem; color: #94a3b8; }
+  .mc-popup-code-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 6px 0 14px;
+    padding: 14px;
+    background: rgba(34,197,94,0.10);
+    border: 1px solid rgba(34,197,94,0.28);
+    border-radius: 12px;
+  }
+  .mc-popup-code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: #15803d;
+  }
+  :global(.dark) .mc-popup-code { color: #4ade80; }
+  .mc-popup-copy {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border: 1px solid rgba(34,197,94,0.35);
+    border-radius: 8px;
+    background: transparent;
+    color: #15803d;
+    cursor: pointer;
+  }
+  :global(.dark) .mc-popup-copy { color: #4ade80; }
 
   /* ════ STICKY BUY BAR ════ */
   .mc-sticky {

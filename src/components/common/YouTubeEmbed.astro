@@ -5,12 +5,17 @@
 //
 // Drop it inside any wrapper that already sizes/styles a child <iframe> to fill
 // it (e.g. .hp-yt-video-wrap, .ls-video) - the injected iframe inherits that CSS.
+//
+// `autoplay` swaps the iframe in on its own, muted (browsers block unmuted
+// autoplay), but only after the page has loaded and the video is near the
+// viewport - so the player JS still never competes with the page's first paint.
 interface Props {
   id: string;
   title?: string;
   class?: string;
+  autoplay?: boolean;
 }
-const { id, title = 'YouTube video', class: className } = Astro.props;
+const { id, title = 'YouTube video', class: className, autoplay = false } = Astro.props;
 // mqdefault is 16:9 (no letterbox bars) and always exists for every video.
 const thumb = `https://i.ytimg.com/vi/${id}/mqdefault.jpg`;
 ---
@@ -20,6 +25,7 @@ const thumb = `https://i.ytimg.com/vi/${id}/mqdefault.jpg`;
   class:list={['yt-lite', className]}
   data-ytid={id}
   data-title={title}
+  data-autoplay={autoplay ? '' : undefined}
   aria-label={`Play video: ${title}`}
 >
   <img class="yt-lite-thumb" src={thumb} alt="" loading="lazy" decoding="async" width="320" height="180" />
@@ -66,24 +72,48 @@ const thumb = `https://i.ytimg.com/vi/${id}/mqdefault.jpg`;
 </style>
 
 <script>
+  // Replace a facade with the real player. `muted` is for autoplay without a
+  // click - a click counts as user intent, so that path keeps its sound.
+  const load = (btn: HTMLElement, muted: boolean) => {
+    const id = btn.dataset.ytid;
+    if (!id || !btn.isConnected) return;
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&playsinline=1${muted ? '&mute=1' : ''}`;
+    iframe.title = btn.dataset.title || 'YouTube video';
+    iframe.allow =
+      'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    iframe.setAttribute('allowfullscreen', '');
+    // The parent wrapper already styles its child <iframe> to fill it.
+    btn.replaceWith(iframe);
+    if (!muted) iframe.focus();
+  };
+
   // One delegated listener handles every facade on the page (and, because it
   // lives on `document`, keeps working across Astro view-transition navigations).
   if (!(window as any).__ytLiteBound) {
     (window as any).__ytLiteBound = true;
     document.addEventListener('click', (e) => {
       const btn = (e.target as HTMLElement).closest<HTMLElement>('.yt-lite');
-      if (!btn) return;
-      const id = btn.dataset.ytid;
-      if (!id) return;
-      const iframe = document.createElement('iframe');
-      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
-      iframe.title = btn.dataset.title || 'YouTube video';
-      iframe.allow =
-        'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-      iframe.setAttribute('allowfullscreen', '');
-      // The parent wrapper already styles its child <iframe> to fill it.
-      btn.replaceWith(iframe);
-      iframe.focus();
+      if (btn) load(btn, false);
     });
+  }
+
+  const autoplayers = document.querySelectorAll<HTMLElement>('.yt-lite[data-autoplay]');
+  if (autoplayers.length) {
+    const start = () => {
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (!e.isIntersecting) return;
+            io.unobserve(e.target);
+            load(e.target as HTMLElement, true);
+          });
+        },
+        { rootMargin: '200px 0px' }
+      );
+      autoplayers.forEach((el) => io.observe(el));
+    };
+    if (document.readyState === 'complete') start();
+    else window.addEventListener('load', start, { once: true });
   }
 </script>
