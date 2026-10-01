@@ -530,9 +530,9 @@ export const faqs: Faq[] = [
 // ═══════════════════════════════════════════════════════════
 
 export const L101_KEY = 'nas_ai101_v1';
-/** Read by ai-masterclass-with-nas.astro. Kept separate from the progress blob
- *  so the cross-page contract does not depend on this file's shape. */
-export const L101_REWARD_KEY = 'nas_ai101_reward';
+/** No longer written. It used to carry the discount over to every later visit of
+ *  ai-masterclass-with-nas.astro; it is only cleared now, for old browsers. */
+const LEGACY_REWARD_KEY = 'nas_ai101_reward';
 
 export const MODULE_IDS = ['jargon', 'prompts', 'mistakes', 'quiz'] as const;
 export type ModuleId = (typeof MODULE_IDS)[number];
@@ -592,8 +592,6 @@ export function loadState(): L101State {
 export function saveState(state: L101State): void {
   try {
     localStorage.setItem(L101_KEY, JSON.stringify(state));
-    // Mirror the unlock into its own key for the masterclass page.
-    if (state.unlocked) localStorage.setItem(L101_REWARD_KEY, '1');
   } catch {
     /* private mode - this session still works, it just will not resume */
   }
@@ -634,7 +632,7 @@ export function doneCount(state: L101State): number {
 export function resetState(): void {
   try {
     localStorage.removeItem(L101_KEY);
-    localStorage.removeItem(L101_REWARD_KEY);
+    localStorage.removeItem(LEGACY_REWARD_KEY);
   } catch {
     /* nothing to clear */
   }

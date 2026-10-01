@@ -102,19 +102,19 @@ const productSchema = {
 <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 <script type="application/ld+json" set:html={JSON.stringify(productSchema)} />
 
-<!-- Runs before any price node is parsed, so a Learn AI 101 graduate never sees
-     $97 flash before $77. Fails open to full price, which is never wrong. -->
-<script is:inline define:vars={{ param: REWARD.param, key: REWARD.storageKey, flag: REWARD.flagClass }}>
+<!-- Runs before any price node is parsed, so someone clicking through from the
+     Learn AI 101 email never sees $97 flash before $77. Only this page view gets
+     the discount - nothing is remembered, so a later visit is back to full price. -->
+<script is:inline define:vars={{ param: REWARD.param, flag: REWARD.flagClass }}>
   (function () {
     try {
       if (new URLSearchParams(window.location.search).get('from') === param) {
-        localStorage.setItem(key, '1');
-      }
-      if (localStorage.getItem(key) === '1') {
         document.documentElement.classList.add(flag);
       }
+      // Older visits saved the discount permanently - clear that leftover.
+      localStorage.removeItem('nas_ai101_reward');
     } catch {
-      /* private mode or blocked storage - full price is the safe default */
+      /* private mode or blocked storage - nothing to clear */
     }
   })();
 </script>
@@ -706,9 +706,7 @@ const productSchema = {
   }
 
   // Discount popup: opens 20s after load, once per visitor, and never for
-  // someone who already has the discount. Must match REWARD.storageKey in
-  // ~/data/pricing.ts - setting it is what keeps the discount on a later visit.
-  const REWARD_KEY = 'nas_ai101_reward';
+  // someone who already has the discount on this page view.
   const POPUP_SEEN_KEY = 'nas_mc_popup_seen';
   const popup = document.getElementById('mc-popup') as HTMLDialogElement | null;
 
@@ -776,7 +774,6 @@ const productSchema = {
         return;
       }
 
-      store(REWARD_KEY);
       applyDeal();
       popup.querySelector<HTMLElement>('[data-popup-step="form"]')!.hidden = true;
       popup.querySelector<HTMLElement>('[data-popup-step="done"]')!.hidden = false;

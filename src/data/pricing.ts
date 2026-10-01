@@ -32,10 +32,12 @@ export const REWARD = {
   price: 77,
   /** ?from=ai101 - what Learn AI 101 appends when handing the visitor over. */
   param: 'ai101',
-  /** Set on <html> before first paint so CSS can pick the discounted price. */
+  /**
+   * Set on <html> before first paint so CSS can pick the discounted price.
+   * Deliberately never persisted: it applies to the one page view that carries
+   * ?from=ai101 (or where the popup is claimed), not to every later visit.
+   */
   flagClass: 'mc-promo',
-  /** localStorage key, so the discount survives a later visit with no query param. */
-  storageKey: 'nas_ai101_reward',
 } as const;
 
 /** The checkout URL with the discount already applied - nothing to paste. */
