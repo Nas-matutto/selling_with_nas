@@ -13,7 +13,7 @@ export const prerender = false;
 
 const enc = new TextEncoder();
 const SITE = 'https://www.sellingwithnas.com';
-const BOOKING_LINK = 'https://cal.com/nas-mansurali/1-on-1-masterclass';
+const BOOKING_LINK = 'https://cal.com/nas-mansurali/30min';
 
 // Brand styling, kept in sync with send-guide.ts.
 const PURPLE = '#a855f7';
