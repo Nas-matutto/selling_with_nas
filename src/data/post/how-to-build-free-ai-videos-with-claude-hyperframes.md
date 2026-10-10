@@ -85,6 +85,22 @@ A 10-15 second video on **Claude Opus 5.5**, on the **$20/month Claude Pro plan*
 I'd still recommend keeping videos short, **30 seconds or less**. Longer videos mean more scenes, more code, and more of your usage limit. If you're hitting limits often, my guide on [how to reduce Claude token usage](/how-to-reduce-claude-tokens-and-avoid-usage-limits) will help.
 
 
+## Which Claude Model Should You Use for Better Videos?
+
+The model you pick matters more than you'd think. A video is a lot of moving parts: timing, layout, animation, and following your brief closely. Stronger models handle those details better, so you spend less time fixing the first draft.
+
+Here's how I'd choose:
+
+- **Claude Opus 5.5 (my recommendation).** This is what I used for every video in this post. It follows detailed prompts closely, handles multi-scene timing well, and tends to need fewer rounds of edits. If you want the best result, start here.
+- **Claude Fable 5.1.** Worth trying if it's available on your plan, especially for longer or more complex videos with many scenes. Keep an eye on your usage, since the most capable models use your limit faster.
+- **Claude Sonnet 5.5.** A solid, lighter option. It's great for simple videos like a 10-second title card or a quick text animation, and for small tweaks to a video you've already built, and it stretches your usage further.
+- **Claude Haiku 4.5.** The fastest and lightest. I'd only use it for tiny edits, like changing a line of text or a color. For building a video from scratch, I'd move up a model.
+
+**My workflow:** build the video with Opus 5.5, then switch to Sonnet 5.5 for small follow-up changes to save usage. You can change models any time in Claude Code with the `/model` command.
+
+Whichever model you use, a clear prompt matters just as much. State the length, the format, the assets to use and the exact call to action, like in the three prompts below.
+
+
 ## 3 Videos I Built (With the Exact Prompts)
 
 For these examples I used my startup, <a href="https://talktomedata.com/" target="_blank" rel="noopener noreferrer">Talk to Me Data</a>, which builds AI agents for businesses. Swap in your own product, links and screenshots. Each prompt has a copy button.
