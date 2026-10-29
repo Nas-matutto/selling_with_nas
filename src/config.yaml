@@ -1,6 +1,6 @@
 site:
   name: Sellingwithnas
-  site: 'https://sellingwithnas.com'
+  site: 'https://www.sellingwithnas.com'
   base: '/'
   trailingSlash: false
 
